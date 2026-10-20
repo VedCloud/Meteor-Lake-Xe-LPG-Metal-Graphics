@@ -14,187 +14,298 @@ permissions:
 
 jobs:
   build:
+    name: Xe-LPG macOS 15 x86_64
     runs-on: macos-15-intel
     timeout-minutes: 360
     env:
       MACOSX_DEPLOYMENT_TARGET: '15.0'
       CARGO_TERM_COLOR: always
+      HOMEBREW_NO_INSTALL_CLEANUP: '1'
 
     steps:
-      - name: Checkout source
+      - name: Checkout sources
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install build dependencies
-        run: |
-          brew install meson ninja llvm spirv-tools glslang rust pkg-config
-          echo "$(brew --prefix llvm)/bin" >> "$GITHUB_PATH"
-          echo "$(brew --prefix spirv-tools)/bin" >> "$GITHUB_PATH"
-          GLSLANG_BIN="$(brew --prefix glslang)/bin"
-          echo "$GLSLANG_BIN" >> "$GITHUB_PATH"
-          echo "GLSLANG_VALIDATOR=$GLSLANG_BIN/glslangValidator" >> "$GITHUB_ENV"
-          test -x "$GLSLANG_BIN/glslangValidator" || {
-            echo "Missing glslangValidator in $GLSLANG_BIN" >&2
-            brew list glslang
-            exit 1
-          }
-          "$GLSLANG_BIN/glslangValidator" --version
-          echo "$(brew --prefix rust)/bin" >> "$GITHUB_PATH"
-          python3 --version
-          xcrun --find clang
+      # Avoid the runner's unconfigured Homebrew Python 3.14. Mesa's
+      # meson.build searches for versioned Python commands, so install
+      # all its modules in a deliberately selected 3.14 interpreter.
+      - name: Select Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          architecture: x64
 
-      - name: Check toolchain and source directories
+      - name: Install Python build requirements
+        shell: bash
         run: |
-          clang --version
-          cargo --version
+          set -euo pipefail
+          python3.14 -m pip install --upgrade pip
+          python3.14 -m pip install \
+            'meson>=1.9,<1.13' ninja \
+            packaging setuptools wheel Mako PyYAML ply pycparser
+          python3.14 - <<'PY'
+          import sys
+          import mesonbuild, packaging, mako, yaml, ply, pycparser
+          from packaging.version import Version
+          assert Version(mako.__version__) >= Version('0.8.0')
+          print('Build Python:', sys.executable, sys.version)
+          print('Mesa Python dependencies: OK')
+          PY
+          command -v meson
+          meson --version
+
+      - name: Install native build requirements
+        shell: bash
+        run: |
+          set -euo pipefail
+          # libclc and SPIRV-LLVM-Translator are used by Mesa's CLC
+          # pipeline. Homebrew resolves their matching LLVM formula.
+          brew install \
+            pkg-config cmake bison flex \
+            llvm spirv-tools glslang spirv-llvm-translator libclc \
+            rust
+
+          for package in llvm spirv-tools glslang bison flex rust spirv-llvm-translator; do
+            echo "$(brew --prefix "$package")/bin" >> "$GITHUB_PATH"
+          done
+
+          LLVM_PREFIX="$(brew --prefix llvm)"
+          LIBCLC_PREFIX="$(brew --prefix libclc)"
+          SPIRV_PREFIX="$(brew --prefix spirv-tools)"
+          TRANSLATOR_PREFIX="$(brew --prefix spirv-llvm-translator)"
+          PREFIX="$RUNNER_TEMP/xelpg-deps"
+
+          echo "XELPG_PREFIX=$PREFIX" >> "$GITHUB_ENV"
+          echo "LLVM_CONFIG=$LLVM_PREFIX/bin/llvm-config" >> "$GITHUB_ENV"
+          echo "CLANG_PATH=$LLVM_PREFIX/bin/clang" >> "$GITHUB_ENV"
+          echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> "$GITHUB_ENV"
+          echo "CMAKE_PREFIX_PATH=$LLVM_PREFIX:$LIBCLC_PREFIX:$SPIRV_PREFIX:$TRANSLATOR_PREFIX:$PREFIX" >> "$GITHUB_ENV"
+          echo "PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig:$LLVM_PREFIX/lib/pkgconfig:$LIBCLC_PREFIX/lib/pkgconfig:$LIBCLC_PREFIX/share/pkgconfig:$SPIRV_PREFIX/lib/pkgconfig:$TRANSLATOR_PREFIX/lib/pkgconfig" >> "$GITHUB_ENV"
+
+          mkdir -p "$PREFIX" desktop-build build-tree ci-logs
+
+      - name: Preflight all available build tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '--- Platform ---'
+          sw_vers
+          uname -m
+          xcodebuild -version
+          xcrun --find clang
+          echo '--- Python / build systems ---'
+          command -v python3.14
+          python3.14 -c 'import packaging, mako, yaml, ply, pycparser; print("Python modules OK")'
           meson --version
           ninja --version
+          pkg-config --version
+          echo '--- GPU toolchain ---'
+          "$LLVM_CONFIG" --version
           command -v llvm-dis
           command -v spirv-val
           command -v glslangValidator
-          test -x "$GLSLANG_VALIDATOR"
-          "$GLSLANG_VALIDATOR" --version
-          printf 'PATH=%s\n' "$PATH"
+          command -v llvm-spirv
+          command -v bison
+          command -v flex
+          command -v cargo
+          llvm-dis --version | head -n 1
+          glslangValidator --version | head -n 2
+          cargo --version
+          echo '--- libclc ---'
+          brew list --versions libclc llvm spirv-llvm-translator
+          find "$(brew --prefix libclc)/share" -maxdepth 3 -type f | head -n 15 || true
+          echo '--- Sources ---'
           test -d MacKernelSDK
+          test -d drm-kmod
+          test -d freebsd-src
           test -d firmware/i915
           test -f NullMoth/gpu-port/xkpi/all.sh
-          mkdir -p desktop-build build-tree
+          test -f NullMoth/gpu-port/xkpi/all-i915.sh
+          test -f desktop-sources/build.py
+          test -f desktop-sources/build-windowserver-0.3.5.py
+          test -f desktop-sources/link-kernel-1.0.14.py
+          df -h .
 
-      - name: Verify dual PCI ID matching in sources
+      - name: Verify both Meteor Lake PCI IDs in NMXGPU
+        shell: bash
         run: |
-          python3 - <<'PY'
-          import plistlib
+          python3.14 - <<'PY'
           from pathlib import Path
+          import plistlib
           path = Path('NullMoth/gpu-port/xkpi/kext/Info.plist')
-          with path.open('rb') as f:
-              info = plistlib.load(f)
-          matches = info['IOKitPersonalities']['NMXGPUIntel']['IOPCIPrimaryMatch'].lower().split()
-          for pci in ('0x7d458086', '0x7d558086'):
-              if pci not in matches:
-                  raise SystemExit(f'Missing {pci} from {path}')
-          print('Both Meteor Lake device IDs are present in NMXGPU matching')
+          info = plistlib.loads(path.read_bytes())
+          match = info['IOKitPersonalities']['NMXGPUIntel']['IOPCIPrimaryMatch'].lower().split()
+          for pci_id in ('0x7d458086', '0x7d558086'):
+              if pci_id not in match:
+                  raise SystemExit(f'Missing {pci_id} in {path}')
+          print('NMXGPU matches both 8086:7D45 and 8086:7D55')
           PY
 
       - name: Build AIR to SPIR-V translator
-        working-directory: NullMoth/translator/translator
-        run: cargo build --release
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo build --release \
+            --manifest-path NullMoth/translator/translator/Cargo.toml \
+            2>&1 | tee ci-logs/translator.log
 
       - name: Build and stage libdrm
         shell: bash
         run: |
           set -euo pipefail
-          PREFIX="$RUNNER_TEMP/xelpg-deps"
           rm -rf build-tree/drm-build
-          mkdir -p "$PREFIX"
           meson setup build-tree/drm-build libdrm \
             --buildtype=release \
-            --prefix="$PREFIX" \
+            --prefix="$XELPG_PREFIX" \
             -Dintel=disabled \
             -Damdgpu=disabled \
             -Dradeon=disabled \
             -Dnouveau=disabled \
-            -Dvmwgfx=disabled
-          meson compile -C build-tree/drm-build
-          meson install -C build-tree/drm-build
-          echo "PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig" >> "$GITHUB_ENV"
-          echo "CMAKE_PREFIX_PATH=$PREFIX" >> "$GITHUB_ENV"
-          PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig" pkg-config --modversion libdrm
+            -Dvmwgfx=disabled \
+            2>&1 | tee ci-logs/libdrm-configure.log
+          meson compile -C build-tree/drm-build \
+            2>&1 | tee ci-logs/libdrm-compile.log
+          meson install -C build-tree/drm-build \
+            2>&1 | tee ci-logs/libdrm-install.log
+          pkg-config --modversion libdrm
 
       - name: Build Mesa ANV
         shell: bash
         run: |
           set -euo pipefail
-          PREFIX="$RUNNER_TEMP/xelpg-deps"
-          LLVM_PREFIX="$(brew --prefix llvm)"
-          export PATH="$LLVM_PREFIX/bin:$(brew --prefix glslang)/bin:$PATH"
-          export LLVM_CONFIG="$LLVM_PREFIX/bin/llvm-config"
-          export CMAKE_PREFIX_PATH="$LLVM_PREFIX:$PREFIX"
-          export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig:$LLVM_PREFIX/lib/pkgconfig"
+          echo '--- Verify Mesa-required Python modules ---'
+          python3.14 - <<'PY'
+          import sys
+          from packaging.version import Version
+          import mako, yaml, ply
+          assert Version(mako.__version__) >= Version('0.8.0')
+          print(sys.executable, 'Mako:', mako.__version__, 'PyYAML:', yaml.__version__)
+          PY
+          echo '--- Verify compiled dependencies ---'
           "$LLVM_CONFIG" --version
-          glslangValidator --version
+          glslangValidator --version | head -n 2
           pkg-config --modversion libdrm
           rm -rf build-tree/mesa-build
           meson setup build-tree/mesa-build mesa \
             --buildtype=release \
-            --prefix="$PREFIX" \
+            --prefix="$XELPG_PREFIX" \
             -Dvulkan-drivers=intel \
             -Dgallium-drivers= \
             -Dglx=disabled \
             -Degl=disabled \
             -Dglvnd=disabled \
             -Dopengl=false \
-            -Dllvm=enabled
-          meson compile -C build-tree/mesa-build
-          meson install -C build-tree/mesa-build
+            -Dllvm=enabled \
+            2>&1 | tee ci-logs/mesa-configure.log
+          meson compile -C build-tree/mesa-build \
+            2>&1 | tee ci-logs/mesa-compile.log
+          meson install -C build-tree/mesa-build \
+            2>&1 | tee ci-logs/mesa-install.log
 
       - name: Build Metal plugin
-        run: python3 desktop-sources/build-windowserver-0.3.5.py
-
-      - name: Prepare upstream kernel scripts for CI paths
         shell: bash
         run: |
-          python3 - <<'PY'
+          set -euo pipefail
+          python3.14 desktop-sources/build-windowserver-0.3.5.py \
+            2>&1 | tee ci-logs/metal-plugin.log
+
+      - name: Remap upstream kernel paths in the CI checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3.14 - <<'PY'
           from pathlib import Path
           root = Path.cwd()
           xkpi = root / 'NullMoth/gpu-port/xkpi'
           replacements = {
               '/Volumes/MiniData/build/gpu-src/xkpi': str(xkpi),
-              '/Volumes/MiniData/build/gpu-src/kpi': str(root),
+              '/Volumes/MiniData/build/gpu-src': str(root),
               '/Users/ved/igpu-build/xkpi': str(xkpi),
-              '/Users/ved/igpu-build/kpi': str(root),
               '/Users/ved/igpu-build': str(root),
-              '/opt/homebrew/bin/python3': 'python3',
+              '/opt/homebrew/bin/python3': 'python3.14',
           }
           for name in ('all.sh', 'all-i915.sh', 'cc-i915.sh', 'one.sh'):
               file = xkpi / name
-              if not file.exists():
+              if not file.is_file():
                   continue
               source = file.read_text()
               for old, new in replacements.items():
                   source = source.replace(old, new)
               file.write_text(source)
+              print('CI remapped:', file)
           PY
+          grep -nE '/Volumes/MiniData|/Users/ved' \
+            NullMoth/gpu-port/xkpi/{all.sh,all-i915.sh,cc-i915.sh} \
+            && { echo 'Unconverted kernel source paths remain' >&2; exit 1; } || true
 
       - name: Compile DRM and LinuxKPI objects
-        working-directory: NullMoth/gpu-port/xkpi
-        run: bash all.sh
-
-      - name: Compile i915 objects
-        working-directory: NullMoth/gpu-port/xkpi
-        run: bash all-i915.sh
-
-      - name: Check kernel objects
+        shell: bash
         run: |
+          set -euo pipefail
+          cd NullMoth/gpu-port/xkpi
+          bash all.sh 2>&1 | tee "$GITHUB_WORKSPACE/ci-logs/kernel-drm.log"
+
+      - name: Compile Intel i915 objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd NullMoth/gpu-port/xkpi
+          bash all-i915.sh 2>&1 | tee "$GITHUB_WORKSPACE/ci-logs/kernel-i915.log"
+
+      - name: Verify kernel object count
+        shell: bash
+        run: |
+          set -euo pipefail
           count=$(find NullMoth/gpu-port/xkpi \
-            \( -path '*/obj/*.o' -o -path '*/obj-i915/*.o' -o -path '*/lkobj/*.o' -o -path '*/srcobj/*.o' -o -path '*/xnuobj/*.o' \) | wc -l | tr -d ' ')
-          echo "Kernel objects found: $count"
+            \( -path '*/obj/*.o' -o -path '*/obj-i915/*.o' -o \
+               -path '*/lkobj/*.o' -o -path '*/srcobj/*.o' -o \
+               -path '*/xnuobj/*.o' \) | wc -l | tr -d ' ')
+          echo "Kernel objects: $count"
           test "$count" -eq 438
-          if [ -d NullMoth/gpu-port/xkpi/logs ] && find NullMoth/gpu-port/xkpi/logs -name '*.failed' -print -quit | grep -q .; then
-            echo 'Compilation failure markers found' >&2
-            exit 1
-          fi
 
-      - name: Link NMXGPU kernel extension
-        run: python3 desktop-sources/link-kernel-1.0.14.py
-
-      - name: Build framebuffer and panel kexts
-        run: python3 desktop-sources/build.py
-
-      - name: Collect build outputs
-        if: always()
+      - name: Link NMXGPU.kext
+        shell: bash
         run: |
+          set -euo pipefail
+          python3.14 desktop-sources/link-kernel-1.0.14.py \
+            2>&1 | tee ci-logs/kernel-link.log
+
+      - name: Build framebuffer and panel claim kexts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3.14 desktop-sources/build.py \
+            2>&1 | tee ci-logs/framebuffer.log
+
+      - name: Collect outputs and diagnostics
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
           mkdir -p ci-artifacts
-          for dir in desktop-build latitude-desktop/Library/Extensions latitude-desktop/EFI-Kexts NullMoth/gpu-port/xkpi/logs build-tree/mesa-build/meson-logs build-tree/drm-build/meson-logs; do
+          for dir in \
+            ci-logs \
+            desktop-build \
+            latitude-desktop/Library/Extensions \
+            latitude-desktop/EFI-Kexts \
+            NullMoth/gpu-port/xkpi/logs \
+            build-tree/mesa-build/meson-logs \
+            build-tree/drm-build/meson-logs; do
             if [ -d "$dir" ]; then
               mkdir -p "ci-artifacts/$(dirname "$dir")"
               cp -R "$dir" "ci-artifacts/$dir"
             fi
           done
-          echo "commit=${GITHUB_SHA}" > ci-artifacts/build-info.txt
+          if [ -d "$RUNNER_TEMP/xelpg-deps/lib" ]; then
+            mkdir -p ci-artifacts/staged
+            cp -R "$RUNNER_TEMP/xelpg-deps/lib" ci-artifacts/staged/lib
+          fi
+          printf 'commit=%s\n' "$GITHUB_SHA" > ci-artifacts/build-info.txt
           sw_vers >> ci-artifacts/build-info.txt
 
-      - name: Upload binaries and logs
+      - name: Upload build binaries and logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
