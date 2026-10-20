@@ -187,11 +187,14 @@ jobs:
           "$LLVM_CONFIG" --version
           glslangValidator --version | head -n 2
           pkg-config --modversion libdrm
+          # Avoid Mesa auto-selecting Wayland through its DRM/KMS detection
+          # on this patched Darwin/IOKit port.
           rm -rf build-tree/mesa-build
           meson setup build-tree/mesa-build mesa \
             --buildtype=release \
             --prefix="$XELPG_PREFIX" \
             -Dvulkan-drivers=intel \
+            -Dplatforms=macos \
             -Dgallium-drivers= \
             -Dglx=disabled \
             -Degl=disabled \
