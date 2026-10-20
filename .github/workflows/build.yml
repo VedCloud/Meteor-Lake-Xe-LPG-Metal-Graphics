@@ -1,0 +1,140 @@
+name: Build Xe-LPG graphics stack
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15-intel
+    timeout-minutes: 360
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '15.0'
+      CARGO_TERM_COLOR: always
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build dependencies
+        run: |
+          brew install meson ninja llvm spirv-tools rust pkg-config
+          echo "$(brew --prefix llvm)/bin" >> "$GITHUB_PATH"
+          echo "$(brew --prefix spirv-tools)/bin" >> "$GITHUB_PATH"
+          echo "$(brew --prefix rust)/bin" >> "$GITHUB_PATH"
+          python3 --version
+          xcrun --find clang
+
+      - name: Check toolchain and source directories
+        run: |
+          clang --version
+          cargo --version
+          meson --version
+          ninja --version
+          command -v llvm-dis
+          command -v spirv-val
+          test -d MacKernelSDK
+          test -d firmware/i915
+          test -f NullMoth/gpu-port/xkpi/all.sh
+          mkdir -p desktop-build build-tree
+
+      - name: Build AIR to SPIR-V translator
+        working-directory: NullMoth/translator/translator
+        run: cargo build --release
+
+      - name: Build Mesa ANV
+        run: |
+          meson setup build-tree/mesa-build mesa --buildtype=release
+          ninja -C build-tree/mesa-build
+
+      - name: Build libdrm
+        run: |
+          meson setup build-tree/drm-build libdrm --buildtype=release
+          ninja -C build-tree/drm-build
+
+      - name: Build Metal plugin
+        run: python3 desktop-sources/build-windowserver-0.3.5.py
+
+      - name: Prepare upstream kernel scripts for CI paths
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path.cwd()
+          xkpi = root / 'NullMoth/gpu-port/xkpi'
+          replacements = {
+              '/Volumes/MiniData/build/gpu-src/xkpi': str(xkpi),
+              '/Volumes/MiniData/build/gpu-src/kpi': str(root),
+              '/Users/ved/igpu-build/xkpi': str(xkpi),
+              '/Users/ved/igpu-build/kpi': str(root),
+              '/Users/ved/igpu-build': str(root),
+              '/opt/homebrew/bin/python3': 'python3',
+          }
+          for name in ('all.sh', 'all-i915.sh', 'cc-i915.sh', 'one.sh'):
+              file = xkpi / name
+              if not file.exists():
+                  continue
+              source = file.read_text()
+              for old, new in replacements.items():
+                  source = source.replace(old, new)
+              file.write_text(source)
+          PY
+
+      - name: Compile DRM and LinuxKPI objects
+        working-directory: NullMoth/gpu-port/xkpi
+        run: bash all.sh
+
+      - name: Compile i915 objects
+        working-directory: NullMoth/gpu-port/xkpi
+        run: bash all-i915.sh
+
+      - name: Check kernel objects
+        run: |
+          count=$(find NullMoth/gpu-port/xkpi \
+            \( -path '*/obj/*.o' -o -path '*/obj-i915/*.o' -o -path '*/lkobj/*.o' -o -path '*/srcobj/*.o' -o -path '*/xnuobj/*.o' \) | wc -l | tr -d ' ')
+          echo "Kernel objects found: $count"
+          test "$count" -eq 438
+          if find NullMoth/gpu-port/xkpi/logs -name '*.failed' -print -quit | grep -q .; then
+            echo 'Compilation failure markers found' >&2
+            exit 1
+          fi
+
+      - name: Link NMXGPU kernel extension
+        run: python3 desktop-sources/link-kernel-1.0.14.py
+
+      - name: Build framebuffer and panel kexts
+        run: python3 desktop-sources/build.py
+
+      - name: Collect build outputs
+        if: always()
+        run: |
+          mkdir -p ci-artifacts
+          for dir in desktop-build latitude-desktop/Library/Extensions latitude-desktop/EFI-Kexts NullMoth/gpu-port/xkpi/logs; do
+            if [ -d "$dir" ]; then
+              mkdir -p "ci-artifacts/$(dirname "$dir")"
+              cp -R "$dir" "ci-artifacts/$dir"
+            fi
+          done
+          echo "commit=${GITHUB_SHA}" > ci-artifacts/build-info.txt
+          sw_vers >> ci-artifacts/build-info.txt
+
+      - name: Upload binaries and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xelpg-macos15-${{ github.run_number }}
+          path: ci-artifacts/
+          if-no-files-found: warn
+          retention-days: 14
+
+
