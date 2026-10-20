@@ -80,20 +80,38 @@ jobs:
         working-directory: NullMoth/translator/translator
         run: cargo build --release
 
+      
       - name: Build and stage libdrm
+        shell: bash
         run: |
+          set -euo pipefail
+
+          PREFIX="${RUNNER_TEMP}/xelpg-deps"
+
+          # Avoid stale Meson configuration.
+          rm -rf build-tree/drm-build
+          mkdir -p "$PREFIX"
+
           meson setup build-tree/drm-build libdrm \
             --buildtype=release \
-            --prefix="$RUNNER_TEMP/xelpg-deps" \
-            -Dintel=enabled \
+            --prefix="$PREFIX" \
+            -Dintel=disabled \
             -Damdgpu=disabled \
             -Dradeon=disabled \
             -Dnouveau=disabled \
             -Dvmwgfx=disabled
-          ninja -C build-tree/drm-build
+
+          meson compile -C build-tree/drm-build
           meson install -C build-tree/drm-build
-          echo "PKG_CONFIG_PATH=$RUNNER_TEMP/xelpg-deps/lib/pkgconfig:$RUNNER_TEMP/xelpg-deps/lib64/pkgconfig" >> "$GITHUB_ENV"
-          echo "CMAKE_PREFIX_PATH=$RUNNER_TEMP/xelpg-deps" >> "$GITHUB_ENV"
+
+          # Make staged libdrm visible to Mesa.
+          echo "PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig" >> "$GITHUB_ENV"
+          echo "CMAKE_PREFIX_PATH=$PREFIX" >> "$GITHUB_ENV"
+
+          echo "Installed libdrm:"
+          PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig" \
+            pkg-config --modversion libdrm
+
 
       - name: Build Mesa ANV
         shell: bash
