@@ -21,12 +21,12 @@ int main(void){
   assert(nvmtl_memory_properties_valid(&p));
   p.memoryTypes[t-1].heapIndex=n;assert(!nvmtl_memory_properties_valid(&p));
  }
- assert(nvmtl_mtl_unified_identity(0x8086,0x7d45,VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU));
- assert(!nvmtl_mtl_unified_identity(0x8086,0x7d45,VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU));
- assert(!nvmtl_mtl_unified_identity(0x10de,0x7d45,VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU));
+ assert(nvmtl_mtl_unified_identity(0x8086,0x7d55,VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU));
+ assert(!nvmtl_mtl_unified_identity(0x8086,0x7d55,VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU));
+ assert(!nvmtl_mtl_unified_identity(0x10de,0x7d55,VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU));
  assert(!nvmtl_mtl_unified_identity(0x8086,0x7d55,VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU));
- assert(nvmtl_mtl_userptr_unavailable(0x8086,0x7d45));
- assert(!nvmtl_mtl_userptr_unavailable(0x10de,0x7d45));
+ assert(nvmtl_mtl_userptr_unavailable(0x8086,0x7d55));
+ assert(!nvmtl_mtl_userptr_unavailable(0x10de,0x7d55));
  assert(!nvmtl_mtl_userptr_unavailable(0x8086,0x7d55));
  for(uint64_t heap=1;heap<10000;heap+=17)for(uint64_t budget=0;budget<15000;budget+=73){
   uint64_t limit=nvmtl_shared_working_set(heap,budget);

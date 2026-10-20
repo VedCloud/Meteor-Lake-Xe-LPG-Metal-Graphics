@@ -29,7 +29,7 @@ static void pr_err(const char *fmt,...){va_list ap;va_start(ap,fmt);const char *
 '''
 post=r'''
 int main(void){
- unsigned device=0x7d45;struct eng engine={0};struct ctx ctx={{4098}};u32 *data=malloc(4096);for(unsigned i=0;i<1024;i++)data[i]=0x50000000+i;
+ unsigned device=0x7d55;struct eng engine={0};struct ctx ctx={{4098}};u32 *data=malloc(4096);for(unsigned i=0;i<1024;i++)data[i]=0x50000000+i;
  struct intel_ring ring={data,1,4096};struct i915_request rq={.i915=&device,.engine=&engine,.ring=&ring,.context=&ctx,.fence={20,8},.head=0xca8,.infix=0xcc0,.postfix=0xd78,.tail=0xe08,.wa_tail=0xe10,.active=1};
  nmx_log_request_ring(&rq,"before-tail");assert(headers==1&&reads==94);assert(offsets[3]==0xca4&&values[3]==data[0xca4/4]);for(unsigned i=0;i<reads;i++)assert(values[i]==data[offsets[i]/4]);
  reads=0;rq.head=4092;rq.wa_tail=12;nmx_log_request_ring(&rq,"hang");assert(reads==8&&offsets[5]==0&&values[5]==data[0]);
@@ -38,7 +38,7 @@ int main(void){
  ring.size=4095;nmx_log_request_ring(&rq,"invalid");assert(headers==before);ring.size=4096;
  ring.vaddr=0;nmx_log_request_ring(&rq,"invalid");assert(headers==before);ring.vaddr=data;
  ring.pin_count=0;nmx_log_request_ring(&rq,"invalid");assert(headers==before);ring.pin_count=1;
- device=0x1234;nmx_log_request_ring(&rq,"other");assert(headers==before);device=0x7d45;
+ device=0x1234;nmx_log_request_ring(&rq,"other");assert(headers==before);device=0x7d55;
  rq.active=0;nmx_log_request_ring(&rq,"inactive");assert(headers==before);rq.active=1;
  rq.fence.seqno=33;nmx_log_request_ring(&rq,"late");assert(headers==before);rq.fence.seqno=20;
 

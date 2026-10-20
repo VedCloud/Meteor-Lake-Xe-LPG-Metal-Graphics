@@ -24,7 +24,7 @@ static OSObject yes;
 #define kOSBooleanTrue (&yes)
 struct IORegistryEntry:OSObject{std::map<std::string,OSObject*>d;bool setProperty(const char*k,OSObject*v){d[k]=v;publication++;return true;}OSObject*getProperty(const char*k){return d[k];}};
 struct IOService:IORegistryEntry{IOService*p=nullptr;IOService*getProvider(){return p;}};
-struct IOPCIDevice:IOService{unsigned vendor=0x8086,device=0x7d45;unsigned configRead16(unsigned offset){return offset?device:vendor;}};
+struct IOPCIDevice:IOService{unsigned vendor=0x8086,device=0x7d55;unsigned configRead16(unsigned offset){return offset?device:vendor;}};
 struct IOFramebuffer:IOService{virtual IOReturn setProperties(OSObject*){return kIOReturnUnsupported;}};
 struct NMXVGAFB:IOFramebuffer{bool fPanelMemoryValidated=true;IOService*fAccel=nullptr;IOReturn setProperties(OSObject*)override;};
 static int current_task(){return 1;}
@@ -37,7 +37,7 @@ struct IOUserClient{static int clientHasPrivilege(int,int){return privileged?kIO
 int main(){
  IOPCIDevice pci;IOService claim,accel;NMXVGAFB fb;claim.p=&pci;fb.p=&claim;fb.fAccel=&accel;pci.d["nmxgpu-claimed"]=&yes;
  OSDictionary report,outer;outer.d["LatitudeGPUIdentity"]=&report;
- report.d["version"]=make<OSNumber>(1);report.d["vendor"]=make<OSNumber>(0x8086);report.d["device"]=make<OSNumber>(0x7d45);
+ report.d["version"]=make<OSNumber>(1);report.d["vendor"]=make<OSNumber>(0x8086);report.d["device"]=make<OSNumber>(0x7d55);
  report.d["name"]=make<OSString>(std::string("queried device identity"));report.d["physicalRAMBytes"]=make<OSNumber>(16ull<<30);
  for(unsigned long long heap: {1ull<<20,1537ull<<20,3ull<<30,8ull<<30,12ull<<30,16ull<<30}){
   report.d["sharedHeapBytes"]=make<OSNumber>(heap);assert(fb.setProperties(&outer)==kIOReturnSuccess);
@@ -50,7 +50,7 @@ int main(){
  }
  int before=publication;
  privileged=false;assert(fb.setProperties(&outer)==kIOReturnNotPrivileged);privileged=true;
- pci.device=0x1234;assert(fb.setProperties(&outer)==kIOReturnNotReady);pci.device=0x7d45;
+ pci.device=0x1234;assert(fb.setProperties(&outer)==kIOReturnNotReady);pci.device=0x7d55;
  fb.fPanelMemoryValidated=false;assert(fb.setProperties(&outer)==kIOReturnNotReady);fb.fPanelMemoryValidated=true;
  pci.d["nmxgpu-claimed"]=nullptr;assert(fb.setProperties(&outer)==kIOReturnNotReady);pci.d["nmxgpu-claimed"]=&yes;
  assert(fb.setProperties(nullptr)==kIOReturnUnsupported);

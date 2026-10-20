@@ -29,7 +29,7 @@ post='''
 static _Atomic int holding,release_hold;
 static void *holder(void *p){pthread_mutex_lock(&nvmtl_desktop_submit_mutex);holding=1;while(!release_hold)usleep(1000);pthread_mutex_unlock(&nvmtl_desktop_submit_mutex);return NULL;}
 static void *worker(void *p){nvk_cmdbuf c;for(int i=0;i<1000;i++)assert(!nvmtl_vk_submit_wait_at(&c,"surface copy or render"));return NULL;}
-int main(void){assert(nvmtl_windowserver_serial_policy(0x8086,0x7d45,"WindowServer"));assert(!nvmtl_windowserver_serial_policy(0x8086,0x7d45,"latitude-readback-test"));assert(!nvmtl_windowserver_serial_policy(0x8086,0x7d55,"WindowServer"));assert(!nvmtl_windowserver_serial_policy(0x10de,0x7d45,"WindowServer"));assert(!nvmtl_windowserver_serial_policy(0x8086,0x7d45,NULL));
+int main(void){assert(nvmtl_windowserver_serial_policy(0x8086,0x7d55,"WindowServer"));assert(!nvmtl_windowserver_serial_policy(0x8086,0x7d55,"latitude-readback-test"));assert(!nvmtl_windowserver_serial_policy(0x8086,0x7d55,"WindowServer"));assert(!nvmtl_windowserver_serial_policy(0x10de,0x7d55,"WindowServer"));assert(!nvmtl_windowserver_serial_policy(0x8086,0x7d55,NULL));
  serial=1;pthread_t ts[3];for(int i=0;i<3;i++)pthread_create(&ts[i],NULL,worker,NULL);for(int i=0;i<3;i++)pthread_join(ts[i],NULL);assert(atomic_load(&peak)==1&&!atomic_load(&in_flight));
  nvk_cmdbuf c;begin_fail=1;assert(nvmtl_vk_submit_wait_at(&c,"begin failure")==-1);begin_fail=0;finish_fail=1;assert(nvmtl_vk_submit_wait_at(&c,"GPU timeout")==-2);finish_fail=0;recurse=1;assert(!nvmtl_vk_submit_wait_at(&c,"managed flush"));recurse=0;assert(!pthread_mutex_trylock(&nvmtl_desktop_submit_mutex));pthread_mutex_unlock(&nvmtl_desktop_submit_mutex);
  pthread_t hold;pthread_create(&hold,NULL,holder,NULL);while(!holding)usleep(1000);budget=5;

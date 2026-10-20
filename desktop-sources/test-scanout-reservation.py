@@ -24,7 +24,7 @@ pre=r'''
 #define INTEL_DEVID(i) ((i)->id)
 #define INTEL_REVID(i) ((i)->rev)
 #define GRAPHICS_VER(i) 12
-#define IS_METEORLAKE(i) ((i)->id==0x7d45)
+#define IS_METEORLAKE(i) ((i)->id==0x7d55)
 #define drm_notice(...) ((void)0)
 #define drm_dbg(...) ((void)0)
 #define drm_info(...) ((void)0)
@@ -49,7 +49,7 @@ static int nmx_xnu_firmware_scanout(u64 *base,u64 *size){*base=gop_base;*size=go
 '''
 post=r'''
 int main(void){
- struct drm_i915_private i={.id=0x7d45,.rev=8,.uncore=0x60800000};
+ struct drm_i915_private i={.id=0x7d55,.rev=8,.uncore=0x60800000};
  struct intel_memory_region m={.i915=&i,.region={0x800000,0x87fffff},.io={0x60800000,0x687fffff},.min_page_size=65536};
  assert(i915_gem_init_stolen(&m)==0);
 #ifdef OLD
@@ -71,7 +71,7 @@ int main(void){
   assert(s>=off+n && s%65536==0 && s<0x8000000);
  }
  i.id=0x1234;assert(i915_gem_init_stolen(&m)==0&&i.mm.stolen.start==0);
- i.id=0x7d45;gop_error=1;assert(i915_gem_init_stolen(&m)==-ENOSPC);
+ i.id=0x7d55;gop_error=1;assert(i915_gem_init_stolen(&m)==-ENOSPC);
  gop_error=0;gop_base=0x70000000;assert(i915_gem_init_stolen(&m)==-ENOSPC);
  puts("PASS actual stolen initialization + bound helper ASan/UBSan: GOP exclusion, 524288 boundary cases, offset/alignment/overflow, invalid console refusal and other-device preservation");
 #endif

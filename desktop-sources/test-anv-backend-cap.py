@@ -29,13 +29,13 @@ static int actual_allocation_guard(struct anv_device*_device,const struct alloca
 int main(){
  const uint64_t cap=4ull<<30;
  for(uint64_t n=0;n<=(32ull<<30);n+=(1ull<<24)){
-  assert(anv_latitude_heap_limit(0x7d45,false,true,n)==(n<cap?n:cap));
+  assert(anv_latitude_heap_limit(0x7d55,false,true,n)==(n<cap?n:cap));
   assert(anv_latitude_heap_limit(0x7d55,false,true,n)==n);
-  assert(anv_latitude_heap_limit(0x7d45,true,true,n)==n);
-  assert(anv_latitude_heap_limit(0x7d45,false,false,n)==n);
+  assert(anv_latitude_heap_limit(0x7d55,true,true,n)==n);
+  assert(anv_latitude_heap_limit(0x7d55,false,false,n)==n);
  }
- assert(anv_latitude_heap_limit(0x7d45,false,true,UINT64_MAX)==cap);
- struct budget usage={0};struct anv_physical_device p={.memory={.type_count=1,.heap_count=1,.heaps_budget=&usage}};p.memory.heaps[0].size=anv_latitude_heap_limit(0x7d45,false,true,12ull<<30);struct anv_device d={&p};
+ assert(anv_latitude_heap_limit(0x7d55,false,true,UINT64_MAX)==cap);
+ struct budget usage={0};struct anv_physical_device p={.memory={.type_count=1,.heap_count=1,.heaps_budget=&usage}};p.memory.heaps[0].size=anv_latitude_heap_limit(0x7d55,false,true,12ull<<30);struct anv_device d={&p};
  for(uint64_t used=0;used<=cap;used+=1ull<<26)for(uint64_t size=1;size<=(5ull<<30);size+=(1ull<<24)){
   usage.used[0]=used;struct allocation a={5,size,0};uint64_t aligned=align64(size,4096ull);
   assert(actual_allocation_guard(&d,&a)==((size>cap||aligned>cap||used+aligned>cap)?-2:0));

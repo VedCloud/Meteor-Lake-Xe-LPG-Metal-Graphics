@@ -66,7 +66,8 @@ static int g_devices;
 static bool latitude_mtl_target(IOPCIDevice *pci)
 {
     return pci && pci->configRead16(kIOPCIConfigVendorID) == INTEL_VENDOR &&
-           pci->configRead16(kIOPCIConfigDeviceID) == 0x7D45;
+           (pci->configRead16(kIOPCIConfigDeviceID) == 0x7D45 ||
+           pci->configRead16(kIOPCIConfigDeviceID) == 0x7D55);
 }
 
 static bool opted_in(IOPCIDevice *pci, uint16_t vendor)

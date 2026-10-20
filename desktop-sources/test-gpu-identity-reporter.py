@@ -10,7 +10,7 @@ static int mode(const char*s){return getenv("MODE")&&!strcmp(getenv("MODE"),s);}
 static VkResult create(const VkInstanceCreateInfo*i,const VkAllocationCallbacks*a,VkInstance*out){*out=(VkInstance)1;return mode("create-fail")?VK_ERROR_INITIALIZATION_FAILED:VK_SUCCESS;}
 static void destroy(VkInstance i,const VkAllocationCallbacks*a){}
 static VkResult enumerate(VkInstance i,uint32_t*n,VkPhysicalDevice*d){*n=mode("no-devices")?0:mode("many-devices")?9:mode("duplicate")?2:1;if(d&&*n<=8)for(unsigned j=0;j<*n;j++)d[j]=(VkPhysicalDevice)(uintptr_t)(j+1);return mode("enum-fail")?VK_ERROR_DEVICE_LOST:VK_SUCCESS;}
-static void props(VkPhysicalDevice d,VkPhysicalDeviceProperties*p){memset(p,0,sizeof(*p));p->vendorID=mode("wrong-vendor")?0x10de:0x8086;p->deviceID=0x7d45;p->deviceType=mode("discrete")?VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU:VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU;memset(p->deviceName,mode("unterminated-name")?'x':0,sizeof(p->deviceName));if(!mode("unterminated-name"))strcpy(p->deviceName,"Driver supplied test identity");}
+static void props(VkPhysicalDevice d,VkPhysicalDeviceProperties*p){memset(p,0,sizeof(*p));p->vendorID=mode("wrong-vendor")?0x10de:0x8086;p->deviceID=0x7d55;p->deviceType=mode("discrete")?VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU:VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU;memset(p->deviceName,mode("unterminated-name")?'x':0,sizeof(p->deviceName));if(!mode("unterminated-name"))strcpy(p->deviceName,"Driver supplied test identity");}
 static void memory(VkPhysicalDevice d,VkPhysicalDeviceMemoryProperties*p){memset(p,0,sizeof(*p));p->memoryHeapCount=mode("bad-count")?VK_MAX_MEMORY_HEAPS+1:1;p->memoryTypeCount=1;p->memoryTypes[0].heapIndex=mode("bad-index")?1:0;p->memoryHeaps[0].flags=mode("no-local-heap")?0:VK_MEMORY_HEAP_DEVICE_LOCAL_BIT;const char*b=getenv("HEAP_BYTES");p->memoryHeaps[0].size=b?strtoull(b,0,10):(12ull<<30);}
 PFN_vkVoidFunction vk_icdGetInstanceProcAddr(VkInstance i,const char*n){
  if(!strcmp(n,"vkCreateInstance"))return(PFN_vkVoidFunction)create;
@@ -38,7 +38,7 @@ kern_return_t IORegistryEntryGetParentEntry(io_registry_entry_t e,const io_name_
 kern_return_t IORegistryEntrySetCFProperties(io_registry_entry_t e,CFTypeRef p){if(mode("publish-fail"))return kIOReturnUnsupported;published=[(__bridge NSDictionary*)p objectForKey:@"LatitudeGPUIdentity"];return 0;}
 CFTypeRef IORegistryEntryCreateCFProperty(io_registry_entry_t e,CFStringRef key,CFAllocatorRef a,IOOptionBits o){
  NSString*k=(__bridge NSString*)key;id value=nil;
- if([k isEqual:@"vendor-id"]||[k isEqual:@"device-id"]){uint32_t v=[k isEqual:@"vendor-id"]?0x8086:0x7d45;value=[NSData dataWithBytes:&v length:4];}
+ if([k isEqual:@"vendor-id"]||[k isEqual:@"device-id"]){uint32_t v=[k isEqual:@"vendor-id"]?0x8086:0x7d55;value=[NSData dataWithBytes:&v length:4];}
  else if([k isEqual:@"nmxgpu-claimed"])value=mode("unclaimed")?@NO:@YES;
  else if([k isEqual:@"model"]){NSMutableData*d=[[published[@"name"] dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];char zero=0;[d appendBytes:&zero length:1];value=d;}
  else if([k isEqual:@"VRAM,totalMB"])value=mode("bad-readback")?@7:@([published[@"sharedHeapBytes"] unsignedLongLongValue]>>20);

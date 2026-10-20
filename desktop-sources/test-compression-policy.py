@@ -7,12 +7,12 @@ code='''#include <assert.h>
 #include <stdio.h>
 #include "nvmtl_desktop_policy.h"
 int main(void){
- unsetenv("INTEL_DEBUG");assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d45,"WindowServer")==1);assert(!strcmp(getenv("INTEL_DEBUG"),"noccs"));
- setenv("INTEL_DEBUG","",1);assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d45,"WindowServer")==1);assert(!strcmp(getenv("INTEL_DEBUG"),"noccs"));
- setenv("INTEL_DEBUG","perf",1);assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d45,"WindowServer")==1);assert(!strcmp(getenv("INTEL_DEBUG"),"perf,noccs"));
- const char *names[]={"normal-app","windowserver",NULL};for(int i=0;i<3;i++){assert(!nvmtl_windowserver_disable_ccs(0x8086,0x7d45,names[i]));assert(!strcmp(getenv("INTEL_DEBUG"),"perf,noccs"));}
- assert(!nvmtl_windowserver_disable_ccs(0x8086,0x7d55,"WindowServer"));assert(!nvmtl_windowserver_disable_ccs(0x10de,0x7d45,"WindowServer"));
- char huge[5000];memset(huge,'x',4999);huge[4999]=0;setenv("INTEL_DEBUG",huge,1);assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d45,"WindowServer")==-E2BIG);assert(strlen(getenv("INTEL_DEBUG"))==4999);
+ unsetenv("INTEL_DEBUG");assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d55,"WindowServer")==1);assert(!strcmp(getenv("INTEL_DEBUG"),"noccs"));
+ setenv("INTEL_DEBUG","",1);assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d55,"WindowServer")==1);assert(!strcmp(getenv("INTEL_DEBUG"),"noccs"));
+ setenv("INTEL_DEBUG","perf",1);assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d55,"WindowServer")==1);assert(!strcmp(getenv("INTEL_DEBUG"),"perf,noccs"));
+ const char *names[]={"normal-app","windowserver",NULL};for(int i=0;i<3;i++){assert(!nvmtl_windowserver_disable_ccs(0x8086,0x7d55,names[i]));assert(!strcmp(getenv("INTEL_DEBUG"),"perf,noccs"));}
+ assert(!nvmtl_windowserver_disable_ccs(0x8086,0x7d55,"WindowServer"));assert(!nvmtl_windowserver_disable_ccs(0x10de,0x7d55,"WindowServer"));
+ char huge[5000];memset(huge,'x',4999);huge[4999]=0;setenv("INTEL_DEBUG",huge,1);assert(nvmtl_windowserver_disable_ccs(0x8086,0x7d55,"WindowServer")==-E2BIG);assert(strlen(getenv("INTEL_DEBUG"))==4999);
  puts("PASS actual compression policy: exact process/vendor/device scope, existing flags preserved, unset/empty handled, oversized policy rejected without mutation");}
 '''
 with tempfile.TemporaryDirectory() as d:

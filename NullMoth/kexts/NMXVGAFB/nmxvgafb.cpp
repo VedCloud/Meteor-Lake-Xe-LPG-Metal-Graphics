@@ -608,7 +608,10 @@ IOService *NMXVGAFB::probe(IOService *provider, SInt32 *score)
     if (!matchedPCI) return nullptr;
 #ifdef LATITUDE_MTL_PANEL
     if (matchedPCI->configRead16(kIOPCIConfigVendorID) != 0x8086 ||
-        matchedPCI->configRead16(kIOPCIConfigDeviceID) != 0x7d45 ||
+        (
+            matchedPCI->configRead16(kIOPCIConfigDeviceID) != 0x7D45 &&
+            matchedPCI->configRead16(kIOPCIConfigDeviceID) != 0x7D55
+        ) ||
         matchedPCI->configRead16(kIOPCIConfigSubSystemVendorID) != 0x1028 ||
         matchedPCI->configRead16(kIOPCIConfigSubSystemID) != 0x0cb6) return nullptr;
 #endif

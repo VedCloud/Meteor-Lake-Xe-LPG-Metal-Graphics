@@ -1,21 +1,56 @@
-# GitHub rejects any single file over 100 MB. These are the only files in the
-# tree that large, and all of them are reproducible rather than unique:
-#   - the four libLLVM.dylib copies are build products of the packaged bundles
-#   - the toolchain libLLVM.dylib belongs to the Rust toolchain in toolchain/
-#   - the tarball is pinned by SHA256SUMS-upstream.txt
+
+# macOS
+.DS_Store
+.AppleDouble
+._*
+*.xcuserstate
+DerivedData/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Rust
+**/target/
+
+# Meson / Ninja
+build-tree/
+**/meson-logs/
+**/meson-private/
+**/.ninja_deps
+**/.ninja_log
+
+# Generated build outputs
+accel-build/
+desktop-build/
+NullMoth/gpu-port/xkpi/obj/
+NullMoth/gpu-port/xkpi/obj-i915/
+NullMoth/gpu-port/xkpi/lkobj/
+NullMoth/gpu-port/xkpi/srcobj/
+NullMoth/gpu-port/xkpi/xnuobj/
+
+# Compiler intermediates
+*.o
+*.d
+*.dSYM/
+*.gcda
+*.gcno
+
+# Logs / diagnostics
+*.log
+*.panic
+*.ips
+
+# Local runtime outputs
+checkpoints/
+latitude-desktop/WindowServerPlugin/
+latitude-desktop/Library/
+
+# Preserve original large-file exclusions
 upstream-runtime/pkgroot/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/air-runtime/libLLVM.dylib
-latitude-desktop/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/air-runtime/libLLVM.dylib
 latitude-runtime/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/air-runtime/libLLVM.dylib
 backups/desktop-0.2.6-before/package/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/air-runtime/libLLVM.dylib
 toolchain/rustup/toolchains/stable-aarch64-apple-darwin/lib/libLLVM.dylib
 nullmoth-nvidia-2.0.2.tar.gz
 
-# Regenerable installed runtime and distribution snapshots. These contain build
-# products (including >100 MB libLLVM.dylib copies) and are reproduced by the
-# build/install step, not tracked in the repo.
-checkpoints/
-latitude-desktop/WindowServerPlugin/
-latitude-desktop/Library/
-
-# macOS cruft
-.DS_Store

@@ -14,13 +14,13 @@ static int nvmtl_memory_properties_valid(const VkPhysicalDeviceMemoryProperties 
 static int nvmtl_mtl_unified_identity(uint32_t vendor, uint32_t device,
                                     VkPhysicalDeviceType type)
 {
-    return vendor == 0x8086 && device == 0x7d45 &&
+    return vendor == 0x8086 && (device == 0x7d45 || device == 0x7d55) &&
            type == VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU;
 }
 
 static int nvmtl_mtl_userptr_unavailable(uint32_t vendor, uint32_t device)
 {
-    return vendor == 0x8086 && device == 0x7d45;
+    return vendor == 0x8086 && (device == 0x7d45 || device == 0x7d55);
 }
 
 /* A queried budget is a limit, not dedicated VRAM or a physical reservation. */
