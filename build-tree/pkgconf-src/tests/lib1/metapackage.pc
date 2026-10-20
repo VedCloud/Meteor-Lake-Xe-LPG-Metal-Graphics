@@ -1,4 +1,0 @@
-Name: metapackage
-Version: 0.1
-Description: metapackage for testing purposes
-Requires: metapackage-1, metapackage-2

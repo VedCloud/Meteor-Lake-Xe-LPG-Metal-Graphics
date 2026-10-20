@@ -1,6 +1,0 @@
-/Users/ved/igpu-build/tools/include/LLVMSPIRVLib/LLVMSPIRVLib.h
-/Users/ved/igpu-build/tools/include/LLVMSPIRVLib/LLVMSPIRVOpts.h
-/Users/ved/igpu-build/tools/include/LLVMSPIRVLib/LLVMSPIRVExtensions.inc
-/Users/ved/igpu-build/tools/lib/pkgconfig/LLVMSPIRVLib.pc
-/Users/ved/igpu-build/tools/lib/libLLVMSPIRVLib.dylib
-/Users/ved/igpu-build/tools/bin/llvm-spirv

@@ -1,7 +1,0 @@
-prefix=/usr
-datarootdir=${prefix}/share
-pkgdatadir=${pc_sysrootdir}/${datarootdir}/test
-
-Name: Test
-Description: Testing pc_sysrootdir auto-expansion
-Version: 1.0

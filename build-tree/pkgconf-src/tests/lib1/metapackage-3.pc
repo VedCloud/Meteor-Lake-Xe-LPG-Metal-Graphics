@@ -1,4 +1,0 @@
-Name: metapackage-3
-Version: 0.1
-Description: metapackage for testing purposes
-Requires.private: bar

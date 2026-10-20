@@ -1,8 +1,0 @@
-#!/bin/sh
-'''exec' "/Users/ved/Documents/iGPU Port/build-tree/python311/bin/python3.11" "$0" "$@"
-' '''
-import sys
-from mako.cmd import cmdline
-if __name__ == '__main__':
-    sys.argv[0] = sys.argv[0].removesuffix('.exe')
-    sys.exit(cmdline())

@@ -1,5 +1,0 @@
-device=Apple M4 native-test=1 size=64x64 pitch=320 iterations=10 threads=2 raw=0 iosurface=1 fresh-textures=0 shared-texture=0 bgra=1
-progress worker=0 frames=10/10 resident=15286272
-progress worker=1 frames=10/10 resident=15286272
-PASS IOSurface backing: all published CPU pixels checked after GPU completion
-PASS exact readback: 20 frames, all pixels and row padding checked (native harness check only)

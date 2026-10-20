@@ -1,4 +1,0 @@
-/Users/ved/Documents/iGPU Port/research/voodooi2c-core/VoodooI2C Satellites/VoodooI2CHID/VoodooI2CHID/Sensors/VoodooI2CDeviceOrientationSensor.cpp:36:98: warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-   36 |         IOHIDElement* child = OSDynamicCast(IOHIDElement, element->getChildElements()->getObject(i));
-      |                                                                                        ~~~~~~~~~ ^
-1 warning generated.

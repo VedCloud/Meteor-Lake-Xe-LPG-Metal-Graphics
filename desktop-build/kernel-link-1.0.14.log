@@ -1,2 +1,0 @@
-ld: warning: object file (/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/lib/libkmod.a[x86_64][2](c_start.o)) was built for newer 'macOS' version (27.0) than being linked (15.0)
-ld: warning: object file (/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/lib/libkmod.a[x86_64][3](c_stop.o)) was built for newer 'macOS' version (27.0) than being linked (15.0)
