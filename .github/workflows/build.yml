@@ -80,18 +80,13 @@ jobs:
         working-directory: NullMoth/translator/translator
         run: cargo build --release
 
-      
       - name: Build and stage libdrm
         shell: bash
         run: |
           set -euo pipefail
-
-          PREFIX="${RUNNER_TEMP}/xelpg-deps"
-
-          # Avoid stale Meson configuration.
+          PREFIX="$RUNNER_TEMP/xelpg-deps"
           rm -rf build-tree/drm-build
           mkdir -p "$PREFIX"
-
           meson setup build-tree/drm-build libdrm \
             --buildtype=release \
             --prefix="$PREFIX" \
@@ -100,36 +95,38 @@ jobs:
             -Dradeon=disabled \
             -Dnouveau=disabled \
             -Dvmwgfx=disabled
-
           meson compile -C build-tree/drm-build
           meson install -C build-tree/drm-build
-
-          # Make staged libdrm visible to Mesa.
-          echo "PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig" >> "$GITHUB_ENV"
+          echo "PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig" >> "$GITHUB_ENV"
           echo "CMAKE_PREFIX_PATH=$PREFIX" >> "$GITHUB_ENV"
-
-          echo "Installed libdrm:"
-          PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig" \
-            pkg-config --modversion libdrm
-
+          PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig" pkg-config --modversion libdrm
 
       - name: Build Mesa ANV
         shell: bash
         run: |
-          export PATH="$(brew --prefix glslang)/bin:$PATH"
-          echo "Using glslangValidator: $(command -v glslangValidator)"
+          set -euo pipefail
+          PREFIX="$RUNNER_TEMP/xelpg-deps"
+          LLVM_PREFIX="$(brew --prefix llvm)"
+          export PATH="$LLVM_PREFIX/bin:$(brew --prefix glslang)/bin:$PATH"
+          export LLVM_CONFIG="$LLVM_PREFIX/bin/llvm-config"
+          export CMAKE_PREFIX_PATH="$LLVM_PREFIX:$PREFIX"
+          export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/lib64/pkgconfig:$PREFIX/share/pkgconfig:$LLVM_PREFIX/lib/pkgconfig"
+          "$LLVM_CONFIG" --version
           glslangValidator --version
-          # Avoid stale Meson configurations from generated or cached build trees.
+          pkg-config --modversion libdrm
           rm -rf build-tree/mesa-build
           meson setup build-tree/mesa-build mesa \
             --buildtype=release \
+            --prefix="$PREFIX" \
             -Dvulkan-drivers=intel \
             -Dgallium-drivers= \
             -Dglx=disabled \
             -Degl=disabled \
+            -Dglvnd=disabled \
             -Dopengl=false \
-            -Dllvm=disabled
-          ninja -C build-tree/mesa-build
+            -Dllvm=enabled
+          meson compile -C build-tree/mesa-build
+          meson install -C build-tree/mesa-build
 
       - name: Build Metal plugin
         run: python3 desktop-sources/build-windowserver-0.3.5.py
@@ -205,3 +202,4 @@ jobs:
           path: ci-artifacts/
           if-no-files-found: warn
           retention-days: 14
+
