@@ -1,11 +1,11 @@
 name: Build Xe-LPG graphics stack
 
 on:
-#  workflow_dispatch:
-#  push:
-#    branches: [main]
-#    paths-ignore:
-#      - '**/*.md'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
   pull_request:
     branches: [main]
 
@@ -136,5 +136,4 @@ jobs:
           path: ci-artifacts/
           if-no-files-found: warn
           retention-days: 14
-
 
