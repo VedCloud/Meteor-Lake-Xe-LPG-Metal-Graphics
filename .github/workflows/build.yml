@@ -28,9 +28,18 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          brew install meson ninja llvm spirv-tools rust pkg-config
+          brew install meson ninja llvm spirv-tools glslang rust pkg-config
           echo "$(brew --prefix llvm)/bin" >> "$GITHUB_PATH"
           echo "$(brew --prefix spirv-tools)/bin" >> "$GITHUB_PATH"
+          GLSLANG_BIN="$(brew --prefix glslang)/bin"
+          echo "$GLSLANG_BIN" >> "$GITHUB_PATH"
+          echo "GLSLANG_VALIDATOR=$GLSLANG_BIN/glslangValidator" >> "$GITHUB_ENV"
+          test -x "$GLSLANG_BIN/glslangValidator" || {
+            echo "Missing glslangValidator in $GLSLANG_BIN" >&2
+            brew list glslang
+            exit 1
+          }
+          "$GLSLANG_BIN/glslangValidator" --version
           echo "$(brew --prefix rust)/bin" >> "$GITHUB_PATH"
           python3 --version
           xcrun --find clang
@@ -43,24 +52,66 @@ jobs:
           ninja --version
           command -v llvm-dis
           command -v spirv-val
+          command -v glslangValidator
+          test -x "$GLSLANG_VALIDATOR"
+          "$GLSLANG_VALIDATOR" --version
+          printf 'PATH=%s\n' "$PATH"
           test -d MacKernelSDK
           test -d firmware/i915
           test -f NullMoth/gpu-port/xkpi/all.sh
           mkdir -p desktop-build build-tree
 
+      - name: Verify dual PCI ID matching in sources
+        run: |
+          python3 - <<'PY'
+          import plistlib
+          from pathlib import Path
+          path = Path('NullMoth/gpu-port/xkpi/kext/Info.plist')
+          with path.open('rb') as f:
+              info = plistlib.load(f)
+          matches = info['IOKitPersonalities']['NMXGPUIntel']['IOPCIPrimaryMatch'].lower().split()
+          for pci in ('0x7d458086', '0x7d558086'):
+              if pci not in matches:
+                  raise SystemExit(f'Missing {pci} from {path}')
+          print('Both Meteor Lake device IDs are present in NMXGPU matching')
+          PY
+
       - name: Build AIR to SPIR-V translator
         working-directory: NullMoth/translator/translator
         run: cargo build --release
 
-      - name: Build Mesa ANV
+      - name: Build and stage libdrm
         run: |
-          meson setup build-tree/mesa-build mesa --buildtype=release
-          ninja -C build-tree/mesa-build
-
-      - name: Build libdrm
-        run: |
-          meson setup build-tree/drm-build libdrm --buildtype=release
+          meson setup build-tree/drm-build libdrm \
+            --buildtype=release \
+            --prefix="$RUNNER_TEMP/xelpg-deps" \
+            -Dintel=enabled \
+            -Damdgpu=disabled \
+            -Dradeon=disabled \
+            -Dnouveau=disabled \
+            -Dvmwgfx=disabled
           ninja -C build-tree/drm-build
+          meson install -C build-tree/drm-build
+          echo "PKG_CONFIG_PATH=$RUNNER_TEMP/xelpg-deps/lib/pkgconfig:$RUNNER_TEMP/xelpg-deps/lib64/pkgconfig" >> "$GITHUB_ENV"
+          echo "CMAKE_PREFIX_PATH=$RUNNER_TEMP/xelpg-deps" >> "$GITHUB_ENV"
+
+      - name: Build Mesa ANV
+        shell: bash
+        run: |
+          export PATH="$(brew --prefix glslang)/bin:$PATH"
+          echo "Using glslangValidator: $(command -v glslangValidator)"
+          glslangValidator --version
+          # Avoid stale Meson configurations from generated or cached build trees.
+          rm -rf build-tree/mesa-build
+          meson setup build-tree/mesa-build mesa \
+            --buildtype=release \
+            -Dvulkan-drivers=intel \
+            -Dgallium-drivers= \
+            -Dglx=disabled \
+            -Degl=disabled \
+            -Dopengl=false \
+            -Dllvm=disabled
+          ninja -C build-tree/mesa-build
 
       - name: Build Metal plugin
         run: python3 desktop-sources/build-windowserver-0.3.5.py
@@ -104,7 +155,7 @@ jobs:
             \( -path '*/obj/*.o' -o -path '*/obj-i915/*.o' -o -path '*/lkobj/*.o' -o -path '*/srcobj/*.o' -o -path '*/xnuobj/*.o' \) | wc -l | tr -d ' ')
           echo "Kernel objects found: $count"
           test "$count" -eq 438
-          if find NullMoth/gpu-port/xkpi/logs -name '*.failed' -print -quit | grep -q .; then
+          if [ -d NullMoth/gpu-port/xkpi/logs ] && find NullMoth/gpu-port/xkpi/logs -name '*.failed' -print -quit | grep -q .; then
             echo 'Compilation failure markers found' >&2
             exit 1
           fi
@@ -119,7 +170,7 @@ jobs:
         if: always()
         run: |
           mkdir -p ci-artifacts
-          for dir in desktop-build latitude-desktop/Library/Extensions latitude-desktop/EFI-Kexts NullMoth/gpu-port/xkpi/logs; do
+          for dir in desktop-build latitude-desktop/Library/Extensions latitude-desktop/EFI-Kexts NullMoth/gpu-port/xkpi/logs build-tree/mesa-build/meson-logs build-tree/drm-build/meson-logs; do
             if [ -d "$dir" ]; then
               mkdir -p "ci-artifacts/$(dirname "$dir")"
               cp -R "$dir" "ci-artifacts/$dir"
@@ -136,4 +187,3 @@ jobs:
           path: ci-artifacts/
           if-no-files-found: warn
           retention-days: 14
-
