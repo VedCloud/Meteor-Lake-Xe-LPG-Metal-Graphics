@@ -1,0 +1,23 @@
+{
+  "AirportItlwm.kext/Contents/Info.plist": "77f097c84f62c9d0cb685169c5163032e03393c0ec6d970d81a67e05b1180696",
+  "AirportItlwm.kext/Contents/MacOS/AirportItlwm": "00532f0e85f20cb81dc812500581d8045488cef11f3b6f754a3aee7ce16e291e",
+  "AirportItlwm.kext/Contents/_CodeSignature/CodeResources": "6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b",
+  "BUILD.json": "e1f070d3eca62a0b36142739cabb14128f703efc93f9da182268407d12c3c5f6",
+  "NATIVE-HAL-VALIDATION.json": "c3880d6553391d53c73e487e842a4b7aa896065a74aa3809861bceaff418e964",
+  "README.md": "f644e0b0389e11726ce4cc01ec7fbcfbda75ab30b4cc431631df2406bfa6aaf8",
+  "Source/LatitudeAWDLNativeABI.h": "128d8320566dbd28de5d439b6250928b9c8edda8385c85aa866bf0bc89eeaddb",
+  "Source/LatitudeAWDLNativeHAL.inc": "c381f7519d10a9a8c652b93d2c59ce391abf8f2ec3d112f21fec1e57cd93f6f2",
+  "Source/LatitudeAWDLNativePacket.h": "8dc9a3af4884f73e9a0a7ca79605ad76c9acb856021888b48dcf9fef16c940a9",
+  "Source/LatitudeAWDLPeerTransport.h": "06203c4813201f3e3a8fbaab804a3a184d0e743c4f46e81aee63511917307460",
+  "Source/LatitudeAWDLTx.h": "1ea05d0643d6e4b8cce91003bd869c74c7e9bda7fb97313d8a818c616881d05f",
+  "Source/build-private-radio.py": "cd3c504896a175f39b268bfc6f970f8abb95713cdd786abc162cd07ccced7719",
+  "Source/compile-private-path.py": "53790ac60aa964a9d0baeecaefd58a4e189091b79d00d0ad26c3bdefbc887713",
+  "Source/connected-tree/AirportItlwm/AirportItlwmV2.cpp": "98d68c7605733eeccabf27a2ce779c3877f6c95e275360cde0a8e45a961a9719",
+  "Source/connected-tree/itlwm/hal_iwx/ItlIwx.cpp": "8c8e4efa21754ee4be0532125c39874088cb12b6f7277e8b3cc95a8735e48e53",
+  "Source/connected-tree/itlwm/hal_iwx/ItlIwx.hpp": "e19fe0f201a9c06395caffe36744ab9b6424d5832259d53aa86803440a9a847e",
+  "Source/connected-tree/itlwm/hal_iwx/if_iwxreg.h": "c95f4e2fec9669b174cb293cffcc6761facd1a8af7f31aafd2848ddbf3bec818",
+  "Source/generate-native-awdl-abi.py": "326939267f440cff4e8bd821601b9d43adb24668a49da64c5a83ec1d1ea25263",
+  "Source/test-native-awdl-abi.py": "d2e3a5c5680b8550e5931f57daddf6acebc527dcc839b8048bfe6a2d4c76bcfa",
+  "Source/test-native-hal.py": "e0f34340da0a768a074c2c7783e50d8b30fcbce7e32a90195ebd2380a2c16582",
+  "Source/test-native-packets.cpp": "82fdcec97b2c043cef967cb592a6bf9c7ccc9d7c2460ec0b0cd3daa840ba0744"
+}

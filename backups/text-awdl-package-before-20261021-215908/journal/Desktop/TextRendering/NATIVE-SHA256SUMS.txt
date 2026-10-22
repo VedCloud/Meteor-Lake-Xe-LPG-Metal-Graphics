@@ -1,0 +1,2 @@
+5e6ee0faeacc691c5c2871285c1302198716145069eebdaee19938466eb2d82e  libLatitudeLCDNative-x86_64.dylib
+c75d170c1bee0cac4701a2bc0edd85607a2abbfc0405dccd56a841fb782b5399  test-interpose-x86_64

@@ -1,0 +1,26 @@
+{
+  "CFBundleExecutable" => "LatitudeMTLFB"
+  "CFBundleIdentifier" => "com.nullmoth.LatitudeMTLFB"
+  "CFBundleInfoDictionaryVersion" => "6.0"
+  "CFBundleName" => "LatitudeMTLFB"
+  "CFBundlePackageType" => "KEXT"
+  "CFBundleShortVersionString" => "0.2.5"
+  "CFBundleVersion" => "0.2.5"
+  "IOKitPersonalities" => {
+    "LatitudeMTLFB" => {
+      "CFBundleIdentifier" => "com.nullmoth.LatitudeMTLFB"
+      "IOClass" => "NMXIntelVGAFB"
+      "IOMatchCategory" => "IOFramebuffer"
+      "IOProbeScore" => 60000
+      "IOProviderClass" => "LatitudePanelClaim"
+    }
+  }
+  "OSBundleLibraries" => {
+    "com.apple.iokit.IOGraphicsFamily" => "1.0.0"
+    "com.apple.iokit.IOPCIFamily" => "1.0.0"
+    "com.apple.kpi.bsd" => "8.0"
+    "com.apple.kpi.iokit" => "8.0"
+    "com.apple.kpi.libkern" => "8.0"
+    "com.apple.kpi.mach" => "8.0"
+  }
+}

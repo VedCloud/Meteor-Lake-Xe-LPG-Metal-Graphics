@@ -1,0 +1,14 @@
+{
+  "nativeUUID": "13D3592A-A6BE-35E7-984C-0ACD90A76356",
+  "objectSize": 288,
+  "typedAWDLSlots": 63,
+  "allSlotsMatchNativeOffsets": true,
+  "inheritedDispatchSlotsChecked": 563,
+  "nativeRequestOffsetsChecked": [
+    24,
+    88
+  ],
+  "kernelCompile": "x86_64 passed",
+  "fixtureLoaded": false,
+  "runtimeInterfaceCreated": false
+}

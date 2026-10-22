@@ -1,0 +1,16 @@
+2026-10-20 12:35:50
+  163 02:18   7.3 693504   1:48.78 Ss   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:51
+  163 02:19  38.2 697152   1:49.12 Rs   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:52
+  163 02:20  67.0 693548   1:49.80 Rs   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:53
+  163 02:21  81.3 699684   1:50.63 Rs   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:54
+  163 02:22   5.0 693532   1:50.69 Ss   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:55
+  163 02:23  76.8 693540   1:51.37 Rs   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:56
+  163 02:24  41.5 694408   1:52.05 Rs   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+2026-10-20 12:35:57
+  163 02:25  69.7 693540   1:52.72 Ss   /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer

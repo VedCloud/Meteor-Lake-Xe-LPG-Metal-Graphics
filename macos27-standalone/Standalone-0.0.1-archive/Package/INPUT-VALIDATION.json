@@ -1,0 +1,8 @@
+{
+  "SHA256ReferenceComparisons": 14,
+  "actual26A428Kernel": "PASS",
+  "syntheticFileset": "PASS",
+  "malformedFilesRejected": 47,
+  "ASanUBSan": "PASS",
+  "kernelExecution": false
+}

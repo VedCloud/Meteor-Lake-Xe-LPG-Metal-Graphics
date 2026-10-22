@@ -1,0 +1,13 @@
+{
+  "copiedFiles": 158,
+  "selectedUSBDriver": "0.1.2",
+  "driverUUID": "4CCB2191-0AD9-392A-A906-246BECCDF04C",
+  "changedEFIPaths": [
+    "OC/Kexts/AirportItlwm.kext/Contents/MacOS/AirportItlwm",
+    "OC/Kexts/AirportItlwm.kext/Contents/Info.plist"
+  ],
+  "backup": "/Users/ved/Documents/iGPU Port/backups/awdl-radio-before-0.1.2-20261021",
+  "automaticRFTransmission": false,
+  "DellHardwareValidated": false,
+  "AirDropFunctional": false
+}

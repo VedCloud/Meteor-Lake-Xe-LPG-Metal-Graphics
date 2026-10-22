@@ -1,0 +1,8 @@
+{
+  "backup": "/Users/ved/Documents/iGPU Port/backups/text-awdl-package-before-20261021-215908",
+  "filesPackaged": 95,
+  "activeEFIUnchanged": true,
+  "validation": "package hashes, signatures, actual apply/restore/idempotence/unexpected-target fixtures passed",
+  "AWDLHardwareValidated": false,
+  "systemAppFreeTypeDeployed": false
+}

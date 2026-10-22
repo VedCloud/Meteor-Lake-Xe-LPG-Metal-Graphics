@@ -1,0 +1,75 @@
+CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      CPU12      CPU13      
+   1:          0          0          0          0          0          0          0          0          0        100          0          0          0          0  IO-APIC    1-edge      i8042
+   8:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC    8-edge      rtc0
+   9:       6401          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC    9-fasteoi   acpi
+  12:          0          0          0          0          0          0          0          0        138          0          0          0          0          0  IO-APIC   12-edge      i8042
+  14:          0          0          0          0          0          0          0          0          0          0          0        591          0          0  IO-APIC   14-fasteoi   INTC1083:00
+  16:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC   16-fasteoi   idma64.2, processor_thermal_device_pci
+  18:          0          0          0          0          8          0          0          0          0          0          0          0          0          0  IO-APIC   18-fasteoi   i801_smbus
+  32:        496          0          0          0       1382          0          0          0          0          0          0          0          0          0  IO-APIC   32-fasteoi   i2c_designware.0, idma64.0
+  35:          0      17452          0          0          0       1060          0          0          0          0          0          0          0          0  IO-APIC   35-fasteoi   i2c_designware.1, idma64.1
+ 120:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:06.0    0-edge      PCIe PME, PCIe bwctrl
+ 121:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:07.0    0-edge      PCIe PME, aerdrv, pciehp
+ 122:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:07.3    0-edge      PCIe PME, aerdrv, pciehp
+ 123:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:0d.0    0-edge      xhci_hcd
+ 124:          0          0          0          0          0          0          0      20896          0          0          0       5884          0        366 PCI-MSI-0000:00:14.0    0-edge      xhci_hcd
+ 125:          0          0          0          0          0          0          0          0          0          0          0          0        271          0 PCI-MSIX-0000:00:0d.3    0-edge      thunderbolt
+ 126:          0          0          0          0          0          0          0          0          0          0          0          0          0        271 PCI-MSIX-0000:00:0d.3    1-edge      thunderbolt
+ 141:          0          0          0          0          0          0          0          0          0          0          0         21          0          0 intel-gpio  373  WACF3233:00
+ 142:          0          0          0          0          0          0          0          0          0          0          0        547          0          0 intel-gpio  387  VEN_04F3:00
+ 143:          0         50          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    0-edge      nvme0q0
+ 144:        233          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:12.0    0-edge      intel_ish_ipc
+ 145:         35          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    1-edge      nvme0q1
+ 146:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    2-edge      nvme0q2
+ 147:          0          0         31          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    3-edge      nvme0q3
+ 148:          0          0          0         19          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    4-edge      nvme0q4
+ 149:          0          0          0          0          3          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    5-edge      nvme0q5
+ 150:          0          0          0          0          0         13          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    6-edge      nvme0q6
+ 151:          0          0          0          0          0          0         21          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    7-edge      nvme0q7
+ 152:          0          0          0          0          0          0          0          6          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    8-edge      nvme0q8
+ 153:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0    9-edge      nvme0q9
+ 154:          0          0          0          0          0          0          0          0          0          9          0          0          0          0 PCI-MSIX-0000:01:00.0   10-edge      nvme0q10
+ 155:          0          0          0          0          0          0          0          0          0          0         33          0          0          0 PCI-MSIX-0000:01:00.0   11-edge      nvme0q11
+ 156:          0          0          0          0          0          0          0          0          0          0          0         86          0          0 PCI-MSIX-0000:01:00.0   12-edge      nvme0q12
+ 157:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0   13-edge      nvme0q13
+ 158:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:01:00.0   14-edge      nvme0q14
+ 159:          0          0        247          0       2364          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:02.0    0-edge      i915
+ 160:          0          0          0          0          0          2          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:0b.0    0-edge      intel_vpu
+ 161:          0          0          0          0          0          0        162          0          0          0          0          0          0          0 PCI-MSI-0000:00:16.0    0-edge      mei_me
+ 178:          0          0          0        105          0          0          0        132          0          0          0          0         46          0 PCI-MSIX-0000:00:14.3    0-edge      iwlwifi:default_queue
+ 179:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    1-edge      iwlwifi:queue_1
+ 180:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    2-edge      iwlwifi:queue_2
+ 181:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    3-edge      iwlwifi:queue_3
+ 182:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    4-edge      iwlwifi:queue_4
+ 183:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    5-edge      iwlwifi:queue_5
+ 184:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    6-edge      iwlwifi:queue_6
+ 185:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    7-edge      iwlwifi:queue_7
+ 186:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    8-edge      iwlwifi:queue_8
+ 187:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3    9-edge      iwlwifi:queue_9
+ 188:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3   10-edge      iwlwifi:queue_10
+ 189:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3   11-edge      iwlwifi:queue_11
+ 190:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3   12-edge      iwlwifi:queue_12
+ 191:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3   13-edge      iwlwifi:queue_13
+ 192:          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:00:14.3   14-edge      iwlwifi:queue_14
+ 193:          0          0          0          0          0          0          0          0          5          0          0          0          0          0 PCI-MSIX-0000:00:14.3   15-edge      iwlwifi:exception
+ 194:          0          0          0          0          0          0          0          0          0        998          0          0          0          0 PCI-MSI-0000:00:1f.3    0-edge      snd_hda_intel:card0
+ NMI:          1          0          1          0          0          0          0          0          0          0          0          0          0          0   Non-maskable interrupts
+ LOC:      19230      10447      23118       5581      14845      14925      13632      12843      11310       9853       9884      10252       2113       1875   Local timer interrupts
+ SPU:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Spurious interrupts
+ PMI:          1          0          1          0          0          0          0          0          0          0          0          0          0          0   Performance monitoring interrupts
+ IWI:         49          4         81          1       1632         95         62         17         11         39         33         20          0         15   IRQ work interrupts
+ RTR:         13          0          0          0          0          0          0          0          0          0          0          0          0          0   APIC ICR read retries
+ RES:        692        162        472         71        699        353        276        225        223        167        146        172         89         80   Rescheduling interrupts
+ CAL:      28526      30277      22536      22860      30367      29793      29197      30033      29409      28363      29006      28914      28422      28322   Function call interrupts
+ TLB:        757        446        643        433       1106       1084        832        674        777        706        592        671        147        127   TLB shootdowns
+ TRM:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Thermal event interrupts
+ THR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Threshold APIC interrupts
+ DFR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Deferred Error APIC interrupts
+ MCE:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Machine check exceptions
+ MCP:          1          2          2          2          2          2          2          2          2          2          2          2          2          2   Machine check polls
+ ERR:          0
+ MIS:          0
+ PIN:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Posted-interrupt notification event
+ NPI:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Nested posted-interrupt event
+ PIW:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Posted-interrupt wakeup event
+ PMN:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Posted MSI notification event

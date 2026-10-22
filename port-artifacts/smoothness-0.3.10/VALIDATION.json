@@ -1,0 +1,30 @@
+{
+  "candidate": "cache-visibility0.3.10",
+  "plugin_version": "0.3.10",
+  "plugin_sha256": "19d4bd0b9a891205056dd6ae566dd9675eeed8e4044b9f2dba49166b937fea6f",
+  "plugin_uuid": "81F370F2-09EC-3071-8C64-94A9AC93CFC6",
+  "evidence": "0.3.9 recorded readback33.877->4.318ms;CoreAnimation43->5messages across respective captured boots; user photo/reports show cursor trails,partial background redraw,menu transparency/text/window movement artifacts",
+  "hypothesis_not_proven": "retained host-visible mappings may return stale CPU cache data despite advertised HOST_COHERENT; image preservation/damage/scanout issues are not ruled out",
+  "change": "x86 CPUID-checked cache-line flush/invalidation plus MFENCE, before retained staging GPU overwrite and after successful fence before CPU copy; Vulkan barriers and fence remain; inability to use CLFLUSH disables retention and uses prior fresh path;invalid range refuses CPU copy",
+  "scope": "cached staging leases only,8086:7d45 WindowServer; app/non-target staging unchanged",
+  "bounds": "flush addresses remain within requested bytes/capacity;cache-line geometry from CPUID;overflow/zero/capacity checked;4slots/16MiB-per-slot payload retained",
+  "tests": [
+    "three plugin variants compiled",
+    "strict signature and old export/import set checks",
+    "x86_64 ASan/UBSan actual cache helper:all alignments8..256byte lines,overflow/capacity/zero checks,guard-page boundaries,actual CLFLUSH/MFENCE preserve bytes under Rosetta",
+    "x86_64 ASan/UBSan actual readback:cache maintenance before submit and only after completed fence,1000 cached padded copies allocate once,timeout keeps destination untouched/retains uncertain memory,invalid-memory-type discards idle slot,20000 forced-fresh allocation/reclaim regression checks",
+    "loader active/fallback/error/sample fixtures and installer backup/rollback/one-shot fixtures pass",
+    "release log predicate policy pass"
+  ],
+  "unchanged": [
+    "fresh command pools and retirement",
+    "Vulkan image/host barriers and layout tracking",
+    "serial submission and schedule-after-publication",
+    "bounded staging leases/quarantine",
+    "NMXGPU1.0.15/LatitudeMTLFB0.2.5/NMXAccel0.2.4/ANV4GiB backend",
+    "restored touchpad EFI"
+  ],
+  "hardware_tested": false,
+  "all_artifacts_fixed": false,
+  "full_hardware_suite_rerun": false
+}

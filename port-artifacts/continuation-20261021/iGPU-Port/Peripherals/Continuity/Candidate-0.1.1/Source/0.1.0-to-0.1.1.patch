@@ -1,0 +1,198 @@
+--- a/AirportItlwm/AirportItlwmV2.cpp
++++ b/AirportItlwm/AirportItlwmV2.cpp
+@@ -1417,3 +1417,38 @@
+     self->setProperty("LatitudeAWDLRawMode","opt-in current-associated-channel action only; no peer-data path");
+     return (IOReturn)result;
+ }
++
++// Preserve native lifecycle semantics, and record which stage the Apple clients
++// actually reached. A created/attached object is not an operational AWDL radio.
++IO80211VirtualInterface *AirportItlwm::createVirtualInterface(ether_addr *address,unsigned int role)
++{
++    setProperty("LatitudeAWDLNativeCreateRole",(uint64_t)role,32);
++    auto result=super::createVirtualInterface(address,role);
++    setProperty("LatitudeAWDLNativeCreateSucceeded",result!=nullptr);
++    return result;
++}
++bool AirportItlwm::attachVirtualInterface(IO80211VirtualInterface **interface,ether_addr *address,unsigned int role,bool option)
++{
++    setProperty("LatitudeAWDLNativeAttachRole",(uint64_t)role,32);
++    bool result=super::attachVirtualInterface(interface,address,role,option);
++    setProperty("LatitudeAWDLNativeAttachSucceeded",result);
++    return result;
++}
++bool AirportItlwm::detachVirtualInterface(IO80211VirtualInterface *interface,bool option)
++{
++    bool result=super::detachVirtualInterface(interface,option);
++    setProperty("LatitudeAWDLNativeDetachSucceeded",result);
++    return result;
++}
++SInt32 AirportItlwm::enableVirtualInterface(IO80211VirtualInterface *interface)
++{
++    SInt32 result=super::enableVirtualInterface(interface);
++    setProperty("LatitudeAWDLNativeEnableResult",(uint64_t)(uint32_t)result,32);
++    return result;
++}
++SInt32 AirportItlwm::disableVirtualInterface(IO80211VirtualInterface *interface)
++{
++    SInt32 result=super::disableVirtualInterface(interface);
++    setProperty("LatitudeAWDLNativeDisableResult",(uint64_t)(uint32_t)result,32);
++    return result;
++}
+--- a/AirportItlwm/AirportItlwmV2.hpp
++++ b/AirportItlwm/AirportItlwmV2.hpp
+@@ -158,6 +158,12 @@
+     virtual SInt32 apple80211SkywalkRequest(UInt,int,IO80211SkywalkInterface *,void *) AIRPORT_LEGACY_OVERRIDE;
+     virtual SInt32 apple80211SkywalkRequest(UInt,int,IO80211SkywalkInterface *,void *,void *) AIRPORT_LEGACY_OVERRIDE;
+ 
++    // Use native object factories; never instantiate an older OS VIF layout.
++    IO80211VirtualInterface *createVirtualInterface(ether_addr *, unsigned int) override;
++    bool attachVirtualInterface(IO80211VirtualInterface **, ether_addr *, unsigned int, bool) override;
++    bool detachVirtualInterface(IO80211VirtualInterface *, bool) override;
++    SInt32 enableVirtualInterface(IO80211VirtualInterface *) override;
++    SInt32 disableVirtualInterface(IO80211VirtualInterface *) override;
+     bool createMediumTables(const IONetworkMedium **primary);
+     void releaseAll();
+     void watchdogAction(IOTimerEventSource *timer);
+--- a/itlwm/hal_iwx/ItlIwx.cpp
++++ b/itlwm/hal_iwx/ItlIwx.cpp
+@@ -2854,6 +2854,15 @@
+                 getMainCommandGate()->commandWakeup(&ring->desc[i]);
+         }
+         
++        // A raw packet holds its BSS reference until completion or reset.
++        if (data->latitudeAWDL.cookie) {
++            latitudeAWDLTx.finish(data->latitudeAWDL, true);
++            if (data->in) {
++                ieee80211_release_node(&sc->sc_ic, &data->in->in_ni);
++                data->in = NULL;
++            }
++            latitudeAWDLPublishTx();
++        }
+         if (data->m != NULL) {
+             //            bus_dmamap_sync(sc->sc_dmat, data->map, 0,
+             //                data->map->dm_mapsize, BUS_DMASYNC_POSTWRITE);
+@@ -6408,6 +6417,10 @@
+     KASSERT(tx_resp->frame_count == 1, "tx_resp->frame_count == 1");
+     
+     txfail = (status != IWX_TX_STATUS_SUCCESS);
++    if (txd->latitudeAWDL.cookie) {
++        latitudeAWDLTx.response(txd->latitudeAWDL, status, !txfail);
++        latitudeAWDLPublishTx();
++    }
+     
+     if (txfail) {
+         DPRINTFN(3, ("%s %d OUTPUT_ERROR type=%d status=%d\n", __FUNCTION__, __LINE__, txd->type, status));
+@@ -6444,6 +6457,10 @@
+     //    bus_dmamap_sync(sc->sc_dmat, txd->map, 0, txd->map->dm_mapsize,
+     //        BUS_DMASYNC_POSTWRITE);
+     //    bus_dmamap_unload(sc->sc_dmat, txd->map);
++    if (txd->latitudeAWDL.cookie) {
++        latitudeAWDLTx.finish(txd->latitudeAWDL, false);
++        latitudeAWDLPublishTx();
++    }
+     mbuf_freem(txd->m);
+     txd->m = NULL;
+     
+@@ -7548,7 +7565,7 @@
+ }
+ 
+ int ItlIwx::
+-iwx_tx(struct iwx_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac)
++iwx_tx(struct iwx_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac, uint64_t latitudeCookie)
+ {
+     struct ieee80211com *ic = &sc->sc_ic;
+     struct iwx_node *in = (struct iwx_node *)ni;
+@@ -7721,6 +7738,7 @@
+     }
+     data->m = m;
+     data->in = in;
++    data->latitudeAWDL = {latitudeCookie, false};
+     data->type = type;
+ 
+     DPRINTFN(3, ("sending data: 嘤嘤嘤 tid=%d qid=%d idx=%d queued=%d len=%d nsegs=%d flags=0x%08x rate_n_flags=0x%08x offload_assist=%u\n",
+@@ -15484,8 +15502,24 @@
+     if(err){mbuf_freem(packet);return err;}
+     if(mbuf_len(packet)<40&&mbuf_pullup(&packet,40)){if(packet)mbuf_freem(packet);return ENOBUFS;}
+     auto node=ieee80211_ref_node(ic->ic_bss);
+-    err=iwx_tx(sc,packet,node,EDCA_AC_BE); // takes packet ownership on all paths
++    const uint64_t cookie=latitudeAWDLTx.issue();
++    err=iwx_tx(sc,packet,node,EDCA_AC_BE,cookie); // takes packet ownership on all paths
+     if(err)ieee80211_release_node(ic,node);
++    else ++latitudeAWDLTx.submitted;
++    latitudeAWDLPublishTx();
+     // Zero means submission accepted; it does NOT mean RF transmission or ACK.
+     return err;
+ }
++
++void ItlIwx::latitudeAWDLPublishTx()
++{
++    auto provider=getController()?getController()->getProvider():nullptr;
++    if(!provider)return;
++#define LAT_TX_PROP(name,field) provider->setProperty("LatitudeAWDLTx" name,latitudeAWDLTx.field,64)
++    LAT_TX_PROP("Submitted",submitted);LAT_TX_PROP("Responses",responses);
++    LAT_TX_PROP("FirmwareSuccess",succeeded);LAT_TX_PROP("FirmwareFailure",failed);
++    LAT_TX_PROP("Reclaimed",reclaimed);LAT_TX_PROP("ResetAborted",aborted);
++    LAT_TX_PROP("ReclaimedWithoutResponse",missingResponse);LAT_TX_PROP("LastCookie",lastCookie);
++    LAT_TX_PROP("LastStatus",lastStatus);
++#undef LAT_TX_PROP
++}
+--- a/itlwm/hal_iwx/ItlIwx.hpp
++++ b/itlwm/hal_iwx/ItlIwx.hpp
+@@ -190,6 +190,8 @@
+     virtual IOReturn setMulticastList(IOEthernetAddress *addr, int count) override;
+     
+     int latitudeAWDLCurrentChannel(const void *,size_t);
++    LatitudeAWDLTxLedger latitudeAWDLTx;
++    void latitudeAWDLPublishTx();
+     void releaseAll();
+     void joinSSID(const char *ssid, const char *pwd);
+     
+@@ -377,7 +379,7 @@
+                             const struct iwx_rate *rinfo, int type, struct ieee80211_frame *wh);
+     void    iwx_toggle_tx_ant(struct iwx_softc *sc, uint8_t *ant);
+     void    iwx_tx_update_byte_tbl(struct iwx_softc *, struct iwx_tx_ring *, int, uint16_t, uint16_t);
+-    int    iwx_tx(struct iwx_softc *, mbuf_t, struct ieee80211_node *, int);
++    int    iwx_tx(struct iwx_softc *, mbuf_t, struct ieee80211_node *, int, uint64_t = 0);
+     int    iwx_flush_sta_tids(struct iwx_softc *, int, uint16_t);
+     int    iwx_flush_sta(struct iwx_softc *, struct iwx_node *);
+     int    iwx_drain_sta(struct iwx_softc *sc, struct iwx_node *, int);
+--- a/itlwm/hal_iwx/if_iwxvar.h
++++ b/itlwm/hal_iwx/if_iwxvar.h
+@@ -1,3 +1,4 @@
++#include <LatitudeAWDLTx.h>
+ /*
+ * Copyright (C) 2020  钟先耀
+ *
+@@ -342,6 +343,7 @@
+ #define IWX_TXDATA_FLAG_CMD_PENDING    0x02
+ #define IWX_TXDATA_FLAG_CMD_WAITING    0x04
+     uint8_t type;
++    LatitudeAWDLTxTag latitudeAWDL;
+ };
+ 
+ struct iwx_tx_ring {
+--- /dev/null
++++ b/include/LatitudeAWDLTx.h
+@@ -0,0 +1,21 @@
++#pragma once
++#include <stdint.h>
++// Gate-confined bookkeeping. A firmware success is not proof that a peer
++// received a broadcast action frame. Reclaim and reset are distinct events.
++struct LatitudeAWDLTxTag { uint64_t cookie=0; bool response=false; };
++struct LatitudeAWDLTxLedger {
++ uint64_t next=0, submitted=0, responses=0, succeeded=0, failed=0;
++ uint64_t reclaimed=0, aborted=0, missingResponse=0, lastCookie=0;
++ uint32_t lastStatus=0;
++ uint64_t issue(){if(!++next)++next;return next;}
++ void response(LatitudeAWDLTxTag& t,uint32_t status,bool success){
++  if(!t.cookie||t.response)return;
++  t.response=true;++responses;lastCookie=t.cookie;lastStatus=status;
++  if(success)++succeeded;else ++failed;
++ }
++ void finish(LatitudeAWDLTxTag& t,bool reset){
++  if(!t.cookie)return;
++  if(reset)++aborted;else {++reclaimed;if(!t.response)++missingResponse;}
++  t={};
++ }
++};

@@ -1,0 +1,43 @@
+{
+  "SHA256ReferenceComparisons": 14,
+  "actual26A428Kernel": "PASS",
+  "syntheticFileset": "PASS",
+  "malformedFilesRejected": 47,
+  "ASanUBSan": "PASS",
+  "kernelExecution": false,
+  "efiFormat": "PE32+ x86_64 EFI application",
+  "efiFirmware": "EDK2/OVMF from pinned QEMU tree",
+  "efiSuccessfulAdmission": "PASS: RAM inventory, GOP inventory, all four pinned SHA-256 checks",
+  "efiTamperedInputRejection": "PASS: modified dtree rejected with EFI_SECURITY_VIOLATION",
+  "armKernelExecutedFromEFI": false,
+  "executionRuntime": "Limited scalar probe implemented; privileged ARM/XNU runtime UNIMPLEMENTED",
+  "DellHardwareTested": false,
+  "EFIExitBootServicesCalled": false,
+  "exactEFISHA256": "0eb0daaeee791c062aa66b628eed26bc9b632ac06af8d3bfaaeb30eee4b6058b",
+  "OVMFCases": {
+    "valid": "PASS",
+    "tampered": "PASS"
+  },
+  "scalarProbe": {
+    "scope": "bounded scalar A64 probe only; no ARM macOS kernel execution",
+    "ASanUBSan": "PASS",
+    "coreChecks": 66,
+    "QEMUDifferential": "PASS: all 80 guest result bytes identical",
+    "committedInstructions": 69,
+    "probeSHA256": "ecf7bff920b8e143d84dd675204afdee21db13b4ac44576ec856aa9e13908dcb",
+    "QEMURevision": "bad6336fb24211f8c4e8e946c259bd5b12417340",
+    "results": [
+      55,
+      2882404351,
+      2882404352,
+      1610612736,
+      42,
+      1090523104,
+      0,
+      281472094306304,
+      1879048192,
+      42
+    ]
+  },
+  "efiScalarExecution": "PASS inside x86 OVMF"
+}

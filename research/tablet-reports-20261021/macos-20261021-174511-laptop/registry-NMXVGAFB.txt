@@ -1,0 +1,169 @@
++-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000050f, registered, matched, active, busy 0 (3 ms), retain 28>
+  | {
+  |   "startup-timing" = <00000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000081e15a090000000081e15a090000000081e15a090000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+  |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+  |   "built-in" = <>
+  |   "IOFBTransform" = 0
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "LatitudePanelRefreshMilliHz" = 63766
+  |   "IOFBGammaWidth" = 16
+  |   "IOFBUIScale" = <01000000>
+  |   "LatitudeColourPreTable" = No
+  |   "IOProbeScore" = 60000
+  |   "VRAM,totalMB" = 4096
+  |   "IOFBCursorInfo" = ()
+  |   "IOClass" = "NMXIntelVGAFB"
+  |   "NMXMemoryIsShared" = Yes
+  |   "LatitudePanelEDIDSource" = "Dell Linux capture 20261012 eDP-1"
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "LatitudeGammaCount" = 256
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+  |   "LatitudePanelValidated" = Yes
+  |   "LatitudePanelScanout" = 1619001344
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOFBWaitCursorPeriod" = 33333333
+  |   "IOFBDependentID" = 352641439659720705
+  |   "IOFBConfig" = {"IOFBModes"=({"ID"=1,"DM"=<800700003804000018c43f0000000000070000002601a500000000000000000000000000>,"DF"=7,"TM"=<0100000000000000000000000000000000000000000000000000000000000000000000000000000036e55b090000000036e55b090000000036e55b090000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<80070000380400000002000007000000>}
+  |   "IOFBMemorySize" = 8294400
+  |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+  |   "LatitudeGammaGeneration" = 0
+  |   "IOFBGammaCount" = 256
+  |   "NMXVGAFBOpen" = Yes
+  |   "LatitudeGammaChannels" = 3
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOFBCurrentPixelCountReal" = 2462400
+  |   "IOFBNeedsRefresh" = Yes
+  |   "LatitudeGammaActive" = No
+  |   "LatitudeColourPostTable" = Yes
+  |   "LatitudePanelPipe" = 0
+  |   "IOAccelIndex" = 0
+  |   "IOFBDependentIndex" = 0
+  |   "IOFBWaitCursorFrames" = 29
+  |   "LatitudeColourPlaneTable" = No
+  |   "IODisplayHasBacklight" = Yes
+  |   "boot-gamma-restored" = <00000000>
+  |   "LatitudeColourPlaneOptions" = 0
+  |   "IOProviderClass" = "LatitudePanelClaim"
+  |   "IOFBCurrentPixelCount" = 2462400
+  |   "LatitudePanelHeightMM" = 165
+  |   "NVRMTiming" = <0100354b36e55b0980070000b0070000d007000070080000380400003b040000410400007404000016f900000100000001000000>
+  |   "IOFramebufferOpenGLIndex" = 0
+  |   "LatitudeGammaWidth" = 8
+  |   "LatitudeGammaBackend" = "CPU scanout LUT; identity uses bulk copy"
+  |   "NMXSharedMemoryBytes" = 4294967296
+  |   "IOFBIntegrated" = Yes
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "LatitudeColourDispatch" = "Transaction LUT / diagonal CSC applied"
+  |   "IOAccelRevision" = 2
+  |   "LatitudePanelWidthMM" = 294
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "LatitudeGammaSource" = "Display transaction"
+  |   "LatitudeColourOptions" = 1
+  |   "IOFBCurrentPixelClock" = 157017398
+  | }
+  | 
+  +-o backlight  <class LatitudeBacklightHandler, id 0x10000057a, registered, matched, active, busy 0 (0 ms), retain 7>
+  |   {
+  |     "LatitudePWMReady" = Yes
+  |     "LatitudePWMCurrentDuty" = 192000
+  |     "LatitudeBrightnessValue" = 65535
+  |     "LatitudePWMController" = 0
+  |     "LatitudePWMInitialDuty" = 19576
+  |     "LatitudeBrightnessParametersPublished" = Yes
+  |     "LatitudePWMPeriod" = 192000
+  |   }
+  |   
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x10000057d, registered, matched, active, busy 0 (0 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x10000057f, registered, matched, active, busy 0 (0 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x10000057e, registered, matched, active, busy 0 (0 ms), retain 5>
+  |   {
+  |     "IOProbeScore" = 0
+  |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+  |     "IOClass" = "AppleUpstreamUserClientDriver"
+  |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOProviderClass" = "IOFramebuffer"
+  |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOUserClientClass" = "AppleUpstreamUserClient"
+  |     "IOResourceMatch" = "IOKit"
+  |   }
+  |   
+  +-o AGPM  <class AGPM, id 0x100000589, registered, matched, active, busy 0 (0 ms), retain 8>
+  |   {
+  |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |     "max-value" = 15
+  |     "min-value" = 0
+  |     "IOReportLegendPublic" = Yes
+  |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+  |     "Heuristic-ID" = <ffffffff>
+  |   }
+  |   
+  +-o display0  <class IODisplayConnect, id 0x1000005b4, registered, matched, active, busy 0 (0 ms), retain 6>
+  | | {
+  | | }
+  | | 
+  | +-o AppleBacklightDisplay  <class AppleBacklightDisplay, id 0x1000005b5, registered, matched, active, busy 0 (0 ms), retain 8>
+  |     {
+  |       "IOClass" = "AppleBacklightDisplay"
+  |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IOProviderClass" = "IODisplayConnect"
+  |       "DisplayProductID" = 2990
+  |       "IODisplayEDID" = <00ffffffffffff0009e5ae0b0000000026200104a51d11780252f5a658549e260f505400000001010101010101010101010101010101b73980f070383c403020360026a51000001a2c2e80f070383c403020360026a51000001a000000fe005950334e37804e5631334e343900000000000141019e001000000a010a20200057>
+  |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleBacklightDisplay-9e5-bae"
+  |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-9e5-bae-42cb3f6c69cf3bc4"
+  |       "IOProbeScore" = 3000
+  |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"fade-time3"={"min"=0,"max"=10000,"value"=500},"brightness"={"min"=0,"max"=65535,"value"=3003},"fade-time2"={"min"=0,"max"=10000,"value"=4000},"fade-style"={"min"=0,"max"=10,"value"=0},"ownr"=4294968591,"fade-time1"={"min"=0,"max"=10000,"value"=500},"ggsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"linear-brightness"={"min"=0,"max"=65535,"value"=65535}}
+  |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+  |       "IOMatchCategory" = "IODefaultMatchCategory"
+  |       "IODisplayHasBacklight" = Yes
+  |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IODisplayConnectFlags" = <00080000>
+  |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IODisplayAttributes" = {"IODisplayAttributes"=<676174760000000073676c6600000000726c6f630100000063706220020000006364670080808000676c666400000000>}
+  |       "DisplayVendorID" = 2533
+  |       "DisplaySerialNumber" = 0
+  |     }
+  |     
+  +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005b9, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOFramebufferSharedUserClient  <class IOFramebufferSharedUserClient, id 0x100000639, !registered, !matched, active, busy 0, retain 5>
+      {
+        "IOUserClientDefaultLocking" = Yes
+        "IOUserClientSharedInstance" = Yes
+        "IOUserClientCreator" = "pid 967, nsattributedstri"
+      }
+      
+

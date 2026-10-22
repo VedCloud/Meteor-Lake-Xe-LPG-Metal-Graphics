@@ -1,0 +1,7 @@
+{
+  "kernel": "all 74 Intel Sequoia units compiled, linked and signature verified",
+  "IOUserClient": "actual implementation tested with isolated IOKit APIs under non-recovering ASan/UBSan; permission, bounds, TX gate, RX, stop barrier and client lifetime passed",
+  "protocol": "actual OWL PSF/MIF encoder through bounded radio adapter to parser and peer creation, truncation sweep and odd-address endian codec passed strict ASan/UBSan",
+  "installer": "actual script from original, 0.1.0 and 0.1.1; idempotence/restore/failing-signature cleanup/unknown-bundle refusal passed temporary fixture",
+  "radio": "not exercised on host; no RF proof or AirDrop transfer claimed"
+}

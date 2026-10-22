@@ -1,0 +1,44 @@
+{
+  "base": "d695c971420cc8af0daa286dcd3297e8236c0a63",
+  "MTLfixes": "05b19dc81db6aedcf4058525981f7326f57c04e2",
+  "unitsCompiled": 74,
+  "emptyUpstreamBuildReference": [
+    "F8D94CCE2B9ABFE20081A3C4"
+  ],
+  "privateRevision": "0.1.3-peer-policy-unbound",
+  "signature": "verified",
+  "binarySHA256": "23af2f4c0db32f4b372f773cb1f09020c4e3cd5a3519bebe0db74083214a7c30",
+  "experimentalGate": "latitude-awdl-current-channel=1",
+  "automaticRadioTransmission": false,
+  "installed": false,
+  "hardwareValidated": false,
+  "AirDropFunctional": false,
+  "remaining": [
+    "firmware qualification of current-channel action path",
+    "Dell qualification of correlated firmware TX status and reset cleanup; receive demultiplexing",
+    "off-channel scheduling and secondary MAC/stations",
+    "native Skywalk peer data, IPv6/mDNS, AirDrop transfer"
+  ],
+  "uuid": "F18D3444-4349-34E1-A6B0-9207683EC8F2",
+  "peerTransport": {
+    "version": "0.1.3-peer-policy-unbound",
+    "peerCodec": "ASan/UBSan passed; OWL parser/generator interoperability both directions",
+    "channelScheduler": "bounded mutual-window search and API83 session policy passed; firmware resources unbound",
+    "nativeABI": "563 dispatch slots including 63 AWDL slots checked; compile fixture only",
+    "actualRxHandler": "ASan/UBSan passed; exact-length DMA sync and association/P2P isolation",
+    "nativePeerDataConnected": false,
+    "secondaryFirmwareContextCreated": false,
+    "firmwareTimerDispatchConnected": false,
+    "AirDropFunctional": false,
+    "DellHardwareValidated": false,
+    "hostRadioOpened": false,
+    "sourceSHA256": {
+      "LatitudeAWDLPeerTransport.h": "06203c4813201f3e3a8fbaab804a3a184d0e743c4f46e81aee63511917307460",
+      "LatitudeAWDLNativeABI.h": "128d8320566dbd28de5d439b6250928b9c8edda8385c85aa866bf0bc89eeaddb",
+      "test-awdl-peer.cpp": "c67dd477f63950896c4026285108f2e3d9333920c296dced78e2d11afdbd22a6",
+      "test-peer-notification.py": "a4be6957d6406ab7b6e19568fe69edf3869d809e95e29a4954a65155a67de2da",
+      "test-native-awdl-abi.py": "d2e3a5c5680b8550e5931f57daddf6acebc527dcc839b8048bfe6a2d4c76bcfa",
+      "test-awdl-radio.cpp": "81ced84961736f03c2e3b1bad21e22a7a25f963cb14337918ffcbead7602c662"
+    }
+  }
+}

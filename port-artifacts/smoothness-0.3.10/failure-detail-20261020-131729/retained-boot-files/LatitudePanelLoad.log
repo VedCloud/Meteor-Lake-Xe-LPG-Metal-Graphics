@@ -1,0 +1,277 @@
+Sun Oct 18 18:18:31 BST 2026
+kern.boottime: { sec = 1792343905, usec = 0 } Sun Oct 18 18:18:25 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+Panel reservation active; requesting framebuffer start and matching.
+Framebuffer boot-load exit=0
+Sun Oct 18 18:18:32 BST 2026
+Sun Oct 18 18:38:18 BST 2026
+kern.boottime: { sec = 1792345093, usec = 0 } Sun Oct 18 18:38:13 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+Panel reservation active; requesting framebuffer start and matching.
+Framebuffer boot-load exit=0
+Sun Oct 18 18:38:20 BST 2026
+Sun Oct 18 18:40:01 BST 2026
+kern.boottime: { sec = 1792345195, usec = 0 } Sun Oct 18 18:39:55 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 19:12:49 BST 2026
+kern.boottime: { sec = 1792347163, usec = 0 } Sun Oct 18 19:12:43 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+Panel reservation active; requesting framebuffer start and matching.
+Framebuffer boot-load exit=0
+Sun Oct 18 19:12:51 BST 2026
+Sun Oct 18 19:14:10 BST 2026
+kern.boottime: { sec = 1792347245, usec = 0 } Sun Oct 18 19:14:05 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 19:47:02 BST 2026
+kern.boottime: { sec = 1792349216, usec = 0 } Sun Oct 18 19:46:56 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+Panel reservation active; requesting framebuffer start and matching.
+Framebuffer boot-load exit=0
+Sun Oct 18 19:47:04 BST 2026
+Sun Oct 18 19:49:02 BST 2026
+kern.boottime: { sec = 1792349337, usec = 0 } Sun Oct 18 19:48:57 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 20:17:15 BST 2026
+kern.boottime: { sec = 1792351030, usec = 0 } Sun Oct 18 20:17:10 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 20:35:15 BST 2026
+kern.boottime: { sec = 1792352109, usec = 0 } Sun Oct 18 20:35:09 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 23:15:33 BST 2026
+kern.boottime: { sec = 1792361727, usec = 0 } Sun Oct 18 23:15:27 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 23:23:34 BST 2026
+kern.boottime: { sec = 1792362208, usec = 0 } Sun Oct 18 23:23:28 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 23:28:28 BST 2026
+kern.boottime: { sec = 1792362502, usec = 0 } Sun Oct 18 23:28:22 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 23:45:14 BST 2026
+kern.boottime: { sec = 1792363508, usec = 0 } Sun Oct 18 23:45:08 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Sun Oct 18 23:53:01 BST 2026
+kern.boottime: { sec = 1792363975, usec = 0 } Sun Oct 18 23:52:55 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Mon Oct 19 11:41:18 BST 2026
+kern.boottime: { sec = 1792406472, usec = 0 } Mon Oct 19 11:41:12 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Mon Oct 19 11:43:51 BST 2026
+kern.boottime: { sec = 1792406625, usec = 0 } Mon Oct 19 11:43:45 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Mon Oct 19 12:00:41 BST 2026
+kern.boottime: { sec = 1792407635, usec = 0 } Mon Oct 19 12:00:35 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+Panel reservation active; requesting framebuffer start and matching.
+Framebuffer boot-load exit=0
+Mon Oct 19 12:00:44 BST 2026
+Mon Oct 19 12:03:13 BST 2026
+kern.boottime: { sec = 1792407787, usec = 0 } Mon Oct 19 12:03:07 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Mon Oct 19 12:33:25 BST 2026
+kern.boottime: { sec = 1792409599, usec = 0 } Mon Oct 19 12:33:19 2026
+Latitude panel boot loader: waiting briefly for an opted-in reservation.
+No panel reservation active; skipping framebuffer load.
+Mon Oct 19 12:54:26 BST 2026
+kern.boottime: { sec = 1792410860, usec = 0 } Mon Oct 19 12:54:20 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   303 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 12:58:45 BST 2026
+kern.boottime: { sec = 1792411120, usec = 0 } Mon Oct 19 12:58:40 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 13:00:04 BST 2026
+kern.boottime: { sec = 1792411198, usec = 0 } Mon Oct 19 12:59:58 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   296 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 13:14:35 BST 2026
+kern.boottime: { sec = 1792412069, usec = 0 } Mon Oct 19 13:14:29 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 13:16:09 BST 2026
+kern.boottime: { sec = 1792412164, usec = 0 } Mon Oct 19 13:16:04 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   297 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 13:36:14 BST 2026
+kern.boottime: { sec = 1792413369, usec = 0 } Mon Oct 19 13:36:09 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   295 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 16:53:25 BST 2026
+kern.boottime: { sec = 1792425199, usec = 0 } Mon Oct 19 16:53:19 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 16:59:01 BST 2026
+kern.boottime: { sec = 1792425535, usec = 0 } Mon Oct 19 16:58:55 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   299 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 17:14:50 BST 2026
+kern.boottime: { sec = 1792426484, usec = 0 } Mon Oct 19 17:14:44 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 17:16:22 BST 2026
+kern.boottime: { sec = 1792426576, usec = 0 } Mon Oct 19 17:16:16 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   300 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 17:32:20 BST 2026
+kern.boottime: { sec = 1792427534, usec = 0 } Mon Oct 19 17:32:14 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 17:34:04 BST 2026
+kern.boottime: { sec = 1792427638, usec = 0 } Mon Oct 19 17:33:58 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   303 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 17:58:44 BST 2026
+kern.boottime: { sec = 1792429118, usec = 0 } Mon Oct 19 17:58:38 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 18:00:05 BST 2026
+kern.boottime: { sec = 1792429199, usec = 0 } Mon Oct 19 17:59:59 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   295 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 18:14:31 BST 2026
+Mon Oct 19 18:17:34 BST 2026
+kern.boottime: { sec = 1792430248, usec = 0 } Mon Oct 19 18:17:28 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   300 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 18:28:53 BST 2026
+kern.boottime: { sec = 1792430927, usec = 0 } Mon Oct 19 18:28:47 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   295 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 18:36:31 BST 2026
+kern.boottime: { sec = 1792431385, usec = 0 } Mon Oct 19 18:39:24 BST 2026
+kern.boottime: { sec = 1792431558, usec = 0 } Mon Oct 19 18:39:18 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   305 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+Mon Oct 19 22:07:13 BST 2026
+kern.boottime: { sec = 1792444027, usec = 0 } Mon Oct 19 22:07:07 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 22:08:19 BST 2026
+kern.boottime: { sec = 1792444093, usec = 0 } Mon Oct 19 22:08:13 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   299 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   314 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   315 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Mon Oct 19 22:19:41 BST 2026
+kern.boottime: { sec = 1792444775, usec = 0 } Mon Oct 19 22:19:35 2026
+Framebuffer boot-load exit=0
+Mon Oct 19 22:21:08 BST 2026
+kern.boottime: { sec = 1792444862, usec = 0 } Mon Oct 19 22:21:02 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   297 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   309 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   310 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Mon Oct 19 22:38:40 BST 2026
+kern.boottime: { sec = 1792445913, usec = 0 } Mon Oct 19 22:38:33 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   298 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   310 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Mon Oct 19 23:12:38 BST 2026
+kern.boottime: { sec = 1792447952, usec = 0 } Mon Oct 19 23:12:32 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   303 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   314 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   315 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Mon Oct 19 23:14:37 BST 2026
+kern.boottime: { sec = 1792448071, usec = 0 } Mon Oct 19 23:14:31 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   299 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   315 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   316 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 11:53:58 BST 2026
+kern.boottime: { sec = 1792493633, usec = 0 } Tue Oct 20 11:53:53 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   301 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   312 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   313 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 11:55:47 BST 2026
+kern.boottime: { sec = 1792493741, usec = 0 } Tue Oct 20 11:55:41 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   300 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   319 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 12:15:39 BST 2026
+kern.boottime: { sec = 1792494933, usec = 0 } Tue Oct 20 12:15:33 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   303 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   314 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   315 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 12:19:38 BST 2026
+kern.boottime: { sec = 1792495172, usec = 0 } Tue Oct 20 12:19:32 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   297 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   309 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate 'process == "kernel" OR process == "WindowServer"' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   310 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 12:33:34 BST 2026
+kern.boottime: { sec = 1792496008, usec = 0 } Tue Oct 20 12:33:28 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   297 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   314 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 12:51:18 BST 2026
+kern.boottime: { sec = 1792497072, usec = 0 } Tue Oct 20 12:51:12 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   306 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   314 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate '(process == "kernel" OR process == "WindowServer") AND (logType == "error" OR logType == "fault" OR composedMessage CONTAINS[c] "panic" OR composedMessage CONTAINS[c] "NMX" OR composedMessage CONTAINS[c] "Latitude" OR composedMessage CONTAINS[c] "drmn" OR composedMessage CONTAINS[c] "i915" OR composedMessage CONTAINS[c] "NullMoth")' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   315 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 12:53:30 BST 2026
+kern.boottime: { sec = 1792497205, usec = 0 } Tue Oct 20 12:53:25 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   298 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   315 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 13:11:56 BST 2026
+kern.boottime: { sec = 1792498310, usec = 0 } Tue Oct 20 13:11:50 2026
+No panel reservation active; skipping framebuffer load.
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   298 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   308 Terminated: 15          /usr/bin/log stream --style compact --level info --timeout 120 --predicate '(process == "kernel" OR process == "WindowServer") AND (logType == "error" OR logType == "fault" OR composedMessage CONTAINS[c] "panic" OR composedMessage CONTAINS[c] "NMX" OR composedMessage CONTAINS[c] "Latitude" OR composedMessage CONTAINS[c] "drmn" OR composedMessage CONTAINS[c] "i915" OR composedMessage CONTAINS[c] "NullMoth")' >> "$EARLY" 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   309 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )
+Tue Oct 20 13:14:03 BST 2026
+kern.boottime: { sec = 1792498436, usec = 0 } Tue Oct 20 13:13:56 2026
+Framebuffer boot-load exit=0
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   307 Terminated: 15          "$J" watch 120 > /dev/null 2>&1
+/Library/NullMoth/load-panel-framebuffer.sh: line 22:   319 Terminated: 15          ( for ((tick=0; tick<60; tick++))
+do
+    sleep 2; "$J" flush "$EARLY" || true;
+done )

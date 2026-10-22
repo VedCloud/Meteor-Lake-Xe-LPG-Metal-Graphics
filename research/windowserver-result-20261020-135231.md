@@ -1,0 +1,9 @@
+# Dell result 2026-10-20 13:52:31
+
+Report: failure-detail-20261020-135231. Collection boot 13:49:46, Sequoia 15.8.1/24H32. Installed plugin hash matches 0.3.11; current live WindowServer logs explicitly show cache-visibility0.3.11 optimized=1 and presentation timings. Display profiler reports Intel(R) Graphics (MTL), Metal3, 4096 MB shared capacity, internal panel 1920x1080 via LatitudePanelClaim/NMXIntelVGAFB. This is backend shared-heap reporting, not dedicated VRAM.
+
+Eight disjoint timing aggregates contain 79 readbacks. Weighted stage means (ms): prep/cache 0.289468, record 0.050861, wait 3.168114, post-cache/copy 1.510380, cleanup 0.000063; sum 5.018886. Prior report 131729: 56 readbacks, 22.428036ms total. About 77.6% lower recorded stage total; not a controlled frame-rate/interaction or CPU benchmark. User reports cursor less heavy.
+
+Current retained live log 13:49:54–13:51:53 shows four CoreAnimation render fence timeouts, no GPU HANG/wedged/device-lost signatures. Timeouts remain unresolved; counts across different capture windows should not be treated as a controlled rate comparison. Current 3-second WindowServer sample main thread is waiting for messages (275/275 samples), not evidence of interactive CPU usage. Weather was not running, so new collector skipped its sample and glyph corruption remains undiagnosed.
+
+Installer 134619 completed with exit0 including the branding transaction. Original Dell backup: /Library/Application Support/LatitudeBranding/0.3.11-95BD7BB7-C5EC-4F18-A414-D484C9CF483D. User confirms Dell name and 13-inch/2024 text but no custom image. Existing collection has no active-root icon hashes or branding backup metadata. Thus successful icon staging/bless is recorded, but selected boot snapshot, chosen UI image and icon-cache state cannot be distinguished from these reports. Do not assume cache or report the icon fixed. No changes were made to the USB candidate during this review.

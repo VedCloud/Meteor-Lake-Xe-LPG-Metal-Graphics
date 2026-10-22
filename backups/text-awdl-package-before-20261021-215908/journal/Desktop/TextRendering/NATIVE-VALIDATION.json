@@ -1,0 +1,13 @@
+{
+  "nativeCTLineDrawInterception": "passed in ordinary host caller, sanitized and release",
+  "clipAndContextLifetime": "passed",
+  "IntelBuild": "compiled and signed; Dell execution pending",
+  "scope": "process-local opaque sRGB CPU bitmap contexts only",
+  "systemAppsIntegrated": false,
+  "transparentCoreAnimationLayersIntegrated": false,
+  "globalInjectionInstalled": false,
+  "sha256": {
+    "libLatitudeLCDNative-x86_64.dylib": "5e6ee0faeacc691c5c2871285c1302198716145069eebdaee19938466eb2d82e",
+    "test-interpose-x86_64": "c75d170c1bee0cac4701a2bc0edd85607a2abbfc0405dccd56a841fb782b5399"
+  }
+}

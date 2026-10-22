@@ -1,0 +1,11 @@
+{
+  "FreeType": "2.14.3",
+  "FTLCDFilterDefault": true,
+  "cpuReferenceTests": "passed ASan/UBSan on ARM host",
+  "x86Compilation": "passed",
+  "glyphAtlasBytes": 4194304,
+  "MetalShader": "source supplied; target compiler/runtime validation pending",
+  "CoreTextShapedGlyphFrontend": "implemented; actual CoreText runs passed ASan/UBSan on ARM host",
+  "systemwideInterception": "not implemented",
+  "macOSSystemAppsLCD": "not established"
+}

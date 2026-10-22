@@ -1,0 +1,19 @@
+{
+  "hotkeys_version": "0.1.1",
+  "hotkeys_uuid": "29860718-17D4-3DE3-B62F-6A626AB5CEF2",
+  "hid_version": "1.0.2",
+  "hid_uuid": "19A6E418-8463-321D-8AD8-8B7358BBAC55",
+  "hardware_verified": false,
+  "controller_timeout_root_cause_proven": false,
+  "keyboard_freeze_root_cause_proven": false,
+  "default_touchpad_trial_enabled": false,
+  "active_config_changed": false,
+  "graphics_payloads_changed": false,
+  "tests": [
+    "actual HID65536-length ASan/UBSan and previous malformed-report negative control",
+    "actual transform200000-case regression",
+    "actual WMI mock lifecycle/ownership/dispatch",
+    "actual trial fixture apply/restore/changed-HID refusal",
+    "x86 builds/signatures and defined module metadata"
+  ]
+}

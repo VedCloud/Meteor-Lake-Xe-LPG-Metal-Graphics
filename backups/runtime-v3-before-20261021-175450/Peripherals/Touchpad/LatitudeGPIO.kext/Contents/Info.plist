@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleExecutable</key>
+	<string>LatitudeGPIO</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.ved.LatitudeGPIO</string>
+	<key>CFBundleName</key>
+	<string>LatitudeGPIO</string>
+	<key>CFBundlePackageType</key>
+	<string>KEXT</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.1</string>
+	<key>CFBundleVersion</key>
+	<string>0.1.1</string>
+	<key>IOKitPersonalities</key>
+	<dict>
+		<key>LatitudeMeteorLakeGPIO</key>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.ved.LatitudeGPIO</string>
+			<key>IOClass</key>
+			<string>LatitudeGPIO</string>
+			<key>IONameMatch</key>
+			<string>INTC1083</string>
+			<key>IOProbeScore</key>
+			<integer>10000</integer>
+			<key>IOProviderClass</key>
+			<string>IOACPIPlatformDevice</string>
+		</dict>
+	</dict>
+	<key>OSBundleLibraries</key>
+	<dict>
+		<key>com.apple.iokit.IOACPIFamily</key>
+		<string>1.4.0</string>
+		<key>com.apple.kpi.iokit</key>
+		<string>11.0.0</string>
+		<key>com.apple.kpi.libkern</key>
+		<string>11.0.0</string>
+		<key>org.coolstar.VoodooGPIO</key>
+		<string>1.2.0</string>
+	</dict>
+	<key>OSBundleRequired</key>
+	<string>Root</string>
+</dict>
+</plist>

@@ -1,0 +1,6 @@
+/Library/Logs/DiagnosticReports/Retired/Kernel-2026-10-19-165858.panic
+/Library/Logs/DiagnosticReports/Retired/Kernel-2026-10-18-234511.panic
+/Library/Logs/DiagnosticReports/Retired/Kernel-2026-10-19-181731.panic
+/Library/Logs/DiagnosticReports/Retired/Kernel-2026-10-18-155529.panic
+/Library/Logs/DiagnosticReports/Retired/Kernel-2026-10-19-183921.panic
+/Library/Logs/DiagnosticReports/.contents.panic

@@ -1,0 +1,136 @@
+{
+  "kernel": "blend",
+  "sass_bytes": 17536,
+  "registers": 33,
+  "constant_bank4_hex": "",
+  "constant_bank4_relocs": [],
+  "global_init_hex": "",
+  "max_stack": 0,
+  "frame_size": 0,
+  "frames": [
+    [
+      7,
+      0
+    ],
+    [
+      10,
+      0
+    ]
+  ],
+  "local_bytes": 0,
+  "crs_stack": 0,
+  "param_bytes": 84,
+  "param_words": 11,
+  "parameters": [
+    {
+      "ordinal": 0,
+      "offset": 0,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 0
+    },
+    {
+      "ordinal": 1,
+      "offset": 8,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 1
+    },
+    {
+      "ordinal": 2,
+      "offset": 16,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 2
+    },
+    {
+      "ordinal": 3,
+      "offset": 24,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 3
+    },
+    {
+      "ordinal": 4,
+      "offset": 32,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 4
+    },
+    {
+      "ordinal": 5,
+      "offset": 40,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 5
+    },
+    {
+      "ordinal": 6,
+      "offset": 48,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 6
+    },
+    {
+      "ordinal": 7,
+      "offset": 56,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 7
+    },
+    {
+      "ordinal": 8,
+      "offset": 64,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 8
+    },
+    {
+      "ordinal": 9,
+      "offset": 72,
+      "size": 4,
+      "kind": "hidden",
+      "what": "threads_per_grid.x"
+    },
+    {
+      "ordinal": 10,
+      "offset": 76,
+      "size": 4,
+      "kind": "hidden",
+      "what": "threads_per_grid.y"
+    },
+    {
+      "ordinal": 11,
+      "offset": 80,
+      "size": 4,
+      "kind": "hidden",
+      "what": "threads_per_grid.z"
+    }
+  ],
+  "threadgroup": [],
+  "static_shared_bytes": 64,
+  "barriers": 0,
+  "constant_bank2_hex": "802400003031000080030000203d0000e035000030360000f0340000",
+  "ftz": true,
+  "function_constants": [],
+  "needs": [
+    "buffer_address",
+    "grid_dimensions",
+    "static_shared_memory"
+  ],
+  "launch_verified_on_hardware": false,
+  "entry": "blend",
+  "opt_level": "3",
+  "library_sha256": "7b43e80908f07c7505788a05d8f6a6c6cbf90869c74ea71a3a5896cd27db46d9",
+  "sass_sha256": "25842d8e404d1dbdbeaa0544184043e86bac03bf77829150fc86219697f18e73",
+  "compiler_sha256": "ccc3ebcdcc4f5414d79c3341f3093115545b12d0d4b56039f45e7d55fb807e37",
+  "target": "sm_120-ptx87-cbuf0-0x380-v1",
+  "qualification": "sass-launchrec-v3",
+  "function_constant_values": {},
+  "linked_functions": [],
+  "source": "metallib",
+  "function_constants_unused": [],
+  "visible_functions_unsupplied": [],
+  "schema": 3,
+  "release_ready": false
+}

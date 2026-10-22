@@ -1,0 +1,95 @@
+#!/bin/bash
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+[ "$(id -u)" = 0 ] || { echo "Run with sudo on the Dell after rebooting through the updated USB." >&2; exit 2; }
+[ "$(uname -m)" = x86_64 ] || { echo 'This installer is only for the Intel Dell.' >&2; exit 2; }
+[ "$(sw_vers -productVersion | cut -d. -f1)" = 15 ] || { echo 'This build targets macOS Sequoia 15.' >&2; exit 2; }
+sysctl -n machdep.cpu.brand_string | grep -q 'Ultra 5 135U' || { echo 'CPU does not match the Latitude profile.' >&2; exit 2; }
+ioreg -r -n GFX0 -l -w0 | grep -q '"device-id" = <457d0000>' || { echo 'Real 8086:7D45 GFX0 not visible.' >&2; exit 2; }
+csrutil status | tee /tmp/latitude5350-sip-status.txt
+if ! grep -qE 'status: disabled|Kext Signing: disabled' /tmp/latitude5350-sip-status.txt; then
+  echo 'Boot through the updated USB first; unsigned kext loading is still restricted.' >&2; exit 2
+fi
+kmutil showloaded | grep -q 'com.dhinakg.AMFIPass\|AMFIPass' || { echo 'AMFIPass is not loaded. Boot through the updated USB first.' >&2; exit 2; }
+cd "$HERE"
+shasum -a 256 -c SHA256SUMS.txt > /tmp/latitude5350-package-check.txt || { cat /tmp/latitude5350-package-check.txt; exit 2; }
+BKC=/System/Library/KernelCollections/BootKernelExtensions.kc
+SKC=/System/Library/KernelCollections/SystemKernelExtensions.kc
+AUX=/Library/KernelCollections/AuxiliaryKernelExtensions.kc
+[ -f "$BKC" ] && [ -f "$SKC" ] || { echo 'Target kernel collections not found.' >&2; exit 2; }
+INSTALL_REPORT="$HERE/reports/install-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$INSTALL_REPORT"
+WORK=$(mktemp -d /private/var/tmp/latitude5350-preflight.XXXXXX)
+ditto "$HERE/Library/Extensions" "$WORK/Extensions"
+chown -R root:wheel "$WORK/Extensions"
+chmod -R go-w "$WORK/Extensions"
+echo 'Checking both kexts against this laptop kernel before installing...'
+if ! kmutil create -n aux -B "$BKC" -S "$SKC" -A "$WORK/preflight.kc" \
+  -p "$WORK/Extensions/NMXGPU.kext" -p "$WORK/Extensions/NMXAccel.kext" -x -M --allow-missing-kdk > "$WORK/kmutil-preflight.log" 2>&1; then
+  cp "$WORK/kmutil-preflight.log" "$INSTALL_REPORT/kmutil-preflight-failed.log"
+  cat "$WORK/kmutil-preflight.log"
+  echo "Kernel validation failed. No live driver files changed. Logs: $WORK" >&2; exit 1
+fi
+BACKUP="/Library/NullMoth/latitude5350-backups/$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$BACKUP/original"
+PATHS=( /Library/Extensions/MyIntelGPU.kext /Library/Extensions/NMXGPU.kext /Library/Extensions/NMXAccel.kext \
+ /Library/GPUBundles/NVMTLDriver.bundle /Library/GPUBundles/nvmtl /Library/GPUBundles/nvmtl-allow.txt \
+ /Library/NullMoth/firmware/i915 "$AUX" )
+for path in "${PATHS[@]}"; do
+  if [ -e "$path" ] || [ -L "$path" ]; then
+    mkdir -p "$BACKUP/original$(dirname "$path")"
+    ditto "$path" "$BACKUP/original$path"
+  fi
+done
+cp "$HERE/rollback-runtime.sh" "$BACKUP/rollback-runtime.sh"
+cp "$WORK/kmutil-preflight.log" "$BACKUP/"
+cp "$WORK/kmutil-preflight.log" "$INSTALL_REPORT/"
+rollback_error() {
+  trap - ERR
+  cp "$BACKUP"/*.log "$INSTALL_REPORT/" 2>/dev/null || true
+  echo "Installation failed; restoring the prior files from $BACKUP" >&2
+  bash "$BACKUP/rollback-runtime.sh" "$BACKUP" || echo "Automatic rollback needs attention: $BACKUP" >&2
+  exit 1
+}
+trap rollback_error ERR
+# The old driver already failed authentication in the supplied reports; keep it in the backup.
+if [ -d /Library/Extensions/MyIntelGPU.kext ]; then rm -rf /Library/Extensions/MyIntelGPU.kext; fi
+for name in NMXGPU.kext NMXAccel.kext; do
+  rm -rf "/Library/Extensions/$name"
+  ditto "$HERE/Library/Extensions/$name" "/Library/Extensions/$name"
+  chown -R root:wheel "/Library/Extensions/$name"
+  chmod -R go-w "/Library/Extensions/$name"
+done
+mkdir -p /Library/GPUBundles /Library/NullMoth/firmware
+for name in NVMTLDriver.bundle nvmtl; do
+  rm -rf "/Library/GPUBundles/$name"
+  ditto "$HERE/Library/GPUBundles/$name" "/Library/GPUBundles/$name"
+  chown -R root:wheel "/Library/GPUBundles/$name"
+  chmod -R go-w "/Library/GPUBundles/$name"
+done
+cp "$HERE/Library/GPUBundles/nvmtl-allow.txt" /Library/GPUBundles/nvmtl-allow.txt
+chown root:wheel /Library/GPUBundles/nvmtl-allow.txt
+chmod 644 /Library/GPUBundles/nvmtl-allow.txt
+rm -rf /Library/NullMoth/firmware/i915
+ditto "$HERE/Library/NullMoth/firmware/i915" /Library/NullMoth/firmware/i915
+chown -R root:wheel /Library/NullMoth/firmware/i915
+chmod -R a+rX,go-w /Library/NullMoth/firmware/i915
+ARGS=()
+for kext in /Library/Extensions/*.kext; do [ ! -d "$kext" ] || ARGS+=( -p "$kext" ); done
+kmutil create -n aux -B "$BKC" -S "$SKC" -A "$WORK/installed.kc" "${ARGS[@]}" -M --allow-missing-kdk > "$BACKUP/kmutil-installed.log" 2>&1
+mkdir -p /Library/KernelCollections
+cp "$WORK/installed.kc" "$AUX.latitude-tmp"
+chown root:wheel "$AUX.latitude-tmp"
+chmod 644 "$AUX.latitude-tmp"
+mv -f "$AUX.latitude-tmp" "$AUX"
+kcditto > "$BACKUP/kcditto.log" 2>&1
+# The patched driver consumes this variable once in probe(). No persistent nmxintel boot argument is added.
+nvram nullmoth-gpu-once=1
+trap - ERR
+cp "$BACKUP"/*.log "$INSTALL_REPORT/"
+printf '%s\n' "$BACKUP" > /Library/NullMoth/latitude5350-last-backup.txt
+rm -rf "$WORK"
+echo "Installed the experimental accelerated runtime. Backup: $BACKUP"
+echo 'Reboot through the same USB, then run collect-runtime.sh from this package.'
+echo 'If the test hangs, power-cycle and boot through the USB again; the one-shot opt-in should be consumed.'
+echo 'The installer has not rebooted the laptop.'

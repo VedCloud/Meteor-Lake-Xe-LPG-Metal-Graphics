@@ -2,6 +2,48 @@
 IOReturn NMXVGAFB::setProperties(OSObject *properties)
 {
     OSDictionary *outer = OSDynamicCast(OSDictionary, properties);
+    if(outer && outer->getObject("LatitudeReadHotkeyCounters")){
+        if(IOUserClient::clientHasPrivilege(current_task(),kIOClientPrivilegeAdministrator)!=kIOReturnSuccess)return kIOReturnNotPrivileged;
+        if(outer->getObject("LatitudeReadHotkeyCounters")!=kOSBooleanTrue || !fPanelMemoryValidated || fStopping)return kIOReturnBadArgument;
+        setProperty("LatitudeHotkeySnapshotStage","locate LCD in ACPI plane");
+        IORegistryEntry *entry=IORegistryEntry::fromPath("IOACPIPlane:/_SB/PC00/GFX0@20000/LCD@400");
+        auto lcd=OSDynamicCast(IOACPIPlatformDevice,entry);IOReturn result=kIOReturnNotFound;
+        if(lcd){
+            setProperty("LatitudeHotkeySnapshotStage","validate local method");
+            result=lcd->validateObject("LDBG");
+            if(result==kIOReturnSuccess){
+                setProperty("LatitudeHotkeySnapshotStage","evaluate local method");
+                OSObject *raw=nullptr;result=lcd->evaluateObject("LDBG",&raw);
+                if(result==kIOReturnSuccess){
+                    setProperty("LatitudeHotkeySnapshotStage","decode package");
+                    auto values=OSDynamicCast(OSArray,raw);
+                    if(!values || values->getCount()!=5)result=kIOReturnBadArgument;
+                    else {
+                        auto snapshot=OSDictionary::withCapacity(5);
+                        const char *names[]={"Query66Entries","SMEEEntries","LastSMEEFlags","BRT6Entries","LastBRT6Argument"};
+                        if(!snapshot)result=kIOReturnNoMemory;
+                        else {
+                            for(unsigned i=0;i<5;i++){
+                                setProperty("LatitudeHotkeySnapshotCounter",names[i]);
+                                auto value=OSDynamicCast(OSNumber,values->getObject(i));
+                                if(!value){result=kIOReturnBadArgument;break;}
+                                snapshot->setObject(names[i],value);
+                            }
+                            if(result==kIOReturnSuccess){
+                                setProperty("LatitudeHotkeySnapshotStage","publish snapshot");
+                                if(!setProperty("LatitudeHotkeyCounters",snapshot))result=kIOReturnNoMemory;
+                                else setProperty("LatitudeHotkeySnapshotStage","complete");
+                            }
+                            snapshot->release();
+                        }
+                    }
+                }
+                if(raw)raw->release();
+            }
+        }
+        if(entry)entry->release();setProperty("LatitudeHotkeySnapshotResult",(uint64_t)(uint32_t)result,32);return result;
+    }
+
     OSObject *payload = outer ? outer->getObject("LatitudeGPUIdentity") : nullptr;
     if (!payload) return IOFramebuffer::setProperties(properties);
     if (IOUserClient::clientHasPrivilege(current_task(), kIOClientPrivilegeAdministrator) != kIOReturnSuccess)

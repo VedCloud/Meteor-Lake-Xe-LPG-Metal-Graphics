@@ -1,0 +1,10 @@
+HIDD exit=0
+ISHC exit=0
+ISH exit=0
+BIND exit=0
+CIND exit=0
+DIND exit=0
+IOHIDDevice exit=0
+ApplePS2Keyboard exit=0
+VoodooI2CHIDDevice exit=0
+NMXIntelVGAFB exit=0

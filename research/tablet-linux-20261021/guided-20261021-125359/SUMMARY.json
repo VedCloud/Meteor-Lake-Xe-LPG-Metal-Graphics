@@ -1,0 +1,29 @@
+{
+  "accelerometerAxesPresent": true,
+  "tabletSwitchPresent": true,
+  "sensorDataNeedsReview": true,
+  "phases": [
+    {
+      "position": "laptop",
+      "exit": 0
+    },
+    {
+      "position": "tablet",
+      "exit": 0
+    },
+    {
+      "position": "portrait-left",
+      "exit": 0
+    },
+    {
+      "position": "portrait-right",
+      "exit": 0
+    },
+    {
+      "position": "laptop-return",
+      "exit": 0
+    }
+  ],
+  "complete": true,
+  "scope": "Sensor descriptors, IIO values, EV_SW state and firmware tables only. No typed keys or input_event reads."
+}

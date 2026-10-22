@@ -1,0 +1,1 @@
+WindowServer crash reports from last 48 hours: copied=42 failed=0

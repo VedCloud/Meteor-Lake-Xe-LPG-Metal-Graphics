@@ -1,0 +1,17 @@
+research/IOAcceleratorFamily2-recovery-reference.macho:
+(__TEXT,__text) section
+__ZNK29IOAccelDisplayPipeGammaTable213getTableEntryEjPfS0_S0_:
+  e9fb3e:	55	pushq	%rbp
+  e9fb3f:	48 89 e5	movq	%rsp, %rbp
+  e9fb42:	48 8b 47 10	movq	0x10(%rdi), %rax
+  e9fb46:	89 f6	movl	%esi, %esi
+  e9fb48:	48 c1 e6 04	shlq	$0x4, %rsi
+  e9fb4c:	f3 0f 10 44 30 10	movss	0x10(%rax,%rsi), %xmm0
+  e9fb52:	f3 0f 11 02	movss	%xmm0, (%rdx)
+  e9fb56:	f3 0f 10 44 30 14	movss	0x14(%rax,%rsi), %xmm0
+  e9fb5c:	f3 0f 11 01	movss	%xmm0, (%rcx)
+  e9fb60:	f3 0f 10 44 30 18	movss	0x18(%rax,%rsi), %xmm0
+  e9fb66:	f3 41 0f 11 00	movss	%xmm0, (%r8)
+  e9fb6b:	5d	popq	%rbp
+  e9fb6c:	c3	retq
+  e9fb6d:	90	nop

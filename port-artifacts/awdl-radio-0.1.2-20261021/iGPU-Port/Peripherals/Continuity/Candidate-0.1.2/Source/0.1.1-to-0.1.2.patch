@@ -1,0 +1,287 @@
+--- a/AirportItlwm/AirportItlwmV2.cpp
++++ b/AirportItlwm/AirportItlwmV2.cpp
+@@ -24,6 +24,7 @@
+ 
+ void AirportItlwm::releaseAll()
+ {
++    latitudeAWDLBridgeStop();
+ #ifdef AIRPORT_WCL
+     if (fNetIf)
+         static_cast<AirportItlwmSkywalkInterface *>(fNetIf)->stopWCL();
+@@ -139,6 +140,7 @@
+ {
+     XYLog("%s\n", __PRETTY_FUNCTION__);
+     bool ret = super::init(properties);
++    if(ret){fAWDLBridgeLock=IOLockAlloc();if(!fAWDLBridgeLock)return false;}
+     awdlSyncEnable = true;
+     power_state = 0;
+     memset(geo_location_cc, 0, sizeof(geo_location_cc));
+@@ -472,11 +474,13 @@
+ #endif
+     registerService();
+     provider->setProperty("LatitudeAirportStage", "start-success");
++    setProperty("LatitudeAWDLRadioBridgeReady",latitudeAWDLBridgeStart());
+     return true;
+ }
+ 
+ void AirportItlwm::stop(IOService *provider)
+ {
++    latitudeAWDLBridgeStop();
+     XYLog("%s\n", __PRETTY_FUNCTION__);XYLog("%s\n", __PRETTY_FUNCTION__);
+     struct _ifnet *ifp = &fHalService->get80211Controller()->ic_ac.ac_if;
+ #ifdef AIRPORT_WCL
+@@ -495,6 +499,8 @@
+ 
+ void AirportItlwm::free()
+ {
++    latitudeAWDLBridgeStop();
++    if(fAWDLBridgeLock){IOLockFree(fAWDLBridgeLock);fAWDLBridgeLock=nullptr;}
+     XYLog("%s\n", __PRETTY_FUNCTION__);
+     if (fHalService != NULL) {
+         fHalService->release();
+@@ -1452,3 +1458,5 @@
+     setProperty("LatitudeAWDLNativeDisableResult",(uint64_t)(uint32_t)result,32);
+     return result;
+ }
++
++#include "LatitudeAWDLUserClient.inc"
+--- a/AirportItlwm/AirportItlwmV2.hpp
++++ b/AirportItlwm/AirportItlwmV2.hpp
+@@ -100,6 +100,14 @@
+     virtual UInt32 outputPacket(mbuf_t, void * param) override;
+     int bpfOutputPacket(OSObject *, UInt32, mbuf_t) override;
+     static IOReturn latitudeAWDLRawGated(OSObject *,void *,void *,void *,void *);
++    IOReturn newUserClient(task_t,void *,UInt32,OSDictionary *,IOUserClient **) override;
++    IOLock *fAWDLBridgeLock=nullptr;
++    IOCommandGate *fAWDLBridgeGate=nullptr;IOWorkLoop *fAWDLBridgeLoop=nullptr;
++    bool fAWDLBridgeReady=false;
++    bool latitudeAWDLBridgeStart();void latitudeAWDLBridgeStop();
++    IOReturn latitudeAWDLBridgeRun(void *);
++    static IOReturn latitudeAWDLBridgeAction(OSObject *,void *,void *,void *,void *);
++
+ #ifdef AIRPORT_WCL
+     UInt32 enqueuePacket(mbuf_t);
+     static IOReturn outputPacketGated(OSObject *, void *, void *, void *, void *);
+--- /dev/null
++++ b/AirportItlwm/LatitudeAWDLUserClient.inc
+@@ -0,0 +1,92 @@
++// Private root-only transport; included by AirportItlwmV2.cpp after its header.
++#include <IOKit/IOUserClient.h>
++#include <libkern/OSAtomic.h>
++struct LatitudeAWDLBridgeCall {UInt32 selector;void *bytes;size_t length;uint64_t result=0;};
++class LatitudeAWDLUserClient:public IOUserClient {
++ OSDeclareDefaultStructors(LatitudeAWDLUserClient)
++ AirportItlwm *owner=nullptr;volatile UInt32 closed=0;
++public:
++ bool start(IOService *provider)override{
++  auto radio=OSDynamicCast(AirportItlwm,provider);if(!radio||!IOUserClient::start(provider))return false;
++  owner=radio;owner->retain();return true;
++ }
++ IOReturn clientClose()override{OSCompareAndSwap(0,1,&closed);terminate();return kIOReturnSuccess;}
++ void stop(IOService *provider)override{OSCompareAndSwap(0,1,&closed);IOUserClient::stop(provider);}
++ void free()override{if(owner){owner->release();owner=nullptr;}IOUserClient::free();}
++ IOReturn externalMethod(uint32_t selector,IOExternalMethodArguments *args,IOExternalMethodDispatch *,OSObject *,void *)override{
++  if(!args||!owner||OSAddAtomic(0,(volatile SInt32*)&closed))return kIOReturnNotOpen;
++  if(args->scalarInputCount||args->structureInputDescriptor||args->structureOutputDescriptor)return kIOReturnBadArgument;
++  using namespace LatitudeAWDLRadio;
++  if(selector==Query||selector==ReceiveAction){
++   size_t need=selector==Query?sizeof(Status):sizeof(Received);
++   if(args->structureInputSize||args->scalarOutputCount||args->structureOutputSize!=need||!args->structureOutput)return kIOReturnBadArgument;
++   bzero(args->structureOutput,need);LatitudeAWDLBridgeCall call{selector,args->structureOutput,need};
++   IOReturn rc=owner->latitudeAWDLBridgeRun(&call);if(rc!=kIOReturnSuccess)args->structureOutputSize=0;return rc;
++  }
++  if(selector!=TransmitAction)return kIOReturnUnsupported;
++  if(args->structureOutputSize||args->scalarOutputCount!=1||!args->scalarOutput||!args->structureInput||args->structureInputSize<8||args->structureInputSize>4096)return kIOReturnBadArgument;
++  // Inline IOKit input is kernel-owned for this synchronous call. The HAL
++  // creates its own mbuf; no user pointer or buffer survives this operation.
++  LatitudeAWDLBridgeCall call{selector,(void*)args->structureInput,args->structureInputSize};
++  IOReturn rc=owner->latitudeAWDLBridgeRun(&call);args->scalarOutput[0]=call.result;return rc;
++ }
++};
++OSDefineMetaClassAndStructors(LatitudeAWDLUserClient,IOUserClient)
++
++IOReturn AirportItlwm::newUserClient(task_t task,void *securityID,UInt32 type,OSDictionary *properties,IOUserClient **handler)
++{
++ if(type!=LatitudeAWDLRadio::Connection)return super::newUserClient(task,securityID,type,properties,handler);
++ if(!handler)return kIOReturnBadArgument;*handler=nullptr;
++ if(IOUserClient::clientHasPrivilege(task,kIOClientPrivilegeAdministrator)!=kIOReturnSuccess)return kIOReturnNotPrivileged;
++ auto client=OSTypeAlloc(LatitudeAWDLUserClient);if(!client)return kIOReturnNoMemory;
++ if(!client->initWithTask(task,securityID,type)){client->release();return kIOReturnError;}
++ if(!client->attach(this)){client->release();return kIOReturnNotAttached;}
++ if(!client->start(this)){client->detach(this);client->release();return kIOReturnNotReady;}
++ *handler=client;return kIOReturnSuccess;
++}
++bool AirportItlwm::latitudeAWDLBridgeStart()
++{
++ if(!fAWDLBridgeLock||!_fCommandGate||!_fWorkloop)return false;
++ IOLockLock(fAWDLBridgeLock);
++ fAWDLBridgeGate=_fCommandGate;fAWDLBridgeLoop=_fWorkloop;
++ fAWDLBridgeGate->retain();fAWDLBridgeLoop->retain();fAWDLBridgeReady=true;
++ IOLockUnlock(fAWDLBridgeLock);
++ setProperty("LatitudeAWDLRadioProtocol",(uint64_t)LatitudeAWDLRadio::Version,32);
++ return true;
++}
++void AirportItlwm::latitudeAWDLBridgeStop()
++{
++ if(!fAWDLBridgeLock)return;
++ IOLockLock(fAWDLBridgeLock);fAWDLBridgeReady=false;
++ auto gate=fAWDLBridgeGate;auto loop=fAWDLBridgeLoop;
++ fAWDLBridgeGate=nullptr;fAWDLBridgeLoop=nullptr;IOLockUnlock(fAWDLBridgeLock);
++ // Mark closed before draining the controller gate. A client that took a
++ // retained snapshot before stop is refused by the gated ready check.
++ if(gate){gate->runAction(latitudeAWDLBridgeAction);gate->release();}
++ if(loop)loop->release();
++}
++IOReturn AirportItlwm::latitudeAWDLBridgeRun(void *request)
++{
++ if(!fAWDLBridgeLock)return kIOReturnNotReady;
++ IOLockLock(fAWDLBridgeLock);
++ auto gate=fAWDLBridgeReady?fAWDLBridgeGate:nullptr;auto loop=fAWDLBridgeReady?fAWDLBridgeLoop:nullptr;
++ if(gate)gate->retain();if(loop)loop->retain();IOLockUnlock(fAWDLBridgeLock);
++ if(!gate||!loop){if(gate)gate->release();if(loop)loop->release();return kIOReturnNotReady;}
++ IOReturn rc=gate->runAction(latitudeAWDLBridgeAction,request);
++ gate->release();loop->release();return rc;
++}
++IOReturn AirportItlwm::latitudeAWDLBridgeAction(OSObject *object,void *request,void*,void*,void*)
++{
++ auto self=OSDynamicCast(AirportItlwm,object);if(!self)return kIOReturnBadArgument;
++ if(!request)return kIOReturnSuccess; // teardown barrier, no HAL access
++ IOLockLock(self->fAWDLBridgeLock);bool ready=self->fAWDLBridgeReady;IOLockUnlock(self->fAWDLBridgeLock);
++ if(!ready||self->isInactive())return kIOReturnNotReady;
++ auto radio=OSDynamicCast(ItlIwx,self->fHalService);if(!radio)return kIOReturnUnsupported;
++ auto call=(LatitudeAWDLBridgeCall*)request;using namespace LatitudeAWDLRadio;
++ if(call->selector==Query){if(call->length!=sizeof(Status))return kIOReturnBadArgument;radio->latitudeAWDLStatus(*(Status*)call->bytes);return kIOReturnSuccess;}
++ if(call->selector==ReceiveAction){if(call->length!=sizeof(Received))return kIOReturnBadArgument;return radio->latitudeAWDLReceiveQueue.pop(*(Received*)call->bytes)?kIOReturnSuccess:kIOReturnNotFound;}
++ if(call->selector!=TransmitAction)return kIOReturnUnsupported;
++ int armed=0;if(!PE_parse_boot_argn("latitude-awdl-current-channel",&armed,sizeof(armed))||armed!=1)return kIOReturnNotPermitted;
++ call->result=(uint32_t)radio->latitudeAWDLCurrentChannel(call->bytes,call->length);
++ self->setProperty("LatitudeAWDLRawLastSubmitErrno",call->result,32);return kIOReturnSuccess;
++}
+--- a/itlwm/hal_iwx/ItlIwx.cpp
++++ b/itlwm/hal_iwx/ItlIwx.cpp
+@@ -1,3 +1,4 @@
++#include <kern/clock.h>
+ #include <LatitudeAWDLFrame.h>
+ /*
+  * Copyright (C) 2020  钟先耀
+@@ -2843,6 +2844,7 @@
+ {
+     int i;
+     
++    latitudeAWDLReceiveQueue.clear();
+     for (i = 0; i < ring->ring_count; i++) {
+         struct iwx_tx_data *data = &ring->data[i];
+         if (ring->qid == IWX_DQA_CMD_QUEUE) {
+@@ -5790,6 +5792,8 @@
+     if (chanidx < 0 || chanidx >= nitems(ic->ic_channels))
+         chanidx = ieee80211_chan2ieee(ic, ic->ic_ibss_chan);
+     
++    // Passive copy only: the normal receive path retains ownership and behavior.
++    latitudeAWDLCapture(sc,m,chanidx,rxi->rxi_rssi);
+     wh = mtod(m, struct ieee80211_frame *);
+     ni = ieee80211_find_rxnode(ic, wh);
+     if ((rxi->rxi_flags & IEEE80211_RXI_HWDEC) &&
+@@ -15523,3 +15527,31 @@
+     LAT_TX_PROP("LastStatus",lastStatus);
+ #undef LAT_TX_PROP
+ }
++
++void ItlIwx::latitudeAWDLStatus(LatitudeAWDLRadio::Status &out)
++{
++    out={};auto sc=&com;auto ic=&sc->sc_ic;auto ifp=&ic->ic_if;
++    out.device=sc->sc_pcitag->configRead16(kIOPCIConfigDeviceID);
++    if(out.device==0x7e40&&!strcmp(sc->sc_fwname,"iwlwifi-ma-b0-gf-a0-83.ucode"))out.flags|=LatitudeAWDLRadio::ExactHardware;
++    if((ifp->if_flags&IFF_RUNNING)&&(ifp->if_flags&IFF_UP)&&ic->ic_state==IEEE80211_S_RUN&&ic->ic_bss&&ic->ic_bss->ni_chan&&ic->ic_bss->ni_chan!=IEEE80211_CHAN_ANYC){
++        out.flags|=LatitudeAWDLRadio::Associated;out.frequency=ic->ic_bss->ni_chan->ic_freq;
++    }
++    int arm=0;if(PE_parse_boot_argn("latitude-awdl-current-channel",&arm,sizeof(arm))&&arm==1)out.flags|=LatitudeAWDLRadio::TransmitArmed;
++    memcpy(out.mac,ic->ic_myaddr,6);
++    out.submitted=latitudeAWDLTx.submitted;out.responses=latitudeAWDLTx.responses;
++    out.firmwareSuccess=latitudeAWDLTx.succeeded;out.firmwareFailure=latitudeAWDLTx.failed;
++    out.reclaimed=latitudeAWDLTx.reclaimed;out.aborted=latitudeAWDLTx.aborted;
++    out.missingResponse=latitudeAWDLTx.missingResponse;out.lastCookie=latitudeAWDLTx.lastCookie;out.lastStatus=latitudeAWDLTx.lastStatus;
++    out.received=latitudeAWDLReceiveQueue.received;out.dropped=latitudeAWDLReceiveQueue.dropped;out.queued=latitudeAWDLReceiveQueue.count;
++}
++void ItlIwx::latitudeAWDLCapture(struct iwx_softc *sc,mbuf_t m,int channel,int rssi)
++{
++    // Do not change firmware receive filters or expose ordinary Wi-Fi payloads.
++    if(!m||channel<0||channel>=(int)nitems(sc->sc_ic.ic_channels))return;
++    size_t length=mbuf_pkthdr_len(m);if(length<40||length>LatitudeAWDLRadio::MaxFrame)return;
++    uint8_t header[40];if(mbuf_copydata(m,0,sizeof(header),header))return;
++    if(header[0]!=0xd0||header[24]!=0x7f||header[25]!=0||header[26]!=0x17||header[27]!=0xf2||header[28]!=8)return;
++    uint8_t frame[LatitudeAWDLRadio::MaxFrame];if(mbuf_copydata(m,0,length,frame)||!LatitudeAWDLRadio::incoming(frame,length,sc->sc_ic.ic_myaddr))return;
++    uint64_t latitudeTicks=0,ns=0;clock_get_uptime(&latitudeTicks);absolutetime_to_nanoseconds(latitudeTicks,&ns);
++    latitudeAWDLReceiveQueue.push(frame,length,sc->sc_ic.ic_channels[channel].ic_freq,rssi,ns);
++}
+--- a/itlwm/hal_iwx/ItlIwx.hpp
++++ b/itlwm/hal_iwx/ItlIwx.hpp
+@@ -1,3 +1,4 @@
++#include <LatitudeAWDLRadio.h>
+ /*
+ * Copyright (C) 2020  钟先耀
+ *
+@@ -190,6 +191,10 @@
+     virtual IOReturn setMulticastList(IOEthernetAddress *addr, int count) override;
+     
+     int latitudeAWDLCurrentChannel(const void *,size_t);
++    LatitudeAWDLRadio::Queue latitudeAWDLReceiveQueue;
++    void latitudeAWDLStatus(LatitudeAWDLRadio::Status &);
++    void latitudeAWDLCapture(struct iwx_softc *,mbuf_t,int,int);
++
+     LatitudeAWDLTxLedger latitudeAWDLTx;
+     void latitudeAWDLPublishTx();
+     void releaseAll();
+--- /dev/null
++++ b/include/LatitudeAWDLRadio.h
+@@ -0,0 +1,51 @@
++#pragma once
++#include <stdint.h>
++#include <stddef.h>
++// Private, versioned root-only IOKit boundary. Native Intel x86_64 layout.
++namespace LatitudeAWDLRadio {
++constexpr uint32_t Connection=0x4c415744, Version=0x0102;
++constexpr unsigned Capacity=16, MaxFrame=2304;
++enum Selector:uint32_t { Query=0, TransmitAction=1, ReceiveAction=2 };
++enum Flag:uint32_t { Associated=1, TransmitArmed=2, ExactHardware=4 };
++struct Status {
++ uint32_t version=Version,flags=0,frequency=0,device=0;
++ uint8_t mac[6]={};uint8_t reserved[2]={};
++ uint64_t submitted=0,responses=0,firmwareSuccess=0,firmwareFailure=0;
++ uint64_t reclaimed=0,aborted=0,missingResponse=0,lastCookie=0;
++ uint64_t received=0,dropped=0;uint32_t queued=0,lastStatus=0;
++};
++struct Received {
++ uint32_t version=Version,length=0,frequency=0;int32_t rssi=0;
++ uint64_t uptimeNs=0,sequence=0;
++ uint8_t frame[MaxFrame]={};
++};
++static_assert(sizeof(Status)==112,"status wire layout");
++static_assert(sizeof(Received)==2336,"receive wire layout");
++// Only accessed on the controller workloop / command gate. Drop newest on
++// overflow, preserving existing queued frames; never publish payloads in IOReg.
++struct Queue {
++ Received slots[Capacity];unsigned head=0,count=0;uint64_t received=0,dropped=0;
++ bool push(const uint8_t*p,size_t n,uint32_t frequency,int rssi,uint64_t ns){
++  if(!p||n<40||n>MaxFrame)return false;
++  ++received;if(count==Capacity){++dropped;return false;}
++  auto &slot=slots[(head+count)%Capacity];slot={};slot.length=(uint32_t)n;
++  slot.frequency=frequency;slot.rssi=rssi;slot.uptimeNs=ns;slot.sequence=received;
++  for(size_t i=0;i<n;i++)slot.frame[i]=p[i];++count;return true;
++ }
++ bool pop(Received&out){if(!count)return false;out=slots[head];slots[head]={};head=(head+1)%Capacity;--count;return true;}
++ void clear(){dropped+=count;for(auto &slot:slots)slot={};head=0;count=0;}
++};
++// Match a bounded unencrypted AWDL vendor action. Accept broadcast or an exact
++// local receiver. Do not consume the original Wi-Fi packet or change filters.
++inline bool incoming(const uint8_t*p,size_t n,const uint8_t*local){
++ if(!p||!local||n<40||n>MaxFrame||p[0]!=0xd0||(p[1]&~0x08))return false;
++ const uint8_t bssid[]={0,0x25,0,0xff,0x94,0x73};bool broadcast=true,ours=true,self=true;
++ for(unsigned i=0;i<6;i++){if(p[16+i]!=bssid[i])return false;broadcast&=p[4+i]==0xff;ours&=p[4+i]==local[i];self&=p[10+i]==local[i];}
++ if((!broadcast&&!ours)||self||(p[10]&1))return false;
++ bool zero=true;for(unsigned i=0;i<6;i++)zero&=p[10+i]==0;if(zero)return false;
++ if(p[24]!=0x7f||p[25]!=0||p[26]!=0x17||p[27]!=0xf2||p[28]!=8||p[31]||(p[30]!=0&&p[30]!=3))return false;
++ size_t at=40;unsigned fields=0;
++ while(at<n){if(n-at<3||++fields>256)return false;size_t bytes=(size_t)p[at+1]|(size_t)p[at+2]<<8;at+=3;if(bytes>n-at)return false;at+=bytes;}
++ return at==n;
++}
++}

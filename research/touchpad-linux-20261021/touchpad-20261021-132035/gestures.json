@@ -1,0 +1,102 @@
+[
+  {
+    "gesture": "one-finger",
+    "frames": 757,
+    "absoluteEvents": 2951,
+    "positionChangeEvents": 2950,
+    "maximumConcurrentContacts": 1,
+    "contactCountsReliable": true,
+    "touchFrames": 757,
+    "SYN_DROPPED": 0,
+    "stateResyncs": 0,
+    "eventGapMs": {
+      "median": 6.919145584106445,
+      "p95": 6.951093673706055,
+      "maximum": 6.989002227783203,
+      "over100ms": 0
+    },
+    "clockResets": 0,
+    "note": "Delivery gaps include intentional pauses; these are not WindowServer frame times. No coordinates or tracking IDs retained.",
+    "partialEventBytes": 0
+  },
+  {
+    "gesture": "two-finger-scroll",
+    "frames": 1093,
+    "absoluteEvents": 7655,
+    "positionChangeEvents": 5550,
+    "maximumConcurrentContacts": 2,
+    "contactCountsReliable": true,
+    "touchFrames": 1093,
+    "SYN_DROPPED": 0,
+    "stateResyncs": 0,
+    "eventGapMs": {
+      "median": 6.916999816894531,
+      "p95": 6.9561004638671875,
+      "maximum": 7.027149200439453,
+      "over100ms": 0
+    },
+    "clockResets": 0,
+    "note": "Delivery gaps include intentional pauses; these are not WindowServer frame times. No coordinates or tracking IDs retained.",
+    "partialEventBytes": 0
+  },
+  {
+    "gesture": "pinch",
+    "frames": 990,
+    "absoluteEvents": 7007,
+    "positionChangeEvents": 5234,
+    "maximumConcurrentContacts": 2,
+    "contactCountsReliable": true,
+    "touchFrames": 988,
+    "SYN_DROPPED": 0,
+    "stateResyncs": 0,
+    "eventGapMs": {
+      "median": 6.916999816894531,
+      "p95": 6.951808929443359,
+      "maximum": 372.2801208496094,
+      "over100ms": 2
+    },
+    "clockResets": 0,
+    "note": "Delivery gaps include intentional pauses; these are not WindowServer frame times. No coordinates or tracking IDs retained.",
+    "partialEventBytes": 0
+  },
+  {
+    "gesture": "three-finger",
+    "frames": 587,
+    "absoluteEvents": 5020,
+    "positionChangeEvents": 3519,
+    "maximumConcurrentContacts": 4,
+    "contactCountsReliable": true,
+    "touchFrames": 581,
+    "SYN_DROPPED": 0,
+    "stateResyncs": 0,
+    "eventGapMs": {
+      "median": 7.06791877746582,
+      "p95": 7.743120193481445,
+      "maximum": 687.7541542053223,
+      "over100ms": 6
+    },
+    "clockResets": 0,
+    "note": "Delivery gaps include intentional pauses; these are not WindowServer frame times. No coordinates or tracking IDs retained.",
+    "partialEventBytes": 0
+  },
+  {
+    "gesture": "four-finger",
+    "frames": 580,
+    "absoluteEvents": 5953,
+    "positionChangeEvents": 4048,
+    "maximumConcurrentContacts": 4,
+    "contactCountsReliable": true,
+    "touchFrames": 574,
+    "SYN_DROPPED": 0,
+    "stateResyncs": 0,
+    "eventGapMs": {
+      "median": 7.612943649291992,
+      "p95": 7.929086685180664,
+      "maximum": 553.7958145141602,
+      "over100ms": 6
+    },
+    "clockResets": 0,
+    "note": "Delivery gaps include intentional pauses; these are not WindowServer frame times. No coordinates or tracking IDs retained.",
+    "partialEventBytes": 0
+  }
+]

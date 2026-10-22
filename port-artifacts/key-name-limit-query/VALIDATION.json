@@ -1,0 +1,18 @@
+{
+  "framebuffer": "0.2.12",
+  "framebuffer_uuid": "2FA25265-DECF-3F32-B495-7214BB23D8C4",
+  "scope": "Locate unregistered ACPI LCD and evaluate local four-character LDBG; retain fresh-result guard",
+  "kernel_imports_known_from_target_tested_0_2_10_and_0_2_11": true,
+  "tests": [
+    "actual root endpoint ASan/UBSan: reproduce both prior oversized-name failures; unregistered LCD/local LDBG success, malformed package, ACPI failures and root/stopping guards",
+    "actual key-state helper ASan/UBSan: success, failure-stage metadata and no stale counters after failed request",
+    "actual AML firmware/PS2 route and direct scalar counter checks",
+    "x86_64 framebuffer/helper builds and signatures",
+    "guarded installer compatibility and rollback fixture"
+  ],
+  "firmware_key_source_confirmed": false,
+  "brightness_keys_fixed": false,
+  "hardware_query_verified": false,
+  "gpu_suite_rerun": false,
+  "target_installed_or_armed": false
+}

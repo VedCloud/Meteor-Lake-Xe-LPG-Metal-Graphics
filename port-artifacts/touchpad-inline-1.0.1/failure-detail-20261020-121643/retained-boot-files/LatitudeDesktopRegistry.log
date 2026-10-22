@@ -1,0 +1,2607 @@
+Tue Oct 20 11:55:51 BST 2026
++-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000051c, registered, matched, active, busy 0 (3 ms), retain 23>
+  | {
+  |   "NMXVGAFBOpen" = Yes
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IOFBMemorySize" = 8294400
+  |   "boot-gamma-restored" = <00000000>
+  |   "IOFBDependentIndex" = 0
+  |   "IOFBUIScale" = <00000000>
+  |   "LatitudePanelValidated" = Yes
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "LatitudePanelRefreshMilliHz" = 59971
+  |   "LatitudePanelPipe" = 0
+  |   "IOFBCurrentPixelCount" = 2462400
+  |   "IOFramebufferOpenGLIndex" = 0
+  |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+  |   "startup-timing" = <000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000e156c50800000000e156c50800000000e156c5080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+  |   "NVRMTiming" = <0100354b0e4ecd0880070000b0070000d007000070080000380400003b040000410400007404000043ea00000100000001000000>
+  |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+  |   "built-in" = Yes
+  |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "IOFBCurrentPixelClock" = 147672590
+  |   "IOFBDependentID" = 352641439659720705
+  |   "IOAccelIndex" = 0
+  |   "IOFBConfig" = {"IOFB0Hz"=Yes,"IOFBModes"=({"ID"=1,"DM"=<800700003804000093f83b00000000000f00000000000000000000000000000000000000>,"DF"=7,"TM"=<010000000000000000000000000000000000000000000000000000000000000000000000000000000e4ecd08000000000e4ecd08000000000e4ecd080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<ffffffffffffffff0000000000000000>}
+  |   "IOFBWaitCursorFrames" = 29
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "IOFBIntegrated" = Yes
+  |   "IOFBWaitCursorPeriod" = 33333333
+  |   "IOFBNeedsRefresh" = Yes
+  |   "VRAM,totalMB" = 4096
+  |   "IOFBTransform" = 0
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+  |   "LatitudePanelScanout" = 1619001344
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOProviderClass" = "LatitudePanelClaim"
+  |   "IOAccelRevision" = 2
+  |   "IOFBCursorInfo" = ()
+  |   "NMXMemoryIsShared" = Yes
+  |   "IOClass" = "NMXIntelVGAFB"
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOFBCurrentPixelCountReal" = 2462400
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "IOProbeScore" = 60000
+  |   "NMXSharedMemoryBytes" = 4294967296
+  | }
+  | 
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x100000556, registered, matched, active, busy 0 (0 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x100000558, registered, matched, active, busy 0 (0 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x100000557, registered, matched, active, busy 0 (0 ms), retain 5>
+  |   {
+  |     "IOProbeScore" = 0
+  |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+  |     "IOClass" = "AppleUpstreamUserClientDriver"
+  |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOProviderClass" = "IOFramebuffer"
+  |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOUserClientClass" = "AppleUpstreamUserClient"
+  |     "IOResourceMatch" = "IOKit"
+  |   }
+  |   
+  +-o AGPM  <class AGPM, id 0x100000572, registered, matched, active, busy 0 (0 ms), retain 8>
+  |   {
+  |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |     "max-value" = 15
+  |     "min-value" = 0
+  |     "IOReportLegendPublic" = Yes
+  |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+  |     "Heuristic-ID" = <ffffffff>
+  |   }
+  |   
+  +-o display0  <class IODisplayConnect, id 0x10000059e, registered, matched, active, busy 0 (0 ms), retain 6>
+  | | {
+  | | }
+  | | 
+  | +-o AppleDisplay  <class AppleDisplay, id 0x1000005a0, registered, matched, active, busy 0 (0 ms), retain 8>
+  |     {
+  |       "IOClass" = "AppleDisplay"
+  |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IOProviderClass" = "IODisplayConnect"
+  |       "DisplayProductID" = 1815
+  |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleDisplay-756e6b6e-717"
+  |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-756e6b6e-717-0"
+  |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+  |       "IOProbeScore" = 2000
+  |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968604,"ggsc"={"min"=0,"max"=65536,"value"=65536}}
+  |       "IOMatchCategory" = "IODefaultMatchCategory"
+  |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IODisplayConnectFlags" = <00080000>
+  |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+  |       "DisplayVendorID" = 1970170734
+  |       "DisplaySerialNumber" = 0
+  |     }
+  |     
+  +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005a3, !registered, !matched, active, busy 0, retain 5>
+      {
+        "IOUserClientCreator" = "pid 163, WindowServer"
+        "IOUserClientDefaultLocking" = Yes
+      }
+      
+
++-o IONDRVFramebuffer  <class IONDRVFramebuffer, id 0x1000004ca, registered, matched, active, busy 0 (178 ms), retain 13>
+  | {
+  |   "IOClass" = "IONDRVFramebuffer"
+  |   "CFBundleIdentifier" = "com.apple.iokit.IONDRVSupport"
+  |   "IOProviderClass" = "IOPlatformDevice"
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IONDRVFramebufferGeneration" = <0100000001000000>
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "IOFBUIScale" = <00000000>
+  |   "IOProbeScore" = 20000
+  |   "IONameMatch" = "display"
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "IONameMatched" = "display"
+  |   "IOPersonalityPublisher" = "com.apple.iokit.IONDRVSupport"
+  |   "CFBundleIdentifierKernel" = "com.apple.iokit.IONDRVSupport"
+  |   "IOBusyInterest" = "IOCommand is not serializable"
+  | }
+  | 
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x1000004ce, registered, matched, active, busy 0 (52 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x1000004d6, registered, matched, active, busy 0 (19 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x1000004cf, registered, matched, active, busy 0 (2 ms), retain 5>
+      {
+        "IOProbeScore" = 0
+        "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+        "IOClass" = "AppleUpstreamUserClientDriver"
+        "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOProviderClass" = "IOFramebuffer"
+        "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOUserClientClass" = "AppleUpstreamUserClient"
+        "IOResourceMatch" = "IOKit"
+      }
+      
+
++-o NMXAccel  <class NMXAccel, id 0x100000533, registered, matched, active, busy 0 (1 ms), retain 52>
+  | {
+  |   "InternalStatisticsAccm" = {}
+  |   "MetalPluginClassName" = "NVMTLDevice"
+  |   "InternalStatistics" = {}
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "AGCInfo" = {"fBusyCount"=0,"poweredOffByAGC"=No,"fSubmissionsSinceLastCheck"=0,"fLastSubmissionPID"=0}
+  |   "NVAccelEnabledFrom" = "displayModeDidChange"
+  |   "MetalPluginName" = "../../../Library/GPUBundles/NVMTLDriver"
+  |   "PerformanceStatisticsAccum" = {"orphanedReusableVidMemoryHitRate"=0,"texturePageOutBytes"=0,"swapCompleteVideoWaitTime"=0,"orphanedReusableSysMemoryHitRate"=0,"dataBufferCount"=0,"oolTexturePageInBytes"=0,"textureCount"=10,"iosurfaceTextureCreationCount"=0,"surfaceReadLockIdleWaitTime"=0,"freeDataBufferWaitTime"=0,"orphanedReusableSysMemoryBytes"=0,"ioSurfaceReadOutBytes"=0,"agprefTextureCreationCount"=0,"orphanedReusableSysMemoryCount"=0,"finishAll2DWaitTime"=0,"orphanedNonReusableSysMemoryCount"=0,"ioSurfacePageOutBytes"=0,"surfaceBufferReadOutBytes"=0,"surfaceTextureCreationCount"=0,"textureReadOutBytes"=0,"gartMapInBytesPerSample"=0,"swapBytesPerSample"=0,"dataBytesPerSample"=0,"surfaceCount"=15,"clientGLWaitTime"=0,"surfaceCopyInWaitTime"=0,"clientSharedAllocatedBytes"=12288,"surfaceCopyOutWaitTime"=0,"gartMapOutBytesPerSample"=0,"ioSurfacePageInBytes"=0,"gartCacheBytes"=33554432,"volatileSurfaceCount"=0,"vramEvictionWaitTime"=0,"oolTextureCreationBytes"=0,"freeToAllocGPUAddressWaitTime"=0,"oolTextureCreationCount"=0,"orphanedReusableVidMemoryCount"=0,"orphanedReusableVidMemoryBytes"=0,"context2DCount"=1,"inUseSysMemoryBytes"=0,"bufferSwapCount"=0,"orphanedNonReusableVidMemoryBytes"=0,"contextGLCount"=0,"finish2DWaitTime"=0,"gartSizeBytes"=5726625792,"recoveryCount"=0,"stdTexturePageInBytes"=0,"agprefTextureCreationBytes"=0,"gartUsedBytes"=0,"surfaceWriteLockIdleWaitTime"=0,"surfaceBufferPageInBytes"=0,"finishGLWaitTime"=0,"iosurfaceTextureCreationBytes"=0,"finishCLWaitTime"=0,"finishVideoWaitTime"=0,"contextCLCount"=0,"freeSurfaceBackingWaitTime"=0,"swapCompleteGLWaitTime"=0,"orphanedNonReusableSysMemoryBytes"=0,"inUseVidMemoryBytes"=25006080,"agpTextureCreationBytes"=0,"stdTextureCreationBytes"=0,"agpTextureCreationCount"=0,"stdTextureCreationCount"=0,"surfaceSetShapeIdleWaitTime"=0,"gartFreeBytes"=5726625792,"textureVolunteerUnloadBytes"=0,"bufferFlipCount"=0,"hardwareSubmitWaitTime"=0,"swapComplete2DWaitTime"=0,"surfaceBufferPageOutBytes"=0,"surfaceBufferTextureCreationCount"=0,"hardwareWaitTime"=0,"contextVideoCount"=0,"freeSurfaceSwapBufferWaitTime"=0,"orphanedNonReusableVidMemoryCount"=0}
+  |   "PerformanceStatistics" = {"orphanedReusableVidMemoryHitRate"=0,"texturePageOutBytes"=0,"swapCompleteVideoWaitTime"=0,"orphanedReusableSysMemoryHitRate"=0,"dataBufferCount"=0,"oolTexturePageInBytes"=0,"textureCount"=10,"iosurfaceTextureCreationCount"=0,"surfaceReadLockIdleWaitTime"=0,"freeDataBufferWaitTime"=0,"orphanedReusableSysMemoryBytes"=0,"ioSurfaceReadOutBytes"=0,"agprefTextureCreationCount"=0,"orphanedReusableSysMemoryCount"=0,"finishAll2DWaitTime"=0,"orphanedNonReusableSysMemoryCount"=0,"ioSurfacePageOutBytes"=0,"surfaceBufferReadOutBytes"=0,"surfaceTextureCreationCount"=0,"textureReadOutBytes"=0,"gartMapInBytesPerSample"=0,"swapBytesPerSample"=0,"dataBytesPerSample"=0,"surfaceCount"=15,"clientGLWaitTime"=0,"surfaceCopyInWaitTime"=0,"clientSharedAllocatedBytes"=12288,"surfaceCopyOutWaitTime"=0,"gartMapOutBytesPerSample"=0,"ioSurfacePageInBytes"=16711680,"gartCacheBytes"=33554432,"volatileSurfaceCount"=0,"vramEvictionWaitTime"=0,"oolTextureCreationBytes"=0,"freeToAllocGPUAddressWaitTime"=0,"oolTextureCreationCount"=0,"orphanedReusableVidMemoryCount"=0,"orphanedReusableVidMemoryBytes"=0,"context2DCount"=1,"inUseSysMemoryBytes"=0,"bufferSwapCount"=0,"orphanedNonReusableVidMemoryBytes"=0,"contextGLCount"=0,"finish2DWaitTime"=0,"gartSizeBytes"=5726625792,"recoveryCount"=0,"stdTexturePageInBytes"=0,"agprefTextureCreationBytes"=0,"gartUsedBytes"=0,"surfaceWriteLockIdleWaitTime"=0,"surfaceBufferPageInBytes"=0,"finishGLWaitTime"=0,"iosurfaceTextureCreationBytes"=16711680,"finishCLWaitTime"=0,"finishVideoWaitTime"=0,"contextCLCount"=0,"freeSurfaceBackingWaitTime"=0,"swapCompleteGLWaitTime"=0,"orphanedNonReusableSysMemoryBytes"=0,"inUseVidMemoryBytes"=25006080,"agpTextureCreationBytes"=0,"stdTextureCreationBytes"=0,"agpTextureCreationCount"=0,"stdTextureCreationCount"=0,"surfaceSetShapeIdleWaitTime"=0,"gartFreeBytes"=5726625792,"textureVolunteerUnloadBytes"=0,"bufferFlipCount"=0,"hardwareSubmitWaitTime"=0,"swapComplete2DWaitTime"=0,"surfaceBufferPageOutBytes"=0,"surfaceBufferTextureCreationCount"=0,"hardwareWaitTime"=0,"contextVideoCount"=0,"freeSurfaceSwapBufferWaitTime"=0,"orphanedNonReusableVidMemoryCount"=0}
+  |   "IOGLBundleName" = "AppleMetalOpenGLRenderer"
+  |   "IOPCIClassMatch" = "0x03000000&0xff000000"
+  |   "NMXDisplay" = "armed"
+  |   "IOPersonalityPublisher" = "com.nullmoth.NMXAccel"
+  |   "NVAccelEnableCount" = 5
+  |   "IOPCIPrimaryMatch" = "0x7D458086"
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "VRAM,totalMB" = 4096
+  |   "CFBundleIdentifier" = "com.nullmoth.NMXAccel"
+  |   "IOAccelRevision" = 2
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "NMXMemoryIsShared" = Yes
+  |   "IOReportLegendPublic" = Yes
+  |   "IOClass" = "NMXAccel"
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.NMXAccel"
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "IOReportLegend" = ({"IOReportChannels"=((0,6442450945,"Command Buffer Bytes"),(1,6442450945,"GL Command Buffer Bytes"),(2,6442450945,"CL Command Buffer Bytes"),(3,6442450945,"2D Command Buffer Bytes"),(4,6442450945,"Video Command Buffer Bytes"),(5,6442450945,"Out-Of-Line Texture Creation Bytes"),(6,6442450945,"Shared System Memory Texture Creation Bytes"),(7,6442450945,"Private Video Memory Texture Creation Bytes"),(8,6442450945,"Private System Memory Texture Creation Bytes"),(9,6442450945,"IOSurface Backed Texture Creation Bytes"),(10,6442450945,"Out-Of-Line Texture Creation Count"),(11,6442450945,"Private Video Memory Texture Creation Count"),(12,6442450945,"Private System Memory Texture Creation Count"),(13,6442450945,"Shared System Memory Texture Creation Count"),(14,6442450945,"IOAccelSurfaceRef Texture Creation Count"),(15,6442450945,"IOAccelSurfaceBufferRef Texture Creation Count"),(16,6442450945,"IOSurface Backed Texture Creation Count"),(17,6442450945,"Texture Count"),(20,6442450945,"Bytes mapped into the GPU"),(21,6442450945,"Bytes unmapped from the GPU"),(82,6442450945,"IOAccelClientShared allocated bytes"),(22,6442450945,"Private textures bytes paged on"),(23,6442450945,"Out of line texture bytes paged on"),(24,6442450945,"IOAccelSurface bytes paged on"),(25,6442450945,"IOSurface bytes paged on"),(26,6442450945,"IOSurface bytes evicted"),(27,6442450945,"IOAccelSurface bytes evicted"),(28,6442450945,"Texture bytes evicted"),(29,6442450945,"IOSurface bytes paged off"),(30,6442450945,"IOAccelSurface bytes paged off"),(31,6442450945,"Texture bytes paged off"),(32,6442450945,"Texture bytes voluntarily paged off"),(33,6442450945,"IOAccelSurface count"),(34,6442450945,"Volatile IOAccelSurface count"),(35,6442450945,"2D context count"),(36,6442450945,"Video context count"),(37,6442450945,"OpenGL context count"),(38,6442450945,"OpenCL context count"),(39,6442450945,"Buffer swap count"),(40,6442450945,"Buffer flip count"),(41,6442450945,"Databuffer count"),(42,6442450945,"VRAM eviction wait time"),(43,6442450945,"CPU wait on GPU"),(44,6442450945,"CPU wait to submit to GPU"),(45,6442450945,"GL Client wait on GPU"),(46,6442450945,"CL Client wait on GPU"),(47,6442450945,"CPU Wait to evict resource"),(49,6442450945,"CPU wait for free databuffer"),(53,6442450945,"GL Client wait for swap complete"),(55,6442450945,"CPU Wait to copy in surface"),(56,6442450945,"CPU Wait to copy out surface"),(59,6442450945,"CPU Wait for surface idle"),(60,6442450945,"CPU Wait for resource read"),(61,6442450945,"CPU Wait for resource write"),(62,6442450945,"CPU Wait for all 2D finish"),(63,6442450945,"CPU Wait for 2D finish"),(64,6442450945,"CPU Wait for video finish"),(65,6442450945,"CPU Wait for GL finish"),(66,6442450945,"CPU Wait for CL finish"),(106,6442450945,"In use system memory"),(105,6442450945,"In use video memory"),(103,6442450945,"Command Queue Count"),(104,6442450945,"GPU Restart Count")),"IOReportGroupName"="Internal Statistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |   "IOMatchCategory" = "IOAccelerator"
+  |   "AccelCaps" = 15
+  |   "IOProbeScore" = 100
+  |   "IOAccelDisplayPipeCapabilities" = {"DisplayPipeSupported"=Yes,"TransactionsSupported"=Yes}
+  |   "NMXSharedMemoryBytes" = 4294967296
+  |   "SurfaceList" = ()
+  | }
+  | 
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000534, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000535, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000536, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000537, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000538, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000539, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053a, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053f, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000540, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000541, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000542, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000543, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000544, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000545, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000546, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000547, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000548, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000549, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054a, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054f, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000550, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000551, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000552, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000553, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o NMX2DContext  <class NMX2DContext, id 0x1000005a7, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "lastSubmittedTime" = 0
+  |     "accumulatedGPUTime" = 0
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDisplayPipeUserClient2  <class IOAccelDisplayPipeUserClient2, id 0x1000005ae, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005b2, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005b3, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005b6, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005b7, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005bc, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c1, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c2, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c3, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c4, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c5, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c6, !registered, !matched, active, busy 0, retain 6>
+      {
+        "IOUserClientCreator" = "pid 163, WindowServer"
+      }
+      
+
++-o LatitudePanelClaim  <class LatitudePanelClaim, id 0x10000050c, registered, matched, active, busy 0 (380 ms), retain 6>
+  | {
+  |   "IOClass" = "LatitudePanelClaim"
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudePanelClaim"
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "IOProbeScore" = 60000
+  |   "IOPCIMatch" = "0x7d458086"
+  |   "IOMatchedAtBoot" = Yes
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "LatitudePanelOptedIn" = Yes
+  |   "LatitudePanelFramebufferReady" = Yes
+  |   "AAPL,gray-page" = <01000000>
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudePanelClaim"
+  |   "AAPL,gray-value" = <00000000>
+  | }
+  | 
+  +-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000051c, registered, matched, active, busy 0 (3 ms), retain 23>
+    | {
+    |   "NMXVGAFBOpen" = Yes
+    |   "IOPMStrictTreeOrder" = Yes
+    |   "IOFBMemorySize" = 8294400
+    |   "boot-gamma-restored" = <00000000>
+    |   "IOFBDependentIndex" = 0
+    |   "IOFBUIScale" = <00000000>
+    |   "LatitudePanelValidated" = Yes
+    |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+    |   "LatitudePanelRefreshMilliHz" = 59971
+    |   "LatitudePanelPipe" = 0
+    |   "IOFBCurrentPixelCount" = 2462400
+    |   "IOFramebufferOpenGLIndex" = 0
+    |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+    |   "startup-timing" = <000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000e156c50800000000e156c50800000000e156c5080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+    |   "NVRMTiming" = <0100354b0e4ecd0880070000b0070000d007000070080000380400003b040000410400007404000043ea00000100000001000000>
+    |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+    |   "built-in" = Yes
+    |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+    |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+    |   "IOFBCurrentPixelClock" = 147672590
+    |   "IOFBDependentID" = 352641439659720705
+    |   "IOAccelIndex" = 0
+    |   "IOFBConfig" = {"IOFB0Hz"=Yes,"IOFBModes"=({"ID"=1,"DM"=<800700003804000093f83b00000000000f00000000000000000000000000000000000000>,"DF"=7,"TM"=<010000000000000000000000000000000000000000000000000000000000000000000000000000000e4ecd08000000000e4ecd08000000000e4ecd080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<ffffffffffffffff0000000000000000>}
+    |   "IOFBWaitCursorFrames" = 29
+    |   "model" = <"Intel(R) Graphics (MTL)">
+    |   "IOFBIntegrated" = Yes
+    |   "IOFBWaitCursorPeriod" = 33333333
+    |   "IOFBNeedsRefresh" = Yes
+    |   "VRAM,totalMB" = 4096
+    |   "IOFBTransform" = 0
+    |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+    |   "LatitudePanelScanout" = 1619001344
+    |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+    |   "IOProviderClass" = "LatitudePanelClaim"
+    |   "IOAccelRevision" = 2
+    |   "IOFBCursorInfo" = ()
+    |   "NMXMemoryIsShared" = Yes
+    |   "IOClass" = "NMXIntelVGAFB"
+    |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+    |   "IOFBCurrentPixelCountReal" = 2462400
+    |   "IOGeneralInterest" = "IOCommand is not serializable"
+    |   "IOMatchCategory" = "IOFramebuffer"
+    |   "IOProbeScore" = 60000
+    |   "NMXSharedMemoryBytes" = 4294967296
+    | }
+    | 
+    +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x100000556, registered, matched, active, busy 0 (0 ms), retain 7>
+    | | {
+    | |   "IOProbeScore" = 0
+    | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+    | |   "IOClass" = "AppleMCCSControlModule"
+    | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOKitDebug" = 0
+    | |   "IOProviderClass" = "IOFramebuffer"
+    | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOUserClientClass" = "AppleMCCSUserClient"
+    | |   "IOResourceMatch" = "IOKit"
+    | | }
+    | | 
+    | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x100000558, registered, matched, active, busy 0 (0 ms), retain 5>
+    |     {
+    |       "IOProbeScore" = 0
+    |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+    |       "IOMatchCategory" = "IODisplayParameters"
+    |       "IOClass" = "AppleMCCSParameterHandler"
+    |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+    |       "IOKitDebug" = 0
+    |       "AppleMCCSFeatures" = 1
+    |       "IOProviderClass" = "AppleMCCSControlFamily"
+    |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+    |       "IOResourceMatch" = "IOKit"
+    |     }
+    |     
+    +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x100000557, registered, matched, active, busy 0 (0 ms), retain 5>
+    |   {
+    |     "IOProbeScore" = 0
+    |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+    |     "IOClass" = "AppleUpstreamUserClientDriver"
+    |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOProviderClass" = "IOFramebuffer"
+    |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOUserClientClass" = "AppleUpstreamUserClient"
+    |     "IOResourceMatch" = "IOKit"
+    |   }
+    |   
+    +-o AGPM  <class AGPM, id 0x100000572, registered, matched, active, busy 0 (0 ms), retain 8>
+    |   {
+    |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+    |     "max-value" = 15
+    |     "min-value" = 0
+    |     "IOReportLegendPublic" = Yes
+    |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+    |     "Heuristic-ID" = <ffffffff>
+    |   }
+    |   
+    +-o display0  <class IODisplayConnect, id 0x10000059e, registered, matched, active, busy 0 (0 ms), retain 6>
+    | | {
+    | | }
+    | | 
+    | +-o AppleDisplay  <class AppleDisplay, id 0x1000005a0, registered, matched, active, busy 0 (0 ms), retain 9>
+    |     {
+    |       "IOClass" = "AppleDisplay"
+    |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+    |       "IOProviderClass" = "IODisplayConnect"
+    |       "DisplayProductID" = 1815
+    |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleDisplay-756e6b6e-717"
+    |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-756e6b6e-717-0"
+    |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+    |       "IOProbeScore" = 2000
+    |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968604,"ggsc"={"min"=0,"max"=65536,"value"=65536}}
+    |       "IOMatchCategory" = "IODefaultMatchCategory"
+    |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+    |       "IODisplayConnectFlags" = <00080000>
+    |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+    |       "DisplayVendorID" = 1970170734
+    |       "DisplaySerialNumber" = 0
+    |     }
+    |     
+    +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005a3, !registered, !matched, active, busy 0, retain 5>
+        {
+          "IOUserClientCreator" = "pid 163, WindowServer"
+          "IOUserClientDefaultLocking" = Yes
+        }
+        
+
+  PID   UID  %CPU COMM
+    1     0   8.1 /sbin/launchd
+   93     0   1.9 /usr/libexec/logd
+   94     0   0.0 /usr/libexec/smd
+   95     0   0.1 /usr/libexec/UserEventAgent
+   97     0   0.0 /usr/libexec/wifiFirmwareLoader
+   98     0   0.9 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
+   99     0   1.3 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted
+  101     0   0.0 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtect
+  102     0  11.9 /usr/sbin/systemstats
+  104   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/Support/accessoryupdaterd
+  105     0   0.8 /usr/libexec/configd
+  106     0   0.0 endpointsecurityd
+  107     0   0.3 /System/Library/CoreServices/powerd.bundle/powerd
+  110     0   0.0 /usr/libexec/amfid
+  114     0   0.0 /usr/libexec/keybagd
+  115   200   0.0 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated
+  116   306   0.0 /System/Library/PrivateFrameworks/CoreSpeech.framework/corespeechd_system
+  118     0   0.0 /usr/libexec/watchdogd
+  119     0   0.0 firmwaresyncd
+  121     0   0.0 /usr/libexec/warmd
+  122     0   0.0 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Support/mds
+  123   240   0.0 /System/Library/CoreServices/iconservicesd
+  124     0   0.0 /usr/libexec/kernelmanagerd
+  125     0   0.2 /usr/libexec/diskarbitrationd
+  126     0  34.6 /System/Library/CoreServices/Installer Progress.app/Contents/MacOS/Installer Progress
+  128     0   0.0 /usr/libexec/coreduetd
+  129     0   1.7 /usr/sbin/syslogd
+  131     0   0.0 /System/Library/CoreServices/ionodecache
+  132     0   0.0 /usr/libexec/thermalmonitord
+  133     0  59.6 /usr/libexec/opendirectoryd
+  135     0   0.0 /System/Library/PrivateFrameworks/ApplePushService.framework/apsd
+  136     0   2.7 /System/Library/CoreServices/launchservicesd
+  137   266   0.0 /usr/libexec/timed
+  138   213   0.0 /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/usbmuxd
+  139     0   0.0 /usr/sbin/securityd
+  141   205   0.0 /usr/libexec/locationd
+  142     0   0.3 /usr/libexec/nesessionmanager
+  143     0   0.0 autofsd
+  144   244   0.0 /usr/libexec/displaypolicyd
+  145     0   0.0 /usr/libexec/dasd
+  147   241   1.2 /usr/sbin/distnoted
+  148     0   0.0 /System/Library/PrivateFrameworks/AppleCredentialManager.framework/AppleCredentialManagerDaemon
+  149     0  10.9 /usr/libexec/PerfPowerServices
+  150     0   0.0 /usr/libexec/dirhelper
+  151     0   0.0 /System/Library/CoreServices/logind
+  152     0   0.0 /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/Support/revisiond
+  153     0   0.0 /usr/sbin/KernelEventAgent
+  154     0   0.0 /usr/libexec/usermanagerd
+  156     0   0.5 /usr/sbin/bluetoothd
+  157     0   1.3 /usr/sbin/notifyd
+  158     0   0.0 /usr/libexec/sandboxd
+  159     0   0.3 /usr/libexec/corebrightnessd
+  160     0   0.0 /usr/libexec/AirPlayXPCHelper
+  161     0   0.2 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/com.apple.cmio.registerassistantservice
+  162     0   0.0 aslmanager
+  163    88  32.2 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+  164     0   6.0 /usr/sbin/cfprefsd
+  165     0   4.6 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd
+  167   263   0.3 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd
+  168     0  22.0 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow
+  169     0   0.0 /usr/libexec/fskitd
+  170     0   0.0 /usr/libexec/containermanagerd_system
+  171     0   7.0 /System/Library/CoreServices/coreservicesd
+  173     0   2.3 /usr/libexec/runningboardd
+  174     0   0.0 /System/Library/PrivateFrameworks/Heimdal.framework/Helpers/digest-service
+  175     0   0.1 /usr/libexec/lsd
+  176     0   0.0 /usr/libexec/powerexperienced
+  178     0   0.0 /System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/contextstored
+  179     0   0.0 /System/Library/CoreServices/TimeMachine/backupd-helper
+  180     0   0.0 /usr/libexec/PowerUIAgent
+  181     0   1.5 /usr/libexec/airportd
+  182     0   0.0 /usr/sbin/systemkeychain
+  183     0   0.0 /usr/libexec/findmydeviced
+  184     0   0.0 /usr/libexec/nehelper
+  185    24   0.0 /usr/libexec/symptomsd
+  187   282   9.1 /usr/libexec/trustd
+  189    65   0.0 /usr/sbin/mDNSResponder
+  190     0   0.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/XPCServices/csnameddatad.xpc/Contents/MacOS/csnameddatad
+  191     0   0.0 /System/Library/Frameworks/InputMethodKit.framework/Resources/imklaunchagent
+  192   202   3.8 /usr/sbin/coreaudiod
+  193   289   0.0 /System/Library/PrivateFrameworks/BiomeStreams.framework/Support/biomed
+  194     0   0.0 /usr/libexec/trustdFileHelper
+  195     0   0.0 /usr/libexec/UserEventAgent
+  196     0   0.4 /usr/sbin/universalaccessd
+  197     0   0.0 /System/Library/PrivateFrameworks/FindMyMac.framework/Resources/FindMyMacd
+  198   242   0.0 /usr/libexec/nsurlsessiond
+  199     0   4.6 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/authd.xpc/Contents/MacOS/authd
+  200     0   0.0 /System/Library/CryptoTokenKit/com.apple.ifdreader.slotd/Contents/MacOS/com.apple.ifdreader
+  201     0   0.0 /usr/libexec/apfsd
+  203     0   0.0 /usr/sbin/mDNSResponderHelper
+  204     0   0.0 /usr/libexec/mobileassetd
+  205     0   0.0 /usr/sbin/distnoted
+  206   202   0.0 /usr/sbin/distnoted
+  208     0   0.0 /usr/libexec/cryptexd
+  209     0   0.0 /usr/libexec/ApplicationFirewall/socketfilterfw
+  210     0   0.0 /usr/libexec/usbd
+  211     0   0.0 /usr/libexec/pkd
+  212     0   0.0 /usr/libexec/storagekitd
+  215     0   0.0 /System/Library/Frameworks/SystemExtensions.framework/Versions/A/Helpers/sysextd
+  216     0   0.0 /usr/libexec/mdmclient
+  218     0   0.0 /System/Library/Frameworks/ExtensionFoundation.framework/Versions/A/XPCServices/extensionkitservice.xpc/Contents/MacOS/extensionkitservice
+  219   262   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Resources/VDC.plugin/Contents/Resources/VDCAssistant
+  220   202   0.0 /System/Library/Frameworks/CoreAudio.framework/Versions/A/XPCServices/com.apple.audio.DriverHelper.xpc/Contents/MacOS/com.apple.audio.DriverHelper
+  221     0   0.0 /System/Library/CoreServices/ManagedClient.app/Contents/MacOS/ManagedClient
+  222     0   0.0 /System/Library/PrivateFrameworks/SystemStatusServer.framework/Support/systemstatusd
+  223     0   0.0 /System/Library/PrivateFrameworks/WiFiPolicy.framework/XPCServices/WiFiCloudAssetsXPCService.xpc/Contents/MacOS/WiFiCloudAssetsXPCService
+  224     0   0.0 /System/Library/ExtensionKit/Extensions/com.apple.fskit.msdos.appex/Contents/MacOS/com.apple.fskit.msdos
+  225     0   0.2 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper
+  226     0   0.0 /usr/libexec/secinitd
+  227     0   0.0 /usr/libexec/fskit_helper
+  228   262   0.0 /usr/sbin/distnoted
+  229     0   0.0 /usr/libexec/wifip2pd
+  230     0   0.0 /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Resources/backgroundtaskmanagementd
+  234     0   0.0 /System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar
+  238   205   0.0 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod
+  239   205   0.0 /usr/sbin/distnoted
+  240   202   0.0 /System/Library/Frameworks/AudioToolbox.framework/XPCServices/com.apple.audio.SandboxHelper.xpc/Contents/MacOS/com.apple.audio.SandboxHelper
+  241   205   0.0 /usr/libexec/secinitd
+  246     0   0.0 /usr/libexec/audioclocksyncd
+  248     0   0.0 /usr/libexec/syspolicyd
+  249     0   0.0 /System/Library/Frameworks/NetFS.framework/Versions/A/XPCServices/PlugInLibraryService.xpc/Contents/MacOS/PlugInLibraryService
+  251   205   0.0 /usr/sbin/cfprefsd
+  259   262   0.0 /usr/libexec/cameracaptured
+  260   262   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/UVCAssistant.systemextension/Contents/MacOS/UVCAssistant
+  263     0   0.0 /usr/libexec/securityd_system
+  265     0   3.7 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/XPCServices/XProtectPluginService.xpc/Contents/MacOS/XProtectPluginService
+  266   205   0.0 /usr/libexec/trustd
+  268     0   0.0 /System/Library/PrivateFrameworks/PowerLog.framework/Versions/A/XPCServices/PerfPowerTelemetryClientRegistrationService.xpc/Contents/MacOS/PerfPowerTelemetryClientRegistrationService
+  270     0   1.4 /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent
+  275     0   0.0 /System/Library/CoreServices/TimeMachine/backupd
+  279     0   0.0 /usr/libexec/wifianalyticsd
+  280   205   0.0 /usr/libexec/containermanagerd
+  281   200   0.4 /System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated
+  283     0   0.0 /bin/bash
+  284     0   0.0 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mds_stores
+  285   200   0.0 /usr/sbin/distnoted
+  286     0   0.0 /usr/libexec/searchpartyd
+  287     0   0.0 /System/Library/CoreServices/Software Update.app/Contents/Resources/suhelperd
+  288     0   0.0 /usr/libexec/rpcsvchost
+  289    89   0.0 /usr/sbin/distnoted
+  297   242   0.0 /usr/sbin/distnoted
+  300     0   0.0 /Library/NullMoth/latitude-desktop-journal
+  305     0   0.0 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Versions/A/XPCServices/com.apple.MobileSoftwareUpdate.CleanupPreparePathService.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.CleanupPreparePathService
+  307   270   0.0 /System/Library/DriverExtensions/com.apple.DriverKit-IOUserDockChannelSerial.dext/com.apple.DriverKit-IOUserDockChannelSerial
+  308     0   0.0 /usr/libexec/kernelmanager_helper
+  311   270   0.0 /System/Library/DriverExtensions/com.apple.AppleUserHIDDrivers.dext/com.apple.AppleUserHIDDrivers
+  318     0   4.3 /usr/bin/log
+  319     0   0.0 /bin/bash
+  323     0  12.6 /usr/libexec/diagnosticd
+  331   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceDisplay.xpc/Contents/MacOS/UARPUpdaterServiceDisplay
+  332   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceLegacyAudio.xpc/Contents/MacOS/UARPUpdaterServiceLegacyAudio
+  333   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceUSBPD.xpc/Contents/MacOS/UARPUpdaterServiceUSBPD
+  334   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceDFU.xpc/Contents/MacOS/UARPUpdaterServiceDFU
+  336   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceAFU.xpc/Contents/MacOS/UARPUpdaterServiceAFU
+  337   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceHID.xpc/Contents/MacOS/UARPUpdaterServiceHID
+  340   278   0.0 /usr/sbin/distnoted
+  349     0   0.0 /usr/sbin/WirelessRadioManagerd
+  350     0   0.0 /usr/sbin/BlueTool
+  351     0   0.3 /usr/libexec/eligibilityd
+  352   261   0.0 /usr/libexec/hidd
+  354    88   0.0 /usr/sbin/distnoted
+  355     0   0.0 /usr/libexec/findmybeaconingd
+  356     0  20.8 /usr/bin/log
+  357     0   1.0 /bin/bash
+  358     0   0.0 /bin/bash
+  360     0   0.0 sleep
+  368     0   0.0 sleep
+  369     0   0.0 /usr/libexec/logd_helper
+  377     0   0.0 sleep
+  380     0  13.6 /System/Library/PreferencePanes/Displays.prefPane/Contents/Resources/MirrorDisplays.app/Contents/MacOS/MirrorDisplays
+  381     0   0.0 /usr/libexec/colorsync.displayservices
+  383     0   0.0 /System/Library/Frameworks/ColorSync.framework/Versions/A/XPCServices/com.apple.ColorSyncXPCAgent.xpc/Contents/MacOS/com.apple.ColorSyncXPCAgent
+  384     0   0.0 /usr/libexec/colorsyncd
+  385     0   0.0 sleep
+  390     0   0.2 sleep
+  392     0  10.8 /usr/libexec/symptomsd-diag
+  396     0   0.3 sleep
+  398    55   5.6 /System/Library/CoreServices/appleeventsd
+  400     0  10.0 /System/Library/CoreServices/sharedfilelistd
+  403     0   1.3 sleep
+  405     0  16.1 /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary
+  406     0   8.4 /usr/libexec/bootinstalld
+  407     0   0.0 /bin/ps
+  408     0   0.0 /bin/bash
+  409     0   0.0 sleep
+  410    92   0.0 /System/Library/Frameworks/Security.framework/Versions/A/MachServices/SecurityAgent.bundle/Contents/MacOS/SecurityAgent
+  112     0   0.0 /usr/libexec/remoted
+Tue Oct 20 11:56:00 BST 2026
++-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000051c, registered, matched, active, busy 0 (3 ms), retain 24>
+  | {
+  |   "NMXVGAFBOpen" = Yes
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IOFBMemorySize" = 8294400
+  |   "boot-gamma-restored" = <00000000>
+  |   "IOFBDependentIndex" = 0
+  |   "IOFBUIScale" = <00000000>
+  |   "LatitudePanelValidated" = Yes
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "LatitudePanelRefreshMilliHz" = 59971
+  |   "LatitudePanelPipe" = 0
+  |   "IOFBCurrentPixelCount" = 2462400
+  |   "IOFramebufferOpenGLIndex" = 0
+  |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+  |   "startup-timing" = <000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000e156c50800000000e156c50800000000e156c5080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+  |   "NVRMTiming" = <0100354b0e4ecd0880070000b0070000d007000070080000380400003b040000410400007404000043ea00000100000001000000>
+  |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+  |   "built-in" = Yes
+  |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "IOFBCurrentPixelClock" = 147672590
+  |   "IOFBDependentID" = 352641439659720705
+  |   "IOAccelIndex" = 0
+  |   "IOFBConfig" = {"IOFB0Hz"=Yes,"IOFBModes"=({"ID"=1,"DM"=<800700003804000093f83b00000000000f00000000000000000000000000000000000000>,"DF"=7,"TM"=<010000000000000000000000000000000000000000000000000000000000000000000000000000000e4ecd08000000000e4ecd08000000000e4ecd080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<ffffffffffffffff0000000000000000>}
+  |   "IOFBWaitCursorFrames" = 29
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "IOFBIntegrated" = Yes
+  |   "IOFBWaitCursorPeriod" = 33333333
+  |   "IOFBNeedsRefresh" = Yes
+  |   "VRAM,totalMB" = 4096
+  |   "IOFBTransform" = 0
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+  |   "LatitudePanelScanout" = 1619001344
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOProviderClass" = "LatitudePanelClaim"
+  |   "IOAccelRevision" = 2
+  |   "IOFBCursorInfo" = ()
+  |   "NMXMemoryIsShared" = Yes
+  |   "IOClass" = "NMXIntelVGAFB"
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOFBCurrentPixelCountReal" = 2462400
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "IOProbeScore" = 60000
+  |   "NMXSharedMemoryBytes" = 4294967296
+  | }
+  | 
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x100000556, registered, matched, active, busy 0 (0 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x100000558, registered, matched, active, busy 0 (0 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x100000557, registered, matched, active, busy 0 (0 ms), retain 5>
+  |   {
+  |     "IOProbeScore" = 0
+  |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+  |     "IOClass" = "AppleUpstreamUserClientDriver"
+  |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOProviderClass" = "IOFramebuffer"
+  |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOUserClientClass" = "AppleUpstreamUserClient"
+  |     "IOResourceMatch" = "IOKit"
+  |   }
+  |   
+  +-o AGPM  <class AGPM, id 0x100000572, registered, matched, active, busy 0 (0 ms), retain 8>
+  |   {
+  |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |     "max-value" = 15
+  |     "min-value" = 0
+  |     "IOReportLegendPublic" = Yes
+  |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+  |     "Heuristic-ID" = <ffffffff>
+  |   }
+  |   
+  +-o display0  <class IODisplayConnect, id 0x10000059e, registered, matched, active, busy 0 (0 ms), retain 6>
+  | | {
+  | | }
+  | | 
+  | +-o AppleDisplay  <class AppleDisplay, id 0x1000005a0, registered, matched, active, busy 0 (0 ms), retain 8>
+  |     {
+  |       "IOClass" = "AppleDisplay"
+  |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IOProviderClass" = "IODisplayConnect"
+  |       "DisplayProductID" = 1815
+  |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleDisplay-756e6b6e-717"
+  |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-756e6b6e-717-0"
+  |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+  |       "IOProbeScore" = 2000
+  |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968604,"ggsc"={"min"=0,"max"=65536,"value"=65536}}
+  |       "IOMatchCategory" = "IODefaultMatchCategory"
+  |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IODisplayConnectFlags" = <00080000>
+  |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+  |       "DisplayVendorID" = 1970170734
+  |       "DisplaySerialNumber" = 0
+  |     }
+  |     
+  +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005a3, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOFramebufferSharedUserClient  <class IOFramebufferSharedUserClient, id 0x1000005f0, !registered, !matched, active, busy 0, retain 5>
+      {
+        "IOUserClientDefaultLocking" = Yes
+        "IOUserClientSharedInstance" = Yes
+        "IOUserClientCreator" = "pid 410, SecurityAgent"
+      }
+      
+
++-o IONDRVFramebuffer  <class IONDRVFramebuffer, id 0x1000004ca, registered, matched, active, busy 0 (178 ms), retain 13>
+  | {
+  |   "IOClass" = "IONDRVFramebuffer"
+  |   "CFBundleIdentifier" = "com.apple.iokit.IONDRVSupport"
+  |   "IOProviderClass" = "IOPlatformDevice"
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IONDRVFramebufferGeneration" = <0100000001000000>
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "IOFBUIScale" = <00000000>
+  |   "IOProbeScore" = 20000
+  |   "IONameMatch" = "display"
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "IONameMatched" = "display"
+  |   "IOPersonalityPublisher" = "com.apple.iokit.IONDRVSupport"
+  |   "CFBundleIdentifierKernel" = "com.apple.iokit.IONDRVSupport"
+  |   "IOBusyInterest" = "IOCommand is not serializable"
+  | }
+  | 
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x1000004ce, registered, matched, active, busy 0 (52 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x1000004d6, registered, matched, active, busy 0 (19 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x1000004cf, registered, matched, active, busy 0 (2 ms), retain 5>
+      {
+        "IOProbeScore" = 0
+        "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+        "IOClass" = "AppleUpstreamUserClientDriver"
+        "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOProviderClass" = "IOFramebuffer"
+        "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOUserClientClass" = "AppleUpstreamUserClient"
+        "IOResourceMatch" = "IOKit"
+      }
+      
+
++-o NMXAccel  <class NMXAccel, id 0x100000533, registered, matched, active, busy 0 (1 ms), retain 59>
+  | {
+  |   "InternalStatisticsAccm" = {}
+  |   "MetalPluginClassName" = "NVMTLDevice"
+  |   "InternalStatistics" = {}
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "AGCInfo" = {"fBusyCount"=0,"poweredOffByAGC"=No,"fSubmissionsSinceLastCheck"=0,"fLastSubmissionPID"=0}
+  |   "NVAccelEnabledFrom" = "displayModeDidChange"
+  |   "MetalPluginName" = "../../../Library/GPUBundles/NVMTLDriver"
+  |   "PerformanceStatisticsAccum" = {"orphanedReusableVidMemoryHitRate"=0,"texturePageOutBytes"=0,"swapCompleteVideoWaitTime"=0,"orphanedReusableSysMemoryHitRate"=0,"dataBufferCount"=0,"oolTexturePageInBytes"=0,"textureCount"=10,"iosurfaceTextureCreationCount"=0,"surfaceReadLockIdleWaitTime"=0,"freeDataBufferWaitTime"=0,"orphanedReusableSysMemoryBytes"=0,"ioSurfaceReadOutBytes"=0,"agprefTextureCreationCount"=0,"orphanedReusableSysMemoryCount"=0,"finishAll2DWaitTime"=0,"orphanedNonReusableSysMemoryCount"=0,"ioSurfacePageOutBytes"=0,"surfaceBufferReadOutBytes"=0,"surfaceTextureCreationCount"=0,"textureReadOutBytes"=0,"gartMapInBytesPerSample"=0,"swapBytesPerSample"=0,"dataBytesPerSample"=0,"surfaceCount"=15,"clientGLWaitTime"=0,"surfaceCopyInWaitTime"=0,"clientSharedAllocatedBytes"=49152,"surfaceCopyOutWaitTime"=0,"gartMapOutBytesPerSample"=0,"ioSurfacePageInBytes"=0,"gartCacheBytes"=33554432,"volatileSurfaceCount"=0,"vramEvictionWaitTime"=0,"oolTextureCreationBytes"=0,"freeToAllocGPUAddressWaitTime"=0,"oolTextureCreationCount"=0,"orphanedReusableVidMemoryCount"=0,"orphanedReusableVidMemoryBytes"=0,"context2DCount"=1,"inUseSysMemoryBytes"=0,"bufferSwapCount"=0,"orphanedNonReusableVidMemoryBytes"=0,"contextGLCount"=0,"finish2DWaitTime"=0,"gartSizeBytes"=5726625792,"recoveryCount"=0,"stdTexturePageInBytes"=0,"agprefTextureCreationBytes"=0,"gartUsedBytes"=0,"surfaceWriteLockIdleWaitTime"=0,"surfaceBufferPageInBytes"=0,"finishGLWaitTime"=0,"iosurfaceTextureCreationBytes"=0,"finishCLWaitTime"=0,"finishVideoWaitTime"=0,"contextCLCount"=0,"freeSurfaceBackingWaitTime"=0,"swapCompleteGLWaitTime"=0,"orphanedNonReusableSysMemoryBytes"=0,"inUseVidMemoryBytes"=25006080,"agpTextureCreationBytes"=0,"stdTextureCreationBytes"=0,"agpTextureCreationCount"=0,"stdTextureCreationCount"=0,"surfaceSetShapeIdleWaitTime"=0,"gartFreeBytes"=5726625792,"textureVolunteerUnloadBytes"=0,"bufferFlipCount"=0,"hardwareSubmitWaitTime"=0,"swapComplete2DWaitTime"=0,"surfaceBufferPageOutBytes"=0,"surfaceBufferTextureCreationCount"=0,"hardwareWaitTime"=0,"contextVideoCount"=0,"freeSurfaceSwapBufferWaitTime"=0,"orphanedNonReusableVidMemoryCount"=0}
+  |   "PerformanceStatistics" = {"orphanedReusableVidMemoryHitRate"=0,"texturePageOutBytes"=0,"swapCompleteVideoWaitTime"=0,"orphanedReusableSysMemoryHitRate"=0,"dataBufferCount"=0,"oolTexturePageInBytes"=0,"textureCount"=10,"iosurfaceTextureCreationCount"=0,"surfaceReadLockIdleWaitTime"=0,"freeDataBufferWaitTime"=0,"orphanedReusableSysMemoryBytes"=0,"ioSurfaceReadOutBytes"=0,"agprefTextureCreationCount"=0,"orphanedReusableSysMemoryCount"=0,"finishAll2DWaitTime"=0,"orphanedNonReusableSysMemoryCount"=0,"ioSurfacePageOutBytes"=0,"surfaceBufferReadOutBytes"=0,"surfaceTextureCreationCount"=0,"textureReadOutBytes"=0,"gartMapInBytesPerSample"=0,"swapBytesPerSample"=0,"dataBytesPerSample"=0,"surfaceCount"=15,"clientGLWaitTime"=0,"surfaceCopyInWaitTime"=0,"clientSharedAllocatedBytes"=49152,"surfaceCopyOutWaitTime"=0,"gartMapOutBytesPerSample"=0,"ioSurfacePageInBytes"=359301120,"gartCacheBytes"=33554432,"volatileSurfaceCount"=0,"vramEvictionWaitTime"=0,"oolTextureCreationBytes"=0,"freeToAllocGPUAddressWaitTime"=0,"oolTextureCreationCount"=0,"orphanedReusableVidMemoryCount"=0,"orphanedReusableVidMemoryBytes"=0,"context2DCount"=1,"inUseSysMemoryBytes"=0,"bufferSwapCount"=0,"orphanedNonReusableVidMemoryBytes"=0,"contextGLCount"=0,"finish2DWaitTime"=0,"gartSizeBytes"=5726625792,"recoveryCount"=0,"stdTexturePageInBytes"=0,"agprefTextureCreationBytes"=0,"gartUsedBytes"=0,"surfaceWriteLockIdleWaitTime"=0,"surfaceBufferPageInBytes"=0,"finishGLWaitTime"=0,"iosurfaceTextureCreationBytes"=0,"finishCLWaitTime"=0,"finishVideoWaitTime"=0,"contextCLCount"=0,"freeSurfaceBackingWaitTime"=0,"swapCompleteGLWaitTime"=0,"orphanedNonReusableSysMemoryBytes"=0,"inUseVidMemoryBytes"=25006080,"agpTextureCreationBytes"=0,"stdTextureCreationBytes"=0,"agpTextureCreationCount"=0,"stdTextureCreationCount"=0,"surfaceSetShapeIdleWaitTime"=0,"gartFreeBytes"=5726625792,"textureVolunteerUnloadBytes"=0,"bufferFlipCount"=0,"hardwareSubmitWaitTime"=0,"swapComplete2DWaitTime"=0,"surfaceBufferPageOutBytes"=0,"surfaceBufferTextureCreationCount"=0,"hardwareWaitTime"=0,"contextVideoCount"=0,"freeSurfaceSwapBufferWaitTime"=0,"orphanedNonReusableVidMemoryCount"=0}
+  |   "IOGLBundleName" = "AppleMetalOpenGLRenderer"
+  |   "IOPCIClassMatch" = "0x03000000&0xff000000"
+  |   "NMXDisplay" = "armed"
+  |   "IOPersonalityPublisher" = "com.nullmoth.NMXAccel"
+  |   "NVAccelEnableCount" = 5
+  |   "IOPCIPrimaryMatch" = "0x7D458086"
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "VRAM,totalMB" = 4096
+  |   "CFBundleIdentifier" = "com.nullmoth.NMXAccel"
+  |   "IOAccelRevision" = 2
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "NMXMemoryIsShared" = Yes
+  |   "IOReportLegendPublic" = Yes
+  |   "IOClass" = "NMXAccel"
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.NMXAccel"
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "IOReportLegend" = ({"IOReportChannels"=((0,6442450945,"Command Buffer Bytes"),(1,6442450945,"GL Command Buffer Bytes"),(2,6442450945,"CL Command Buffer Bytes"),(3,6442450945,"2D Command Buffer Bytes"),(4,6442450945,"Video Command Buffer Bytes"),(5,6442450945,"Out-Of-Line Texture Creation Bytes"),(6,6442450945,"Shared System Memory Texture Creation Bytes"),(7,6442450945,"Private Video Memory Texture Creation Bytes"),(8,6442450945,"Private System Memory Texture Creation Bytes"),(9,6442450945,"IOSurface Backed Texture Creation Bytes"),(10,6442450945,"Out-Of-Line Texture Creation Count"),(11,6442450945,"Private Video Memory Texture Creation Count"),(12,6442450945,"Private System Memory Texture Creation Count"),(13,6442450945,"Shared System Memory Texture Creation Count"),(14,6442450945,"IOAccelSurfaceRef Texture Creation Count"),(15,6442450945,"IOAccelSurfaceBufferRef Texture Creation Count"),(16,6442450945,"IOSurface Backed Texture Creation Count"),(17,6442450945,"Texture Count"),(20,6442450945,"Bytes mapped into the GPU"),(21,6442450945,"Bytes unmapped from the GPU"),(82,6442450945,"IOAccelClientShared allocated bytes"),(22,6442450945,"Private textures bytes paged on"),(23,6442450945,"Out of line texture bytes paged on"),(24,6442450945,"IOAccelSurface bytes paged on"),(25,6442450945,"IOSurface bytes paged on"),(26,6442450945,"IOSurface bytes evicted"),(27,6442450945,"IOAccelSurface bytes evicted"),(28,6442450945,"Texture bytes evicted"),(29,6442450945,"IOSurface bytes paged off"),(30,6442450945,"IOAccelSurface bytes paged off"),(31,6442450945,"Texture bytes paged off"),(32,6442450945,"Texture bytes voluntarily paged off"),(33,6442450945,"IOAccelSurface count"),(34,6442450945,"Volatile IOAccelSurface count"),(35,6442450945,"2D context count"),(36,6442450945,"Video context count"),(37,6442450945,"OpenGL context count"),(38,6442450945,"OpenCL context count"),(39,6442450945,"Buffer swap count"),(40,6442450945,"Buffer flip count"),(41,6442450945,"Databuffer count"),(42,6442450945,"VRAM eviction wait time"),(43,6442450945,"CPU wait on GPU"),(44,6442450945,"CPU wait to submit to GPU"),(45,6442450945,"GL Client wait on GPU"),(46,6442450945,"CL Client wait on GPU"),(47,6442450945,"CPU Wait to evict resource"),(49,6442450945,"CPU wait for free databuffer"),(53,6442450945,"GL Client wait for swap complete"),(55,6442450945,"CPU Wait to copy in surface"),(56,6442450945,"CPU Wait to copy out surface"),(59,6442450945,"CPU Wait for surface idle"),(60,6442450945,"CPU Wait for resource read"),(61,6442450945,"CPU Wait for resource write"),(62,6442450945,"CPU Wait for all 2D finish"),(63,6442450945,"CPU Wait for 2D finish"),(64,6442450945,"CPU Wait for video finish"),(65,6442450945,"CPU Wait for GL finish"),(66,6442450945,"CPU Wait for CL finish"),(106,6442450945,"In use system memory"),(105,6442450945,"In use video memory"),(103,6442450945,"Command Queue Count"),(104,6442450945,"GPU Restart Count")),"IOReportGroupName"="Internal Statistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |   "IOMatchCategory" = "IOAccelerator"
+  |   "AccelCaps" = 15
+  |   "IOProbeScore" = 100
+  |   "IOAccelDisplayPipeCapabilities" = {"DisplayPipeSupported"=Yes,"TransactionsSupported"=Yes}
+  |   "NMXSharedMemoryBytes" = 4294967296
+  |   "SurfaceList" = ()
+  | }
+  | 
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000534, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000535, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000536, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000537, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000538, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000539, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053a, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053f, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000540, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000541, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000542, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000543, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000544, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000545, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000546, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000547, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000548, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000549, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054a, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054f, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000550, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000551, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000552, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000553, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o NMX2DContext  <class NMX2DContext, id 0x1000005a7, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "lastSubmittedTime" = 0
+  |     "accumulatedGPUTime" = 0
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDisplayPipeUserClient2  <class IOAccelDisplayPipeUserClient2, id 0x1000005ae, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005b2, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005b3, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005b6, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005b7, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005bc, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c1, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c2, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c3, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c4, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c5, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c6, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005d6, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 126, Installer Progre"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005d7, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 126, Installer Progre"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005df, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 410, SecurityAgent"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005e0, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 410, SecurityAgent"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005e1, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 410, SecurityAgent"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005fc, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 168, loginwindow"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005fd, !registered, !matched, active, busy 0, retain 6>
+      {
+        "IOUserClientCreator" = "pid 168, loginwindow"
+      }
+      
+
++-o LatitudePanelClaim  <class LatitudePanelClaim, id 0x10000050c, registered, matched, active, busy 0 (380 ms), retain 6>
+  | {
+  |   "IOClass" = "LatitudePanelClaim"
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudePanelClaim"
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "IOProbeScore" = 60000
+  |   "IOPCIMatch" = "0x7d458086"
+  |   "IOMatchedAtBoot" = Yes
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "LatitudePanelOptedIn" = Yes
+  |   "LatitudePanelFramebufferReady" = Yes
+  |   "AAPL,gray-page" = <01000000>
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudePanelClaim"
+  |   "AAPL,gray-value" = <00000000>
+  | }
+  | 
+  +-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000051c, registered, matched, active, busy 0 (3 ms), retain 24>
+    | {
+    |   "NMXVGAFBOpen" = Yes
+    |   "IOPMStrictTreeOrder" = Yes
+    |   "IOFBMemorySize" = 8294400
+    |   "boot-gamma-restored" = <00000000>
+    |   "IOFBDependentIndex" = 0
+    |   "IOFBUIScale" = <00000000>
+    |   "LatitudePanelValidated" = Yes
+    |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+    |   "LatitudePanelRefreshMilliHz" = 59971
+    |   "LatitudePanelPipe" = 0
+    |   "IOFBCurrentPixelCount" = 2462400
+    |   "IOFramebufferOpenGLIndex" = 0
+    |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+    |   "startup-timing" = <000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000e156c50800000000e156c50800000000e156c5080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+    |   "NVRMTiming" = <0100354b0e4ecd0880070000b0070000d007000070080000380400003b040000410400007404000043ea00000100000001000000>
+    |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+    |   "built-in" = Yes
+    |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+    |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+    |   "IOFBCurrentPixelClock" = 147672590
+    |   "IOFBDependentID" = 352641439659720705
+    |   "IOAccelIndex" = 0
+    |   "IOFBConfig" = {"IOFB0Hz"=Yes,"IOFBModes"=({"ID"=1,"DM"=<800700003804000093f83b00000000000f00000000000000000000000000000000000000>,"DF"=7,"TM"=<010000000000000000000000000000000000000000000000000000000000000000000000000000000e4ecd08000000000e4ecd08000000000e4ecd080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<ffffffffffffffff0000000000000000>}
+    |   "IOFBWaitCursorFrames" = 29
+    |   "model" = <"Intel(R) Graphics (MTL)">
+    |   "IOFBIntegrated" = Yes
+    |   "IOFBWaitCursorPeriod" = 33333333
+    |   "IOFBNeedsRefresh" = Yes
+    |   "VRAM,totalMB" = 4096
+    |   "IOFBTransform" = 0
+    |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+    |   "LatitudePanelScanout" = 1619001344
+    |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+    |   "IOProviderClass" = "LatitudePanelClaim"
+    |   "IOAccelRevision" = 2
+    |   "IOFBCursorInfo" = ()
+    |   "NMXMemoryIsShared" = Yes
+    |   "IOClass" = "NMXIntelVGAFB"
+    |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+    |   "IOFBCurrentPixelCountReal" = 2462400
+    |   "IOGeneralInterest" = "IOCommand is not serializable"
+    |   "IOMatchCategory" = "IOFramebuffer"
+    |   "IOProbeScore" = 60000
+    |   "NMXSharedMemoryBytes" = 4294967296
+    | }
+    | 
+    +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x100000556, registered, matched, active, busy 0 (0 ms), retain 7>
+    | | {
+    | |   "IOProbeScore" = 0
+    | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+    | |   "IOClass" = "AppleMCCSControlModule"
+    | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOKitDebug" = 0
+    | |   "IOProviderClass" = "IOFramebuffer"
+    | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOUserClientClass" = "AppleMCCSUserClient"
+    | |   "IOResourceMatch" = "IOKit"
+    | | }
+    | | 
+    | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x100000558, registered, matched, active, busy 0 (0 ms), retain 5>
+    |     {
+    |       "IOProbeScore" = 0
+    |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+    |       "IOMatchCategory" = "IODisplayParameters"
+    |       "IOClass" = "AppleMCCSParameterHandler"
+    |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+    |       "IOKitDebug" = 0
+    |       "AppleMCCSFeatures" = 1
+    |       "IOProviderClass" = "AppleMCCSControlFamily"
+    |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+    |       "IOResourceMatch" = "IOKit"
+    |     }
+    |     
+    +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x100000557, registered, matched, active, busy 0 (0 ms), retain 5>
+    |   {
+    |     "IOProbeScore" = 0
+    |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+    |     "IOClass" = "AppleUpstreamUserClientDriver"
+    |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOProviderClass" = "IOFramebuffer"
+    |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOUserClientClass" = "AppleUpstreamUserClient"
+    |     "IOResourceMatch" = "IOKit"
+    |   }
+    |   
+    +-o AGPM  <class AGPM, id 0x100000572, registered, matched, active, busy 0 (0 ms), retain 8>
+    |   {
+    |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+    |     "max-value" = 15
+    |     "min-value" = 0
+    |     "IOReportLegendPublic" = Yes
+    |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+    |     "Heuristic-ID" = <ffffffff>
+    |   }
+    |   
+    +-o display0  <class IODisplayConnect, id 0x10000059e, registered, matched, active, busy 0 (0 ms), retain 6>
+    | | {
+    | | }
+    | | 
+    | +-o AppleDisplay  <class AppleDisplay, id 0x1000005a0, registered, matched, active, busy 0 (0 ms), retain 8>
+    |     {
+    |       "IOClass" = "AppleDisplay"
+    |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+    |       "IOProviderClass" = "IODisplayConnect"
+    |       "DisplayProductID" = 1815
+    |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleDisplay-756e6b6e-717"
+    |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-756e6b6e-717-0"
+    |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+    |       "IOProbeScore" = 2000
+    |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968604,"ggsc"={"min"=0,"max"=65536,"value"=65536}}
+    |       "IOMatchCategory" = "IODefaultMatchCategory"
+    |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+    |       "IODisplayConnectFlags" = <00080000>
+    |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+    |       "DisplayVendorID" = 1970170734
+    |       "DisplaySerialNumber" = 0
+    |     }
+    |     
+    +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005a3, !registered, !matched, active, busy 0, retain 5>
+    |   {
+    |     "IOUserClientCreator" = "pid 163, WindowServer"
+    |     "IOUserClientDefaultLocking" = Yes
+    |   }
+    |   
+    +-o IOFramebufferSharedUserClient  <class IOFramebufferSharedUserClient, id 0x1000005f0, !registered, !matched, active, busy 0, retain 5>
+        {
+          "IOUserClientDefaultLocking" = Yes
+          "IOUserClientSharedInstance" = Yes
+          "IOUserClientCreator" = "pid 410, SecurityAgent"
+        }
+        
+
+  PID   UID  %CPU COMM
+    1     0   1.8 /sbin/launchd
+   93     0   0.9 /usr/libexec/logd
+   94     0   0.0 /usr/libexec/smd
+   95     0   0.0 /usr/libexec/UserEventAgent
+   97     0   0.0 /usr/libexec/wifiFirmwareLoader
+   98     0   0.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
+   99     0   0.0 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted
+  102     0   0.0 /usr/sbin/systemstats
+  104   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/Support/accessoryupdaterd
+  105     0   0.0 /usr/libexec/configd
+  106     0   0.0 endpointsecurityd
+  107     0   0.3 /System/Library/CoreServices/powerd.bundle/powerd
+  110     0   0.0 /usr/libexec/amfid
+  114     0   0.0 /usr/libexec/keybagd
+  115   200   0.0 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated
+  116   306   0.0 /System/Library/PrivateFrameworks/CoreSpeech.framework/corespeechd_system
+  118     0   0.0 /usr/libexec/watchdogd
+  119     0   0.0 firmwaresyncd
+  121     0   0.0 /usr/libexec/warmd
+  122     0   0.0 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Support/mds
+  123   240   0.0 /System/Library/CoreServices/iconservicesd
+  124     0   0.0 /usr/libexec/kernelmanagerd
+  125     0   0.0 /usr/libexec/diskarbitrationd
+  126     0   0.0 /System/Library/CoreServices/Installer Progress.app/Contents/MacOS/Installer Progress
+  128     0   0.0 /usr/libexec/coreduetd
+  129     0   0.0 /usr/sbin/syslogd
+  131     0   0.0 /System/Library/CoreServices/ionodecache
+  132     0   0.0 /usr/libexec/thermalmonitord
+  133     0   0.0 /usr/libexec/opendirectoryd
+  135     0  13.6 /System/Library/PrivateFrameworks/ApplePushService.framework/apsd
+  136     0   0.0 /System/Library/CoreServices/launchservicesd
+  137   266   1.6 /usr/libexec/timed
+  138   213   0.0 /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/usbmuxd
+  139     0   0.4 /usr/sbin/securityd
+  141   205   0.1 /usr/libexec/locationd
+  142     0   0.0 /usr/libexec/nesessionmanager
+  143     0   0.0 autofsd
+  144   244   0.0 /usr/libexec/displaypolicyd
+  145     0   0.0 /usr/libexec/dasd
+  147   241   0.0 /usr/sbin/distnoted
+  148     0   0.0 /System/Library/PrivateFrameworks/AppleCredentialManager.framework/AppleCredentialManagerDaemon
+  149     0   0.0 /usr/libexec/PerfPowerServices
+  150     0   0.0 /usr/libexec/dirhelper
+  151     0   0.0 /System/Library/CoreServices/logind
+  152     0   0.0 /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/Support/revisiond
+  153     0   0.0 /usr/sbin/KernelEventAgent
+  154     0   0.0 /usr/libexec/usermanagerd
+  156     0   0.0 /usr/sbin/bluetoothd
+  157     0   0.1 /usr/sbin/notifyd
+  158     0   0.0 /usr/libexec/sandboxd
+  159     0   0.0 /usr/libexec/corebrightnessd
+  160     0   0.0 /usr/libexec/AirPlayXPCHelper
+  161     0   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/com.apple.cmio.registerassistantservice
+  162     0   0.0 aslmanager
+  163    88 202.8 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+  164     0   0.3 /usr/sbin/cfprefsd
+  165     0   0.1 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd
+  167   263   0.0 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd
+  168     0   0.0 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow
+  170     0   0.0 /usr/libexec/containermanagerd_system
+  171     0   0.0 /System/Library/CoreServices/coreservicesd
+  173     0   0.0 /usr/libexec/runningboardd
+  174     0   0.0 /System/Library/PrivateFrameworks/Heimdal.framework/Helpers/digest-service
+  175     0   0.0 /usr/libexec/lsd
+  176     0   0.0 /usr/libexec/powerexperienced
+  178     0   0.0 /System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/contextstored
+  179     0   0.0 /System/Library/CoreServices/TimeMachine/backupd-helper
+  180     0   0.0 /usr/libexec/PowerUIAgent
+  181     0   0.1 /usr/libexec/airportd
+  182     0   0.0 /usr/sbin/systemkeychain
+  183     0   0.0 /usr/libexec/findmydeviced
+  184     0   0.0 /usr/libexec/nehelper
+  185    24   0.3 /usr/libexec/symptomsd
+  187   282   0.9 /usr/libexec/trustd
+  189    65   0.3 /usr/sbin/mDNSResponder
+  190     0   0.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/XPCServices/csnameddatad.xpc/Contents/MacOS/csnameddatad
+  191     0   0.0 /System/Library/Frameworks/InputMethodKit.framework/Resources/imklaunchagent
+  192   202   0.0 /usr/sbin/coreaudiod
+  193   289   0.0 /System/Library/PrivateFrameworks/BiomeStreams.framework/Support/biomed
+  194     0   0.0 /usr/libexec/trustdFileHelper
+  195     0   0.0 /usr/libexec/UserEventAgent
+  196     0   0.0 /usr/sbin/universalaccessd
+  197     0   0.0 /System/Library/PrivateFrameworks/FindMyMac.framework/Resources/FindMyMacd
+  198   242   0.0 /usr/libexec/nsurlsessiond
+  199     0   0.0 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/authd.xpc/Contents/MacOS/authd
+  200     0   0.0 /System/Library/CryptoTokenKit/com.apple.ifdreader.slotd/Contents/MacOS/com.apple.ifdreader
+  201     0   0.0 /usr/libexec/apfsd
+  203     0   0.0 /usr/sbin/mDNSResponderHelper
+  204     0   0.0 /usr/libexec/mobileassetd
+  205     0   0.0 /usr/sbin/distnoted
+  206   202   0.0 /usr/sbin/distnoted
+  208     0   0.0 /usr/libexec/cryptexd
+  209     0   0.0 /usr/libexec/ApplicationFirewall/socketfilterfw
+  210     0   0.0 /usr/libexec/usbd
+  211     0   0.0 /usr/libexec/pkd
+  212     0   0.0 /usr/libexec/storagekitd
+  215     0   0.0 /System/Library/Frameworks/SystemExtensions.framework/Versions/A/Helpers/sysextd
+  216     0   0.0 /usr/libexec/mdmclient
+  219   262   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Resources/VDC.plugin/Contents/Resources/VDCAssistant
+  220   202   0.0 /System/Library/Frameworks/CoreAudio.framework/Versions/A/XPCServices/com.apple.audio.DriverHelper.xpc/Contents/MacOS/com.apple.audio.DriverHelper
+  221     0   0.0 /System/Library/CoreServices/ManagedClient.app/Contents/MacOS/ManagedClient
+  222     0   0.0 /System/Library/PrivateFrameworks/SystemStatusServer.framework/Support/systemstatusd
+  223     0   0.0 /System/Library/PrivateFrameworks/WiFiPolicy.framework/XPCServices/WiFiCloudAssetsXPCService.xpc/Contents/MacOS/WiFiCloudAssetsXPCService
+  225     0   0.0 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper
+  226     0   0.1 /usr/libexec/secinitd
+  227     0   0.0 /usr/libexec/fskit_helper
+  228   262   0.0 /usr/sbin/distnoted
+  229     0   0.0 /usr/libexec/wifip2pd
+  230     0   0.0 /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Resources/backgroundtaskmanagementd
+  234     0   0.0 /System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar
+  238   205   0.0 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod
+  239   205   0.0 /usr/sbin/distnoted
+  240   202   0.0 /System/Library/Frameworks/AudioToolbox.framework/XPCServices/com.apple.audio.SandboxHelper.xpc/Contents/MacOS/com.apple.audio.SandboxHelper
+  241   205   0.0 /usr/libexec/secinitd
+  246     0   0.0 /usr/libexec/audioclocksyncd
+  248     0   0.0 /usr/libexec/syspolicyd
+  249     0   0.0 /System/Library/Frameworks/NetFS.framework/Versions/A/XPCServices/PlugInLibraryService.xpc/Contents/MacOS/PlugInLibraryService
+  251   205   0.0 /usr/sbin/cfprefsd
+  259   262   0.0 /usr/libexec/cameracaptured
+  260   262   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/UVCAssistant.systemextension/Contents/MacOS/UVCAssistant
+  263     0   1.0 /usr/libexec/securityd_system
+  265     0   0.0 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/XPCServices/XProtectPluginService.xpc/Contents/MacOS/XProtectPluginService
+  266   205   0.0 /usr/libexec/trustd
+  268     0   0.4 /System/Library/PrivateFrameworks/PowerLog.framework/Versions/A/XPCServices/PerfPowerTelemetryClientRegistrationService.xpc/Contents/MacOS/PerfPowerTelemetryClientRegistrationService
+  270     0   0.0 /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent
+  275     0   0.0 /System/Library/CoreServices/TimeMachine/backupd
+  279     0   0.0 /usr/libexec/wifianalyticsd
+  280   205   0.0 /usr/libexec/containermanagerd
+  281   200   0.0 /System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated
+  283     0   0.0 /bin/bash
+  284     0   0.0 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mds_stores
+  285   200   0.0 /usr/sbin/distnoted
+  286     0   0.0 /usr/libexec/searchpartyd
+  287     0   0.0 /System/Library/CoreServices/Software Update.app/Contents/Resources/suhelperd
+  288     0   0.0 /usr/libexec/rpcsvchost
+  289    89   0.0 /usr/sbin/distnoted
+  297   242   0.0 /usr/sbin/distnoted
+  300     0   0.0 /Library/NullMoth/latitude-desktop-journal
+  305     0   0.0 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Versions/A/XPCServices/com.apple.MobileSoftwareUpdate.CleanupPreparePathService.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.CleanupPreparePathService
+  307   270   0.0 /System/Library/DriverExtensions/com.apple.DriverKit-IOUserDockChannelSerial.dext/com.apple.DriverKit-IOUserDockChannelSerial
+  308     0   0.0 /usr/libexec/kernelmanager_helper
+  311   270   0.0 /System/Library/DriverExtensions/com.apple.AppleUserHIDDrivers.dext/com.apple.AppleUserHIDDrivers
+  318     0   0.4 /usr/bin/log
+  319     0   0.0 /bin/bash
+  323     0   7.3 /usr/libexec/diagnosticd
+  331   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceDisplay.xpc/Contents/MacOS/UARPUpdaterServiceDisplay
+  332   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceLegacyAudio.xpc/Contents/MacOS/UARPUpdaterServiceLegacyAudio
+  333   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceUSBPD.xpc/Contents/MacOS/UARPUpdaterServiceUSBPD
+  334   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceDFU.xpc/Contents/MacOS/UARPUpdaterServiceDFU
+  336   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceAFU.xpc/Contents/MacOS/UARPUpdaterServiceAFU
+  337   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceHID.xpc/Contents/MacOS/UARPUpdaterServiceHID
+  340   278   0.0 /usr/sbin/distnoted
+  349     0   0.0 /usr/sbin/WirelessRadioManagerd
+  350     0   0.0 /usr/sbin/BlueTool
+  351     0   0.0 /usr/libexec/eligibilityd
+  352   261   0.0 /usr/libexec/hidd
+  354    88   0.0 /usr/sbin/distnoted
+  355     0   0.0 /usr/libexec/findmybeaconingd
+  356     0  11.7 /usr/bin/log
+  357     0   1.9 /bin/bash
+  358     0   0.0 /bin/bash
+  368     0   0.0 sleep
+  369     0   0.0 /usr/libexec/logd_helper
+  377     0   0.0 sleep
+  381     0   0.0 /usr/libexec/colorsync.displayservices
+  383     0   0.0 /System/Library/Frameworks/ColorSync.framework/Versions/A/XPCServices/com.apple.ColorSyncXPCAgent.xpc/Contents/MacOS/com.apple.ColorSyncXPCAgent
+  384     0   0.0 /usr/libexec/colorsyncd
+  392     0   0.0 /usr/libexec/symptomsd-diag
+  398    55   0.0 /System/Library/CoreServices/appleeventsd
+  400     0   0.0 /System/Library/CoreServices/sharedfilelistd
+  405     0   0.0 /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary
+  406     0   0.0 /usr/libexec/bootinstalld
+  410    92   0.4 /System/Library/Frameworks/Security.framework/Versions/A/MachServices/SecurityAgent.bundle/Contents/MacOS/SecurityAgent
+  412     0   0.0 /usr/libexec/sysmond
+  414     0   0.0 /usr/sbin/systemstats
+  417     0   0.0 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice
+  418     0   0.0 /usr/libexec/countryd
+  419     0   0.0 /System/Library/Frameworks/LocalAuthentication.framework/Support/coreauthd
+  422     0   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundle/Contents/MacOS/ctkahp
+  423     0   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundle/Contents/MacOS/ctkahp
+  425     0   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkd
+  426   259   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkd
+  428     0   0.0 /usr/sbin/systemsoundserverd
+  435     0   1.3 /usr/bin/sample
+  436     0   0.0 /bin/bash
+  437     0   0.0 sleep
+  438   258   0.2 /usr/libexec/captiveagent
+  440     0   0.0 sleep
+  441   222   1.6 /usr/sbin/netbiosd
+  442     0   0.3 /System/Library/PrivateFrameworks/AmbientDisplay.framework/Versions/A/XPCServices/com.apple.AmbientDisplayAgent.xpc/Contents/MacOS/com.apple.AmbientDisplayAgent
+  447     0   1.0 sleep
+  452     0   0.8 sleep
+  457     0   1.4 sleep
+  459     0   0.0 /bin/ps
+  460     0   0.0 /bin/bash
+  461     0   0.0 sleep
+  112     0   0.0 /usr/libexec/remoted
+Tue Oct 20 11:56:20 BST 2026
++-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000051c, registered, matched, active, busy 0 (3 ms), retain 24>
+  | {
+  |   "NMXVGAFBOpen" = Yes
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IOFBMemorySize" = 8294400
+  |   "boot-gamma-restored" = <00000000>
+  |   "IOFBDependentIndex" = 0
+  |   "IOFBUIScale" = <00000000>
+  |   "LatitudePanelValidated" = Yes
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "LatitudePanelRefreshMilliHz" = 59971
+  |   "LatitudePanelPipe" = 0
+  |   "IOFBCurrentPixelCount" = 2462400
+  |   "IOFramebufferOpenGLIndex" = 0
+  |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+  |   "startup-timing" = <000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000e156c50800000000e156c50800000000e156c5080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+  |   "NVRMTiming" = <0100354b0e4ecd0880070000b0070000d007000070080000380400003b040000410400007404000043ea00000100000001000000>
+  |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+  |   "built-in" = Yes
+  |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "IOFBCurrentPixelClock" = 147672590
+  |   "IOFBDependentID" = 352641439659720705
+  |   "IOAccelIndex" = 0
+  |   "IOFBConfig" = {"IOFB0Hz"=Yes,"IOFBModes"=({"ID"=1,"DM"=<800700003804000093f83b00000000000f00000000000000000000000000000000000000>,"DF"=7,"TM"=<010000000000000000000000000000000000000000000000000000000000000000000000000000000e4ecd08000000000e4ecd08000000000e4ecd080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<ffffffffffffffff0000000000000000>}
+  |   "IOFBWaitCursorFrames" = 29
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "IOFBIntegrated" = Yes
+  |   "IOFBWaitCursorPeriod" = 33333333
+  |   "IOFBNeedsRefresh" = Yes
+  |   "VRAM,totalMB" = 4096
+  |   "IOFBTransform" = 0
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+  |   "LatitudePanelScanout" = 1619001344
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOProviderClass" = "LatitudePanelClaim"
+  |   "IOAccelRevision" = 2
+  |   "IOFBCursorInfo" = ()
+  |   "NMXMemoryIsShared" = Yes
+  |   "IOClass" = "NMXIntelVGAFB"
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+  |   "IOFBCurrentPixelCountReal" = 2462400
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "IOProbeScore" = 60000
+  |   "NMXSharedMemoryBytes" = 4294967296
+  | }
+  | 
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x100000556, registered, matched, active, busy 0 (0 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x100000558, registered, matched, active, busy 0 (0 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x100000557, registered, matched, active, busy 0 (0 ms), retain 5>
+  |   {
+  |     "IOProbeScore" = 0
+  |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+  |     "IOClass" = "AppleUpstreamUserClientDriver"
+  |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOProviderClass" = "IOFramebuffer"
+  |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+  |     "IOUserClientClass" = "AppleUpstreamUserClient"
+  |     "IOResourceMatch" = "IOKit"
+  |   }
+  |   
+  +-o AGPM  <class AGPM, id 0x100000572, registered, matched, active, busy 0 (0 ms), retain 8>
+  |   {
+  |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |     "max-value" = 15
+  |     "min-value" = 0
+  |     "IOReportLegendPublic" = Yes
+  |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+  |     "Heuristic-ID" = <ffffffff>
+  |   }
+  |   
+  +-o display0  <class IODisplayConnect, id 0x10000059e, registered, matched, active, busy 0 (0 ms), retain 6>
+  | | {
+  | | }
+  | | 
+  | +-o AppleDisplay  <class AppleDisplay, id 0x1000005a0, registered, matched, active, busy 0 (0 ms), retain 8>
+  |     {
+  |       "IOClass" = "AppleDisplay"
+  |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IOProviderClass" = "IODisplayConnect"
+  |       "DisplayProductID" = 1815
+  |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleDisplay-756e6b6e-717"
+  |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-756e6b6e-717-0"
+  |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+  |       "IOProbeScore" = 2000
+  |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968604,"ggsc"={"min"=0,"max"=65536,"value"=65536}}
+  |       "IOMatchCategory" = "IODefaultMatchCategory"
+  |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+  |       "IODisplayConnectFlags" = <00080000>
+  |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+  |       "DisplayVendorID" = 1970170734
+  |       "DisplaySerialNumber" = 0
+  |     }
+  |     
+  +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005a3, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOFramebufferSharedUserClient  <class IOFramebufferSharedUserClient, id 0x1000005f0, !registered, !matched, active, busy 0, retain 4>
+      {
+        "IOUserClientDefaultLocking" = Yes
+        "IOUserClientSharedInstance" = Yes
+        "IOUserClientCreator" = "pid 410, SecurityAgent"
+      }
+      
+
++-o IONDRVFramebuffer  <class IONDRVFramebuffer, id 0x1000004ca, registered, matched, active, busy 0 (178 ms), retain 13>
+  | {
+  |   "IOClass" = "IONDRVFramebuffer"
+  |   "CFBundleIdentifier" = "com.apple.iokit.IONDRVSupport"
+  |   "IOProviderClass" = "IOPlatformDevice"
+  |   "IOPMStrictTreeOrder" = Yes
+  |   "IONDRVFramebufferGeneration" = <0100000001000000>
+  |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+  |   "IOFBUIScale" = <00000000>
+  |   "IOProbeScore" = 20000
+  |   "IONameMatch" = "display"
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "IONameMatched" = "display"
+  |   "IOPersonalityPublisher" = "com.apple.iokit.IONDRVSupport"
+  |   "CFBundleIdentifierKernel" = "com.apple.iokit.IONDRVSupport"
+  |   "IOBusyInterest" = "IOCommand is not serializable"
+  | }
+  | 
+  +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x1000004ce, registered, matched, active, busy 0 (52 ms), retain 7>
+  | | {
+  | |   "IOProbeScore" = 0
+  | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+  | |   "IOClass" = "AppleMCCSControlModule"
+  | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOKitDebug" = 0
+  | |   "IOProviderClass" = "IOFramebuffer"
+  | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  | |   "IOUserClientClass" = "AppleMCCSUserClient"
+  | |   "IOResourceMatch" = "IOKit"
+  | | }
+  | | 
+  | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x1000004d6, registered, matched, active, busy 0 (19 ms), retain 5>
+  |     {
+  |       "IOProbeScore" = 0
+  |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+  |       "IOMatchCategory" = "IODisplayParameters"
+  |       "IOClass" = "AppleMCCSParameterHandler"
+  |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+  |       "IOKitDebug" = 0
+  |       "AppleMCCSFeatures" = 1
+  |       "IOProviderClass" = "AppleMCCSControlFamily"
+  |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+  |       "IOResourceMatch" = "IOKit"
+  |     }
+  |     
+  +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x1000004cf, registered, matched, active, busy 0 (2 ms), retain 5>
+      {
+        "IOProbeScore" = 0
+        "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+        "IOClass" = "AppleUpstreamUserClientDriver"
+        "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOProviderClass" = "IOFramebuffer"
+        "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+        "IOUserClientClass" = "AppleUpstreamUserClient"
+        "IOResourceMatch" = "IOKit"
+      }
+      
+
++-o NMXAccel  <class NMXAccel, id 0x100000533, registered, matched, active, busy 0 (2 ms), retain 65>
+  | {
+  |   "InternalStatisticsAccm" = {}
+  |   "MetalPluginClassName" = "NVMTLDevice"
+  |   "InternalStatistics" = {}
+  |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+  |   "AGCInfo" = {"fBusyCount"=0,"poweredOffByAGC"=No,"fSubmissionsSinceLastCheck"=0,"fLastSubmissionPID"=0}
+  |   "NVAccelEnabledFrom" = "displayModeDidChange"
+  |   "MetalPluginName" = "../../../Library/GPUBundles/NVMTLDriver"
+  |   "PerformanceStatisticsAccum" = {"orphanedReusableVidMemoryHitRate"=0,"texturePageOutBytes"=0,"swapCompleteVideoWaitTime"=0,"orphanedReusableSysMemoryHitRate"=0,"dataBufferCount"=0,"oolTexturePageInBytes"=0,"textureCount"=11,"iosurfaceTextureCreationCount"=0,"surfaceReadLockIdleWaitTime"=0,"freeDataBufferWaitTime"=0,"orphanedReusableSysMemoryBytes"=0,"ioSurfaceReadOutBytes"=0,"agprefTextureCreationCount"=0,"orphanedReusableSysMemoryCount"=0,"finishAll2DWaitTime"=0,"orphanedNonReusableSysMemoryCount"=0,"ioSurfacePageOutBytes"=0,"surfaceBufferReadOutBytes"=0,"surfaceTextureCreationCount"=0,"textureReadOutBytes"=0,"gartMapInBytesPerSample"=0,"swapBytesPerSample"=0,"dataBytesPerSample"=0,"surfaceCount"=15,"clientGLWaitTime"=0,"surfaceCopyInWaitTime"=0,"clientSharedAllocatedBytes"=61440,"surfaceCopyOutWaitTime"=0,"gartMapOutBytesPerSample"=0,"ioSurfacePageInBytes"=0,"gartCacheBytes"=33554432,"volatileSurfaceCount"=0,"vramEvictionWaitTime"=0,"oolTextureCreationBytes"=0,"freeToAllocGPUAddressWaitTime"=0,"oolTextureCreationCount"=0,"orphanedReusableVidMemoryCount"=0,"orphanedReusableVidMemoryBytes"=0,"context2DCount"=1,"inUseSysMemoryBytes"=0,"bufferSwapCount"=0,"orphanedNonReusableVidMemoryBytes"=0,"contextGLCount"=0,"finish2DWaitTime"=0,"gartSizeBytes"=5726625792,"recoveryCount"=0,"stdTexturePageInBytes"=0,"agprefTextureCreationBytes"=0,"gartUsedBytes"=0,"surfaceWriteLockIdleWaitTime"=0,"surfaceBufferPageInBytes"=0,"finishGLWaitTime"=0,"iosurfaceTextureCreationBytes"=0,"finishCLWaitTime"=0,"finishVideoWaitTime"=0,"contextCLCount"=0,"freeSurfaceBackingWaitTime"=0,"swapCompleteGLWaitTime"=0,"orphanedNonReusableSysMemoryBytes"=0,"inUseVidMemoryBytes"=33361920,"agpTextureCreationBytes"=0,"stdTextureCreationBytes"=0,"agpTextureCreationCount"=0,"stdTextureCreationCount"=0,"surfaceSetShapeIdleWaitTime"=0,"gartFreeBytes"=5726625792,"textureVolunteerUnloadBytes"=0,"bufferFlipCount"=0,"hardwareSubmitWaitTime"=0,"swapComplete2DWaitTime"=0,"surfaceBufferPageOutBytes"=0,"surfaceBufferTextureCreationCount"=0,"hardwareWaitTime"=0,"contextVideoCount"=0,"freeSurfaceSwapBufferWaitTime"=0,"orphanedNonReusableVidMemoryCount"=0}
+  |   "PerformanceStatistics" = {"orphanedReusableVidMemoryHitRate"=0,"texturePageOutBytes"=0,"swapCompleteVideoWaitTime"=0,"orphanedReusableSysMemoryHitRate"=0,"dataBufferCount"=0,"oolTexturePageInBytes"=0,"textureCount"=11,"iosurfaceTextureCreationCount"=0,"surfaceReadLockIdleWaitTime"=0,"freeDataBufferWaitTime"=0,"orphanedReusableSysMemoryBytes"=0,"ioSurfaceReadOutBytes"=0,"agprefTextureCreationCount"=0,"orphanedReusableSysMemoryCount"=0,"finishAll2DWaitTime"=0,"orphanedNonReusableSysMemoryCount"=0,"ioSurfacePageOutBytes"=0,"surfaceBufferReadOutBytes"=0,"surfaceTextureCreationCount"=0,"textureReadOutBytes"=0,"gartMapInBytesPerSample"=0,"swapBytesPerSample"=0,"dataBytesPerSample"=0,"surfaceCount"=15,"clientGLWaitTime"=0,"surfaceCopyInWaitTime"=0,"clientSharedAllocatedBytes"=61440,"surfaceCopyOutWaitTime"=0,"gartMapOutBytesPerSample"=0,"ioSurfacePageInBytes"=693534720,"gartCacheBytes"=33554432,"volatileSurfaceCount"=0,"vramEvictionWaitTime"=0,"oolTextureCreationBytes"=0,"freeToAllocGPUAddressWaitTime"=0,"oolTextureCreationCount"=0,"orphanedReusableVidMemoryCount"=0,"orphanedReusableVidMemoryBytes"=0,"context2DCount"=1,"inUseSysMemoryBytes"=0,"bufferSwapCount"=0,"orphanedNonReusableVidMemoryBytes"=0,"contextGLCount"=0,"finish2DWaitTime"=0,"gartSizeBytes"=5726625792,"recoveryCount"=0,"stdTexturePageInBytes"=0,"agprefTextureCreationBytes"=0,"gartUsedBytes"=0,"surfaceWriteLockIdleWaitTime"=0,"surfaceBufferPageInBytes"=0,"finishGLWaitTime"=0,"iosurfaceTextureCreationBytes"=8355840,"finishCLWaitTime"=0,"finishVideoWaitTime"=0,"contextCLCount"=0,"freeSurfaceBackingWaitTime"=0,"swapCompleteGLWaitTime"=0,"orphanedNonReusableSysMemoryBytes"=0,"inUseVidMemoryBytes"=33361920,"agpTextureCreationBytes"=0,"stdTextureCreationBytes"=0,"agpTextureCreationCount"=0,"stdTextureCreationCount"=0,"surfaceSetShapeIdleWaitTime"=0,"gartFreeBytes"=5726625792,"textureVolunteerUnloadBytes"=0,"bufferFlipCount"=0,"hardwareSubmitWaitTime"=0,"swapComplete2DWaitTime"=0,"surfaceBufferPageOutBytes"=0,"surfaceBufferTextureCreationCount"=0,"hardwareWaitTime"=0,"contextVideoCount"=0,"freeSurfaceSwapBufferWaitTime"=0,"orphanedNonReusableVidMemoryCount"=0}
+  |   "IOGLBundleName" = "AppleMetalOpenGLRenderer"
+  |   "IOPCIClassMatch" = "0x03000000&0xff000000"
+  |   "NMXDisplay" = "armed"
+  |   "IOPersonalityPublisher" = "com.nullmoth.NMXAccel"
+  |   "NVAccelEnableCount" = 5
+  |   "IOPCIPrimaryMatch" = "0x7D458086"
+  |   "model" = <"Intel(R) Graphics (MTL)">
+  |   "VRAM,totalMB" = 4096
+  |   "CFBundleIdentifier" = "com.nullmoth.NMXAccel"
+  |   "IOAccelRevision" = 2
+  |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "NMXMemoryIsShared" = Yes
+  |   "IOReportLegendPublic" = Yes
+  |   "IOClass" = "NMXAccel"
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.NMXAccel"
+  |   "IOGeneralInterest" = "IOCommand is not serializable"
+  |   "IOReportLegend" = ({"IOReportChannels"=((0,6442450945,"Command Buffer Bytes"),(1,6442450945,"GL Command Buffer Bytes"),(2,6442450945,"CL Command Buffer Bytes"),(3,6442450945,"2D Command Buffer Bytes"),(4,6442450945,"Video Command Buffer Bytes"),(5,6442450945,"Out-Of-Line Texture Creation Bytes"),(6,6442450945,"Shared System Memory Texture Creation Bytes"),(7,6442450945,"Private Video Memory Texture Creation Bytes"),(8,6442450945,"Private System Memory Texture Creation Bytes"),(9,6442450945,"IOSurface Backed Texture Creation Bytes"),(10,6442450945,"Out-Of-Line Texture Creation Count"),(11,6442450945,"Private Video Memory Texture Creation Count"),(12,6442450945,"Private System Memory Texture Creation Count"),(13,6442450945,"Shared System Memory Texture Creation Count"),(14,6442450945,"IOAccelSurfaceRef Texture Creation Count"),(15,6442450945,"IOAccelSurfaceBufferRef Texture Creation Count"),(16,6442450945,"IOSurface Backed Texture Creation Count"),(17,6442450945,"Texture Count"),(20,6442450945,"Bytes mapped into the GPU"),(21,6442450945,"Bytes unmapped from the GPU"),(82,6442450945,"IOAccelClientShared allocated bytes"),(22,6442450945,"Private textures bytes paged on"),(23,6442450945,"Out of line texture bytes paged on"),(24,6442450945,"IOAccelSurface bytes paged on"),(25,6442450945,"IOSurface bytes paged on"),(26,6442450945,"IOSurface bytes evicted"),(27,6442450945,"IOAccelSurface bytes evicted"),(28,6442450945,"Texture bytes evicted"),(29,6442450945,"IOSurface bytes paged off"),(30,6442450945,"IOAccelSurface bytes paged off"),(31,6442450945,"Texture bytes paged off"),(32,6442450945,"Texture bytes voluntarily paged off"),(33,6442450945,"IOAccelSurface count"),(34,6442450945,"Volatile IOAccelSurface count"),(35,6442450945,"2D context count"),(36,6442450945,"Video context count"),(37,6442450945,"OpenGL context count"),(38,6442450945,"OpenCL context count"),(39,6442450945,"Buffer swap count"),(40,6442450945,"Buffer flip count"),(41,6442450945,"Databuffer count"),(42,6442450945,"VRAM eviction wait time"),(43,6442450945,"CPU wait on GPU"),(44,6442450945,"CPU wait to submit to GPU"),(45,6442450945,"GL Client wait on GPU"),(46,6442450945,"CL Client wait on GPU"),(47,6442450945,"CPU Wait to evict resource"),(49,6442450945,"CPU wait for free databuffer"),(53,6442450945,"GL Client wait for swap complete"),(55,6442450945,"CPU Wait to copy in surface"),(56,6442450945,"CPU Wait to copy out surface"),(59,6442450945,"CPU Wait for surface idle"),(60,6442450945,"CPU Wait for resource read"),(61,6442450945,"CPU Wait for resource write"),(62,6442450945,"CPU Wait for all 2D finish"),(63,6442450945,"CPU Wait for 2D finish"),(64,6442450945,"CPU Wait for video finish"),(65,6442450945,"CPU Wait for GL finish"),(66,6442450945,"CPU Wait for CL finish"),(106,6442450945,"In use system memory"),(105,6442450945,"In use video memory"),(103,6442450945,"Command Queue Count"),(104,6442450945,"GPU Restart Count")),"IOReportGroupName"="Internal Statistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+  |   "IOMatchCategory" = "IOAccelerator"
+  |   "AccelCaps" = 15
+  |   "IOProbeScore" = 100
+  |   "IOAccelDisplayPipeCapabilities" = {"DisplayPipeSupported"=Yes,"TransactionsSupported"=Yes}
+  |   "NMXSharedMemoryBytes" = 4294967296
+  |   "SurfaceList" = ()
+  | }
+  | 
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000534, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000535, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000536, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000537, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000538, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000539, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053a, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000053f, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000540, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000541, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000542, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000543, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000544, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000545, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000546, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000547, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000548, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000549, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054a, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x10000054f, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000550, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000551, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000552, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOAccelNMXCarrier  <class IOAccelNMXCarrier, id 0x100000553, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o NMX2DContext  <class NMX2DContext, id 0x1000005a7, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "lastSubmittedTime" = 0
+  |     "accumulatedGPUTime" = 0
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDisplayPipeUserClient2  <class IOAccelDisplayPipeUserClient2, id 0x1000005ae, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005b2, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005b3, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005b6, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x1000005b7, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005bc, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c1, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c2, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c3, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c4, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c5, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o NMXSurface  <class NMXSurface, id 0x1000005c6, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 163, WindowServer"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x1000005fc, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 168, loginwindow"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x1000005fd, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 168, loginwindow"
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x100000668, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 532, mediaanalysisd"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x100000669, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 532, mediaanalysisd"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x10000066b, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 532, mediaanalysisd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x10000066c, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 532, mediaanalysisd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x100000676, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 629, SafeEjectGPUServ"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x100000677, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 629, SafeEjectGPUServ"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x100000678, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 629, SafeEjectGPUServ"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelDevice2  <class IOAccelDevice2, id 0x10000067b, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "API" = "Metal"
+  |     "IOUserClientCreator" = "pid 634, avconferenced"
+  |   }
+  |   
+  +-o IOAccelSharedUserClient2  <class IOAccelSharedUserClient2, id 0x10000067c, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 634, avconferenced"
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x10000067e, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 634, avconferenced"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOAccelNMXDRMClient  <class IOAccelNMXDRMClient, id 0x10000067f, !registered, !matched, active, busy 0, retain 5>
+      {
+        "IOUserClientCreator" = "pid 634, avconferenced"
+        "IOUserClientDefaultLocking" = Yes
+      }
+      
+
++-o LatitudePanelClaim  <class LatitudePanelClaim, id 0x10000050c, registered, matched, active, busy 0 (380 ms), retain 6>
+  | {
+  |   "IOClass" = "LatitudePanelClaim"
+  |   "CFBundleIdentifier" = "com.nullmoth.LatitudePanelClaim"
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "IOProbeScore" = 60000
+  |   "IOPCIMatch" = "0x7d458086"
+  |   "IOMatchedAtBoot" = Yes
+  |   "IOMatchCategory" = "IOFramebuffer"
+  |   "LatitudePanelOptedIn" = Yes
+  |   "LatitudePanelFramebufferReady" = Yes
+  |   "AAPL,gray-page" = <01000000>
+  |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudePanelClaim"
+  |   "AAPL,gray-value" = <00000000>
+  | }
+  | 
+  +-o NMXIntelVGAFB  <class NMXIntelVGAFB, id 0x10000051c, registered, matched, active, busy 0 (3 ms), retain 24>
+    | {
+    |   "NMXVGAFBOpen" = Yes
+    |   "IOPMStrictTreeOrder" = Yes
+    |   "IOFBMemorySize" = 8294400
+    |   "boot-gamma-restored" = <00000000>
+    |   "IOFBDependentIndex" = 0
+    |   "IOFBUIScale" = <00000000>
+    |   "LatitudePanelValidated" = Yes
+    |   "NMXGPUIdentity" = {"vendor"=32902,"device"=32069,"sharedHeapBytes"=4294967296,"source"="ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties","capacityMeaning"="maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM","version"=1,"name"="Intel(R) Graphics (MTL)","physicalRAMBytes"=17179869184}
+    |   "LatitudePanelRefreshMilliHz" = 59971
+    |   "LatitudePanelPipe" = 0
+    |   "IOFBCurrentPixelCount" = 2462400
+    |   "IOFramebufferOpenGLIndex" = 0
+    |   "IODisplayParameters" = "IOFramebufferParameterHandler is not serializable"
+    |   "startup-timing" = <000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000e156c50800000000e156c50800000000e156c5080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+    |   "NVRMTiming" = <0100354b0e4ecd0880070000b0070000d007000070080000380400003b040000410400007404000043ea00000100000001000000>
+    |   "IOAccelTypes" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/NMXAccel"
+    |   "built-in" = Yes
+    |   "IOPersonalityPublisher" = "com.nullmoth.LatitudeMTLFB"
+    |   "IOPowerManagement" = {"CapabilityFlags"=0,"ChildProxyPowerState"=18446744073709551615,"CurrentPowerState"=0}
+    |   "IOFBCurrentPixelClock" = 147672590
+    |   "IOFBDependentID" = 352641439659720705
+    |   "IOAccelIndex" = 0
+    |   "IOFBConfig" = {"IOFB0Hz"=Yes,"IOFBModes"=({"ID"=1,"DM"=<800700003804000093f83b00000000000f00000000000000000000000000000000000000>,"DF"=7,"TM"=<010000000000000000000000000000000000000000000000000000000000000000000000000000000e4ecd08000000000e4ecd08000000000e4ecd080000000080070000f00000003000000020000000380400003c000000030000000600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>}),"dims"=<ffffffffffffffff0000000000000000>}
+    |   "IOFBWaitCursorFrames" = 29
+    |   "model" = <"Intel(R) Graphics (MTL)">
+    |   "IOFBIntegrated" = Yes
+    |   "IOFBWaitCursorPeriod" = 33333333
+    |   "IOFBNeedsRefresh" = Yes
+    |   "VRAM,totalMB" = 4096
+    |   "IOFBTransform" = 0
+    |   "CFBundleIdentifier" = "com.nullmoth.LatitudeMTLFB"
+    |   "LatitudePanelScanout" = 1619001344
+    |   "IOCFPlugInTypes" = {"ACCF0000-0000-0000-0000-000a2789904e"="IOAccelerator2D.plugin"}
+    |   "IOProviderClass" = "LatitudePanelClaim"
+    |   "IOAccelRevision" = 2
+    |   "IOFBCursorInfo" = ()
+    |   "NMXMemoryIsShared" = Yes
+    |   "IOClass" = "NMXIntelVGAFB"
+    |   "CFBundleIdentifierKernel" = "com.nullmoth.LatitudeMTLFB"
+    |   "IOFBCurrentPixelCountReal" = 2462400
+    |   "IOGeneralInterest" = "IOCommand is not serializable"
+    |   "IOMatchCategory" = "IOFramebuffer"
+    |   "IOProbeScore" = 60000
+    |   "NMXSharedMemoryBytes" = 4294967296
+    | }
+    | 
+    +-o AppleMCCSControlModule  <class AppleMCCSControlModule, id 0x100000556, registered, matched, active, busy 0 (0 ms), retain 7>
+    | | {
+    | |   "IOProbeScore" = 0
+    | |   "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOMatchCategory" = "AppleMCCSControlFamily"
+    | |   "IOClass" = "AppleMCCSControlModule"
+    | |   "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOKitDebug" = 0
+    | |   "IOProviderClass" = "IOFramebuffer"
+    | |   "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+    | |   "IOUserClientClass" = "AppleMCCSUserClient"
+    | |   "IOResourceMatch" = "IOKit"
+    | | }
+    | | 
+    | +-o AppleMCCSParameterHandler  <class AppleMCCSParameterHandler, id 0x100000558, registered, matched, active, busy 0 (0 ms), retain 5>
+    |     {
+    |       "IOProbeScore" = 0
+    |       "CFBundleIdentifier" = "com.apple.driver.AppleMCCSControl"
+    |       "IOMatchCategory" = "IODisplayParameters"
+    |       "IOClass" = "AppleMCCSParameterHandler"
+    |       "IOPersonalityPublisher" = "com.apple.driver.AppleMCCSControl"
+    |       "IOKitDebug" = 0
+    |       "AppleMCCSFeatures" = 1
+    |       "IOProviderClass" = "AppleMCCSControlFamily"
+    |       "CFBundleIdentifierKernel" = "com.apple.driver.AppleMCCSControl"
+    |       "IOResourceMatch" = "IOKit"
+    |     }
+    |     
+    +-o AppleUpstreamUserClientDriver  <class AppleUpstreamUserClientDriver, id 0x100000557, registered, matched, active, busy 0 (0 ms), retain 5>
+    |   {
+    |     "IOProbeScore" = 0
+    |     "CFBundleIdentifier" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOMatchCategory" = "AppleUpstreamUserClientDriver"
+    |     "IOClass" = "AppleUpstreamUserClientDriver"
+    |     "IOPersonalityPublisher" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOProviderClass" = "IOFramebuffer"
+    |     "CFBundleIdentifierKernel" = "com.apple.driver.AppleUpstreamUserClient"
+    |     "IOUserClientClass" = "AppleUpstreamUserClient"
+    |     "IOResourceMatch" = "IOKit"
+    |   }
+    |   
+    +-o AGPM  <class AGPM, id 0x100000572, registered, matched, active, busy 0 (0 ms), retain 8>
+    |   {
+    |     "IOReportLegend" = ({"IOReportChannels"=((5795122739160566084,6442450945,"PlimitNS"),(6008203707511294276,6442450945,"PlimitSampleTimeNS")),"IOReportGroupName"="AGPMStatistics","IOReportChannelInfo"={"IOReportChannelUnit"=0}})
+    |     "max-value" = 15
+    |     "min-value" = 0
+    |     "IOReportLegendPublic" = Yes
+    |     "IOPowerManagement" = {"CapabilityFlags"=0,"CurrentPowerState"=0}
+    |     "Heuristic-ID" = <ffffffff>
+    |   }
+    |   
+    +-o display0  <class IODisplayConnect, id 0x10000059e, registered, matched, active, busy 0 (0 ms), retain 6>
+    | | {
+    | | }
+    | | 
+    | +-o AppleDisplay  <class AppleDisplay, id 0x1000005a0, registered, matched, active, busy 0 (0 ms), retain 8>
+    |     {
+    |       "IOClass" = "AppleDisplay"
+    |       "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+    |       "IOProviderClass" = "IODisplayConnect"
+    |       "DisplayProductID" = 1815
+    |       "IODisplayPrefsKeyOld" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB/display0/AppleDisplay-756e6b6e-717"
+    |       "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2-756e6b6e-717-0"
+    |       "IOPowerManagement" = {"CapabilityFlags"=0,"MaxPowerState"=3,"CurrentPowerState"=0}
+    |       "IOProbeScore" = 2000
+    |       "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"rgsc"={"min"=0,"max"=65536,"value"=65536},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968604,"ggsc"={"min"=0,"max"=65536,"value"=65536}}
+    |       "IOMatchCategory" = "IODefaultMatchCategory"
+    |       "IOPersonalityPublisher" = "com.apple.iokit.IOGraphicsFamily"
+    |       "IODisplayConnectFlags" = <00080000>
+    |       "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+    |       "DisplayVendorID" = 1970170734
+    |       "DisplaySerialNumber" = 0
+    |     }
+    |     
+    +-o IOFramebufferUserClient  <class IOFramebufferUserClient, id 0x1000005a3, !registered, !matched, active, busy 0, retain 5>
+    |   {
+    |     "IOUserClientCreator" = "pid 163, WindowServer"
+    |     "IOUserClientDefaultLocking" = Yes
+    |   }
+    |   
+    +-o IOFramebufferSharedUserClient  <class IOFramebufferSharedUserClient, id 0x1000005f0, !registered, !matched, active, busy 0, retain 4>
+        {
+          "IOUserClientDefaultLocking" = Yes
+          "IOUserClientSharedInstance" = Yes
+          "IOUserClientCreator" = "pid 410, SecurityAgent"
+        }
+        
+
+  PID   UID  %CPU COMM
+    1     0  18.0 /sbin/launchd
+   93     0   6.9 /usr/libexec/logd
+   94     0   0.0 /usr/libexec/smd
+   95     0   2.8 /usr/libexec/UserEventAgent
+   97     0   0.0 /usr/libexec/wifiFirmwareLoader
+   98     0   2.6 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
+   99     0   0.7 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted
+  102     0   0.0 /usr/sbin/systemstats
+  104   278   0.1 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/Support/accessoryupdaterd
+  105     0   1.2 /usr/libexec/configd
+  106     0   0.0 endpointsecurityd
+  107     0   0.1 /System/Library/CoreServices/powerd.bundle/powerd
+  110     0   0.0 /usr/libexec/amfid
+  114     0   0.0 /usr/libexec/keybagd
+  115   200   0.0 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated
+  116   306   0.0 /System/Library/PrivateFrameworks/CoreSpeech.framework/corespeechd_system
+  118     0   0.0 /usr/libexec/watchdogd
+  119     0   0.0 firmwaresyncd
+  121     0   0.0 /usr/libexec/warmd
+  122     0   5.6 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Support/mds
+  123   240   0.0 /System/Library/CoreServices/iconservicesd
+  124     0   0.0 /usr/libexec/kernelmanagerd
+  125     0   0.0 /usr/libexec/diskarbitrationd
+  128     0   0.0 /usr/libexec/coreduetd
+  129     0   0.0 /usr/sbin/syslogd
+  132     0   0.0 /usr/libexec/thermalmonitord
+  133     0   8.1 /usr/libexec/opendirectoryd
+  135     0  13.5 /System/Library/PrivateFrameworks/ApplePushService.framework/apsd
+  136     0   0.8 /System/Library/CoreServices/launchservicesd
+  137   266   0.0 /usr/libexec/timed
+  138   213   0.0 /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/usbmuxd
+  139     0   0.7 /usr/sbin/securityd
+  141   205   1.2 /usr/libexec/locationd
+  142     0   0.0 /usr/libexec/nesessionmanager
+  143     0   0.0 autofsd
+  144   244   0.0 /usr/libexec/displaypolicyd
+  145     0   3.1 /usr/libexec/dasd
+  147   241   0.7 /usr/sbin/distnoted
+  148     0   0.0 /System/Library/PrivateFrameworks/AppleCredentialManager.framework/AppleCredentialManagerDaemon
+  149     0   7.2 /usr/libexec/PerfPowerServices
+  150     0   0.0 /usr/libexec/dirhelper
+  151     0   0.1 /System/Library/CoreServices/logind
+  152     0   0.0 /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/Support/revisiond
+  153     0   0.0 /usr/sbin/KernelEventAgent
+  154     0   0.0 /usr/libexec/usermanagerd
+  157     0   5.6 /usr/sbin/notifyd
+  158     0   0.0 /usr/libexec/sandboxd
+  159     0   0.0 /usr/libexec/corebrightnessd
+  160     0   0.0 /usr/libexec/AirPlayXPCHelper
+  161     0   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/com.apple.cmio.registerassistantservice
+  162     0   0.0 aslmanager
+  163    88 124.4 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+  164     0   4.5 /usr/sbin/cfprefsd
+  165     0   0.0 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd
+  167   263   0.7 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd
+  168   501   0.3 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow
+  170     0   0.0 /usr/libexec/containermanagerd_system
+  171     0   0.4 /System/Library/CoreServices/coreservicesd
+  173     0   2.5 /usr/libexec/runningboardd
+  174     0   0.0 /System/Library/PrivateFrameworks/Heimdal.framework/Helpers/digest-service
+  175     0   0.3 /usr/libexec/lsd
+  176     0   0.0 /usr/libexec/powerexperienced
+  178     0   0.0 /System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/contextstored
+  179     0   0.0 /System/Library/CoreServices/TimeMachine/backupd-helper
+  180     0   0.0 /usr/libexec/PowerUIAgent
+  181     0   2.4 /usr/libexec/airportd
+  182     0   0.0 /usr/sbin/systemkeychain
+  183     0   0.4 /usr/libexec/findmydeviced
+  184     0   0.0 /usr/libexec/nehelper
+  185    24   0.9 /usr/libexec/symptomsd
+  187   282   1.2 /usr/libexec/trustd
+  189    65   1.3 /usr/sbin/mDNSResponder
+  190     0   0.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/XPCServices/csnameddatad.xpc/Contents/MacOS/csnameddatad
+  192   202   0.0 /usr/sbin/coreaudiod
+  193   289   0.0 /System/Library/PrivateFrameworks/BiomeStreams.framework/Support/biomed
+  194     0   0.0 /usr/libexec/trustdFileHelper
+  197     0   0.1 /System/Library/PrivateFrameworks/FindMyMac.framework/Resources/FindMyMacd
+  198   242   0.0 /usr/libexec/nsurlsessiond
+  199     0   0.0 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/authd.xpc/Contents/MacOS/authd
+  200     0   0.0 /System/Library/CryptoTokenKit/com.apple.ifdreader.slotd/Contents/MacOS/com.apple.ifdreader
+  201     0   0.0 /usr/libexec/apfsd
+  203     0   0.1 /usr/sbin/mDNSResponderHelper
+  204     0   0.4 /usr/libexec/mobileassetd
+  205     0   0.1 /usr/sbin/distnoted
+  206   202   0.1 /usr/sbin/distnoted
+  208     0   0.0 /usr/libexec/cryptexd
+  209     0   0.0 /usr/libexec/ApplicationFirewall/socketfilterfw
+  210     0   0.0 /usr/libexec/usbd
+  212     0   0.0 /usr/libexec/storagekitd
+  215     0   0.0 /System/Library/Frameworks/SystemExtensions.framework/Versions/A/Helpers/sysextd
+  219   262   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Resources/VDC.plugin/Contents/Resources/VDCAssistant
+  220   202   0.0 /System/Library/Frameworks/CoreAudio.framework/Versions/A/XPCServices/com.apple.audio.DriverHelper.xpc/Contents/MacOS/com.apple.audio.DriverHelper
+  222     0   0.0 /System/Library/PrivateFrameworks/SystemStatusServer.framework/Support/systemstatusd
+  223     0   0.0 /System/Library/PrivateFrameworks/WiFiPolicy.framework/XPCServices/WiFiCloudAssetsXPCService.xpc/Contents/MacOS/WiFiCloudAssetsXPCService
+  225     0   0.0 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper
+  226     0   0.0 /usr/libexec/secinitd
+  227     0   0.0 /usr/libexec/fskit_helper
+  228   262   0.1 /usr/sbin/distnoted
+  229     0   0.0 /usr/libexec/wifip2pd
+  230     0   0.0 /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Resources/backgroundtaskmanagementd
+  234     0   0.0 /System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar
+  238   205   0.0 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod
+  239   205   0.0 /usr/sbin/distnoted
+  240   202   0.0 /System/Library/Frameworks/AudioToolbox.framework/XPCServices/com.apple.audio.SandboxHelper.xpc/Contents/MacOS/com.apple.audio.SandboxHelper
+  241   205   0.0 /usr/libexec/secinitd
+  246     0   0.1 /usr/libexec/audioclocksyncd
+  248     0   0.0 /usr/libexec/syspolicyd
+  249     0   0.0 /System/Library/Frameworks/NetFS.framework/Versions/A/XPCServices/PlugInLibraryService.xpc/Contents/MacOS/PlugInLibraryService
+  251   205   0.0 /usr/sbin/cfprefsd
+  259   262   0.0 /usr/libexec/cameracaptured
+  260   262   0.0 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/UVCAssistant.systemextension/Contents/MacOS/UVCAssistant
+  263     0   0.0 /usr/libexec/securityd_system
+  265     0   0.0 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/XPCServices/XProtectPluginService.xpc/Contents/MacOS/XProtectPluginService
+  266   205   0.0 /usr/libexec/trustd
+  268     0   0.1 /System/Library/PrivateFrameworks/PowerLog.framework/Versions/A/XPCServices/PerfPowerTelemetryClientRegistrationService.xpc/Contents/MacOS/PerfPowerTelemetryClientRegistrationService
+  275     0   0.0 /System/Library/CoreServices/TimeMachine/backupd
+  279     0   0.0 /usr/libexec/wifianalyticsd
+  280   205   0.0 /usr/libexec/containermanagerd
+  281   200   0.0 /System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated
+  283     0   0.0 /bin/bash
+  284     0   1.4 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mds_stores
+  285   200   0.0 /usr/sbin/distnoted
+  286     0   0.0 /usr/libexec/searchpartyd
+  287     0   0.0 /System/Library/CoreServices/Software Update.app/Contents/Resources/suhelperd
+  288     0   0.0 /usr/libexec/rpcsvchost
+  289    89   0.0 /usr/sbin/distnoted
+  297   242   0.1 /usr/sbin/distnoted
+  300     0   0.0 /Library/NullMoth/latitude-desktop-journal
+  305     0   0.0 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Versions/A/XPCServices/com.apple.MobileSoftwareUpdate.CleanupPreparePathService.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.CleanupPreparePathService
+  307   270   0.0 /System/Library/DriverExtensions/com.apple.DriverKit-IOUserDockChannelSerial.dext/com.apple.DriverKit-IOUserDockChannelSerial
+  308     0   0.0 /usr/libexec/kernelmanager_helper
+  311   270   0.0 /System/Library/DriverExtensions/com.apple.AppleUserHIDDrivers.dext/com.apple.AppleUserHIDDrivers
+  318     0   3.5 /usr/bin/log
+  319     0   1.0 /bin/bash
+  323     0  56.0 /usr/libexec/diagnosticd
+  331   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceDisplay.xpc/Contents/MacOS/UARPUpdaterServiceDisplay
+  332   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceLegacyAudio.xpc/Contents/MacOS/UARPUpdaterServiceLegacyAudio
+  333   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceUSBPD.xpc/Contents/MacOS/UARPUpdaterServiceUSBPD
+  334   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceDFU.xpc/Contents/MacOS/UARPUpdaterServiceDFU
+  336   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceAFU.xpc/Contents/MacOS/UARPUpdaterServiceAFU
+  337   278   0.0 /System/Library/PrivateFrameworks/MobileAccessoryUpdater.framework/XPCServices/UARPUpdaterServiceHID.xpc/Contents/MacOS/UARPUpdaterServiceHID
+  340   278   0.1 /usr/sbin/distnoted
+  349     0   0.0 /usr/sbin/WirelessRadioManagerd
+  351     0   0.0 /usr/libexec/eligibilityd
+  352   261   0.0 /usr/libexec/hidd
+  354    88   0.0 /usr/sbin/distnoted
+  355     0   0.0 /usr/libexec/findmybeaconingd
+  356     0  67.0 /usr/bin/log
+  357     0   5.4 /bin/bash
+  358     0   0.0 /bin/bash
+  368     0   0.0 sleep
+  369     0   0.0 /usr/libexec/logd_helper
+  381     0   0.0 /usr/libexec/colorsync.displayservices
+  383     0   0.0 /System/Library/Frameworks/ColorSync.framework/Versions/A/XPCServices/com.apple.ColorSyncXPCAgent.xpc/Contents/MacOS/com.apple.ColorSyncXPCAgent
+  384     0   0.0 /usr/libexec/colorsyncd
+  392     0   0.0 /usr/libexec/symptomsd-diag
+  398    55   0.0 /System/Library/CoreServices/appleeventsd
+  400     0   0.0 /System/Library/CoreServices/sharedfilelistd
+  405     0   0.0 /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary
+  406     0   0.0 /usr/libexec/bootinstalld
+  412     0   0.0 /usr/libexec/sysmond
+  414     0   0.0 /usr/sbin/systemstats
+  417     0   0.0 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice
+  418     0   0.0 /usr/libexec/countryd
+  419     0   0.0 /System/Library/Frameworks/LocalAuthentication.framework/Support/coreauthd
+  422     0   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundle/Contents/MacOS/ctkahp
+  426   259   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkd
+  428     0   0.0 /usr/sbin/systemsoundserverd
+  438   258   0.0 /usr/libexec/captiveagent
+  441   222   0.0 /usr/sbin/netbiosd
+  442     0   0.1 /System/Library/PrivateFrameworks/AmbientDisplay.framework/Versions/A/XPCServices/com.apple.AmbientDisplayAgent.xpc/Contents/MacOS/com.apple.AmbientDisplayAgent
+  464     0   0.0 /System/Library/PrivateFrameworks/CoreSymbolication.framework/coresymbolicationd
+  471     0   0.0 sleep
+  472     0   0.0 /System/Library/Frameworks/ColorSync.framework/Versions/A/XPCServices/com.apple.ColorSyncXPCAgent.xpc/Contents/MacOS/com.apple.ColorSyncXPCAgent
+  477     0   0.0 /System/Library/CoreServices/iconservicesagent
+  481     0   0.0 /System/Library/Frameworks/GSS.framework/Helpers/GSSCred
+  484     0   0.0 /System/Library/CoreServices/ManagedClient.app/Contents/MacOS/ManagedClient
+  485     0   0.0 /usr/libexec/corecaptured
+  487     0   0.0 /System/Library/CoreServices/ManagedClient.app/Contents/MacOS/ManagedClient
+  488     0   0.0 /usr/libexec/applekeystored
+  489   501   3.2 /usr/sbin/distnoted
+  490   501   3.6 /usr/sbin/cfprefsd
+  491   501   1.7 /usr/libexec/UserEventAgent
+  492   247   0.0 /usr/libexec/gamecontrollerd
+  493   260   0.0 /usr/libexec/seld
+  495   501   0.3 /usr/libexec/knowledge-agent
+  496   501   0.0 /System/Library/CoreServices/CoreServicesUIAgent.app/Contents/MacOS/CoreServicesUIAgent
+  497   501   0.0 /System/Library/PrivateFrameworks/CloudServices.framework/Helpers/com.apple.sbd
+  498   501   0.0 /usr/sbin/universalaccessd
+  499   501   0.0 /usr/libexec/ContinuityCaptureAgent
+  500   501   0.9 /usr/libexec/lsd
+  501   501   0.0 /usr/libexec/pboard
+  502   501   9.1 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd
+  503   501   0.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/XPCServices/csnameddatad.xpc/Contents/MacOS/csnameddatad
+  504   501   5.3 /usr/libexec/secd
+  505   501   1.9 /usr/libexec/trustd
+  507   501  31.5 /usr/libexec/containermanagerd
+  509   501   2.0 /System/Library/Frameworks/Accounts.framework/Versions/A/Support/accountsd
+  510   501   0.0 /System/Library/Frameworks/CoreTelephony.framework/Support/CommCenter
+  511   501   2.4 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd
+  512   501   0.0 /System/Library/CoreServices/APFSUserAgent
+  513   501   0.0 /System/Library/CoreServices/IOUIAgent.app/Contents/MacOS/IOUIAgent
+  515   501   0.0 /System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/ContextStoreAgent
+  516   501   0.0 /usr/libexec/nsurlsessiond
+  517   501   0.0 /usr/libexec/secinitd
+  518   501   0.0 /usr/libexec/rapportd
+  519   501   0.1 /System/Library/PrivateFrameworks/UserNotificationsCore.framework/Support/usernotificationsd
+  520   501   0.0 /System/Library/PrivateFrameworks/NewDeviceOutreach.framework/ndoagent
+  521   501  69.1 /usr/libexec/triald
+  522   501   0.0 /usr/libexec/icloudmailagent
+  523   501   0.1 /usr/sbin/usernoted
+  524   501   5.6 /usr/libexec/routined
+  525   501   0.0 /System/Library/PrivateFrameworks/CoreCDP.framework/Versions/A/Resources/cdpd
+  526   501   0.0 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/TrustedPeersHelper.xpc/Contents/MacOS/TrustedPeersHelper
+  527     0   0.0 /usr/libexec/rtcreportingd
+  528   501   0.0 /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent
+  529   501   0.0 /System/Library/PrivateFrameworks/AppSSO.framework/Support/AppSSOAgent.app/Contents/MacOS/AppSSOAgent
+  530   501   1.5 /System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd
+  531   501   0.0 /System/Library/PrivateFrameworks/GenerativeExperiencesRuntime.framework/Versions/A/generativeexperiencesd
+  532   501   0.4 /System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd
+  533   501   0.0 /System/Library/PrivateFrameworks/TextToSpeechVoiceBankingSupport.framework/Support/voicebankingd
+  534   501   0.0 /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed
+  535   501  47.3 /usr/libexec/pkd
+  536   501   0.0 /System/Library/CoreServices/CoreLocationAgent.app/Contents/MacOS/CoreLocationAgent
+  537   501   0.0 /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/Support/donotdisturbd
+  538   501   1.5 /System/Library/PrivateFrameworks/BiomeStreams.framework/Support/BiomeAgent
+  539   501   1.0 /System/Library/PrivateFrameworks/UsageTracking.framework/Versions/A/UsageTrackingAgent
+  540     0   0.0 /System/Library/PrivateFrameworks/WirelessDiagnostics.framework/Support/awdd
+  541     0   0.3 /System/Library/PrivateFrameworks/AppSSO.framework/Support/AppSSODaemon
+  542   501  24.9 /System/Library/PrivateFrameworks/SyncedDefaults.framework/Support/syncdefaultsd
+  543   501   0.0 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/callservicesd
+  544   501   0.0 /System/Library/CoreServices/NotificationCenter.app/Contents/MacOS/NotificationCenter
+  545   501   0.3 /System/Library/PrivateFrameworks/ReplicatorCore.framework/Support/replicatord
+  546   501   0.0 /System/Library/Frameworks/ManagedSettings.framework/Versions/A/ManagedSettingsAgent
+  547   501   0.0 /usr/libexec/networkserviceproxy
+  548   501   0.0 /usr/libexec/findmylocateagent
+  549   501   0.0 /System/Library/Frameworks/CryptoTokenKit.framework/ctkd
+  550   501  19.1 /System/Library/PrivateFrameworks/ChronoCore.framework/Support/chronod
+  551   501   1.0 /System/Library/PrivateFrameworks/SiriInference.framework/Versions/A/siriinferenced
+  552   501   0.0 /System/Library/PrivateFrameworks/StatusKit.framework/StatusKitAgent
+  553     0   0.0 /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/Helpers/SCHelper
+  554   501   1.3 /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal
+  555   501   0.0 /System/Library/Frameworks/LocalAuthentication.framework/Support/coreauthd
+  556   501   0.0 /usr/libexec/sharingd
+  557   501  10.1 /System/Library/Frameworks/Contacts.framework/Support/contactsd
+  558   501   0.6 /System/Library/CoreServices/talagentd
+  559   501   1.0 /System/Library/CoreServices/WindowManager.app/Contents/MacOS/WindowManager
+  560   501   0.0 /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock
+  561   501   0.0 /System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter
+  562   501   0.0 /usr/libexec/neagent
+  563   501   0.0 /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer
+  564   501   0.2 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+  565   501   0.0 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings
+  567   501   0.0 /System/Library/Frameworks/FinanceKit.framework/financed
+  568   501   0.0 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod
+  569   501   0.1 /usr/libexec/diagnosticextensionsd
+  570   501   0.1 /System/Library/PrivateFrameworks/iCloudNotification.framework/iCloudNotificationAgent
+  571   501   0.2 /usr/libexec/appleaccountd
+  573   501   0.1 /usr/libexec/transparencyd
+  575   501   0.0 /usr/libexec/dmd
+  576   501  22.0 /System/Library/PrivateFrameworks/iCloudDriveCore.framework/Versions/A/Support/bird
+  577   501   0.0 /System/Library/PrivateFrameworks/CoreFollowUp.framework/Versions/A/Support/followupd
+  578   501   0.0 /System/Library/Frameworks/QuickLookUI.framework/Versions/A/XPCServices/QuickLookUIService.xpc/Contents/MacOS/QuickLookUIService
+  579   501   0.0 /System/Library/Frameworks/QuickLookThumbnailing.framework/Support/com.apple.quicklook.ThumbnailsAgent
+  580   501   4.3 /System/Library/PrivateFrameworks/AssistantServices.framework/Versions/A/Support/assistantd
+  581   501   0.0 /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary
+  582   501   0.2 /System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd
+  583     0   0.0 automountd
+  584   501   0.0 /System/Library/CoreServices/sharedfilelistd
+  585   265   0.3 /System/Library/PrivateFrameworks/CoreADI.framework/adid
+  587   501   0.0 /System/Library/PrivateFrameworks/FileProvider.framework/Support/fileproviderd
+  588   501   0.0 /System/Library/PrivateFrameworks/AMPDevices.framework/Versions/A/Support/AMPDeviceDiscoveryAgent
+  590   501   0.0 /System/Library/CoreServices/iconservicesagent
+  591   501  14.3 /System/Library/PrivateFrameworks/CacheDelete.framework/deleted
+  592     0   0.0 /Library/Apple/System/Library/PrivateFrameworks/DeviceInterface.framework/Support/deviceinterfaced
+  593   501   0.0 /System/Library/PrivateFrameworks/ContinuousDialogManagerService.framework/assistant_cdmd
+  594   501   0.2 /System/Library/PrivateFrameworks/SiriTTSService.framework/sirittsd
+  595     0   0.0 /usr/sbin/filecoordinationd
+  596   260   0.0 /usr/libexec/nfcd
+  597   247   0.0 /usr/sbin/distnoted
+  598   501   0.0 /System/Library/PrivateFrameworks/FamilyCircle.framework/Versions/A/Resources/familycircled
+  599   501   0.0 /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd
+  602   501   0.0 /System/Library/CoreServices/ScopedBookmarkAgent
+  603     0   1.7 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd
+  604   501   0.0 /System/Library/Frameworks/NetFS.framework/Versions/A/XPCServices/PlugInLibraryService.xpc/Contents/MacOS/PlugInLibraryService
+  605   501   0.0 /System/Library/PrivateFrameworks/ProtectedCloudStorage.framework/Helpers/ProtectedCloudKeySyncing
+  606   501   0.3 /System/Library/CoreServices/Keychain Circle Notification.app/Contents/MacOS/Keychain Circle Notification
+  607   501   0.1 /System/Library/PrivateFrameworks/AOSKit.framework/Helpers/AOSHeartbeat.app/Contents/MacOS/AOSHeartbeat
+  608   501   0.0 /usr/libexec/seserviced
+  609   501   0.0 /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CMFSyncAgent
+  610   501   0.1 /System/Library/PrivateFrameworks/ScreenTimeCore.framework/Versions/A/ScreenTimeAgent
+  611   501   0.0 /System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService
+  613   235   0.0 /usr/libexec/AssetCache/AssetCache
+  614   501   0.0 /System/Library/Frameworks/ExtensionFoundation.framework/Versions/A/XPCServices/extensionkitservice.xpc/Contents/MacOS/extensionkitservice
+  615     0   0.0 /System/Library/PrivateFrameworks/AssetCacheServicesExtensions.framework/XPCServices/AssetCacheTetheratorService.xpc/Contents/MacOS/AssetCacheTetheratorService
+  617   501   0.0 /System/Library/PrivateFrameworks/CloudDocs.framework/PlugIns/com.apple.CloudDocs.iCloudDriveFileProvider.appex/Contents/MacOS/com.apple.CloudDocs.iCloudDriveFileProvider
+  618   501   1.1 /System/Library/PrivateFrameworks/IMCore.framework/imagent.app/Contents/MacOS/imagent
+  619   501   0.1 /System/Library/PrivateFrameworks/CloudTelemetry.framework/Versions/A/XPCServices/CloudTelemetryService.xpc/Contents/MacOS/CloudTelemetryService
+  620   501   8.9 /usr/libexec/searchpartyuseragent
+  622     0  18.5 /System/Library/PrivateFrameworks/TVIdleServices.framework/idleassetsd
+  623   501  16.6 /System/Library/PrivateFrameworks/IMDPersistence.framework/XPCServices/IMDPersistenceAgent.xpc/Contents/MacOS/IMDPersistenceAgent
+  624   501   0.0 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/XPCServices/com.apple.FaceTime.FTConversationService.xpc/Contents/MacOS/com.apple.FaceTime.FTConversationService
+  625   501   0.0 /System/Library/PrivateFrameworks/CoreThreadCommissionerService.framework/CoreThreadCommissionerServiced
+  626   501   0.0 /System/Library/PrivateFrameworks/UserActivity.framework/Agents/useractivityd
+  627   501   0.0 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoteagent
+  628   501   0.0 SafeEjectGPUAgent
+  629   501   0.0 /System/Library/CoreServices/Menu Extras/SafeEjectGPUExtra.menu/Contents/XPCServices/SafeEjectGPUService.xpc/Contents/MacOS/SafeEjectGPUService
+  631   501   0.0 /System/Library/PrivateFrameworks/SocialLayer.framework/sociallayerd.app/Contents/MacOS/sociallayerd
+  632   501  19.3 /System/Library/PrivateFrameworks/CoreSuggestions.framework/Versions/A/Support/suggestd
+  633     0   0.0 /System/Library/PrivateFrameworks/ModelCatalogRuntime.framework/Versions/A/modelcatalogd
+  634   501   0.0 /usr/libexec/avconferenced
+  635   501   0.0 /System/Library/PrivateFrameworks/EmailDaemon.framework/Versions/A/maild
+  636   501   0.0 /System/Library/Frameworks/ClassKit.framework/Versions/A/progressd
+  637   501   0.0 /usr/libexec/gamecontrolleragentd
+  638     0   0.0 /System/Library/PrivateFrameworks/CacheDelete.framework/deleted_helper
+  639   501   1.5 /usr/libexec/siriknowledged
+  640   501   0.4 /usr/libexec/replayd
+  641   501   9.3 /System/Library/CoreServices/diagnostics_agent
+  642   296   0.0 /usr/libexec/aneuserd
+  643   501  17.0 /System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstoreagent
+  644     0   0.0 /System/Library/PrivateFrameworks/PackageKit.framework/Resources/installd
+  645     0   0.0 /usr/libexec/aned
+  646   501   0.0 /System/Library/PrivateFrameworks/GeoServices.framework/geodMachServiceBridge
+  647   501   0.1 /System/Library/PrivateFrameworks/CalendarDaemon.framework/Support/calaccessd
+  648   501   0.9 /System/Library/CoreServices/WallpaperAgent.app/Contents/MacOS/WallpaperAgent
+  649     0   0.0 /System/Library/PrivateFrameworks/PackageKit.framework/Resources/system_installd
+  650   501   0.0 /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/corespotlightd
+  651   501   1.3 /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/Contents/PlugIns/CacheDeleteExtension.appex/Contents/MacOS/CacheDeleteExtension
+  652     0   0.0 /System/Library/CoreServices/osanalyticshelper
+  653   501   0.0 /System/Applications/TV.app/Contents/PlugIns/TVCacheExtension.appex/Contents/MacOS/TVCacheExtension
+  655   501   0.0 /System/Applications/System Settings.app/Contents/Resources/systemsettingsagent
+  656   501   0.0 /System/Library/PrivateFrameworks/AppleMediaServices.framework/Resources/amsaccountsd
+  657   501   0.1 /System/Library/CoreServices/UniversalControl.app/Contents/MacOS/UniversalControl
+  658   501   3.2 /usr/libexec/biomesyncd
+  659   501  13.6 /System/Library/PrivateFrameworks/AppleMediaServicesUI.framework/amsengagementd
+  660   501   0.0 /System/Applications/Music.app/Contents/PlugIns/MusicCacheExtension.appex/Contents/MacOS/MusicCacheExtension
+  661   268   0.0 /usr/libexec/nearbyd
+  662   501  16.9 /System/Library/PrivateFrameworks/ContextKit.framework/Versions/A/XPCServices/ContextService.xpc/Contents/MacOS/ContextService
+  663   274   0.0 /System/Library/PrivateFrameworks/InstallCoordination.framework/Support/installcoordinationd
+  667   501   1.1 /System/Applications/Mail.app/Contents/PlugIns/MailCacheDelete.appex/Contents/MacOS/MailCacheDelete
+  668     0   0.0 /System/Library/PrivateFrameworks/AppStoreDaemon.framework/Versions/A/XPCServices/com.apple.AppStoreDaemon.StorePrivilegedODRService.xpc/Contents/MacOS/com.apple.AppStoreDaemon.StorePrivilegedODRService
+  669   501  41.4 /usr/libexec/remindd
+  670   501   0.7 /System/Library/PrivateFrameworks/AXAssetLoader.framework/Support/axassetsd
+  671   501   0.0 /System/Library/CoreServices/pbs
+  672   301   0.3 /usr/libexec/modelmanagerd
+  673   501   1.0 /usr/libexec/swcd
+  674   501   4.9 /usr/libexec/promotedcontentd
+  675     0   0.3 /usr/sbin/bluetoothd
+  676     0   0.0 /System/Library/PrivateFrameworks/CloudTelemetry.framework/Versions/A/XPCServices/CloudTelemetryService.xpc/Contents/MacOS/CloudTelemetryService
+  677   235   0.5 /System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService
+  680     0   0.0 sleep
+  681   265   0.7 /usr/libexec/fairplaydeviceidentityd
+  683     0   0.0 /usr/sbin/BlueTool
+  684   501   1.6 /System/Library/CoreServices/audioaccessoryd
+  686   501  16.3 /usr/libexec/bluetoothuserd
+  689     0   0.0 sleep
+  691   501   5.4 /usr/libexec/findmydevice-user-agent
+  694     0  19.0 /System/Library/CoreServices/SubmitDiagInfo
+  695     0   1.8 /System/Library/CoreServices/CrashReporterSupportHelper
+  698     0   5.4 sleep
+  699     0   6.9 sleep
+  700     0   0.0 /usr/sbin/spindump
+  702     0   0.0 /bin/ps
+  703     0   0.0 /bin/bash
+  704     0   0.0 sleep
+  112     0   0.0 /usr/libexec/remoted

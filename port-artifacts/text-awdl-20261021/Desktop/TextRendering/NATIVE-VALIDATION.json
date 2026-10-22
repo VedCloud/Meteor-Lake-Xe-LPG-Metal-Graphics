@@ -1,0 +1,17 @@
+{
+  "nativeCTLineDrawInterception": "passed in ordinary host caller, sanitized and release",
+  "nativeAppKitGlyphRoute": "passed NSAttributedString with Arial and native San Francisco regular/bold variable fonts",
+  "transparentCPUTextImages": "passed deferred RGB coverage through CGImage to opaque destination, clipping, immutable ownership and native fallback",
+  "clipAndContextLifetime": "passed",
+  "IntelBuild": "compiled and signed; Dell execution pending",
+  "scope": "startup-loaded process-local supported sRGB CPU bitmap paths",
+  "systemAppsIntegrated": false,
+  "transparentCoreAnimationLayersIntegrated": false,
+  "lateLoadActivation": "unsupported; modern libdyld dynamic-interpose API is a no-op; exported activation returns zero",
+  "globalInjectionInstalled": false,
+  "sha256": {
+    "libLatitudeLCDNative-x86_64.dylib": "c501eb071666bf6449da4e7faab949b197a95a8b5af259a64d038bd8582dbdc3",
+    "test-appkit-x86_64": "42f3145f97b8daad097431510663fcf3aacc28db5cf9f80b99a7d82f59b7a752",
+    "test-interpose-x86_64": "9595eabe740f89f0e803575a159da27477fbd699101d70d041ac750e42808c80"
+  }
+}

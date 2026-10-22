@@ -1,0 +1,30 @@
+{
+  "commit": {
+    "message": "Add AppleLinkState protocol header",
+    "sha": "81ecf1a7e75c318dfc859ddabe5b91f4af757231",
+    "tree_url": "https://github.com/acidanthera/OpenCorePkg/tree/81ecf1a7e75c318dfc859ddabe5b91f4af757231",
+    "url": "https://github.com/acidanthera/OpenCorePkg/commit/81ecf1a7e75c318dfc859ddabe5b91f4af757231"
+  },
+  "date_authored": "2026-10-10T12:03:53+00:00",
+  "date_built": "2026-10-10T22:13:28.566579+00:00",
+  "date_committed": "2026-10-10T21:00:31+00:00",
+  "hashes": {
+    "debug": {
+      "sha256": "01e07a898e6548a95d530bffcb7d19b8a4437c82f135acda4537b7b689cbd205"
+    },
+    "release": {
+      "sha256": "7a68f7a0fe67f393ea2cd0a2ee52616ea10b40201ddf9eec5e0392f6f5921a5f"
+    }
+  },
+  "links": {
+    "debug": "https://github.com/dortania/build-repo/releases/download/OpenCorePkg-81ecf1a/OpenCore-1.0.9-DEBUG.zip",
+    "release": "https://github.com/dortania/build-repo/releases/download/OpenCorePkg-81ecf1a/OpenCore-1.0.9-RELEASE.zip"
+  },
+  "release": {
+    "description": "**Changes:**\nAdd AppleLinkState protocol header\n[View on GitHub](https://github.com/acidanthera/OpenCorePkg/commit/81ecf1a7e75c318dfc859ddabe5b91f4af757231) ([browse tree](https://github.com/acidanthera/OpenCorePkg/tree/81ecf1a7e75c318dfc859ddabe5b91f4af757231))\n\n**Hashes**:\n**Debug:**\nOpenCore-1.0.9-DEBUG.zip: 01e07a898e6548a95d530bffcb7d19b8a4437c82f135acda4537b7b689cbd205\n**Release:**\nOpenCore-1.0.9-RELEASE.zip: 7a68f7a0fe67f393ea2cd0a2ee52616ea10b40201ddf9eec5e0392f6f5921a5f",
+    "id": 409237979,
+    "url": "https://github.com/dortania/build-repo/releases/tag/OpenCorePkg-81ecf1a"
+  },
+  "source": "built",
+  "version": "1.0.9"
+}

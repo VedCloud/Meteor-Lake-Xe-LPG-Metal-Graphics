@@ -1,0 +1,23 @@
+# Dell27 standalone UEFI instruction probe 0.0.3
+
+This x86_64 UEFI application runs without Linux or Sequoia. It executes a bounded synthetic A64 program through a portable interpreter compiled into the EFI binary. It is **not a macOS 27 bootloader** and does not execute the Apple kernel. Complete privileged ARM execution, MMU, exception delivery, SIMD/FP, atomics, PAC, Apple interrupt/timer/device models, monitor memory management and the desktop path remain unimplemented here. The console explicitly stops at this boundary.
+
+The input admission stage inventories firmware RAM and GOP dimensions, verifies exact sizes and SHA-256 for the four pinned macOS 27.0 build 26A428 / Mac14,3 inputs, and validates ARM64 MH_FILESET load-command bounds. Invalid inputs prevent any probe execution. Input paths: macOS27/bootkc, dtree, sptm and txm on the same firmware filesystem. The prepared ramdisk remains in the hosted shell reference package.
+
+The new execution core implements a scalar A64 subset: move-wide, ADD/SUB and logical shifted-register operations, NZCV, ADR/ADRP, direct/conditional/register branches, calls/returns, unsigned-offset integer loads/stores, NOP and BRK. Explicit private buffers resolve guest addresses with permissions and overflow checks. Stores validate every byte before changing memory. Invalid maps, unsupported instructions, bad addresses and instruction budgets terminate execution. It never treats unsupported system instructions as successful no-ops. SP alignment is a fixed probe policy, not a complete architectural SCTLR model.
+
+Validation: ASan/UBSan with 85 execution and fault checks; a 69-instruction ARM payload produces the same 80 bytes as independently executed pinned QEMU TCG. The semihosting output wrapper runs only in QEMU; the EFI interpreter stops at BRK before that wrapper. The exact x86 EFI binary executes this probe inside OVMF and compares all 80 result bytes against the oracle. A separate OVMF run rejects a one-byte-altered device tree. Existing SHA-256 and malformed Mach-O admission tests remain applicable. These tests do not establish ARM kernel compatibility or Dell hardware boot success.
+
+Reproduce on the Corsair-backed build volume: python3 test-runtime.py, python3 build.py, python3 test-uefi.py. build.py reruns the scalar tests before compiling. The reference ELF tools and pinned QEMU are dependencies in this build workspace; their paths are explicit in the scripts.
+
+USB placement remains EFI/Tools/Dell27Preflight.efi on the small FAT volume. From Dell firmware Boot from File, select that path. Expected new output: PASS for the 69-instruction scalar probe, followed by STOP for the unimplemented privileged ARM/XNU runtime. This cannot install or start macOS. It remains outside EFI/BOOT/BOOTX64.EFI. The small FAT volume has a Microsoft Basic Data GPT type; automatic removable boot discovery has not been qualified. No Sequoia EFI was restored.
+
+Boot services remain active. No raw storage writes, GPU register writes or NVRAM modifications occur. Probe memory is released before returning. The old 0.0.1 package is archived on Corsair before publishing this version.
+
+Application and independently written instruction core: MIT. EDK2 headers: upstream licenses included. A64 encoding reference: Arm DDI 0602. QEMU is an external differential oracle; no QEMU implementation was copied into this MIT core. Apple inputs are private local files and must not be published.
+
+Version 0.0.3 adds a checked ARM64 MH_EXECUTE loader (813 boundary checks), selected non-trapping EL2 state (OSLAR, DAIF masks, CurrentEL, VBAR, reset HCR read), and an independent 19-instruction privileged probe whose 80 result bytes match QEMU with virtualization enabled. HCR writes, MMU controls and unsupported privilege/trap situations stop rather than reporting success. ISB is synchronous in this single-threaded interpreter with no JIT or prefetched state.
+
+After admission it rereads and rehashes SPTM before mapping it into private memory, executes its first branch and four setup instructions, then intentionally stops at the first boot-argument read. No boot-argument region is supplied. The guest base 0x800000000 is a bounded probe address, not a qualified Darwin board layout. The exact same five-instruction stop is checked in host sanitizer tests and x86 OVMF. This does not execute through SPTM initialization or boot the kernel.
+
+A broader engine candidate, Intel unicorn-for-efi, has now compiled on the Corsair build volume. It remains an unlinked library with firmware services and Apple compatibility unqualified. See FIRMWARE-ENGINE-RESEARCH.md and FIRMWARE-ENGINE-STATUS.json. It is separate from this tested EFI binary.

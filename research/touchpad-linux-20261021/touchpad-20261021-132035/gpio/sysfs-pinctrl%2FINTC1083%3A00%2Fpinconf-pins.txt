@@ -1,0 +1,291 @@
+Pin config settings per pin
+Format: pin (name): configs
+pin 0 (PECI): input bias disabled, input bias high impedance
+pin 1 (UFS_RESET_B): input bias disabled, input bias high impedance
+pin 2 (VIDSOUT): input bias disabled, input bias high impedance
+pin 3 (VIDSCK): input bias disabled, input bias high impedance
+pin 4 (VIDALERT_B): input bias disabled, input bias high impedance
+pin 5 (BATLOW_B): input bias high impedance, input bias pull up (20000 ohms)
+pin 6 (AC_PRESENT): input bias high impedance, input bias pull up (0 ohms)
+pin 7 (SOC_WAKE_B): input bias high impedance, input bias pull up (0 ohms)
+pin 8 (PWRBTN_B): input bias high impedance, input bias pull up (20000 ohms)
+pin 9 (SLP_S3_B): input bias disabled
+pin 10 (SLP_S4_B): input bias disabled
+pin 11 (SLP_A_B): input bias disabled
+pin 12 (GPP_V_7): input bias disabled, input bias high impedance
+pin 13 (SUSCLK): input bias disabled
+pin 14 (SLP_WLAN_B): input bias disabled
+pin 15 (SLP_S5_B): input bias disabled
+pin 16 (LANPHYPC): input bias disabled
+pin 17 (SLP_LAN_B): input bias disabled
+pin 18 (GPP_V_13): input bias disabled, input bias high impedance
+pin 19 (WAKE_B): input bias disabled
+pin 20 (GPP_V_15): input bias disabled, input bias high impedance
+pin 21 (GPP_V_16): input bias disabled, input bias high impedance
+pin 22 (GPP_V_17): input bias disabled, input bias high impedance
+pin 23 (GPP_V_18): input bias disabled, input bias high impedance
+pin 24 (CATERR_B): input bias disabled
+pin 25 (PROCHOT_B): input bias disabled
+pin 26 (THERMTRIP_B): input bias disabled
+pin 27 (DSI_DE_TE_2_GENLOCK_REF): input bias disabled
+pin 28 (DSI_DE_TE_1_DISP_UTILS): input bias disabled
+pin 29 (SMBCLK): input bias high impedance, input bias pull up (20000 ohms)
+pin 30 (SMBDATA): input bias high impedance, input bias pull up (20000 ohms)
+pin 31 (SMBALERT_B): input bias disabled, input bias high impedance
+pin 32 (SML0CLK): input bias disabled, input bias high impedance
+pin 33 (SML0DATA): input bias disabled, input bias high impedance
+pin 34 (GPP_C_5): input bias disabled, input bias high impedance
+pin 35 (GPP_C_6): input bias disabled, input bias high impedance
+pin 36 (GPP_C_7): input bias disabled, input bias high impedance
+pin 37 (GPP_C_8): input bias disabled, input bias high impedance
+pin 38 (GPP_C_9): input bias disabled, input bias high impedance
+pin 39 (GPP_C_10): input bias disabled
+pin 40 (GPP_C_11): input bias disabled, input bias high impedance
+pin 41 (GPP_C_12): input bias disabled, input bias high impedance
+pin 42 (GPP_C_13): input bias disabled, input bias high impedance
+pin 43 (GPP_C_14): input bias disabled, input bias high impedance
+pin 44 (GPP_C_15): input bias disabled, input bias high impedance
+pin 45 (GPP_C_16): input bias disabled, input bias high impedance
+pin 46 (GPP_C_17): input bias disabled, input bias high impedance
+pin 47 (GPP_C_18): input bias disabled, input bias high impedance
+pin 48 (GPP_C_19): input bias disabled, input bias high impedance
+pin 49 (GPP_C_20): input bias disabled, input bias high impedance
+pin 50 (GPP_C_21): input bias disabled, input bias high impedance
+pin 51 (GPP_C_22): input bias disabled, input bias high impedance
+pin 52 (GPP_C_23): input bias disabled, input bias high impedance
+pin 53 (ESPI_IO_0): input bias high impedance, input bias pull up (20000 ohms)
+pin 54 (ESPI_IO_1): input bias high impedance, input bias pull up (20000 ohms)
+pin 55 (ESPI_IO_2): input bias high impedance, input bias pull up (20000 ohms)
+pin 56 (ESPI_IO_3): input bias high impedance, input bias pull up (20000 ohms)
+pin 57 (ESPI_CS0_B): input bias high impedance, input bias pull up (20000 ohms)
+pin 58 (ESPI_CLK): input bias high impedance, input bias pull up (20000 ohms)
+pin 59 (ESPI_RESET_B): input bias disabled, input bias high impedance
+pin 60 (GPP_A_7): input bias disabled, input bias high impedance
+pin 61 (GPP_A_8): input bias disabled, input bias high impedance
+pin 62 (GPP_A_9): input bias disabled, input bias high impedance
+pin 63 (GPP_A_10): input bias disabled, input bias high impedance
+pin 64 (GPP_A_11): input bias disabled
+pin 65 (GPP_A_12): input bias disabled
+pin 66 (ESPI_CS1_B): input bias disabled, input bias high impedance
+pin 67 (ESPI_CS2_B): input bias disabled, input bias high impedance
+pin 68 (ESPI_CS3_B): input bias disabled, input bias high impedance
+pin 69 (ESPI_ALERT0_B): input bias disabled, input bias high impedance
+pin 70 (ESPI_ALERT1_B): input bias disabled, input bias high impedance
+pin 71 (ESPI_ALERT2_B): input bias disabled, input bias high impedance
+pin 72 (ESPI_ALERT3_B): input bias disabled, input bias high impedance
+pin 73 (GPP_A_20): input bias disabled, input bias high impedance
+pin 74 (GPP_A_21): input bias high impedance, input bias pull up (0 ohms)
+pin 75 (GPP_A_22): input bias high impedance, input bias pull up (0 ohms)
+pin 76 (GPP_A_23): input bias high impedance, input bias pull up (0 ohms)
+pin 77 (ESPI_CLK_LOOPBK): input bias disabled, input bias high impedance
+pin 78 (GPP_E_0): input bias disabled, input bias high impedance
+pin 79 (GPP_E_1): input bias disabled, input bias high impedance
+pin 80 (GPP_E_2): input bias disabled
+pin 81 (GPP_E_3): input bias disabled
+pin 82 (GPP_E_4): input bias disabled, input bias high impedance
+pin 83 (GPP_E_5): input bias disabled, input bias high impedance
+pin 84 (GPP_E_6): input bias disabled, input bias high impedance
+pin 85 (GPP_E_7): input bias disabled
+pin 86 (GPP_E_8): input bias disabled, input bias high impedance
+pin 87 (GPP_E_9): input bias disabled, input bias high impedance
+pin 88 (GPP_E_10): input bias disabled, input bias high impedance
+pin 89 (GPP_E_11): input bias disabled
+pin 90 (GPP_E_12): input bias disabled
+pin 91 (GPP_E_13): input bias disabled, input bias high impedance
+pin 92 (GPP_E_14): input bias disabled, input bias high impedance
+pin 93 (SLP_DRAM_B): input bias disabled, input bias high impedance
+pin 94 (GPP_E_16): input bias disabled, input bias high impedance
+pin 95 (GPP_E_17): input bias disabled
+pin 96 (GPP_E_18): input bias disabled, input bias high impedance
+pin 97 (GPP_E_19): input bias disabled, input bias high impedance
+pin 98 (GPP_E_20): input bias disabled, input bias high impedance
+pin 99 (GPP_E_21): input bias disabled, input bias high impedance
+pin 100 (DNX_FORCE_RELOAD): input bias disabled
+pin 101 (GPP_E_23): input bias disabled, input bias high impedance
+pin 102 (THC0_GSPI0_CLK_LOOPBK): input bias disabled, input bias high impedance
+pin 103 (GPP_H_0): input bias disabled, input bias high impedance
+pin 104 (GPP_H_1): input bias disabled, input bias high impedance
+pin 105 (GPP_H_2): input bias disabled
+pin 106 (GPP_H_3): input bias disabled, input bias high impedance
+pin 107 (GPP_H_4): input bias disabled, input bias high impedance
+pin 108 (GPP_H_5): input bias disabled, input bias high impedance
+pin 109 (GPP_H_6): input bias disabled, input bias high impedance
+pin 110 (GPP_H_7): input bias disabled, input bias high impedance
+pin 111 (GPP_H_8): input bias disabled, input bias high impedance
+pin 112 (GPP_H_9): input bias disabled, input bias high impedance
+pin 113 (GPP_H_10): input bias disabled
+pin 114 (GPP_H_11): input bias disabled
+pin 115 (GPP_H_12): input bias disabled, input bias high impedance
+pin 116 (CPU_C10_GATE_B): input bias disabled, input bias high impedance
+pin 117 (GPP_H_14): input bias disabled, input bias high impedance
+pin 118 (GPP_H_15): input bias disabled, input bias high impedance
+pin 119 (GPP_H_16): input bias disabled, input bias high impedance
+pin 120 (GPP_H_17): input bias disabled
+pin 121 (GPP_H_18): input bias disabled, input bias high impedance
+pin 122 (GPP_H_19): input bias disabled, input bias high impedance
+pin 123 (GPP_H_20): input bias disabled, input bias high impedance
+pin 124 (GPP_H_21): input bias disabled
+pin 125 (GPP_H_22): input bias disabled
+pin 126 (GPP_H_23): input bias disabled, input bias high impedance
+pin 127 (LPI3C1_CLK_LOOPBK): input bias high impedance, input bias pull up (0 ohms)
+pin 128 (I3C0_CLK_LOOPBK): input bias high impedance, input bias pull up (0 ohms)
+pin 129 (CNV_BRI_DT): input bias disabled, input bias high impedance
+pin 130 (CNV_BRI_RSP): input bias high impedance, input bias pull up (20000 ohms)
+pin 131 (CNV_RGI_DT): input bias disabled, input bias high impedance
+pin 132 (CNV_RGI_RSP): input bias high impedance, input bias pull up (20000 ohms)
+pin 133 (CNV_RF_RESET_B): input bias disabled, input bias high impedance
+pin 134 (CRF_CLKREQ): input bias disabled, input bias high impedance
+pin 135 (GPP_F_6): input bias disabled, input bias high impedance
+pin 136 (FUSA_DIAGTEST_EN): input bias disabled
+pin 137 (FUSA_DIAGTEST_MODE): input bias disabled
+pin 138 (BOOTMPC): input bias disabled
+pin 139 (GPP_F_10): input bias disabled
+pin 140 (GPP_F_11): input bias disabled
+pin 141 (GSXDOUT): input bias disabled
+pin 142 (GSXSLOAD): input bias disabled
+pin 143 (GSXDIN): input bias disabled, input bias high impedance
+pin 144 (GSXSRESETB): input bias disabled, input bias high impedance
+pin 145 (GSXCLK): input bias disabled
+pin 146 (GMII_MDC_0): input bias disabled
+pin 147 (GMII_MDIO_0): input bias disabled
+pin 148 (GPP_F_19): input bias disabled, input bias high impedance
+pin 149 (GPP_F_20): input bias disabled, input bias high impedance
+pin 150 (GPP_F_21): input bias disabled
+pin 151 (GPP_F_22): input bias disabled, input bias high impedance
+pin 152 (GPP_F_23): input bias disabled, input bias high impedance
+pin 153 (THC1_GSPI1_CLK_LOOPBK): input bias disabled, input bias high impedance
+pin 154 (GSPI0A_CLK_LOOPBK): input bias disabled, input bias high impedance
+pin 155 (SPI0_IO_2): input bias high impedance, input bias pull up (0 ohms)
+pin 156 (SPI0_IO_3): input bias high impedance, input bias pull up (0 ohms)
+pin 157 (SPI0_MOSI_IO_0): input bias high impedance, input bias pull up (0 ohms)
+pin 158 (SPI0_MISO_IO_1): input bias high impedance, input bias pull up (0 ohms)
+pin 159 (SPI0_TPM_CS_B): input bias high impedance, input bias pull up (0 ohms)
+pin 160 (SPI0_FLASH_0_CS_B): input bias high impedance, input bias pull up (0 ohms)
+pin 161 (SPI0_FLASH_1_CS_B): input bias high impedance, input bias pull up (0 ohms)
+pin 162 (SPI0_CLK): input bias high impedance, input bias pull up (0 ohms)
+pin 163 (L_BKLTEN): input bias disabled, input bias high impedance
+pin 164 (L_BKLTCTL): input bias disabled, input bias high impedance
+pin 165 (L_VDDEN): input bias disabled, input bias high impedance
+pin 166 (SYS_PWROK): input bias disabled, input bias high impedance
+pin 167 (SYS_RESET_B): input bias disabled, input bias high impedance
+pin 168 (MLK_RST_B): input bias disabled, input bias high impedance
+pin 169 (SPI0_CLK_LOOPBK): input bias disabled, input bias high impedance
+pin 170 (ESPI_USB_OCB_0): input bias disabled
+pin 171 (ESPI_USB_OCB_1): input bias disabled
+pin 172 (ESPI_USB_OCB_2): input bias disabled
+pin 173 (ESPI_USB_OCB_3): input bias disabled
+pin 174 (USB_CPU_OCB_0): input bias disabled
+pin 175 (USB_CPU_OCB_1): input bias disabled
+pin 176 (USB_CPU_OCB_2): input bias disabled
+pin 177 (USB_CPU_OCB_3): input bias disabled
+pin 178 (TS0_IN_INT): input bias disabled
+pin 179 (TS1_IN_INT): input bias disabled
+pin 180 (THC0_WOT_INT): input bias disabled
+pin 181 (THC1_WOT_INT): input bias disabled
+pin 182 (THC0_WHC_INT): input bias disabled
+pin 183 (THC1_WHC_INT): input bias disabled
+pin 184 (GPP_S_0): input bias disabled, input bias high impedance
+pin 185 (GPP_S_1): input bias disabled, input bias high impedance
+pin 186 (GPP_S_2): input bias disabled, input bias high impedance
+pin 187 (GPP_S_3): input bias disabled, input bias high impedance
+pin 188 (GPP_S_4): input bias disabled
+pin 189 (GPP_S_5): input bias disabled
+pin 190 (GPP_S_6): input bias disabled
+pin 191 (GPP_S_7): input bias disabled
+pin 192 (JTAG_MBPB0): input bias disabled, input bias high impedance
+pin 193 (JTAG_MBPB1): input bias disabled, input bias high impedance
+pin 194 (JTAG_MBPB2): input bias disabled, input bias high impedance
+pin 195 (JTAG_MBPB3): input bias disabled, input bias high impedance
+pin 196 (JTAG_TDO): input bias high impedance, input bias pull up (20000 ohms)
+pin 197 (PRDY_B): input bias disabled, input bias high impedance
+pin 198 (PREQ_B): input bias disabled, input bias high impedance
+pin 199 (JTAG_TDI): input bias high impedance, input bias pull up (20000 ohms)
+pin 200 (JTAG_TMS): input bias high impedance, input bias pull up (20000 ohms)
+pin 201 (JTAG_TCK): input bias high impedance, input bias pull down (20000 ohms)
+pin 202 (DBG_PMODE): input bias high impedance, input bias pull up (1000 ohms)
+pin 203 (JTAG_TRST_B): input bias high impedance, input bias pull down (20000 ohms)
+pin 204 (ADM_VID_0): input bias disabled, input bias high impedance
+pin 205 (ADM_VID_1): input bias disabled
+pin 206 (GPP_B_2): input bias disabled, input bias high impedance
+pin 207 (GPP_B_3): input bias disabled, input bias high impedance
+pin 208 (GPP_B_4): input bias disabled, input bias high impedance
+pin 209 (GPP_B_5): input bias disabled, input bias high impedance
+pin 210 (GPP_B_6): input bias disabled, input bias high impedance
+pin 211 (GPP_B_7): input bias disabled, input bias high impedance
+pin 212 (GPP_B_8): input bias disabled, input bias high impedance
+pin 213 (GPP_B_9): input bias disabled
+pin 214 (GPP_B_10): input bias disabled
+pin 215 (GPP_B_11): input bias disabled, input bias high impedance
+pin 216 (SLP_S0_B): input bias disabled, input bias high impedance
+pin 217 (PLTRST_B): input bias disabled, input bias high impedance
+pin 218 (GPP_B_14): input bias disabled, input bias high impedance
+pin 219 (GPP_B_15): input bias disabled
+pin 220 (GPP_B_16): input bias disabled, input bias high impedance
+pin 221 (GPP_B_17): input bias disabled, input bias high impedance
+pin 222 (GPP_B_18): input bias disabled
+pin 223 (GPP_B_19): input bias disabled
+pin 224 (GPP_B_20): input bias disabled
+pin 225 (GPP_B_21): input bias disabled
+pin 226 (GPP_B_22): input bias disabled
+pin 227 (GPP_B_23): input bias disabled
+pin 228 (ISH_I3C0_CLK_LOOPBK): input bias high impedance, input bias pull up (0 ohms)
+pin 229 (GPP_D_0): input bias disabled
+pin 230 (GPP_D_1): input bias disabled, input bias high impedance
+pin 231 (GPP_D_2): input bias disabled, input bias high impedance
+pin 232 (GPP_D_3): input bias disabled
+pin 233 (GPP_D_4): input bias disabled
+pin 234 (GPP_D_5): 
+pin 235 (GPP_D_6): 
+pin 236 (GPP_D_7): input bias disabled
+pin 237 (GPP_D_8): input bias disabled, input bias high impedance
+pin 238 (GPP_D_9): input bias disabled
+pin 239 (HDA_BCLK): input bias disabled
+pin 240 (HDA_SYNC): input bias high impedance, input bias pull up (0 ohms)
+pin 241 (HDA_SDO): input bias pull up (0 ohms)
+pin 242 (HDA_SDI_0): input bias high impedance, input bias pull up (0 ohms)
+pin 243 (GPP_D_14): input bias disabled, input bias high impedance
+pin 244 (GPP_D_15): input bias disabled, input bias high impedance
+pin 245 (GPP_D_16): input bias disabled, input bias high impedance
+pin 246 (HDA_RST_B): input bias disabled, input bias high impedance
+pin 247 (GPP_D_18): input bias disabled, input bias high impedance
+pin 248 (GPP_D_19): input bias disabled, input bias high impedance
+pin 249 (GPP_D_20): input bias disabled, input bias high impedance
+pin 250 (UFS_REFCLK): input bias disabled, input bias high impedance
+pin 251 (BPKI3C_SDA): input bias disabled, input bias high impedance
+pin 252 (BPKI3C_SCL): input bias disabled, input bias high impedance
+pin 253 (BOOTHALT_B): input bias high impedance, input bias pull up (20000 ohms)
+pin 254 (CNV_BTEN): input bias disabled
+pin 255 (CNV_BT_HOST_WAKEB): input bias disabled
+pin 256 (CNV_BT_IF_SELECT): input bias disabled
+pin 257 (vCNV_BT_UART_TXD): input bias disabled
+pin 258 (vCNV_BT_UART_RXD): input bias disabled
+pin 259 (vCNV_BT_UART_CTS_B): input bias disabled
+pin 260 (vCNV_BT_UART_RTS_B): input bias disabled
+pin 261 (vCNV_MFUART1_TXD): input bias disabled
+pin 262 (vCNV_MFUART1_RXD): input bias disabled
+pin 263 (vCNV_MFUART1_CTS_B): input bias disabled
+pin 264 (vCNV_MFUART1_RTS_B): input bias disabled
+pin 265 (vUART0_TXD): input bias disabled
+pin 266 (vUART0_RXD): input bias disabled
+pin 267 (vUART0_CTS_B): input bias disabled
+pin 268 (vUART0_RTS_B): input bias disabled
+pin 269 (vISH_UART0_TXD): input bias disabled
+pin 270 (vISH_UART0_RXD): input bias disabled
+pin 271 (vISH_UART0_CTS_B): input bias disabled
+pin 272 (vISH_UART0_RTS_B): input bias disabled
+pin 273 (vCNV_BT_I2S_BCLK): input bias disabled
+pin 274 (vCNV_BT_I2S_WS_SYNC): input bias disabled
+pin 275 (vCNV_BT_I2S_SDO): input bias disabled
+pin 276 (vCNV_BT_I2S_SDI): input bias disabled
+pin 277 (vI2S2_SCLK): input bias disabled
+pin 278 (vI2S2_SFRM): input bias disabled
+pin 279 (vI2S2_TXD): input bias disabled
+pin 280 (vI2S2_RXD): input bias disabled
+pin 281 (vCNV_BT_I2S_BCLK_2): input bias disabled
+pin 282 (vCNV_BT_I2S_WS_SYNC_2): input bias disabled
+pin 283 (vCNV_BT_I2S_SDO_2): input bias disabled
+pin 284 (vCNV_BT_I2S_SDI_2): input bias disabled
+pin 285 (vI2S2_SCLK_2): input bias disabled
+pin 286 (vI2S2_SFRM_2): input bias disabled
+pin 287 (vI2S2_TXD_2): input bias disabled
+pin 288 (vI2S2_RXD_2): input bias disabled

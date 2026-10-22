@@ -1,0 +1,40 @@
+{
+  "candidate": "batched-cache0.3.11",
+  "plugin_sha256": "e388688d61a5c7c962a3601a944b8d7711b2f61b62e20349bdcaf7b513358e6f",
+  "plugin_uuid": "DD0D07E5-EC2E-3580-9A73-2F2D6A109CFE",
+  "basis_report": "failure-detail-20261020-131729",
+  "readbacks": 56,
+  "weighted_phase_ms": [
+    9.01532142857143,
+    0.08783928571428572,
+    3.5698392857142855,
+    9.754125,
+    0.0009107142857142857
+  ],
+  "weighted_total_ms": 22.428035714285713,
+  "timeouts_in_live_log": 7,
+  "weather": "text unresolved;kernel45556wakeups/~8seconds;new collector samples running Weather",
+  "cpu_support": "Original Dell Linux cpuinfo lists clflushopt; runtime CPUID7EBX23 checked",
+  "change": "CLFLUSHOPT batch when supported,MFENCE before/after entire batch;otherwise exact old CLFLUSH loop;readback pre-submit and post-fence maintenance preserved",
+  "tests": [
+    "three plugin variants build",
+    "strict signature and no added external imports/missing exports",
+    "actual legacy cache/helper+readback padded/failure fixtures ASan/UBSan on x86_64 Rosetta",
+    "optimized dispatch/fence/range tests using injected CPUID/instruction callbacks;real CLFLUSHOPT not executed because Rosetta does not advertise support",
+    "compiled x86 fast-path CLFLUSHOPT/MFENCE verified by disassembly",
+    "loader/installer backup/rollback/one-shot fixtures",
+    "collector Weather present/absent and crash/panic retention/history-failure fixtures",
+    "release log policy"
+  ],
+  "unchanged": [
+    "host coherence workaround boundaries",
+    "fresh command pools",
+    "exclusive staging leases/quarantine/limits",
+    "Vulkan dependencies/fences/publication order",
+    "kernel/framebuffer/backend/transport/automatic name/sharedheap reporter",
+    "restored input EFI"
+  ],
+  "hardware_performance_verified": false,
+  "weather_text_fixed": false,
+  "full_gpu_suite_rerun": false
+}

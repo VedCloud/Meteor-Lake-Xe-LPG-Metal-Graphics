@@ -10,6 +10,7 @@
 #include "nmx_accel_names.h"
 #endif
 #include <IOKit/IOService.h>
+#include <i386/machine_routines.h>
 #include <IOKit/IOLib.h>
 #include <IOKit/pci/IOPCIDevice.h>
 #include <pexpert/pexpert.h>
@@ -91,7 +92,7 @@ SYSCTL_INT(_debug, OID_AUTO, nvaccel_igpu, CTLFLAG_RW | CTLFLAG_LOCKED | CTLFLAG
 
 extern "C" kern_return_t _start(kmod_info_t *ki, void *d); extern "C" kern_return_t _stop(kmod_info_t *ki, void *d);
 #ifdef NMX_ACCEL
-extern "C" { KMOD_EXPLICIT_DECL(com.nullmoth.NMXAccel, "0.2.4", _start, _stop) }
+extern "C" { KMOD_EXPLICIT_DECL(com.nullmoth.NMXAccel, "0.2.7", _start, _stop) }
 #else
 extern "C" { KMOD_EXPLICIT_DECL(com.nullmoth.NVAccel, "0.1", _start, _stop) }
 #endif
@@ -971,8 +972,16 @@ public:
     unsigned int        getPixelFormat() const;
     unsigned int        getSurfaceID() const;
 };
+class IOAccelDisplayPipeGammaTable2;
+struct LatitudeColourMatrix;
 class IOAccelDisplayPipeTransaction2 {
 public:
+    unsigned getTransactionOptions() const;
+    unsigned getPlaneTransactionOptions(unsigned) const;
+    IOAccelDisplayPipeGammaTable2 *getPlaneGammaTable(unsigned) const;
+    IOAccelDisplayPipeGammaTable2 *getPipePreGammaTable() const;
+    IOAccelDisplayPipeGammaTable2 *getPipePostGammaTable() const;
+    LatitudeColourMatrix getPipeColorMatrix() const;
     IOSurface *getPlaneIOSurface(unsigned int, unsigned int) const;
     OSObject  *getPlaneResource(unsigned int, unsigned int) const;
 };
@@ -1009,7 +1018,7 @@ void NVDisplayPipe::iopDropSources()
 static IOLock *gNmxFrontLock = nullptr;
 static thread_call_t gNmxFrontTimer = nullptr;
 static struct { const NVDisplayPipe *pipe; const volatile unsigned *src; unsigned w, h, pitch;
-                volatile unsigned *dst; unsigned dpitch; } gNmxFront;
+                volatile unsigned *dst; unsigned dpitch; IOSurface *surface; uint64_t published; IOService *framebuffer; uint64_t gamma; } gNmxFront;
 static SInt64 gCntNmxFrontCopies;
 static int gNmxFrontHz = 60;
 static unsigned gNmxFrontTicksLeft = 0;   // copies until the timer stops, refilled by each transaction
@@ -1020,39 +1029,72 @@ static int gNmxBlobScanout = 1;
 static SInt64 gCntNmxBlobFlips, gCntNmxBlobRefused;
 static unsigned gNmxBlobLogs = 0;
 
+#include "nmx/latitude_front_copy.h"
+#include "../latitude_gamma.h"
+static SInt64 gNmxFrontCopyNs=0,gNmxFrontCopyMaxNs=0,gNmxFrontSkipped=0;
+static uint64_t gNmxFrontNext=0;
+static uint64_t nmxPublished(IOSurface *s);
+static uint64_t nmxSurfaceNumber(IOSurface *s,const char *key);
+static SInt64 gNmxLateRefresh=0,gNmxIncompleteHeld=0;
+static SInt64 gNmxGammaCopies=0,gNmxGammaRefused=0,gNmxGammaNS=0;
+static bool nmxGetGamma(IOService *fb,LatitudeGamma *g){
+    latitudeGammaIdentity(g);if(!fb)return false;
+    const OSSymbol *sym=OSSymbol::withCStringNoCopy(LATITUDE_GAMMA_FUNCTION);if(!sym)return false;
+    IOReturn r=fb->callPlatformFunction(sym,false,g,nullptr,nullptr,nullptr);sym->release();return r==kIOReturnSuccess && g->version==LATITUDE_GAMMA_VERSION;
+}
+static bool nmxCopyWithGamma(IOService *fb,volatile unsigned *dst,const volatile unsigned *src,unsigned width,unsigned height,unsigned dpitch,unsigned spitch,uint64_t *generation){
+    LatitudeGamma gamma={};nmxGetGamma(fb,&gamma);if(generation)*generation=gamma.generation;
+    if(gamma.active && dst!=src){uint64_t start=mach_absolute_time(),ns=0;bool ok=latitudeGammaCopy(dst,src,width,height,dpitch,spitch,&gamma);absolutetime_to_nanoseconds(mach_absolute_time()-start,&ns);OSAddAtomic64((SInt64)ns,&gNmxGammaNS);OSAddAtomic64(1,ok?&gNmxGammaCopies:&gNmxGammaRefused);return ok;}
+    if(gamma.active)OSAddAtomic64(1,&gNmxGammaRefused);
+    const size_t bytes=((spitch<dpitch)?spitch:dpitch)&~3u;return latitudeFrontCopy(dst,src,height,bytes,dpitch,spitch);
+}
 static void nmxFrontCopyLocked()
 {
     if (!gNmxFront.src || !gNmxFront.dst) return;
-    const unsigned words = (((gNmxFront.pitch < gNmxFront.dpitch) ? gNmxFront.pitch : gNmxFront.dpitch) & ~3u) / 4;
-    const unsigned spr = gNmxFront.pitch / 4, dpr = gNmxFront.dpitch / 4;
-    for (unsigned y = 0; y < gNmxFront.h; y++) {
-        const volatile unsigned *sp = gNmxFront.src + (unsigned long)y * spr;
-        volatile unsigned *dp = gNmxFront.dst + (unsigned long)y * dpr;
-        for (unsigned x = 0; x < words; x++) dp[x] = sp[x];
-    }
+    uint64_t start=mach_absolute_time();
+    if(!nmxCopyWithGamma(gNmxFront.framebuffer,gNmxFront.dst,gNmxFront.src,gNmxFront.w,gNmxFront.h,gNmxFront.dpitch,gNmxFront.pitch,&gNmxFront.gamma))return;
+    uint64_t elapsed=0;absolutetime_to_nanoseconds(mach_absolute_time()-start,&elapsed);
+    OSAddAtomic64((SInt64)elapsed,&gNmxFrontCopyNs);
+    if(elapsed>(uint64_t)gNmxFrontCopyMaxNs)gNmxFrontCopyMaxNs=(SInt64)elapsed;
     OSAddAtomic64(1, &gCntNmxFrontCopies);
 }
 
 static void nmxFrontArm()
 {
-    const int hz = gNmxFrontHz;
-    if (!gNmxFrontTimer || hz <= 0) { gNmxFrontArmed = false; return; }
-    uint64_t d; clock_interval_to_deadline(1000000u / (unsigned)(hz < (int)kNmxFrontMaxHz ? hz : kNmxFrontMaxHz),
-                                           kMicrosecondScale, &d);
-    thread_call_enter_delayed(gNmxFrontTimer, d);
+    int hz=gNmxFrontHz;
+    if(!gNmxFrontTimer || !gNmxFrontLock)return;
+    IOLockLock(gNmxFrontLock);
+    if(hz<=0 || !gNmxFront.src || (!gNmxFrontTicksLeft && !gNmxFront.surface)){gNmxFrontArmed=false;gNmxFrontNext=0;IOLockUnlock(gNmxFrontLock);return;}
+    if(!gNmxFrontTicksLeft)hz=5;
+    uint64_t period=0,next=0,skipped=0;nanoseconds_to_absolutetime(1000000000ull/(unsigned)(hz<(int)kNmxFrontMaxHz?hz:kNmxFrontMaxHz),&period);
+    if(latitudeFrontNextDeadline(mach_absolute_time(),gNmxFrontNext,period,&next,&skipped)){
+        gNmxFrontNext=next;OSAddAtomic64((SInt64)skipped,&gNmxFrontSkipped);thread_call_enter_delayed(gNmxFrontTimer,next);
+    } else {gNmxFrontArmed=false;gNmxFrontNext=0;}
+    IOLockUnlock(gNmxFrontLock);
 }
 
 static void nmxFrontTick(thread_call_param_t, thread_call_param_t)
 {
     if (!gNmxFrontLock) return;
     IOLockLock(gNmxFrontLock);
-    nmxFrontCopyLocked();
-    const bool again = gNmxFront.src != nullptr && gNmxFrontTicksLeft && --gNmxFrontTicksLeft;
+    if(gNmxFront.framebuffer && gNmxFront.framebuffer->isInactive())gNmxFront.src=nullptr;
+    const uint64_t pending=gNmxFront.surface?nmxSurfaceNumber(gNmxFront.surface,"NMXPending"):0;
+    const uint64_t published=gNmxFront.surface?nmxPublished(gNmxFront.surface):0;
+    LatitudeGamma gamma={};nmxGetGamma(gNmxFront.framebuffer,&gamma);
+    if(pending){
+        if(published>=pending && (published!=gNmxFront.published || gamma.generation!=gNmxFront.gamma)){
+            nmxFrontCopyLocked();gNmxFront.published=published;OSAddAtomic64(1,&gNmxLateRefresh);
+        }
+    } else if(gNmxFrontTicksLeft || gamma.generation!=gNmxFront.gamma)nmxFrontCopyLocked();
+    if(gNmxFrontTicksLeft)--gNmxFrontTicksLeft;
+    const bool again=gNmxFront.src && (gNmxFrontTicksLeft || pending);
     gNmxFrontArmed = again;
+    if(!again)gNmxFrontNext=0;
     IOLockUnlock(gNmxFrontLock);
     if (again) nmxFrontArm();
 }
 
+#include "nmx/latitude_pipe_colour.inc"
 static void nmxFrontInit()
 {
     if (!gNmxFrontLock) gNmxFrontLock = IOLockAlloc();
@@ -1071,7 +1113,7 @@ IOReturn NVDisplayPipe::performTransaction(IOAccelDisplayPipeTransaction2 *txn)
             const int hz = gNmxFrontHz;
             gNmxFrontTicksLeft = hz > 0 ? (unsigned)(hz < (int)kNmxFrontMaxHz ? hz : kNmxFrontMaxHz) : 0;
             const bool arm = gNmxFront.src != nullptr && gNmxFrontTicksLeft && !gNmxFrontArmed;
-            if (arm) gNmxFrontArmed = true;
+            if (arm) {gNmxFrontArmed=true;gNmxFrontNext=0;}
             IOLockUnlock(gNmxFrontLock);
             if (arm) nmxFrontArm();
             return r;
@@ -1086,7 +1128,8 @@ void NVDisplayPipe::free()
 #ifdef NMX_ACCEL
     if (gNmxFrontLock) {
         IOLockLock(gNmxFrontLock);
-        if (gNmxFront.pipe == this) gNmxFront.src = nullptr;
+        if(gLatitudeColourCache.owner==this)latitudeColourCacheClear();
+        if (gNmxFront.pipe == this) {gNmxFront.src=nullptr;if(gNmxFront.surface){((OSObject *)gNmxFront.surface)->release();gNmxFront.surface=nullptr;}if(gNmxFront.framebuffer){gNmxFront.framebuffer->release();gNmxFront.framebuffer=nullptr;}}
         IOLockUnlock(gNmxFrontLock);
     }
 #endif
@@ -1176,6 +1219,13 @@ IOReturn NVDisplayPipe::performTransactionCopy(IOAccelDisplayPipeTransaction2 *t
     IOService *fb = a ? a->pipeFramebuffer(this, &head) : nullptr;
     if (!fb) NVIOP_FAIL(kIOReturnNotAttached, "no accelerator, or pipe %p drives a framebuffer that is none of ours", this);
 
+#ifdef NMX_ACCEL
+    if(head==0 && !latitudePipeColour(fb,txn,this)){
+        // Keep presentation alive on an unsupported colour encoding; expose it
+        // rather than claiming the missing transform was applied.
+        static unsigned colourRefusals;if(colourRefusals++<4)ALOG("Latitude colour dispatch not applied; see framebuffer registry");
+    }
+#endif
     IOSurface *s  = txn->getPlaneIOSurface(0, 0);
     OSObject  *ro = txn->getPlaneResource(0, 0);
     if (!s && !ro) { OSAddAtomic64(1, &gCntIopEmpty); return kIOReturnSuccess; }
@@ -1245,18 +1295,30 @@ IOReturn NVDisplayPipe::performTransactionCopy(IOAccelDisplayPipeTransaction2 *t
     const unsigned words = (((pitch < q.pitch) ? pitch : q.pitch) & ~3u) / 4;
     const unsigned spr = pitch / 4, dpr = q.pitch / 4;
     volatile unsigned int *d = (volatile unsigned int *)q.kva;
+#ifdef NMX_ACCEL
+    const uint64_t pending=s?nmxSurfaceNumber(s,"NMXPending"):0;
+    const uint64_t published=s?nmxPublished(s):0;
+    uint64_t copiedGamma=0;
+    if(pending && published<pending)OSAddAtomic64(1,&gNmxIncompleteHeld);
+    else if(!nmxCopyWithGamma(fb,d,src,w,h,q.pitch,pitch,&copiedGamma))return kIOReturnBadArgument;
+#else
     for (unsigned y = 0; y < h; y++) {
         const volatile unsigned int *sp = src + (unsigned long)y * spr;
         volatile unsigned int *dp = d + (unsigned long)y * dpr;
         for (unsigned x = 0; x < words; x++) dp[x] = sp[x];
     }
+#endif
     OSAddAtomic64(1, fromRes ? &gCntIopSrcRes : &gCntIopSrcSurf);
 #ifdef NMX_ACCEL
     // the copy source of a VM display becomes its front buffer (a resource's memory can go away under us: not those)
     if (gNmxVmDisplay && gNmxFrontLock) {
-        if (fromRes) gNmxFront.src = nullptr;
+        if (fromRes) {gNmxFront.src=nullptr;if(gNmxFront.surface){((OSObject *)gNmxFront.surface)->release();gNmxFront.surface=nullptr;}if(gNmxFront.framebuffer){gNmxFront.framebuffer->release();gNmxFront.framebuffer=nullptr;}}
         else { gNmxFront.pipe = this; gNmxFront.src = src; gNmxFront.w = w; gNmxFront.h = h; gNmxFront.pitch = pitch;
-               gNmxFront.dst = (volatile unsigned *)q.kva; gNmxFront.dpitch = q.pitch; }
+               gNmxFront.dst = (volatile unsigned *)q.kva; gNmxFront.dpitch = q.pitch;
+               if(gNmxFront.surface!=s){if(gNmxFront.surface){((OSObject *)gNmxFront.surface)->release();gNmxFront.surface=nullptr;}if(gNmxFront.framebuffer){gNmxFront.framebuffer->release();gNmxFront.framebuffer=nullptr;}gNmxFront.surface=s;if(s)((OSObject *)s)->retain();}
+               if(gNmxFront.framebuffer!=fb){if(gNmxFront.framebuffer)gNmxFront.framebuffer->release();gNmxFront.framebuffer=fb;if(fb)fb->retain();}
+               gNmxFront.gamma=copiedGamma;
+               gNmxFront.published=published; }
     }
 #endif
     const SInt64 n = OSAddAtomic64(1, &gCntIopOk);
@@ -1398,6 +1460,14 @@ static void nvaccelInstallSysctl(void)
 }
 static bool gVmSysctlInstalled = false;
 NVACCEL_CNT(nmxfb_front_copies, gCntNmxFrontCopies, "VM display: front-buffer copies onto the panel");
+NVACCEL_CNT(nmxfb_gamma_ns, gNmxGammaNS, "Cumulative nonidentity gamma copy nanoseconds");
+NVACCEL_CNT(nmxfb_gamma_copies, gNmxGammaCopies, "Nonidentity scanout gamma copies");
+NVACCEL_CNT(nmxfb_gamma_refused, gNmxGammaRefused, "Gamma copy requests refused or in-place source unsupported");
+NVACCEL_CNT(nmxfb_front_late_refresh, gNmxLateRefresh, "Completed front surface refreshed without a new WindowServer transaction");
+NVACCEL_CNT(nmxfb_front_incomplete_held, gNmxIncompleteHeld, "Kept previous scanout while the new surface publication was incomplete");
+NVACCEL_CNT(nmxfb_front_copy_ns, gNmxFrontCopyNs, "Physical front-buffer copy time, cumulative nanoseconds");
+NVACCEL_CNT(nmxfb_front_copy_max_ns, gNmxFrontCopyMaxNs, "Physical front-buffer maximum copy time, nanoseconds");
+NVACCEL_CNT(nmxfb_front_timer_skipped, gNmxFrontSkipped, "Front retry timer slots skipped to avoid catch-up bursts; not dropped rendered frames");
 SYSCTL_INT(_debug, OID_AUTO, nmxfb_front_hz, CTLFLAG_RW | CTLFLAG_LOCKED, &gNmxFrontHz, 0,
            "VM display: front-buffer copies per second for a second after each transaction (0 = only on transactions)");
 SYSCTL_INT(_debug, OID_AUTO, nmxfb_blob, CTLFLAG_RW | CTLFLAG_LOCKED, &gNmxBlobScanout, 0,
@@ -1421,7 +1491,15 @@ static void nmxInstallVmSysctls(void)
 {
     if (gVmSysctlInstalled) return;
     gVmSysctlInstalled = true;
-    sysctl_register_oid(&sysctl__debug_nmxfb_front_copies);  sysctl_register_oid(&sysctl__debug_nmxfb_front_hz);
+    sysctl_register_oid(&sysctl__debug_nmxfb_front_copies);
+    sysctl_register_oid(&sysctl__debug_nmxfb_gamma_ns);
+    sysctl_register_oid(&sysctl__debug_nmxfb_gamma_copies);
+    sysctl_register_oid(&sysctl__debug_nmxfb_gamma_refused);
+    sysctl_register_oid(&sysctl__debug_nmxfb_front_late_refresh);
+    sysctl_register_oid(&sysctl__debug_nmxfb_front_incomplete_held);
+    sysctl_register_oid(&sysctl__debug_nmxfb_front_copy_ns);
+    sysctl_register_oid(&sysctl__debug_nmxfb_front_timer_skipped);
+    sysctl_register_oid(&sysctl__debug_nmxfb_front_copy_max_ns);  sysctl_register_oid(&sysctl__debug_nmxfb_front_hz);
     sysctl_register_oid(&sysctl__debug_nmxfb_blob);
     sysctl_register_oid(&sysctl__debug_nmxfb_blob_flips);    sysctl_register_oid(&sysctl__debug_nmxfb_blob_refused);
     sysctl_register_oid(&sysctl__debug_nmxfb_blob_ordered);  sysctl_register_oid(&sysctl__debug_nmxfb_ord_waited);

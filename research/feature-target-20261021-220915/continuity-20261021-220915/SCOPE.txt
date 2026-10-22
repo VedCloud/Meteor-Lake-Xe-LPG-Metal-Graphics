@@ -1,0 +1,2 @@
+Read-only capture. No pairing, network changes, private capability flags, packet injection, file transfers or service restarts.
+An awdl0 name or advertised capability alone does not establish peer synchronization or an AirDrop transfer.

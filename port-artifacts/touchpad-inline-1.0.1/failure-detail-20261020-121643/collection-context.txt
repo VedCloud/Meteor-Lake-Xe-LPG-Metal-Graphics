@@ -1,0 +1,5 @@
+Tue 20 Oct 2026 12:16:44 BST
+kern.boottime: { sec = 1792494933, usec = 972033 } Tue Oct 20 12:15:33 2026
+ProductName:		macOS
+ProductVersion:		15.8.1
+BuildVersion:		24H32

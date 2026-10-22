@@ -1,0 +1,2 @@
+PID=163 sample_exit=0
+CPU percentages are ps lifetime averages; time is cumulative CPU time for delta analysis. Neither is an animation FPS measurement.

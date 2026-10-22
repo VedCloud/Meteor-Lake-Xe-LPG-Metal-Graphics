@@ -1,0 +1,21 @@
+{
+  "NMXAccel": [
+    "__ZNK29IOAccelDisplayPipeGammaTable213getTableCountEv",
+    "__ZNK29IOAccelDisplayPipeGammaTable213getTableEntryEjPfS0_S0_",
+    "__ZNK30IOAccelDisplayPipeTransaction218getPipeColorMatrixEv",
+    "__ZNK30IOAccelDisplayPipeTransaction218getPlaneGammaTableEj",
+    "__ZNK30IOAccelDisplayPipeTransaction220getPipePreGammaTableEv",
+    "__ZNK30IOAccelDisplayPipeTransaction221getPipePostGammaTableEv",
+    "__ZNK30IOAccelDisplayPipeTransaction221getTransactionOptionsEv",
+    "__ZNK30IOAccelDisplayPipeTransaction226getPlaneTransactionOptionsEj",
+    "_kOSBooleanFalse",
+    "_memcmp",
+    "_ml_set_interrupts_enabled"
+  ],
+  "LatitudeMTLFB": [
+    "__ZN20IOACPIPlatformDevice9metaClassE",
+    "__ZN7OSArray9metaClassE",
+    "__ZN9IOService12nameMatchingEPKcP12OSDictionary",
+    "__ZN9IOService19getMatchingServicesEP12OSDictionary"
+  ]
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "sourcePath": "/sys/devices/pci0000:00/0000:00:12.0/{33AECD58-B679-4E54-9BD9-A04D34F0C226}/001F:8087:0AC2.0003",
+    "layoutFile": "sensor-0003.json",
+    "descriptorSHA256": "ad4fd6d27a6ce46801f4b7d29ab1cf26e6e90e7ee7688828f579ff11d5080809",
+    "accelerometerInputFields": []
+  },
+  {
+    "sourcePath": "/sys/devices/pci0000:00/0000:00:12.0/{33AECD58-B679-4E54-9BD9-A04D34F0C226}/001F:8087:0AC2.0004",
+    "layoutFile": "sensor-0004.json",
+    "descriptorSHA256": "9ca3a9d95f155bc23644a41e01d5e6680147958df8a22fb03dff4129a14526de",
+    "accelerometerInputFields": []
+  },
+  {
+    "sourcePath": "/sys/devices/pci0000:00/0000:00:12.0/{33AECD58-B679-4E54-9BD9-A04D34F0C226}/001F:8087:0AC2.0005",
+    "layoutFile": "sensor-0005.json",
+    "descriptorSHA256": "21bf18e85863cdb9f87574dbc784134562bcf0cb92f805a9618c5bcf16f9c90a",
+    "accelerometerInputFields": []
+  },
+  {
+    "sourcePath": "/sys/devices/pci0000:00/0000:00:12.0/{33AECD58-B679-4E54-9BD9-A04D34F0C226}/001F:8087:0AC2.0006",
+    "layoutFile": "sensor-0006.json",
+    "descriptorSHA256": "c27ec39155c1dc56ea12ab0a231be92ebfd0e56e9089dd8482c4edc564b9f278",
+    "accelerometerInputFields": [
+      {
+        "type": "input",
+        "reportID": 3,
+        "bitOffset": 208,
+        "bitWidth": 32,
+        "usage": 2098259,
+        "collectionPath": [
+          2097153,
+          2097267
+        ],
+        "flags": 2,
+        "constant": false,
+        "variable": true,
+        "logicalMin": -2147483648,
+        "logicalMax": 2147483647,
+        "unit": 0,
+        "unitExponent": -6
+      },
+      {
+        "type": "input",
+        "reportID": 3,
+        "bitOffset": 240,
+        "bitWidth": 32,
+        "usage": 2098260,
+        "collectionPath": [
+          2097153,
+          2097267
+        ],
+        "flags": 2,
+        "constant": false,
+        "variable": true,
+        "logicalMin": -2147483648,
+        "logicalMax": 2147483647,
+        "unit": 0,
+        "unitExponent": -6
+      },
+      {
+        "type": "input",
+        "reportID": 3,
+        "bitOffset": 272,
+        "bitWidth": 32,
+        "usage": 2098261,
+        "collectionPath": [
+          2097153,
+          2097267
+        ],
+        "flags": 2,
+        "constant": false,
+        "variable": true,
+        "logicalMin": -2147483648,
+        "logicalMax": 2147483647,
+        "unit": 0,
+        "unitExponent": -6
+      }
+    ]
+  }
+]

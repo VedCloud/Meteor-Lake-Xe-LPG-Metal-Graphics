@@ -1,0 +1,18 @@
+{
+  "candidate": "unified-20261021",
+  "graphicsBinariesChanged": false,
+  "copilotPreserved": true,
+  "normalBoot": "accelerated",
+  "HIDD": "scoped visibility patch + live state 0.2.0; Dell boot pending",
+  "inputSuppressionEnabled": false,
+  "automaticRotationEnabled": false,
+  "ISHRuntimeImplemented": false,
+  "keyboard": "0.2.0 qualified mode and editable-field integration; target test and Accessibility required",
+  "FreeType": "real filtered LCD and CoreText frontend passed; global app interception/compositor integration incomplete",
+  "AWDL": "source audit and diagnostics; radio data plane not implemented",
+  "theme": "GoldenGateExt",
+  "hideAuxiliary": true,
+  "auxiliaryReveal": "Spacebar",
+  "chime": "enabled with matching AudioDxe; physical output not yet tested",
+  "backup": "/Users/ved/Documents/iGPU Port/backups/unified-before-20261021-171850"
+}

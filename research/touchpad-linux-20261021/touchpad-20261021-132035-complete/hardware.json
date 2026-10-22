@@ -1,0 +1,170 @@
+{
+  "target": {
+    "event": "event11",
+    "name": "VEN_04F3:00 04F3:328E Touchpad",
+    "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001/input/input15",
+    "vendor": 1267,
+    "product": 12942,
+    "bus": 24
+  },
+  "routing": [
+    {
+      "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001/input/input15",
+      "name": "VEN_04F3:00 04F3:328E Touchpad",
+      "modalias": "input:b0018v04F3p328Ee0100-e0,1,3,4,k110,145,148,14A,14D,14E,14F,ra0,1,2F,35,36,37,39,m5,lsfw",
+      "uevent": "PRODUCT=18/4f3/328e/100\nNAME=\"VEN_04F3:00 04F3:328E Touchpad\"\nPHYS=\"i2c-VEN_04F3:00\"\nUNIQ=\"\"\nPROP=5\nEV=1b\nKEY=e520 10000 0 0 0 0\nABS=2e0800000000003\nMSC=20\nMODALIAS=input:b0018v04F3p328Ee0100-e0,1,3,4,k110,145,148,14A,14D,14E,14F,ra0,1,2F,35,36,37,39,m5,lsfw",
+      "power/control": "auto",
+      "power/runtime_status": "unsupported",
+      "power/runtime_active_time": "0",
+      "power/runtime_suspended_time": "0",
+      "subsystemPath": "/sys/class/input"
+    },
+    {
+      "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001",
+      "modalias": "hid:b0018g0004v000004F3p0000328E",
+      "uevent": "DRIVER=hid-multitouch\nHID_ID=0018:000004F3:0000328E\nHID_NAME=VEN_04F3:00 04F3:328E\nHID_PHYS=i2c-VEN_04F3:00\nHID_UNIQ=\nMODALIAS=hid:b0018g0004v000004F3p0000328E",
+      "power/control": "auto",
+      "power/runtime_status": "unsupported",
+      "power/runtime_active_time": "0",
+      "power/runtime_suspended_time": "0",
+      "driverPath": "/sys/bus/hid/drivers/hid-multitouch",
+      "subsystemPath": "/sys/bus/hid"
+    },
+    {
+      "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00",
+      "name": "VEN_04F3:00",
+      "modalias": "acpi:VEN_04F3:PNP0C50:",
+      "uevent": "DRIVER=i2c_hid_acpi\nMODALIAS=acpi:VEN_04F3:PNP0C50:",
+      "power/control": "auto",
+      "power/runtime_status": "unsupported",
+      "power/runtime_active_time": "0",
+      "power/runtime_suspended_time": "0",
+      "firmware_node/path": "\\_SB_.PC00.I2C3.TPD0",
+      "firmware_node/hid": "VEN_04F3",
+      "firmware_node/status": "15",
+      "firmware_node/modalias": "acpi:VEN_04F3:PNP0C50:",
+      "driverPath": "/sys/bus/i2c/drivers/i2c_hid_acpi",
+      "firmware_nodePath": "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:2c/VEN_04F3:00",
+      "subsystemPath": "/sys/bus/i2c"
+    },
+    {
+      "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1",
+      "name": "Synopsys DesignWare I2C adapter",
+      "uevent": "",
+      "firmware_node/path": "\\_SB_.PC00.I2C3",
+      "firmware_nodePath": "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:2c",
+      "subsystemPath": "/sys/bus/i2c"
+    },
+    {
+      "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1",
+      "modalias": "platform:i2c_designware",
+      "uevent": "DEVTYPE=mfd_device\nDRIVER=i2c_designware\nMODALIAS=platform:i2c_designware",
+      "power/control": "auto",
+      "power/runtime_status": "suspended",
+      "power/runtime_active_time": "7188",
+      "power/runtime_suspended_time": "64581",
+      "firmware_node/path": "\\_SB_.PC00.I2C3",
+      "driverPath": "/sys/bus/platform/drivers/i2c_designware",
+      "firmware_nodePath": "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:2c",
+      "subsystemPath": "/sys/bus/platform"
+    },
+    {
+      "path": "/sys/devices/pci0000:00/0000:00:15.3",
+      "modalias": "pci:v00008086d00007E7Bsv00001028sd00000CB6bc0Csc80i00",
+      "irq": "35",
+      "uevent": "DRIVER=intel-lpss\nPCI_CLASS=C8000\nPCI_ID=8086:7E7B\nPCI_SUBSYS_ID=1028:0CB6\nPCI_SLOT_NAME=0000:00:15.3\nMODALIAS=pci:v00008086d00007E7Bsv00001028sd00000CB6bc0Csc80i00",
+      "power/control": "auto",
+      "power/runtime_status": "suspended",
+      "power/runtime_active_time": "7515",
+      "power/runtime_suspended_time": "64503",
+      "firmware_node/path": "\\_SB_.PC00.I2C3",
+      "driverPath": "/sys/bus/pci/drivers/intel-lpss",
+      "firmware_nodePath": "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:2c",
+      "subsystemPath": "/sys/bus/pci"
+    },
+    {
+      "path": "/sys/devices/pci0000:00",
+      "uevent": "",
+      "power/control": "auto",
+      "power/runtime_status": "unsupported",
+      "power/runtime_active_time": "0",
+      "power/runtime_suspended_time": "0",
+      "firmware_node/path": "\\_SB_.PC00",
+      "firmware_node/hid": "PNP0A08",
+      "firmware_node/modalias": "acpi:PNP0A08:PNP0A03:",
+      "firmware_nodePath": "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00"
+    }
+  ],
+  "hidDescriptor": {
+    "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001/report_descriptor",
+    "hex": "05010902a10185010901a10005091901290215002501750195028102950681030501093009311581257f750895028106750895058103c00600ff0901850e09c5150026ff0075089504b102c0050d0905a10185540509090115002501750195018102750195038103050d0954250f750495018102050d095615002564550c66011047ffff000027ffff0000751095018102050d0922a10209470942150025017501950281027501950281030951250f75049501810205010930150026b80d3500466a2c550d6511751095018102093126d20746aa1946aa198102c0050d0922a10209470942150025017501950281027501950281030951250f75049501810205010930150026b80d3500466a2c550d6511751095018102093126d20746aa1946aa198102c0050d0922a10209470942150025017501950281027501950281030951250f75049501810205010930150026b80d3500466a2c550d6511751095018102093126d20746aa1946aa198102c0050d0922a10209470942150025017501950281027501950281030951250f75049501810205010930150026b80d3500466a2c550d6511751095018102093126d20746aa1946aa198102c0050d0922a10209470942150025017501950281027501950281030951250f75049501810205010930150026b80d3500466a2c550d6511751095018102093126d20746aa1946aa198102c0050d85020955095975049502250fb102850709607501950115002501b102950fb1030600ff0600ff850609c5150026ff007508960001b102c0050d090ea10185030922a10009521500250a75109501b102c00922a100850509570958750195022501b102950eb103c0c00600ff0901a101855c0901950b75088106850d09c5150026ff0075089504b102850c09c69648037508b102850b09c79682007508b102c0"
+  },
+  "kernel": "6.19.10-300.fc44.x86_64",
+  "inputDevices": "I: Bus=0019 Vendor=0000 Product=0005 Version=0000\nN: Name=\"Lid Switch\"\nP: Phys=PNP0C0D/button/input0\nS: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0D:00/input/input0\nU: Uniq=\nH: Handlers=event0 \nB: PROP=0\nB: EV=21\nB: SW=1\n\nI: Bus=0019 Vendor=0000 Product=0001 Version=0000\nN: Name=\"Power Button\"\nP: Phys=PNP0C0C/button/input0\nS: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input1\nU: Uniq=\nH: Handlers=kbd event1 \nB: PROP=0\nB: EV=3\nB: KEY=8000 10000000000000 0\n\nI: Bus=0019 Vendor=0000 Product=0003 Version=0000\nN: Name=\"Sleep Button\"\nP: Phys=PNP0C0E/button/input0\nS: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input2\nU: Uniq=\nH: Handlers=kbd event2 \nB: PROP=0\nB: EV=3\nB: KEY=4000 0 0\n\nI: Bus=0011 Vendor=0001 Product=0001 Version=ab83\nN: Name=\"AT Translated Set 2 keyboard\"\nP: Phys=isa0060/serio0/input0\nS: Sysfs=/devices/platform/i8042/serio0/input/input3\nU: Uniq=\nH: Handlers=sysrq kbd leds event3 \nB: PROP=0\nB: EV=120013\nB: KEY=2000000000000000 0 40000 0 0 0 0 10100f02902007 f780307cfb10f001 feffffdfffcfffff fffffffffffffffe\nB: MSC=10\nB: LED=7\n\nI: Bus=0011 Vendor=0002 Product=0001 Version=0000\nN: Name=\"PS/2 Generic Mouse\"\nP: Phys=isa0060/serio1/input0\nS: Sysfs=/devices/platform/i8042/serio1/input/input5\nU: Uniq=\nH: Handlers=mouse0 event4 \nB: PROP=1\nB: EV=7\nB: KEY=70000 0 0 0 0\nB: REL=3\n\nI: Bus=0018 Vendor=04f3 Product=328e Version=0100\nN: Name=\"VEN_04F3:00 04F3:328E Mouse\"\nP: Phys=i2c-VEN_04F3:00\nS: Sysfs=/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001/input/input14\nU: Uniq=\nH: Handlers=mouse5 event10 \nB: PROP=0\nB: EV=17\nB: KEY=30000 0 0 0 0\nB: REL=3\nB: MSC=10\n\nI: Bus=0018 Vendor=04f3 Product=328e Version=0100\nN: Name=\"VEN_04F3:00 04F3:328E Touchpad\"\nP: Phys=i2c-VEN_04F3:00\nS: Sysfs=/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001/input/input15\nU: Uniq=\nH: Handlers=mouse6 event11 \nB: PROP=5\nB: EV=1b\nB: KEY=e520 10000 0 0 0 0\nB: ABS=2e0800000000003\nB: MSC=20\n\nI: Bus=0018 Vendor=056a Product=4a19 Version=0100\nN: Name=\"Wacom HID 4A19 Pen\"\nP: Phys=i2c-WACF3233:00\nS: Sysfs=/devices/pci0000:00/0000:00:15.0/i2c_designware.0/i2c-0/i2c-WACF3233:00/0018:056A:4A19.0002/input/input17\nU: Uniq=\nH: Handlers=mouse1 event5 \nB: PROP=2\nB: EV=1b\nB: KEY=1c03 0 0 0 0 0\nB: ABS=1000d000003\nB: MSC=21\n\nI: Bus=0018 Vendor=056a Product=4a19 Version=0100\nN: Name=\"Wacom HID 4A19 Finger\"\nP: Phys=i2c-WACF3233:00\nS: Sysfs=/devices/pci0000:00/0000:00:15.0/i2c_designware.0/i2c-0/i2c-WACF3233:00/0018:056A:4A19.0002/input/input18\nU: Uniq=\nH: Handlers=mouse2 event6 \nB: PROP=2\nB: EV=1b\nB: KEY=400 0 0 0 0 0\nB: ABS=260800000000003\nB: MSC=20\n\nI: Bus=0019 Vendor=0000 Product=0006 Version=0000\nN: Name=\"Video Bus\"\nP: Phys=LNXVIDEO/video/input0\nS: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input20\nU: Uniq=\nH: Handlers=kbd event7 \nB: PROP=0\nB: EV=3\nB: KEY=3e000b00000000 0 0 0\n\nI: Bus=0019 Vendor=0000 Product=0000 Version=0000\nN: Name=\"Intel HID events\"\nP: Phys=\nS: Sysfs=/devices/platform/INTC1077:00/input/input21\nU: Uniq=\nH: Handlers=kbd event8 rfkill \nB: PROP=0\nB: EV=13\nB: KEY=81000300000000 5000004000 1e294000000020 0\nB: MSC=10\n\nI: Bus=0019 Vendor=0000 Product=0000 Version=0000\nN: Name=\"Intel HID 5 button array\"\nP: Phys=\nS: Sysfs=/devices/platform/INTC1077:00/input/input22\nU: Uniq=\nH: Handlers=kbd event9 \nB: PROP=0\nB: EV=13\nB: KEY=2000000000000 0 0 0 0 1000000000000 0 201c000000000000 0\nB: MSC=10\n\nI: Bus=0019 Vendor=0000 Product=0000 Version=0000\nN: Name=\"Intel HID switches\"\nP: Phys=\nS: Sysfs=/devices/platform/INTC1077:00/input/input23\nU: Uniq=\nH: Handlers=event12 \nB: PROP=0\nB: EV=21\nB: SW=2\n\nI: Bus=0010 Vendor=001f Product=0001 Version=0100\nN: Name=\"PC Speaker\"\nP: Phys=isa0061/input0\nS: Sysfs=/devices/platform/pcspkr/input/input24\nU: Uniq=\nH: Handlers=kbd event13 \nB: PROP=0\nB: EV=40001\nB: SND=6\n\nI: Bus=0019 Vendor=0000 Product=0000 Version=0000\nN: Name=\"Dell Privacy Driver\"\nP: Phys=\nS: Sysfs=/devices/platform/PNP0C14:02/wmi_bus/wmi_bus-PNP0C14:02/6932965F-1671-4CEB-B988-D3AB0A901919-6/input/input25\nU: Uniq=\nH: Handlers=kbd event14 \nB: PROP=0\nB: EV=13\nB: KEY=101000000000000 0 0 0\nB: MSC=10\n\nI: Bus=0019 Vendor=0000 Product=0000 Version=0000\nN: Name=\"Dell WMI hotkeys\"\nP: Phys=\nS: Sysfs=/devices/platform/PNP0C14:02/wmi_bus/wmi_bus-PNP0C14:02/9DBB5994-A997-11DA-B012-B622A1EF5492-8/input/input26\nU: Uniq=\nH: Handlers=kbd event15 rfkill \nB: PROP=0\nB: EV=13\nB: KEY=c0000 0 0 800000000000 0 0 101500b00000c00 200300000 e000000000000 0\nB: MSC=10\n\nI: Bus=0000 Vendor=0000 Product=0000 Version=0000\nN: Name=\"HDA Intel PCH Headphone Mic\"\nP: Phys=ALSA\nS: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input27\nU: Uniq=\nH: Handlers=event16 \nB: PROP=0\nB: EV=21\nB: SW=4\n\nI: Bus=0000 Vendor=0000 Product=0000 Version=0000\nN: Name=\"HDA Intel PCH HDMI/DP,pcm=3\"\nP: Phys=ALSA\nS: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input28\nU: Uniq=\nH: Handlers=event17 \nB: PROP=0\nB: EV=21\nB: SW=140\n\nI: Bus=0000 Vendor=0000 Product=0000 Version=0000\nN: Name=\"HDA Intel PCH HDMI/DP,pcm=7\"\nP: Phys=ALSA\nS: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input29\nU: Uniq=\nH: Handlers=event18 \nB: PROP=0\nB: EV=21\nB: SW=140\n\nI: Bus=0000 Vendor=0000 Product=0000 Version=0000\nN: Name=\"HDA Intel PCH HDMI/DP,pcm=8\"\nP: Phys=ALSA\nS: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input30\nU: Uniq=\nH: Handlers=event19 \nB: PROP=0\nB: EV=21\nB: SW=140\n\nI: Bus=0000 Vendor=0000 Product=0000 Version=0000\nN: Name=\"HDA Intel PCH HDMI/DP,pcm=9\"\nP: Phys=ALSA\nS: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input31\nU: Uniq=\nH: Handlers=event20 \nB: PROP=0\nB: EV=21\nB: SW=140",
+  "libinputDevices": {
+    "exit": 0,
+    "stdout": "Device:                  Video Bus\nKernel:                  /dev/input/event7\nId:                      host:0000:0006\nGroup:                   1\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Power Button\nKernel:                  /dev/input/event1\nId:                      host:0000:0001\nGroup:                   2\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Lid Switch\nKernel:                  /dev/input/event0\nId:                      host:0000:0005\nGroup:                   3\nSeat:                    seat0, default\nCapabilities:            switch\nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Sleep Button\nKernel:                  /dev/input/event2\nId:                      host:0000:0003\nGroup:                   4\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Wacom HID 4A19 Pen\nKernel:                  /dev/input/event5\nId:                      i2c:056a:4a19\nGroup:                   5\nSeat:                    seat0, default\nSize:                    294x165mm\nCapabilities:            tablet \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             disabled\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             identity matrix\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          none\nRotation:                n/a\nArea rectangle:          n/a\n\nDevice:                  Wacom HID 4A19 Finger\nKernel:                  /dev/input/event6\nId:                      i2c:056a:4a19\nGroup:                   5\nSeat:                    seat0, default\nSize:                    294x165mm\nCapabilities:            touch \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             identity matrix\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  VEN_04F3:00 04F3:328E Mouse\nKernel:                  /dev/input/event10\nId:                      i2c:04f3:328e\nGroup:                   6\nSeat:                    seat0, default\nCapabilities:            pointer \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             disabled\nNat.scrolling:           disabled\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          button\nScroll button:           BTN_RIGHT\nScroll button lock:      disabled\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          flat *adaptive custom\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  VEN_04F3:00 04F3:328E Touchpad\nKernel:                  /dev/input/event11\nId:                      i2c:04f3:328e\nGroup:                   6\nSeat:                    seat0, default\nSize:                    113x67mm\nCapabilities:            pointer gesture\nTap-to-click:            disabled\nTap-and-drag:            enabled\nTap button map:          left/right/middle\nTap drag lock:           disabled\nLeft-handed:             disabled\nNat.scrolling:           disabled\nMiddle emulation:        disabled\nCalibration:             n/a\nScroll methods:          *two-finger edge \nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           *button-areas clickfinger \nClickfinger button map:  left/right/middle\nDisable-w-typing:        enabled\nDisable-w-trackpointing: enabled\nAccel profiles:          flat *adaptive custom\nRotation:                n/a\nArea rectangle:          n/a\n\nDevice:                  Intel HID events\nKernel:                  /dev/input/event8\nId:                      host:0000:0000\nGroup:                   7\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Intel HID 5 button array\nKernel:                  /dev/input/event9\nId:                      host:0000:0000\nGroup:                   8\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Intel HID switches\nKernel:                  /dev/input/event12\nId:                      host:0000:0000\nGroup:                   9\nSeat:                    seat0, default\nCapabilities:            switch\nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Dell Privacy Driver\nKernel:                  /dev/input/event14\nId:                      host:0000:0000\nGroup:                   10\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  Dell WMI hotkeys\nKernel:                  /dev/input/event15\nId:                      host:0000:0000\nGroup:                   11\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  AT Translated Set 2 keyboard\nKernel:                  /dev/input/event3\nId:                      serial:0001:0001\nGroup:                   12\nSeat:                    seat0, default\nCapabilities:            keyboard \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             n/a\nNat.scrolling:           n/a\nMiddle emulation:        n/a\nCalibration:             n/a\nScroll methods:          none\nScroll button:           n/a\nScroll button lock:      n/a\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          n/a\nRotation:                0.0\nArea rectangle:          n/a\n\nDevice:                  PS/2 Generic Mouse\nKernel:                  /dev/input/event4\nId:                      serial:0002:0001\nGroup:                   13\nSeat:                    seat0, default\nCapabilities:            pointer \nTap-to-click:            n/a\nTap-and-drag:            n/a\nTap button map:          n/a\nTap drag lock:           n/a\nLeft-handed:             disabled\nNat.scrolling:           disabled\nMiddle emulation:        disabled\nCalibration:             n/a\nScroll methods:          *button\nScroll button:           BTN_MIDDLE\nScroll button lock:      disabled\nClick methods:           none\nClickfinger button map:  n/a\nDisable-w-typing:        n/a\nDisable-w-trackpointing: n/a\nAccel profiles:          flat *adaptive custom\nRotation:                0.0\nArea rectangle:          n/a\n\n",
+    "stderr": ""
+  },
+  "lspci": {
+    "exit": 0,
+    "stdout": "00:00.0 Host bridge [0600]: Intel Corporation Device [8086:7d02] (rev 04)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: igen6_edac\n\tKernel modules: igen6_edac\n00:02.0 VGA compatible controller [0300]: Intel Corporation Meteor Lake-P [Intel Graphics] [8086:7d45] (rev 08)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: i915\n\tKernel modules: i915, xe\n00:04.0 Signal processing controller [1180]: Intel Corporation Meteor Lake-P Dynamic Tuning Technology [8086:7d03] (rev 04)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: proc_thermal_pci\n\tKernel modules: processor_thermal_device_pci\n00:06.0 PCI bridge [0604]: Intel Corporation Arrow Lake-H/U PCIe Root Port #11 (PXPE) [8086:7ecb] (rev 10)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:07.0 PCI bridge [0604]: Intel Corporation Meteor Lake-P Thunderbolt 4 PCI Express Root Port #2 [8086:7ec6] (rev 10)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:07.3 PCI bridge [0604]: Intel Corporation Meteor Lake-P Thunderbolt 4 PCI Express Root Port #3 [8086:7ec7] (rev 10)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:08.0 System peripheral [0880]: Intel Corporation Meteor Lake-P Gaussian & Neural-Network Accelerator [8086:7e4c] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n00:0a.0 Signal processing controller [1180]: Intel Corporation Meteor Lake-P Platform Monitoring Technology [8086:7d0d] (rev 01)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel_vsec\n\tKernel modules: intel_vsec\n00:0b.0 Processing accelerators [1200]: Intel Corporation Meteor Lake NPU [8086:7d1d] (rev 04)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel_vpu\n\tKernel modules: intel_vpu\n00:0d.0 USB controller [0c03]: Intel Corporation Meteor Lake-P Thunderbolt 4 USB Controller [8086:7ec0] (rev 10)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: xhci_hcd\n\tKernel modules: xhci_pci\n00:0d.3 USB controller [0c03]: Intel Corporation Meteor Lake-P Thunderbolt 4 NHI #1 [8086:7ec3] (rev 10)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: thunderbolt\n\tKernel modules: thunderbolt\n00:12.0 Serial controller [0700]: Intel Corporation Meteor Lake-P Integrated Sensor Hub [8086:7e45] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel_ish_ipc\n\tKernel modules: intel_ish_ipc\n00:14.0 USB controller [0c03]: Intel Corporation Meteor Lake-P USB 3.2 Gen 2x1 xHCI Host Controller [8086:7e7d] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: xhci_hcd\n\tKernel modules: xhci_pci\n00:14.2 RAM memory [0500]: Intel Corporation Meteor Lake-H/U Shared SRAM [8086:7e7f] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel_pmc_ssram_telemetry\n\tKernel modules: intel_pmc_ssram_telemetry\n00:14.3 Network controller [0280]: Intel Corporation Meteor Lake PCH CNVi WiFi [8086:7e40] (rev 20)\n\tSubsystem: Intel Corporation Device [8086:4090]\n\tKernel driver in use: iwlwifi\n\tKernel modules: iwlwifi\n00:15.0 Serial bus controller [0c80]: Intel Corporation Meteor Lake-P Serial IO I2C Controller #0 [8086:7e78] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel-lpss\n\tKernel modules: intel_lpss_pci\n00:15.3 Serial bus controller [0c80]: Intel Corporation Meteor Lake-P Serial IO I2C Controller #3 [8086:7e7b] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel-lpss\n\tKernel modules: intel_lpss_pci\n00:16.0 Communication controller [0780]: Intel Corporation Meteor Lake-P CSME HECI #1 [8086:7e70] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: mei_me\n\tKernel modules: mei_me\n00:16.3 Serial controller [0700]: Intel Corporation Meteor Lake-P Keyboard and Text (KT) Redirection [8086:7e73] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: serial\n\tKernel modules: 8250_pci\n00:1e.0 Communication controller [0780]: Intel Corporation Meteor Lake-P Serial IO UART Controller #0 [8086:7e25] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel-lpss\n\tKernel modules: intel_lpss_pci\n00:1f.0 ISA bridge [0601]: Intel Corporation Device [8086:7e03] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n00:1f.3 Audio device [0403]: Intel Corporation Meteor Lake-P HD Audio Controller [8086:7e28] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: snd_hda_intel\n\tKernel modules: snd_sof_pci_intel_mtl, snd_hda_intel\n00:1f.4 SMBus [0c05]: Intel Corporation Meteor Lake-P SMBus Controller [8086:7e22] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: i801_smbus\n\tKernel modules: i2c_i801\n00:1f.5 Serial bus controller [0c80]: Intel Corporation Meteor Lake-P SPI Controller [8086:7e23] (rev 20)\n\tSubsystem: Dell Device [1028:0cb6]\n\tKernel driver in use: intel-spi\n\tKernel modules: spi_intel_pci\n01:00.0 Non-Volatile memory controller [0108]: KIOXIA Corporation NVMe SSD Controller BG6 (DRAM-less) [1e0f:001a] (rev 01)\n\tSubsystem: KIOXIA Corporation NVMe SSD Controller BG6 (DRAM-less) [1e0f:001a]\n\tKernel driver in use: nvme\n\tKernel modules: nvme\n",
+    "stderr": ""
+  },
+  "debugfsMount": {
+    "exit": 0,
+    "stdout": "/sys/kernel/debug\n",
+    "stderr": ""
+  },
+  "openedName": "VEN_04F3:00 04F3:328E Touchpad",
+  "openedIdentity": {
+    "bus": 24,
+    "vendor": 1267,
+    "product": 12942,
+    "version": 256
+  },
+  "absoluteRanges": {
+    "0": {
+      "minimum": 0,
+      "maximum": 3512,
+      "fuzz": 0,
+      "flat": 0,
+      "resolution": 31
+    },
+    "1": {
+      "minimum": 0,
+      "maximum": 2002,
+      "fuzz": 0,
+      "flat": 0,
+      "resolution": 30
+    },
+    "47": {
+      "minimum": 0,
+      "maximum": 4,
+      "fuzz": 0,
+      "flat": 0,
+      "resolution": 0
+    },
+    "53": {
+      "minimum": 0,
+      "maximum": 3512,
+      "fuzz": 0,
+      "flat": 0,
+      "resolution": 31
+    },
+    "54": {
+      "minimum": 0,
+      "maximum": 2002,
+      "fuzz": 0,
+      "flat": 0,
+      "resolution": 30
+    },
+    "57": {
+      "minimum": 0,
+      "maximum": 65535,
+      "fuzz": 0,
+      "flat": 0,
+      "resolution": 0
+    }
+  }
+}

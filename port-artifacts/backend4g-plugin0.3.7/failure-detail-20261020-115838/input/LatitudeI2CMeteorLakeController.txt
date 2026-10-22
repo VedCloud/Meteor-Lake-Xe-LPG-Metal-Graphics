@@ -1,0 +1,50 @@
++-o LatitudeI2CMeteorLakeController  <class LatitudeI2CMeteorLakeController, id 0x10000034d, registered, matched, active, busy 0 (1 ms), retain 10>
+  | {
+  |   "IOClass" = "LatitudeI2CMeteorLakeController"
+  |   "CFBundleIdentifier" = "com.ved.LatitudeI2CMeteorLake"
+  |   "I2CSclFallingTimeNs" = 208
+  |   "IOProviderClass" = "IOPCIDevice"
+  |   "IOPowerManagement" = {"ChildrenPowerState"=1,"CurrentPowerState"=1,"CapabilityFlags"=2,"MaxPowerState"=1}
+  |   "VoodooI2CServices Supported" = Yes
+  |   "IOProbeScore" = 10001
+  |   "IOPCIMatch" = "0x7e7b8086"
+  |   "IOPCISecondaryMatch" = "0x0cb61028"
+  |   "IOMatchedAtBoot" = Yes
+  |   "IOMatchCategory" = "IODefaultMatchCategory"
+  |   "LatitudeI2CD0Verified" = Yes
+  |   "I2CSdaFallingTimeNs" = 171
+  |   "I2CClkRate" = 133000000
+  |   "CFBundleIdentifierKernel" = "com.ved.LatitudeI2CMeteorLake"
+  |   "I2CSdaHoldTimeNs" = 42
+  | }
+  | 
+  +-o VoodooI2CControllerNub  <class VoodooI2CControllerNub, id 0x100000351, registered, matched, active, busy 0 (1 ms), retain 9>
+    | {
+    |   "VoodooI2CServices Supported" = Yes
+    |   "LatitudeI2CControllerStage" = "publishing-devices"
+    |   "LatitudeI2CControllerType" = 1146552640
+    | }
+    | 
+    +-o VoodooI2CControllerDriver  <class VoodooI2CControllerDriver, id 0x100000353, registered, matched, active, busy 0 (0 ms), retain 8>
+      | {
+      |   "IOProbeScore" = 9999
+      |   "CFBundleIdentifier" = "com.alexandred.VoodooI2C"
+      |   "IOProviderClass" = "VoodooI2CControllerNub"
+      |   "IOClass" = "VoodooI2CControllerDriver"
+      |   "IOMatchCategory" = "IODefaultMatchCategory"
+      |   "CFBundleIdentifierKernel" = "com.alexandred.VoodooI2C"
+      |   "IOMatchedAtBoot" = Yes
+      |   "BusConfig" = {"SDA_HOLD"=65542,"SS_LCNT"=652,"FS_HCNT"=100,"FS_LCNT"=200,"SS_HCNT"=552}
+      |   "IOPowerManagement" = {"CapabilityFlags"=2,"MaxPowerState"=1,"CurrentPowerState"=1}
+      |   "VoodooI2CServices Supported" = Yes
+      | }
+      | 
+      +-o VoodooI2CDeviceNub  <class VoodooI2CDeviceNub, id 0x100000358, !registered, !matched, active, busy 0, retain 4>
+          {
+            "_STA" = 15
+            "name" = <"VEN_04F3">
+            "compatible" = <"PNP0C50">
+            "acpi-device" = "IOACPIPlatformDevice is not serializable"
+          }
+          
+

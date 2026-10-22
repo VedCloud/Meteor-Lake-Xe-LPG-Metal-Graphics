@@ -1,0 +1,2 @@
+PASS 813 loader boundary checks
+SPTM entry probe: segments=8 bytes=1261568 entry=0x8000a8388 retired=5 stop=DATA_FAULT instruction=0xf9400280 pc=0x8000ab010 address=0x0

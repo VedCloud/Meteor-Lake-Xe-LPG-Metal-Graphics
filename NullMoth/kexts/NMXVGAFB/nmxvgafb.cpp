@@ -24,7 +24,12 @@
 #ifdef LATITUDE_MTL_PANEL
 #include "latitude_scanout.h"
 #include "latitude_gpu_identity.h"
+#include "latitude_backlight.inc"
+#include "latitude_panel_edid.h"
+#include "../NVRM/latitude_gamma.h"
+#include <IOKit/ndrvsupport/IOMacOSVideo.h>
 #include <IOKit/IOUserClient.h>
+#include <IOKit/acpi/IOACPIPlatformDevice.h>
 #endif
 #include <sys/sysctl.h>
 #include <sys/proc.h>
@@ -35,7 +40,7 @@
 #include <mach/kmod.h>
 extern "C" kern_return_t _start(kmod_info_t *ki, void *d); extern "C" kern_return_t _stop(kmod_info_t *ki, void *d);
 #ifdef LATITUDE_MTL_PANEL
-extern "C" { KMOD_EXPLICIT_DECL(com.nullmoth.LatitudeMTLFB, "0.2.5", _start, _stop) }
+extern "C" { KMOD_EXPLICIT_DECL(com.nullmoth.LatitudeMTLFB, "0.2.8", _start, _stop) }
 #else
 extern "C" { KMOD_EXPLICIT_DECL(com.nullmoth.NMXVGAFB, "0.1", _start, _stop) }
 #endif
@@ -46,6 +51,17 @@ extern "C" kern_return_t _stop(kmod_info_t *ki, void *d)  { return KERN_SUCCESS;
 class NMXVGAFB : public IOFramebuffer {
     OSDeclareDefaultStructors(NMXVGAFB)
 #ifdef LATITUDE_MTL_PANEL
+    LatitudeBacklightHandler *fBacklight=nullptr;
+    IOLock *fGammaLock=nullptr;LatitudeGamma fGamma={};
+    IOReturn latitudeSetGamma(UInt32 channels,UInt32 count,UInt32 width,void *data){
+        LatitudeGamma next={};if(!latitudeGammaBuild(channels,count,width,data,&next))return kIOReturnBadArgument;
+        if(!fGammaLock)return kIOReturnNotReady;
+        IOLockLock(fGammaLock);bool changed=memcmp(next.rgb,fGamma.rgb,sizeof next.rgb)!=0;
+        next.generation=fGamma.generation+(changed?1:0);fGamma=next;IOLockUnlock(fGammaLock);
+        setProperty("LatitudeGammaActive",next.active?kOSBooleanTrue:kOSBooleanFalse);setProperty("LatitudeGammaGeneration",next.generation,64);
+        setProperty("LatitudeGammaChannels",channels,32);setProperty("LatitudeGammaCount",count,32);setProperty("LatitudeGammaWidth",width,32);
+        return kIOReturnSuccess;
+    }
     bool fPanelTiming = false;
     bool fPanelMemoryValidated = false;
     bool adoptLatitudePanel(IOPCIDevice *pci);
@@ -234,6 +250,17 @@ public:
 #ifdef LATITUDE_MTL_PANEL
     IOReturn setProperties(OSObject *properties) override;
 #endif
+#ifdef LATITUDE_MTL_PANEL
+    void free() override {
+        if(fBacklight){fBacklight->disable();if(fBacklight->getProvider()==this)fBacklight->detach(this);OSSafeReleaseNULL(fBacklight);}
+        if(fGammaLock){IOLockFree(fGammaLock);fGammaLock=nullptr;}
+        IOFramebuffer::free();
+    }
+    IOReturn getAppleSense(IOIndex idx,UInt32 *sense,UInt32 *primary,UInt32 *extended,UInt32 *type) override {
+        if(idx || !fBacklight)return kIOReturnUnsupported;
+        if(sense)*sense=0;if(primary)*primary=0;if(extended)*extended=0;if(type)*type=kGenericLCD;return kIOReturnSuccess;
+    }
+#endif
     void stop(IOService *provider) override;
 
     IOReturn enableController() override { return kIOReturnSuccess; }
@@ -278,6 +305,10 @@ public:
         const Timing t = timingFor(w, h);
         bzero(info, sizeof(*info));
         info->maxDepthIndex = 0; info->nominalWidth = w; info->nominalHeight = h;
+#ifdef LATITUDE_MTL_PANEL
+        uint32_t mmW=0,mmH=0;
+        if(latitudeEDIDGeometry(fEdid,fEdidLen,w,h,&mmW,&mmH)){info->imageWidth=mmW;info->imageHeight=mmH;}
+#endif
         info->refreshRate = (IOFixed1616)(((uint64_t)t.mhz << 16) / 1000);
         info->flags = kDisplayModeValidFlag | kDisplayModeSafeFlag | (mode == fAdvID ? kDisplayModeDefaultFlag : 0);
         return kIOReturnSuccess;
@@ -321,8 +352,13 @@ public:
     }
     IOReturn unregisterInterrupt(void *) override { return kIOReturnSuccess; }
     IOReturn setInterruptState(void *, UInt32) override { return kIOReturnSuccess; }
-    IOReturn setGammaTable(UInt32, UInt32, UInt32, void *) override { return kIOReturnSuccess; }
-    IOReturn setGammaTable(UInt32, UInt32, UInt32, void *, bool) override { return kIOReturnSuccess; }
+#ifdef LATITUDE_MTL_PANEL
+    IOReturn setGammaTable(UInt32 c,UInt32 n,UInt32 b,void *d) override {return latitudeSetGamma(c,n,b,d);}
+    IOReturn setGammaTable(UInt32 c,UInt32 n,UInt32 b,void *d,bool) override {return latitudeSetGamma(c,n,b,d);}
+#else
+    IOReturn setGammaTable(UInt32,UInt32,UInt32,void *) override {return kIOReturnSuccess;}
+    IOReturn setGammaTable(UInt32,UInt32,UInt32,void *,bool) override {return kIOReturnSuccess;}
+#endif
     IOReturn setCLUTWithEntries(IOColorEntry *, UInt32, UInt32, IOOptionBits) override { return kIOReturnSuccess; }
     IOReturn setApertureEnable(IOPixelAperture, IOOptionBits) override { return kIOReturnSuccess; }
     IOReturn setStartupDisplayMode(IODisplayModeID, IOIndex) override { return kIOReturnSuccess; }
@@ -693,6 +729,13 @@ bool NMXVGAFB::adoptLatitudePanel(IOPCIDevice *pci)
         setProperty("LatitudePanelScanout",fBase,64); setProperty("LatitudePanelRefreshMilliHz",mhz,64);
         VFBLOG("Latitude: validated firmware panel %ux%u pitch %u pipe %c at %u.%03u Hz",fWidth,fHeight,fRowBytes,
                'A'+pipe,fRefreshMHz/1000,fRefreshMHz%1000);
+        uint32_t mmW=0,mmH=0;
+        if(latitudeEDIDGeometry(latitudePanelEDID,sizeof latitudePanelEDID,fWidth,fHeight,&mmW,&mmH)){
+            memcpy(fEdid,latitudePanelEDID,sizeof latitudePanelEDID);fEdidLen=sizeof latitudePanelEDID;
+            setProperty("LatitudePanelWidthMM",mmW,32);setProperty("LatitudePanelHeightMM",mmH,32);
+            setProperty("LatitudePanelEDIDSource","Dell Linux capture 20261012 eDP-1");
+        }
+        fBacklight=LatitudeBacklightHandler::create(mmio,pipe);
         found=true; break;
     }
     mmio->release();
@@ -705,6 +748,11 @@ bool NMXVGAFB::adoptLatitudePanel(IOPCIDevice *pci)
 
 bool NMXVGAFB::start(IOService *provider)
 {
+#ifdef LATITUDE_MTL_PANEL
+    fGammaLock=IOLockAlloc();if(!fGammaLock)return false;latitudeGammaIdentity(&fGamma);
+    setProperty("LatitudeGammaBackend","CPU scanout LUT; identity uses bulk copy");
+    setProperty(kIOFBGammaWidthKey,16ull,32);setProperty(kIOFBGammaCountKey,256ull,32);
+#endif
     // the mode the firmware lit (GOP): base, size and pitch of the linear framebuffer
     VFBLOG("start: reading the firmware framebuffer");
     PE_Video v;
@@ -785,6 +833,12 @@ bool NMXVGAFB::start(IOService *provider)
     fAdvW = fWidth; fAdvH = fHeight;
     VFBLOG("start: %ux%u pitch %u at 0x%llx, %u.%03u Hz, calling IOFramebuffer::start", fWidth, fHeight, fRowBytes,
            (unsigned long long)fBase, fRefreshMHz / 1000, fRefreshMHz % 1000);
+#ifdef LATITUDE_MTL_PANEL
+    if(fBacklight){
+        if(fBacklight->attach(this)){fBacklight->registerService(kIOServiceSynchronous);setProperty(kIODisplayHasBacklightKey,kOSBooleanTrue);}
+        else {fBacklight->disable();OSSafeReleaseNULL(fBacklight);}
+    }
+#endif
     if (!IOFramebuffer::start(provider)) { VFBLOG("start: IOFramebuffer::start failed"); return false; }
     VFBLOG("start: IOFramebuffer::start returned");
     if (fVirtioOn) {
@@ -854,6 +908,9 @@ bool NMXVGAFB::start(IOService *provider)
 void NMXVGAFB::stop(IOService *provider)
 {
     fStopping = true;
+#ifdef LATITUDE_MTL_PANEL
+    if(fBacklight){fBacklight->disable();fBacklight->detach(this);OSSafeReleaseNULL(fBacklight);}
+#endif
     if (OSCompareAndSwapPtr(this, nullptr, (void * volatile *)&gVtInst)) {
         sysctl_unregister_oid(&sysctl__debug_nmxfb_vtiming);
         sysctl_unregister_oid(&sysctl__debug_nmxfb_vtrace);
@@ -1063,6 +1120,17 @@ static IOReturn nmxVramFree(NVRMVramRequest *r)
 // NMXAccel's display pipe asks its heads for their scan-out: a CPU mapping and no GPU address, so frames arrive by copy
 IOReturn NMXVGAFB::callPlatformFunction(const OSSymbol *fn, bool wait, void *p1, void *p2, void *p3, void *p4)
 {
+#ifdef LATITUDE_MTL_PANEL
+    if(fn && fn->isEqualTo("latitudeSetTransactionGamma")){
+        auto gamma=(const LatitudeGamma *)p1;if(!gamma||gamma->version!=LATITUDE_GAMMA_VERSION||fStopping)return kIOReturnBadArgument;
+        IOReturn result=latitudeSetGamma(3,256,8,(void *)gamma->rgb);
+        if(result==kIOReturnSuccess)setProperty("LatitudeGammaSource","Display transaction");return result;
+    }
+    if(fn && fn->isEqualTo(LATITUDE_GAMMA_FUNCTION)){
+        auto out=(LatitudeGamma *)p1;if(!out||out->version!=LATITUDE_GAMMA_VERSION||!fGammaLock||fStopping)return kIOReturnBadArgument;
+        IOLockLock(fGammaLock);*out=fGamma;IOLockUnlock(fGammaLock);return kIOReturnSuccess;
+    }
+#endif
     // NMXAccel armed this head (phase 1): remember it for open(), and let WindowServer go on
     if (fn && fn->isEqualTo("nmxDisplayReady")) {
         IOService *a = OSDynamicCast(IOService, (OSObject *)p1);

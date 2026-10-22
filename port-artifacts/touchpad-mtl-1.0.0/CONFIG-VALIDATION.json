@@ -1,0 +1,16 @@
+{
+  "baseline": "usable-desktop-real-memory-0.2.5-20261019-232025",
+  "semantic_changes": [
+    "one scoped I2C3 controller kext",
+    "one TPD0 SSDT",
+    "force-polling only on PCI15.3"
+  ],
+  "all_enabled_kext_paths_valid": true,
+  "single_voodoo_input_enabled": true,
+  "boot_args_unchanged": true,
+  "PS2_fallback_preserved": true,
+  "HID_nullguard_preserved": true,
+  "no_gpu_model_or_vram_injection": true,
+  "config_sha256": "851fa908d4cc352cd38aa6e9a13dce98b73e8dae452a743cbd032bc2a2fec84f",
+  "hardware_verified": false
+}

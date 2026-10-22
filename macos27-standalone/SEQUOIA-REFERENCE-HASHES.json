@@ -1,0 +1,8 @@
+{
+  "desktop-sources/latitude_scanout.h": "7cc7da62070176ea7c7705c310866ea15505f962fa97850d676b437d92789923",
+  "desktop-sources/test-scanout.cpp": "0218c18f5d4ac6696b9e2484503635c26d86ca2fa4237857a4dc03d23cb15269",
+  "NullMoth/kexts/NMXVGAFB/nmxvgafb.cpp": "b37d3917589d7d765895f5fbc591ef0d11941986490cfd9bd8eb433315646da7",
+  "NullMoth/plugin/nvmtl_vk.c": "da6ee40ddfb6e5d33ef23944bf57711f36d475b9c86f6e57fcd0aa42e5eebc27",
+  "NullMoth/gpu-port/xkpi/xnu/nmx_kext.cpp": "c80af7a9d42d8a6c4f82fe9327657fb073c965f0a1a8137733ceb0b134d19447",
+  "NullMoth/gpu-port/patches/mesa-macos.patch": "5ebeef3a0466e7d3a91519b8da9af3e6a000e5e37ef8774e134be7bb572bcc3a"
+}

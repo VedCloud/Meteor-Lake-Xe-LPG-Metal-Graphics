@@ -26,7 +26,8 @@ static inline int nvmtl_log_failure(const char *text)
                     /* a process denied a device: for WindowServer that is the "Failed to create MetalDevice" abort,
                      * and /tmp/nvmtl.log is gone after the reboot that rescues the machine */
                     strstr(text, "no device") || strstr(text, "disabling backend") ||
-                    strstr(text, "memory-report0.3.6:") || strstr(text, "pipeline-cache0.3.7:") ||
+                    strstr(text, "memory-report0.3.6:") || strstr(text, "pipeline-cache0.3.7:") || strstr(text, "present-perf0.3.8:") || strstr(text, "present-perf0.3.9:") || strstr(text, "present-perf0.3.10:") || strstr(text, "present-perf0.3.11:") || strstr(text, "present-perf0.3.12:") ||
+                    strstr(text, "publication0.3.15:") || strstr(text, "glyph-layout0.3.15:") ||
                     strstr(text, "completion witness missing") || strstr(text, "first-submit:"));
 }
 #endif

@@ -1,0 +1,6 @@
+{
+  "completedPhases": 5,
+  "complete": true,
+  "scope": "ELAN I2C touchpad only. No EVIOCGRAB, configuration/power changes, key logging or coordinate traces. Read-only debugfs may be mounted for GPIO diagnostics.",
+  "report": "/mnt/latitude-sensors/reports/touchpad-20261021-132035"
+}

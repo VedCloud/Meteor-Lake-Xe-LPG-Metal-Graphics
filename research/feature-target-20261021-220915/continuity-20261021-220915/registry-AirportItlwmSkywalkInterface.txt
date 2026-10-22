@@ -1,0 +1,78 @@
++-o AirportItlwmSkywalkInterface  <class AirportItlwmSkywalkInterface, id 0x1000003fd, registered, matched, active, busy 0 (6 ms), retain 14>
+  | {
+  |   "mDNS_KEY" = "2009-07-30"
+  |   "mDNS_Keepalive" = Yes
+  |   "LatitudeJoinAuthSupported" = Yes
+  |   "IO80211BSSID" = <b06ebf6ae5ac>
+  |   "IO80211Channel" = 48
+  |   "IO80211InterfaceRole" = "Infrastructure"
+  |   "IO80211Band" = "5 GHz"
+  |   "LatitudeJoinScanPending" = No
+  |   "IO80211ChannelBandwidth" = 20
+  |   "IOPowerManagement" = {"DevicePowerState"=1,"CurrentPowerState"=1,"CapabilityFlags"=32770,"MaxPowerState"=1,"DriverPowerState"=0}
+  |   "built-in" = <00>
+  |   "LatitudeJoinStage" = "join-submitted"
+  |   "LatitudeJoinCompletionStatus" = 0
+  |   "LatitudeJoinState" = 1
+  |   "IO80211DriverVersion" = "itlwm: 2.4.0-private-awdlprivate fw: 83.d24e06ed.0"
+  |   "LatitudeJoinCompletionReason" = 0
+  |   "IODeferBSDAttach" = Yes
+  |   "LatitudeJoinCompletionDriverResult" = 0
+  |   "IO80211SSID" = "Virus_5G"
+  |   "IOInterfaceName" = "en0"
+  |   "IOInterfaceUnit" = 0
+  |   "IO80211Locale" = "Unknown"
+  |   "LatitudeJoinDecodeSuccess" = Yes
+  |   "IOMACAddress" = <e650e0b8c5cf>
+  |   "IO80211CountryCode" = "GB"
+  |   "LatitudeJoinResult" = 0
+  |   "IO80211RSNDone" = Yes
+  |   "LatitudeJoinDecodeCalled" = Yes
+  |   "IO80211ChannelFrequency" = 5240
+  |   "IO80211HardwareVersion" = "83.d24e06ed.0"
+  |   "IOInterfaceNamePrefix" = "en"
+  | }
+  | 
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000004a7, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 180, airportd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000004a8, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 180, airportd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000004ab, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 180, airportd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000004ac, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 180, airportd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000004b2, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |     "IOUserClientCreator" = "pid 180, airportd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000004bd, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 229, wifip2pd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IO80211APIUserClient  <class IO80211APIUserClient, id 0x1000006e8, !registered, !matched, active, busy 0, retain 6>
+      {
+        "IOUserClientCreator" = "pid 589, sharingd"
+        "IOUserClientDefaultLocking" = Yes
+      }
+      
+

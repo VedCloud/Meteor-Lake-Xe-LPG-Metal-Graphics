@@ -1,0 +1,14 @@
++-o BlueToolFixup  <class BlueToolFixup, id 0x100000335, registered, matched, active, busy 0 (0 ms), retain 5>
+    {
+      "IOProbeScore" = 0
+      "CFBundleIdentifier" = "as.acidanthera.BlueToolFixup"
+      "IOMatchCategory" = "BlueToolFixup"
+      "IOClass" = "BlueToolFixup"
+      "IOProviderClass" = "IOResources"
+      "CFBundleIdentifierKernel" = "as.acidanthera.BlueToolFixup"
+      "IOMatchedAtBoot" = Yes
+      "VersionInfo" = "REL-272-2026-03-20"
+      "IOResourceMatch" = "IOKit"
+    }
+    
+

@@ -9,7 +9,7 @@ pre=r'''
 #include <memory>
 #include <cstdio>
 using IOReturn=int;
-enum {kIOReturnSuccess=0,kIOReturnUnsupported=1,kIOReturnNotPrivileged=2,kIOReturnBadArgument=3,kIOReturnNotReady=4,kIOReturnNoMemory=5};
+enum {kIOReturnSuccess=0,kIOReturnUnsupported=1,kIOReturnNotPrivileged=2,kIOReturnBadArgument=3,kIOReturnNotReady=4,kIOReturnNoMemory=5,kIOReturnNotFound=6};
 static bool privileged=true,failAlloc=false;static int publication=0;
 struct OSObject { virtual ~OSObject(){};void release(){};};
 static std::vector<std::unique_ptr<OSObject>> allocations;
@@ -19,14 +19,90 @@ template<class T,class...A>T *make(A...args){if(failAlloc)return nullptr;auto p=
 struct OSNumber:OSObject{unsigned long long n;OSNumber(unsigned long long v):n(v){};unsigned long long unsigned64BitValue(){return n;}static OSNumber*withNumber(unsigned long long n,int){return make<OSNumber>(n);}};
 struct OSString:OSObject{std::string s;OSString(std::string a):s(a){};const char*getCStringNoCopy(){return s.c_str();}unsigned getLength(){return (unsigned)s.size();}};
 struct OSData:OSObject{std::string s;OSData(const void*b,unsigned n):s((const char*)b,n){};static OSData*withBytes(const void*b,unsigned n){return make<OSData>(b,n);}};
-struct OSDictionary:OSObject{std::map<std::string,OSObject*>d;OSObject*getObject(const char*k){return d[k];}};
+struct OSDictionary:OSObject{static OSDictionary *withCapacity(unsigned){return make<OSDictionary>();}void setObject(const char*k,OSObject*v){d[k]=v;}std::map<std::string,OSObject*>d;OSObject*getObject(const char*k){return d[k];}};
+struct OSArray:OSObject{std::vector<OSObject*>v;unsigned getCount(){return (unsigned)v.size();}OSObject*getObject(unsigned i){return v.at(i);}};
+struct OSIterator:OSObject{OSObject *next=nullptr;OSObject *getNextObject(){auto r=next;next=nullptr;return r;}};
+static OSObject *fakeLCD=nullptr;
 static OSObject yes;
 #define kOSBooleanTrue (&yes)
-struct IORegistryEntry:OSObject{std::map<std::string,OSObject*>d;bool setProperty(const char*k,OSObject*v){d[k]=v;publication++;return true;}OSObject*getProperty(const char*k){return d[k];}};
-struct IOService:IORegistryEntry{IOService*p=nullptr;IOService*getProvider(){return p;}};
-struct IOPCIDevice:IOService{unsigned vendor=0x8086,device=0x7d55;unsigned configRead16(unsigned offset){return offset?device:vendor;}};
+
+struct IORegistryEntry : OSObject {
+    static IORegistryEntry* fromPath(const char* n) {
+        assert(std::string(n) ==
+            "IOACPIPlane:/_SB/PC00/GFX0@20000/LCD@400");
+        return dynamic_cast<IORegistryEntry*>(fakeLCD);
+    }
+
+    std::map<std::string, OSObject*> d;
+
+    bool setProperty(const char* k, uint64_t v, unsigned width) {
+        return setProperty(k, OSNumber::withNumber(v, width));
+    }
+
+    bool setProperty(const char* k, const char* v) {
+        return setProperty(k, make<OSString>(v));
+    }
+
+    bool setProperty(const char* k, OSObject* v) {
+        d[k] = v;
+        publication++;
+        return true;
+    }
+
+    OSObject* getProperty(const char* k) {
+        return d[k];
+    }
+};
+
+struct IOService : IORegistryEntry {
+    static OSDictionary* nameMatching(const char* n) {
+        assert(std::string(n) == "ECDV");
+        return make<OSDictionary>();
+    }
+
+    static OSIterator* getMatchingServices(OSDictionary*) {
+        auto i = make<OSIterator>();
+        if (i) i->next = fakeLCD;
+        return i;
+    }
+
+    IOService* p = nullptr;
+
+    IOService* getProvider() {
+        return p;
+    }
+};
+
+struct IOACPIPlatformDevice : IOService {
+    OSArray* values = nullptr;
+    bool valid = true;
+    int queryError = 0;
+
+    int validateObject(const char* n) {
+        return valid ? kIOReturnSuccess : kIOReturnNotFound;
+    }
+
+    int evaluateObject(const char* n, OSObject** out) {
+        if (std::string(n).size() > 4)
+            return kIOReturnBadArgument;
+
+        assert(std::string(n) == "LDBG");
+        *out = values;
+        return queryError;
+    }
+};
+
+struct IOPCIDevice : IOService {
+    unsigned vendor = 0x8086;
+    unsigned device = 0x7d55;
+
+    unsigned configRead16(unsigned offset) {
+        return offset ? device : vendor;
+    }
+};
+
 struct IOFramebuffer:IOService{virtual IOReturn setProperties(OSObject*){return kIOReturnUnsupported;}};
-struct NMXVGAFB:IOFramebuffer{bool fPanelMemoryValidated=true;IOService*fAccel=nullptr;IOReturn setProperties(OSObject*)override;};
+struct NMXVGAFB:IOFramebuffer{bool fPanelMemoryValidated=true,fStopping=false;IOService*fAccel=nullptr;IOReturn setProperties(OSObject*)override;};
 static int current_task(){return 1;}
 static constexpr int kIOClientPrivilegeAdministrator=1;
 struct IOUserClient{static int clientHasPrivilege(int,int){return privileged?kIOReturnSuccess:kIOReturnNotPrivileged;}};
@@ -62,7 +138,26 @@ int main(){
  report.d["vendor"]=make<OSNumber>(0x100008086ull);assert(fb.setProperties(&outer)==kIOReturnBadArgument);report.d["vendor"]=make<OSNumber>(0x8086);
  failAlloc=true;assert(fb.setProperties(&outer)==kIOReturnNoMemory);failAlloc=false;
  assert(publication==before);
- puts("PASS actual kernel reporting method ASan/UBSan: queried capacities including >4GiB, name bytes, PCI/FB/accelerator mirrors, root/device/claim/type/bounds/OOM guards; no physical mapping or IOFBMemorySize change");
+ OSDictionary request;request.d["LatitudeReadHotkeyCounters"]=&yes;
+ privileged=false;assert(fb.setProperties(&request)==kIOReturnNotPrivileged);privileged=true;
+ assert(fb.setProperties(&request)==kIOReturnNotFound);
+ IOACPIPlatformDevice lcd;OSArray values;for(unsigned v:{3,2,4,2,1})values.v.push_back(make<OSNumber>(v));lcd.values=&values;fakeLCD=&lcd;
+ assert(fb.setProperties(&request)==kIOReturnSuccess);
+ auto snapshot=dynamic_cast<OSDictionary*>(fb.d["LatitudeHotkeyCounters"]);assert(snapshot&&dynamic_cast<OSNumber*>(snapshot->d["Query66Entries"])->n==3);
+ OSObject *ignored=nullptr;
+ assert(lcd.validateObject("\\LQCT")==kIOReturnSuccess);
+ assert(lcd.evaluateObject("\\LQCT",&ignored)==kIOReturnBadArgument);
+ assert(lcd.evaluateObject("\\_SB.PC00.GFX0.LCD.LDBG",&ignored)==kIOReturnBadArgument);
+ auto last=values.v.back();values.v.back()=&yes;assert(fb.setProperties(&request)==kIOReturnBadArgument);
+ assert(dynamic_cast<OSString*>(fb.d["LatitudeHotkeySnapshotStage"])->s=="decode package");
+ assert(dynamic_cast<OSString*>(fb.d["LatitudeHotkeySnapshotCounter"])->s=="LastBRT6Argument");
+ values.v.back()=last;lcd.queryError=kIOReturnNotReady;assert(fb.setProperties(&request)==kIOReturnNotReady);lcd.queryError=0;
+ lcd.valid=false;assert(fb.setProperties(&request)==kIOReturnNotFound);lcd.valid=true;
+ assert(fb.setProperties(&request)==kIOReturnSuccess);
+ assert(dynamic_cast<OSString*>(fb.d["LatitudeHotkeySnapshotStage"])->s=="complete");
+ fb.fStopping=true;assert(fb.setProperties(&request)==kIOReturnBadArgument);fb.fStopping=false;
+ fakeLCD=nullptr;
+ puts("PASS four-character ACPI name guard reproduces both old BadArgument calls; unregistered LCD lookup with local LDBG succeeds. Actual kernel reporting method ASan/UBSan: queried capacities including >4GiB, name bytes, PCI/FB/accelerator mirrors, root/device/claim/type/bounds/OOM guards; no physical mapping or IOFBMemorySize change");
 }
 '''
 with tempfile.TemporaryDirectory() as d:

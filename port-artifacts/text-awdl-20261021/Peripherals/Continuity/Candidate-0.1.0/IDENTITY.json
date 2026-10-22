@@ -1,0 +1,7 @@
+{
+  "candidateUUID": "UUID: AF812602-49E1-3342-AB04-7C32269891DE (x86_64) /Users/ved/Documents/iGPU Port/port-artifacts/text-awdl-20261021/Peripherals/Continuity/Candidate-0.1.0/AirportItlwm.kext/Contents/MacOS/AirportItlwm",
+  "workingBinarySHA256": "69d7efb58bd7c0883fd5c8cec212f06326576417bc975bea93c0b3a82fc341fd",
+  "activeEFIReplaced": false,
+  "rawGateEnabled": false,
+  "graphicsChanged": false
+}

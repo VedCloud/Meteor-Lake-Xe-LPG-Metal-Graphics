@@ -125,6 +125,7 @@ extern id gNVMTLMainDevice;
   unsigned _nEncSealed;
   CFTimeInterval _gpuStart, _gpuEnd;
   CFTimeInterval _legacyKernelStart, _legacyKernelEnd;
+  uint64_t _traceCommitNS;
   nvmtl_gpu_interval _gpuTiming; BOOL _gpuTimingSeen, _gpuTimingInvalid;
   NSMutableArray *_parts, *_scheduledHandlers;
   NSUInteger _nextPart;

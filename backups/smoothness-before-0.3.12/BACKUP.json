@@ -1,0 +1,13 @@
+{
+  "target_report": "failure-detail-20261020-135231",
+  "plugin": "0.3.11",
+  "plugin_sha256": "e388688d61a5c7c962a3601a944b8d7711b2f61b62e20349bdcaf7b513358e6f",
+  "scope": "EFI and changed package/collector files; not an OS or AuxiliaryKC backup",
+  "unchanged_runtime_hashes": {
+    "WindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "81981def42d7761c68a12fc70ea57ea7f48b8eaf6628578739c4a859977ec037",
+    "WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB": "4ff96f638d9942e9a3a6b642b443b3a1ab257d88692aa51cf2efa2dde84c104f",
+    "Library/Extensions/NMXAccel.kext/Contents/MacOS/NMXAccel": "9359839810f6e345b15ae9221f4cf3aacd2b0a497f23bb9bb118100df3421361",
+    "WindowServerBackend/libvulkan_intel.dylib": "0061729e94f341dbecb2e6d2bcc5b8416d3b7bd3c077143ff292ca22b149152e",
+    "WindowServerTransport/libdrm.2.dylib": "2e0eb9f1cf0105aa22d24fc7368c78f30cda645ef9110c7dfeeed7baf3ca2c5f"
+  }
+}

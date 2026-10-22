@@ -1,5 +1,5 @@
 {
-  "stage": "LatitudeMTLFB0.2.5 query-based registry name/shared-memory reporting atop hardware-confirmed usable GPU1.0.15 desktop; target label verification pending",
+  "stage": "candidate0.3.19 with framebuffer0.2.12: four-character ACPI query correction; key delivery hardware validation pending",
   "target": {
     "computer": "Dell Latitude 5350",
     "pci": "8086:7d45",
@@ -18,8 +18,8 @@
       "build_steps": 1045,
       "failures": 0
     },
-    "accelerator": "NMXAccel 0.2.4, Sequoia, verified framebuffer/pipe identity before arming",
-    "metal_plugin": "NVMTLDriver0.3.5: scoped noccs before ICD load; prior fresh staging/pools and bounded diagnostics preserved",
+    "accelerator": "NMXAccel0.2.9: cacheable 128-pixel gamma tile; bulk source/destination transfer; copy time counter",
+    "metal_plugin": "NVMTLDriver0.3.19: bounded submission/import/surface/buffer phase measurements; completion and queue policy unchanged",
     "shader_translator": "Patched Rust AIR-to-SPIR-V x86_64",
     "libdrm": "Forced IOKit discovery stays off devfs; token render-node classification; automatic IOKit discovery fallback when directory opens but nodes are unavailable"
   },
@@ -1006,6 +1006,512 @@
       "Host SPDisplaysReporter disassembly confirms model/VRAM,totalMB path and Intel shared-memory classification; target Sequoia formatting still requires actual boot.",
       "If reporting fails or times out, script records failure and leaves actual framebuffer mappings alone; no fabricated label is substituted.",
       "This reporting change does not establish a performance or CoreAnimation timeout fix."
+    ]
+  },
+  "backend4g_and_touchpad": {
+    "baseline_checkpoint": "usable-desktop-real-memory-0.2.5-20261019-232025",
+    "gpu": {
+      "baseline": "usable-desktop-real-memory-0.2.5-20261019-232025",
+      "backend_heap_cap_bytes": 4294967296,
+      "scope": "Darwin integrated 8086:7d45, min(normal ANV shared heap,4GiB), per physical-device heap/allocation accounting; not a physical reservation or kernel-wide aggregate RAM quota",
+      "backend_sha256": "0061729e94f341dbecb2e6d2bcc5b8416d3b7bd3c077143ff292ca22b149152e",
+      "plugin_version": "0.3.7",
+      "plugin_sha256": "df48a79c1a43cbb9617426bd0d59316429e2b8ed613d800fb6e3bb990361a366",
+      "plugin_uuid": "1CFB311D-A260-334C-8B6F-1BAAA6EF62C4",
+      "reporting": "existing reporter queries actual backend heap; GPU name remains automatic",
+      "allocator_enforced": true,
+      "pipeline_cache": "one device-lifetime cache only in integrated MTL WindowServer; default internally synchronized flags; failed cache creation retains uncached path; command pools remain fresh",
+      "build": "ANV incremental cross-build/link pass; three plugin variants pass",
+      "local_tests": [
+        "actual ANV heap policy and allocation prefix ASan/UBSan: scope,4GiB boundary,current usage,page rounding,integer-wrap rejection",
+        "actual pipeline cache helper ASan/UBSan: default synchronization flags,owner device,existing explicit cache,disabled/creation-failed fallback",
+        "release logging pass",
+        "installer backend replacement/readback/signature failure rollback fixtures pass",
+        "loader active/fallback/reporting-failure isolation and early/late samples pass",
+        "collector crash/panic retention fixture pass"
+      ],
+      "external_symbols": "backend exports/imports unchanged; plugin old exports retained, no added external imports",
+      "hardware_cap_verified": false,
+      "smoothness_improvement_verified": false,
+      "full_gpu_suite_rerun": false
+    },
+    "touchpad": {
+      "controller": "8086:7e7b subsystem1028:0cb6 PCI00:15.3",
+      "device": "ELAN04f3:328e, ACPI _SB.PC00.I2C3.TPD0",
+      "extension": "LatitudeI2CMeteorLake1.0.0",
+      "sha256": "f04a8d24d370397681487286899ab535261a4177f3fab8ceac47e50aed74f9b1",
+      "upstream": "https://github.com/watchthelight-labs/LegionI2CArrowLake",
+      "upstream_revision": "15ebc45d2e5aa63eebaff01a736acd402a7c3de1",
+      "adaptation": "Current USB binary lacks upstream PCILakeController; tiny subclass links to existing VoodooI2CPCIController, discovers PM capability and verifies D0; exact Dell ID/subsystem and Linux bxt timing; polling scoped to PCI15.3",
+      "acpi": {
+        "source_sha256": "42d65940f44de1482427a022f254e86c9f5c5b40b360418c4aefbc33facec063",
+        "patched_sha256": "0ec22912c7393a60532960ed04dacfb0662f85cf4b453848091c400849548ace",
+        "table_length_unchanged": true,
+        "checksum_zero": true,
+        "scoped_device": "_SB.PC00.I2C3.TPD0",
+        "method_renames": [
+          {
+            "offset": 541559,
+            "old": "_DSM",
+            "new": "XDSM"
+          },
+          {
+            "offset": 541675,
+            "old": "_CRS",
+            "new": "XCRS"
+          }
+        ],
+        "changed_offsets": [
+          9,
+          541559,
+          541675
+        ],
+        "new_methods": "_DSM returns firmware TPDH directly for HID descriptor; _CRS concatenates firmware SBFB and SBFI, polling controller avoids GPIO routing; _STA and _INI untouched",
+        "hardware_verified": false
+      },
+      "config": {
+        "baseline": "usable-desktop-real-memory-0.2.5-20261019-232025",
+        "semantic_changes": [
+          "one scoped I2C3 controller kext",
+          "one TPD0 SSDT",
+          "force-polling only on PCI15.3"
+        ],
+        "all_enabled_kext_paths_valid": true,
+        "single_voodoo_input_enabled": true,
+        "boot_args_unchanged": true,
+        "PS2_fallback_preserved": true,
+        "HID_nullguard_preserved": true,
+        "no_gpu_model_or_vram_injection": true,
+        "config_sha256": "851fa908d4cc352cd38aa6e9a13dce98b73e8dae452a743cbd032bc2a2fec84f",
+        "hardware_verified": false
+      },
+      "checks": [
+        "x86_64 extension build/link/signature pass;9 Voodoo base imports resolve in current core",
+        "actual power helper65535 PMCSR words/capability bounds/device checks/stuck refusal ASan/UBSan pass",
+        "actual SSDT executed in ACPICA: HID address/support bits/resource bytes pass",
+        "DSDT decompile/checksum/length validation; only3 byte offsets changed:2 method initial letters+checksum"
+      ],
+      "hardware_gestures_verified": false,
+      "PS2_fallback_retained": true
+    },
+    "unchanged_gpu_and_runtime_payloads": {
+      "WindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "81981def42d7761c68a12fc70ea57ea7f48b8eaf6628578739c4a859977ec037",
+      "PreviousWindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "80c3fe8bfa639a1f6cd52a29ab485695d4f18ae289f70e39bbc4b021fb0ab0f6",
+      "WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB": "4ff96f638d9942e9a3a6b642b443b3a1ab257d88692aa51cf2efa2dde84c104f",
+      "Library/Extensions/NMXGPU.kext/Contents/MacOS/NMXGPU": "9b8cd6315b6bf6080b09d7e258921d7461efbb2e3b2140a24bf8e30dc7c5d078",
+      "Library/Extensions/NMXAccel.kext/Contents/MacOS/NMXAccel": "9359839810f6e345b15ae9221f4cf3aacd2b0a497f23bb9bb118100df3421361",
+      "WindowServerTransport/libdrm.2.dylib": "2e0eb9f1cf0105aa22d24fc7368c78f30cda645ef9110c7dfeeed7baf3ca2c5f",
+      "Library/GPUBundles/nvmtl/libvulkan_intel.dylib": "9a6f971802c37e9cbfbf3a90b6c8863c47b75bfcfe5ffb981ba7132f30f55ba3",
+      "Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/NVMTLDriver": "153afd4b5a34008b2c27307dee646798c2180ab68a5e536d0901445d34a7fc2c",
+      "Library/NullMoth/latitude-gpu-identity": "2a1ed79bfb2362a8051c9c5e15f9d2dcbbe27719879ff87bb3cdc4dfcc934bca"
+    },
+    "hardware_trial_required": true,
+    "full_gpu_suite_rerun": false
+  },
+  "smoothness0.3.8": {
+    "candidate": "smoothness0.3.8",
+    "plugin_version": "0.3.8",
+    "plugin_sha256": "bb3d4644787e3fd101975420da3eb35eaee0f6eff28e349c4880f7dbdbcdc425",
+    "plugin_uuid": "E72F0C3D-4D99-3A00-9839-26DACBC87831",
+    "evidence": {
+      "report": "failure-detail-20261020-120834",
+      "live_log_lines": 199637,
+      "four_multitouch_chatter_classes_lines": 160893,
+      "live_log_coreanimation_render_timeouts": 47,
+      "idle_sample": "271/275 main-thread samples waiting; no compiler frames in three-second steady-state capture",
+      "causality": "capture overhead is established configuration; contribution to choppiness/CPU/timeouts not measured"
+    },
+    "changes": [
+      "both startup log streams filtered to relevant diagnostics, info level; errors/faults retained",
+      "late sample watchdog10->25seconds, matches successful collector sample policy",
+      "target WindowServer successful readbacks aggregate allocation/record/wait/copy/cleanup phase times,max total,bytes; two-second report interval,eight reports per calling thread,existing logger throttling; clocks bypassed after report cap",
+      "motion capture8seconds,35second watchdog,cumulative CPU-time context for delta analysis"
+    ],
+    "unchanged": [
+      "fresh command pools",
+      "readback staging lifetime/coherence",
+      "all render/transfer/host barriers",
+      "serial submission and fence ordering",
+      "NMXGPU1.0.15",
+      "LatitudeMTLFB0.2.5",
+      "NMXAccel0.2.4",
+      "ANV4GiB backend",
+      "automatic GPU name/actual heap reporting",
+      "restored touchpad EFI"
+    ],
+    "checks": [
+      "three plugin variants crosscompiled",
+      "signature strict verify",
+      "no new external imports,no missing prior exports",
+      "actual readback ASan/UBSan20k mocked allocations reclaimed,padded correctness,timeout retains memory/destination untouched",
+      "present cost ASan/UBSan sums,clock order,throttle/report limit",
+      "actual submission wrapper serialization/recursive/error/deadline fixtures",
+      "actual NSPredicate diagnostic preservation/HID exclusion fixtures",
+      "loader active/fallback/reporting/sample-failure fixtures",
+      "installer backup/rollback/one-shot failure fixtures",
+      "release log policy"
+    ],
+    "smoothness_verified": false,
+    "timeouts_fixed_verified": false,
+    "full_gpu_suite_rerun": false
+  },
+  "smoothness0.3.9": {
+    "candidate": "smoothness0.3.9",
+    "plugin_sha256": "21d840174b9a6695d426130a9237d2b5dba66d352dd365d92d82b9bc8b84e01d",
+    "plugin_uuid": "0C3643ED-878E-3776-BAFE-8F726BFE8C86",
+    "basis": "failure-detail-20261020-123840:72 successful readbacks weighted preparation/allocation24.126ms,record0.096ms,submit/wait3.888ms,CPUcopy3.712ms,cleanup2.055ms,total33.877ms;43 CoreAnimation timeout messages",
+    "scope": "8086:7d45 WindowServer owned readback staging only",
+    "retention": "4 exclusive slots,requested payload up to16MiB each,at most64MiB plus driver allocation alignment/overhead;oversize/busy slots use previous fresh path;quarantined slots count toward four",
+    "lifetime": "lease held from buffer acquisition through successful fence and CPU copy;known unsubmitted resources return idle,uncertain submission quarantines,invalid map/type discards known-idle stage;growth destroys old idle stage before replacement;process-lifetime bounded cache",
+    "unchanged": [
+      "fresh command pools and retirement",
+      "all GPU/host memory barriers",
+      "serial submit and publication/scheduling order",
+      "kernel1.0.15/framebuffer0.2.5/accelerator0.2.4",
+      "ANV4GiB backend/transport/reporting",
+      "restored touchpad EFI",
+      "graphics-filtered logs and25sec sample watchdog"
+    ],
+    "tests": [
+      "three plugin builds",
+      "ASan/UBSan actual lease helper:8000 concurrent cycles,growth,allocation failure unlock,invalid-map discard,quarantine,contention/oversize/forced-fresh fallback,bounded outstanding count",
+      "ASan/UBSan actual readback:1000 cached padded copies allocate once,record-begin failure releases lease,noncoherent cached stage discarded,uncertain submit retains allocation/destination untouched,quarantined stage skipped",
+      "previous forced-fresh20k allocation/reclaim and failure/padding suite retained",
+      "actual submission serialization/recursive flush/deadline quarantine fixtures pass",
+      "loader/installer rollback and graphics log predicate fixtures pass",
+      "signature verified,no added external imports,no prior exports missing"
+    ],
+    "hardware_tested": false,
+    "smoothness_or_timeouts_fixed_verified": false,
+    "full_gpu_suite_rerun": false
+  },
+  "smoothness0.3.10": {
+    "candidate": "cache-visibility0.3.10",
+    "plugin_version": "0.3.10",
+    "plugin_sha256": "19d4bd0b9a891205056dd6ae566dd9675eeed8e4044b9f2dba49166b937fea6f",
+    "plugin_uuid": "81F370F2-09EC-3071-8C64-94A9AC93CFC6",
+    "evidence": "0.3.9 recorded readback33.877->4.318ms;CoreAnimation43->5messages across respective captured boots; user photo/reports show cursor trails,partial background redraw,menu transparency/text/window movement artifacts",
+    "hypothesis_not_proven": "retained host-visible mappings may return stale CPU cache data despite advertised HOST_COHERENT; image preservation/damage/scanout issues are not ruled out",
+    "change": "x86 CPUID-checked cache-line flush/invalidation plus MFENCE, before retained staging GPU overwrite and after successful fence before CPU copy; Vulkan barriers and fence remain; inability to use CLFLUSH disables retention and uses prior fresh path;invalid range refuses CPU copy",
+    "scope": "cached staging leases only,8086:7d45 WindowServer; app/non-target staging unchanged",
+    "bounds": "flush addresses remain within requested bytes/capacity;cache-line geometry from CPUID;overflow/zero/capacity checked;4slots/16MiB-per-slot payload retained",
+    "tests": [
+      "three plugin variants compiled",
+      "strict signature and old export/import set checks",
+      "x86_64 ASan/UBSan actual cache helper:all alignments8..256byte lines,overflow/capacity/zero checks,guard-page boundaries,actual CLFLUSH/MFENCE preserve bytes under Rosetta",
+      "x86_64 ASan/UBSan actual readback:cache maintenance before submit and only after completed fence,1000 cached padded copies allocate once,timeout keeps destination untouched/retains uncertain memory,invalid-memory-type discards idle slot,20000 forced-fresh allocation/reclaim regression checks",
+      "loader active/fallback/error/sample fixtures and installer backup/rollback/one-shot fixtures pass",
+      "release log predicate policy pass"
+    ],
+    "unchanged": [
+      "fresh command pools and retirement",
+      "Vulkan image/host barriers and layout tracking",
+      "serial submission and schedule-after-publication",
+      "bounded staging leases/quarantine",
+      "NMXGPU1.0.15/LatitudeMTLFB0.2.5/NMXAccel0.2.4/ANV4GiB backend",
+      "restored touchpad EFI"
+    ],
+    "hardware_tested": false,
+    "all_artifacts_fixed": false,
+    "full_hardware_suite_rerun": false
+  },
+  "smoothness0.3.11": {
+    "candidate": "batched-cache0.3.11",
+    "plugin_sha256": "e388688d61a5c7c962a3601a944b8d7711b2f61b62e20349bdcaf7b513358e6f",
+    "plugin_uuid": "DD0D07E5-EC2E-3580-9A73-2F2D6A109CFE",
+    "basis_report": "failure-detail-20261020-131729",
+    "readbacks": 56,
+    "weighted_phase_ms": [
+      9.01532142857143,
+      0.08783928571428572,
+      3.5698392857142855,
+      9.754125,
+      0.0009107142857142857
+    ],
+    "weighted_total_ms": 22.428035714285713,
+    "timeouts_in_live_log": 7,
+    "weather": "text unresolved;kernel45556wakeups/~8seconds;new collector samples running Weather",
+    "cpu_support": "Original Dell Linux cpuinfo lists clflushopt; runtime CPUID7EBX23 checked",
+    "change": "CLFLUSHOPT batch when supported,MFENCE before/after entire batch;otherwise exact old CLFLUSH loop;readback pre-submit and post-fence maintenance preserved",
+    "tests": [
+      "three plugin variants build",
+      "strict signature and no added external imports/missing exports",
+      "actual legacy cache/helper+readback padded/failure fixtures ASan/UBSan on x86_64 Rosetta",
+      "optimized dispatch/fence/range tests using injected CPUID/instruction callbacks;real CLFLUSHOPT not executed because Rosetta does not advertise support",
+      "compiled x86 fast-path CLFLUSHOPT/MFENCE verified by disassembly",
+      "loader/installer backup/rollback/one-shot fixtures",
+      "collector Weather present/absent and crash/panic retention/history-failure fixtures",
+      "release log policy"
+    ],
+    "unchanged": [
+      "host coherence workaround boundaries",
+      "fresh command pools",
+      "exclusive staging leases/quarantine/limits",
+      "Vulkan dependencies/fences/publication order",
+      "kernel/framebuffer/backend/transport/automatic name/sharedheap reporter",
+      "restored input EFI"
+    ],
+    "hardware_performance_verified": false,
+    "weather_text_fixed": false,
+    "full_gpu_suite_rerun": false
+  },
+  "about_this_mac0.3.11": {
+    "name": "Dell Latitude 5350 2-in-1",
+    "subtitle": "13-inch, 2024",
+    "helper_sha256": "18c3c4434c66acceb3c4b66a53ac4f98778b6f76a7908d3232b3c958ee9dd572",
+    "source_sha256": "d150da7b326c63040aba15ad41234c3cd2caae7334c0752cc3f2a60de3c286a1",
+    "icns_sha256": "eb251138547234b7cb6cf08f3bfd0097d8acb36c2d2af08035d5422259d98f05",
+    "integration": "After graphics commit/one-shot arming; independent cosmetic transaction/backup; failure returns4 without graphics rollback",
+    "tests": [
+      "universal compilation warnings-as-errors",
+      "native and x86_64 read-only resolver/preference restoration fixtures",
+      "iconutil ICNS decode",
+      "21 installer cases including cosmetic failure isolation",
+      "shell syntax"
+    ],
+    "dell_icon_snapshot_verified": false,
+    "dell_name_layout_verified": false,
+    "smbios_modified": false,
+    "efi_modified": false,
+    "graphics_binaries_modified": false
+  },
+  "smoothness0.3.12": {
+    "plugin_sha256": "3eb0fc04b45c0f03bc130d3ee152eb4c0dd5713ba30dd1196cabaa278adc8526",
+    "plugin_uuid": "D97DEED3-66E3-352D-8FF7-76270206D333",
+    "basis_report": "failure-detail-20261020-135231",
+    "prior_recorded_readbacks": 79,
+    "prior_stage_total_ms": 5.018886075949367,
+    "changes": [
+      "separate explicit swizzle sampling/attachment views; refuse failed swizzle",
+      "one bulk copy for tightly packed validated readbacks; padded copy preserved",
+      "bounded slow-part/callback and Weather texture diagnostics",
+      "read-only active-snapshot/icon-hash/decode diagnostics in collector"
+    ],
+    "weather_fixed_on_target": false,
+    "coreanimation_timeouts_fixed_on_target": false,
+    "faster_than_5ms_verified": false,
+    "full_hardware_suite_rerun": false,
+    "new_kernel_or_efi_changes": false,
+    "branding_helper_sha256": "69cac905d5d2a19c813a9ea9d1ef8dedd84a2f1993c0863b68c70fc8a24250aa"
+  },
+  "candidate_0_3_13": {
+    "basis_report": "failure-detail-20261020-141853",
+    "metal_plugin": "0.3.12 unchanged",
+    "gpu_kernel": "1.0.15 unchanged",
+    "accelerator": "0.2.5",
+    "framebuffer": "0.2.6",
+    "panel_claim": "0.2.3 unchanged",
+    "brightness": "duty-only native PWM0 handler after active validated Pipe0; initialization read-only; no modesetting",
+    "measured_readback_average_ms": 5.2796043956,
+    "coreanimation_timeout_messages": 4,
+    "dell_speedup_verified": false,
+    "dell_brightness_verified": false,
+    "weather_visual_result": "user has not checked closely",
+    "full_hardware_suite_rerun": false,
+    "efi_modified": false,
+    "total_frame_render_latency_measured": false,
+    "new_accelerator_imports": [
+      "_absolutetime_to_nanoseconds",
+      "_nanoseconds_to_absolutetime"
+    ],
+    "binaries": {
+      "WindowServerAccelerator/NMXAccel.kext/Contents/MacOS/NMXAccel": "b12e739c7437da4b78ea90ed39d1f71e58a02e5117f241cefb6c19ce3e67985b",
+      "WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB": "5c2d0acd120675618f630f430abbae7cbf50573ef29fdb9ba8cba7fb1855f245",
+      "latitude-frame-pacing": "ec28d29d3d1fb40197c0ddcd78d8bb719894fa64e831651215781e908f3119ed"
+    }
+  },
+  "candidate_0_3_14": {
+    "framebuffer": "0.2.7",
+    "framebuffer_uuid": "7B74B859-666F-3D61-AA7A-D6636F14CA87",
+    "edid_sha256": "7914034de2285dbace927708209d0a62937eb6e6379985feb89e8d263f546b6b",
+    "edid_source": "Dell Linux capture 20261012 gpu/drm/card1-eDP-1.edid",
+    "active_image_mm": [
+      294,
+      165
+    ],
+    "diagonal_inches_rounded": 13.3,
+    "physical_timing_changed": false,
+    "brightness_from_0_3_13_retained": true,
+    "accelerator": "0.2.5 unchanged",
+    "metal_plugin": "0.3.12 unchanged",
+    "icon_asset_changed": false,
+    "icon_refresh": "fixed system/per-user IconServices cache directories preserved, recreated with original owner/mode; no wildcard deletion; once per revision; reboot required",
+    "about_this_mac_icon_verified_on_dell": false,
+    "reported_size_verified_on_dell": false,
+    "efi_modified": false,
+    "full_hardware_suite_rerun": false
+  },
+  "candidate_0_3_15": {
+    "basis_report": "failure-detail-20261020-172853",
+    "accelerator": "0.2.6",
+    "accelerator_uuid": "78DDA897-4727-31B4-A0EF-84D89C336BD4",
+    "plugin": "0.3.15",
+    "plugin_uuid": "A7C28057-E4D8-302F-A87A-199C57C2CAC6",
+    "framebuffer": "0.2.7 unchanged",
+    "gpu_kernel": "1.0.15 unchanged",
+    "new_binary_imports": [],
+    "keys": "Darwin-only existing PS2 brightness-event routing via two exact added-DSDT definition renames + SSDT",
+    "efi_changes": [
+      "ACPI/DSDT.aml definition-only rename and checksum",
+      "ACPI/SSDT-LAT-BRT.aml added",
+      "config.plist ACPI/Add one entry"
+    ],
+    "keyboard_touchpad_kext_settings_changed": false,
+    "publication_cpu_slots": 3,
+    "publication_max_retained_cpu_bytes": 50331648,
+    "idle_front_metadata_hz": 5,
+    "early_completion_or_frame_drop": false,
+    "weather_text_fixed_on_target": false,
+    "wallpaper_redraw_fixed_on_target": false,
+    "brightness_keys_working_on_target": false,
+    "coreanimation_timeouts_fixed_on_target": false,
+    "full_hardware_suite_rerun": false
+  },
+  "candidate_0_3_16": {
+    "framebuffer": "0.2.8",
+    "framebuffer_uuid": "6D5205EC-5FCC-3EBD-AC98-24D05AAA6292",
+    "accelerator": "0.2.7",
+    "accelerator_uuid": "DFF5DB6F-12C3-3A69-ACDC-7C511C2298FE",
+    "plugin": "0.3.15 unchanged",
+    "gpu_kernel": "1.0.15 unchanged",
+    "audio": "AppleALC1.9.8; user-confirmed ALC295; layout33 related-Dell candidate; controller7e28 compatibility ID51CA",
+    "audio_zip_sha256": "d4d36cd2da7863cf7cbfcb0892d45c08457f4f4ddd065a073dd010e46bd63bcb",
+    "new_imports": {
+      "accelerator": [
+        "__ZNK9IOService10isInactiveEv"
+      ],
+      "framebuffer": [
+        "_memcmp"
+      ]
+    },
+    "nonidentity_gamma_adds_cpu_work": true,
+    "neutral_gamma_uses_bulk_copy": true,
+    "nightshift_verified_on_dell": false,
+    "sound_verified_on_dell": false,
+    "exact_audio_pinmap_verified": false,
+    "full_hardware_suite_rerun": false
+  },
+  "candidate_0_3_17": {
+    "plugin": "0.3.17",
+    "uuid": "9408E5B9-28AA-3906-BA56-BDF371E65068",
+    "brightness_route": "LCD 0x86 up / 0x87 down via existing BrightnessKeys",
+    "audio_output_user_confirmed": true,
+    "slider_brightness_user_confirmed": true,
+    "physical_keys_verified": false,
+    "nightshift_fixed": false,
+    "coreanimation_timeouts_fixed": false,
+    "full_gpu_suite_rerun": false
+  },
+  "candidate_0_3_18": {
+    "accelerator": "0.2.8",
+    "accelerator_uuid": "043521A3-A385-3CB6-A1EE-B24406944FBC",
+    "framebuffer": "0.2.9",
+    "framebuffer_uuid": "7340A13E-A4EA-3CDE-A869-8E1E5B997D94",
+    "plugin": "0.3.18",
+    "plugin_uuid": "D07898DE-733B-3D92-98A1-F197952DC1E7",
+    "colour_scope": "SDR LUTs/diagonal CSC; non-diagonal matrices refused and reported",
+    "gamma_getter_reference": "Sequoia15.6.1 recovery; actual target getter fingerprint required for table sampling",
+    "firmware_key_counters": "Q66/SMEE/BRT6; no additional remap guessed",
+    "nightshift_verified": true,
+    "brightness_keys_fixed": false,
+    "remaining_timeouts_fixed": false,
+    "full_render_suite_rerun": false,
+    "confirmation": "User-visible warming and report failure-detail-20261020-220831: active transaction gamma, 454 successful LUT copies, zero refusals"
+  },
+  "candidate_0_3_19": {
+    "accelerator": "0.2.9",
+    "framebuffer": "0.2.10",
+    "plugin": "0.3.19",
+    "target_validated": false,
+    "weather_fixed": false,
+    "physical_keys_fixed": false,
+    "timeouts_fixed": false,
+    "full_render_suite_rerun": false,
+    "publication_lock": "AvoidSync on fenced staging snapshot; CannotLock falls back; no early completion",
+    "accelerator_uuid": "71A4E57D-56B7-3C39-BF2F-BA2E91789457",
+    "framebuffer_uuid": "DB311D7D-7C60-3490-AD9C-5974B31373B5",
+    "plugin_uuid": "5D5ADC33-CB2A-3D24-B5F9-ADD2A83C54C4"
+  },
+  "brightness_ps2_route": {
+    "acpi_table_revision": 4,
+    "up_notify": "PS2K 0x0366",
+    "down_notify": "PS2K 0x0365",
+    "lcd_notify_replaced": true,
+    "extra_kext_added": false,
+    "hardware_confirmed": false,
+    "validation": [
+      "actual AML firmware-chain/counter/notification/fallback fixture",
+      "actual upstream PS2 notification decoder and stock-map make/break fixture"
+    ]
+  },
+  "key_scalar_query": {
+    "framebuffer": "0.2.11",
+    "framebuffer_uuid": "CAE16FC3-ACC7-3171-928B-7D1E2BB6B614",
+    "scope": "root-only read of five existing ACPI software integers; no firmware mode or notification changes",
+    "actual_target_query_verified": false,
+    "brightness_keys_fixed": false,
+    "graphics_components_changed": false
+  },
+  "key_name_limit_query": {
+    "framebuffer": "0.2.12",
+    "framebuffer_uuid": "2FA25265-DECF-3F32-B495-7214BB23D8C4",
+    "evidence": "Sequoia15.6.1 recovery AppleACPIPlatform evaluateObject rejects OSSymbol length>4; 24H32 report validates \\LQCT but rejects evaluation with BadArgument",
+    "fix": "IOACPIPlane LCD lookup; local LDBG query; no name longer than four characters passed to evaluateObject",
+    "target_verified": false,
+    "brightness_keys_fixed": false
+  },
+  "peripherals_20261021": {
+    "status": "host-validated candidate; Dell boot required",
+    "bluetooth_usb_id": "8087:0033",
+    "intel_version": "2.5.1 fork",
+    "bluetool_version": "2.7.2 official release (reference advertises 2.7.3, not an available release)",
+    "Lilu": "existing 1.7.3 retained",
+    "touchpad": "ELAN04F3:328E; 8086:7e7b, Dell 1028:0cb6; opt-in trial",
+    "touchpad_method_changes": [
+      {
+        "method": "_DSM",
+        "flags_offset": 541563,
+        "end": 541643,
+        "replacement_bytes": 56,
+        "available_bytes": 80
+      },
+      {
+        "method": "_CRS",
+        "flags_offset": 541679,
+        "end": 541749,
+        "replacement_bytes": 12,
+        "available_bytes": 70
+      }
+    ],
+    "touchpad_disabled_ps2_pointer_plugins": [
+      "VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext",
+      "VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext"
+    ],
+    "base_config_sha256": "d981a6e93904e3b589bbd8f8d6896e71561b33c784bb327005fd78264791e239",
+    "base_dsdt_sha256": "e79df56999ebd7ee99036ff2a1c7a0c503c34a45b4ae6ff769b2b69cfe88d9ad",
+    "default_config_sha256": "c07f2ad8514d7cff3b0d0a9dd0e1975b72e1e2188e6de63fd30a54961d32d3d7",
+    "trial_config_sha256": "0c07e9bd6cd37002e8cc5f46fede408a451e8d505ab48155fa99a53cd397f8f0",
+    "trial_dsdt_sha256": "a2393119f4ac1c9bdf9ede1a2bc733d286aa5c8db6131c717fbbca22eaeadacd",
+    "hardware_verified": false,
+    "full_gpu_tests_rerun": false
+  },
+  "input_recovery_20261021": {
+    "hotkeys_version": "0.1.1",
+    "hotkeys_uuid": "29860718-17D4-3DE3-B62F-6A626AB5CEF2",
+    "hid_version": "1.0.2",
+    "hid_uuid": "19A6E418-8463-321D-8AD8-8B7358BBAC55",
+    "hardware_verified": false,
+    "controller_timeout_root_cause_proven": false,
+    "keyboard_freeze_root_cause_proven": false,
+    "default_touchpad_trial_enabled": false,
+    "active_config_changed": false,
+    "graphics_payloads_changed": false,
+    "tests": [
+      "actual HID65536-length ASan/UBSan and previous malformed-report negative control",
+      "actual transform200000-case regression",
+      "actual WMI mock lifecycle/ownership/dispatch",
+      "actual trial fixture apply/restore/changed-HID refusal",
+      "x86 builds/signatures and defined module metadata"
     ]
   }
 }

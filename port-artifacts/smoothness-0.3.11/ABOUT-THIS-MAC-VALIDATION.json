@@ -1,0 +1,17 @@
+{
+  "published": true,
+  "package_files": 138,
+  "root_manifest_files": 246,
+  "graphics_binaries_unchanged": {
+    "WindowServerPlugin/NVMTLDriver.bundle/Contents/MacOS/NVMTLDriver": "e388688d61a5c7c962a3601a944b8d7711b2f61b62e20349bdcaf7b513358e6f",
+    "WindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "81981def42d7761c68a12fc70ea57ea7f48b8eaf6628578739c4a859977ec037",
+    "WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB": "4ff96f638d9942e9a3a6b642b443b3a1ab257d88692aa51cf2efa2dde84c104f",
+    "WindowServerBackend/libvulkan_intel.dylib": "0061729e94f341dbecb2e6d2bcc5b8416d3b7bd3c077143ff292ca22b149152e",
+    "WindowServerTransport/libdrm.2.dylib": "2e0eb9f1cf0105aa22d24fc7368c78f30cda645ef9110c7dfeeed7baf3ca2c5f"
+  },
+  "efi_files_unchanged": 378,
+  "assets_exact": true,
+  "frozen_rendering_evidence_verified": true,
+  "target_installation_performed": false,
+  "target_snapshot_or_name_verified": false
+}

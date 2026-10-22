@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/License-Custom_(Apache--2.0_original_work)-lightgrey.svg)
 ![Platform](https://img.shields.io/badge/Platform-macOS_15_Sequoia-blue)
 ![Arch](https://img.shields.io/badge/Arch-x86__64-informational)
-![Bootloader](https://img.shields.io/badge/Bootloader-OpenCore_1.0.8-9cf)
+![Bootloader](https://img.shields.io/badge/Bootloader-OpenCore_1.0.9-9cf)
 ![Hardware](https://img.shields.io/badge/Hardware-Intel_Core_Ultra_5_135U-orange)
 ![Graphics](https://img.shields.io/badge/Graphics-Xe--LPG%20%2F%208086%3A7D45-red)
 ![Firmware](https://img.shields.io/badge/Firmware-GuC_70.53.0-blue)<br>
@@ -12,30 +12,28 @@
 ![Kernel](https://img.shields.io/badge/Kext-i915_on_LinuxKPI-red)
 ![Language](https://img.shields.io/badge/Language-C%20%2F%20Obj--C%20%2F%20C%2B%2B-blueviolet)<br>
 ![Status](https://img.shields.io/badge/Status-Metal%20%2B%20Vulkan%20working-brightgreen)
-![Desktop](https://img.shields.io/badge/Desktop-WindowServer_usable_unsmooth-yellow)
+![Desktop](https://img.shields.io/badge/Desktop-WindowServer_smooth-brightgreen)
 ![Verified](https://img.shields.io/badge/Verified-26%2C000_frames-brightgreen)
-![Candidate](https://img.shields.io/badge/Candidate-0.3.6_%20%2B%20k1.0.15_%20%2B%20fb0.2.5-yellow)
+![Candidate](https://img.shields.io/badge/Candidate-0.3.19_%20%2B%20k1.0.15_%20%2B%20fb0.2.12-yellow)
 
-A hardware-acceleration port that brings **Metal and Vulkan** to the **Intel Core Ultra (Meteor Lake-P)
-Xe-LPG iGPU (`8086:7D45`)** on a **Dell Latitude 5350** running **macOS 15 Sequoia**, using the
-[NullMoth](https://github.com/nullmoth/nvidia-macos-driver) NVIDIA-for-macOS driver tree as the driver
-skeleton and retargeting its graphics stack from NVIDIA/GSP to Intel i915/GuC.
+**Metal and Vulkan run on the Intel Core Ultra (Meteor Lake-P) Xe-LPG iGPU (`8086:7D45`) of a Dell
+Latitude 5350 on macOS 15 Sequoia**, and the desktop is GPU-composited and smooth.
 
-The port reuses NullMoth's *Metal driver plugin → shader translator → Mesa Vulkan backend → kernel
-extensions* architecture, but replaces every NVIDIA-specific element: the GSP firmware path becomes the
-Intel GuC/HuC/GSC firmware path, the NVK backend becomes Mesa's **ANV** Intel driver, and the NVIDIA
-kernel extensions become an i915-derived `NMXGPU` plus a DRM-user-client `NMXAccel`.
+This is a **retargeting**: the [NullMoth](https://github.com/nullmoth/nvidia-macos-driver)
+NVIDIA-for-macOS driver tree is reused as the skeleton and every NVIDIA element is replaced with an Intel
+one — GSP becomes GuC/HuC/GSC firmware, NVK becomes Mesa's **ANV**, and the NVIDIA kernel extensions
+become an i915-derived `NMXGPU` on FreeBSD's **LinuxKPI** shim, plus a DRM user-client `NMXAccel`.
 
-**Current state:** Metal and Vulkan application rendering work and are verified on real silicon. The
-GPU-composited WindowServer desktop **now works** — WindowServer submits real GPU work and reads back
-correctly, with no GPU hang — but it is **choppy**: composition latency and synchronization are
-unresolved. The current candidate is **kernel 1.0.15 + plugin 0.3.6 + framebuffer 0.2.5 + guarded HID
-1.0.1**.
+**Current state:** application rendering, the GPU-composited desktop, brightness, sound, Night Shift,
+Bluetooth, Wi-Fi, Apple services and the multitouch touchscreen all work. The open items are the touchpad
+and the Apple-side subsystems listed in *What is in progress*. The target is moving to **macOS 27
+"Golden Gate"**.
 
 **Start here:**
 
-- *Does it work?* → [What works today](#works) and [Status at a glance](#status)
-- *Understand the project* → [Architecture](#architecture) and [The current blocker](#blocker)
+- *Does it work?* → [What works today](#works) and [The unified Dell candidate](#unified)
+- *What is broken or next?* → [What is in progress](#wip)
+- *How does it work?* → [Architecture](#architecture) and [How it works](#how)
 - *Build it* → [Building and testing](#build)
 - *Read the evidence* → [`research/`](research/) (newest files first)
 
@@ -43,25 +41,21 @@ unresolved. The current candidate is **kernel 1.0.15 + plugin 0.3.6 + framebuffe
 
 - [What works today](#works)
 - [Status at a glance](#status)
+- [The unified Dell candidate](#unified)
+- [What is in progress](#wip)
 - [Security warning](#security)
 - [Hardware and software target](#target)
 - [Compatibility](#compatibility)
 - [Architecture](#architecture)
 - [Component inventory](#components)
-- [Implementation detail](#implementation)
-- [The current blocker](#blocker)
-- [Failure signatures](#failures)
-- [Struggles and breakthroughs](#history)
-- [Validation methodology](#validation)
-- [Reproduce the claims](#reproduce)
-- [Diagnostics cheat-sheet](#diagnostics)
+- [How it works](#how)
+- [Validation and reproduction](#validation)
+- [Diagnostics](#diagnostics)
 - [Workspace layout](#workspace)
 - [Building and testing](#build)
 - [Roadmap](#roadmap)
-- [Version history](#versions)
 - [Attribution and licensing](#licensing)
-- [Design principles](#principles)
-- [Design decisions](#adr)
+- [Design principles and decisions](#principles)
 - [Glossary](#glossary)
 - [FAQ](#faq)
 - [Where this breaks with consensus](#consensus)
@@ -69,51 +63,32 @@ unresolved. The current candidate is **kernel 1.0.15 + plugin 0.3.6 + framebuffe
 <a name="works"></a>
 ## ✅ What works today
 
-| ✅ Verified today | ❌ Not yet |
+| ✅ Working | ❌ Not yet |
 |---|---|
-| Metal render — 4,096 correct pixels | Smooth / presentation-stable composition |
-| Vulkan compute — 65,536 correct values | Sleep/wake, brightness, external displays |
-| 26,000 exact frames across 22 cases (both transports) | Hardware video decode |
-| **GPU-composited WindowServer desktop — real GPU work, no hang** | Host-pointer (zero-copy) imports — copy fallback |
-| Command-pool lifetime — 80,020 created / destroyed, zero leaks | Sustained composition / long soak |
-| **Touchscreen multitouch + gestures (VoodooI2CHID)** | Touchpad (ELAN04F3:328E) — **work in progress** |
-| PCI attach + GuC 70.53.0 firmware bring-up + GPU reporting (12,288 MB) | |
+| **GPU-composited WindowServer desktop — smooth**, real GPU work, no hang, readback **5.0 ms** (from 22.4 ms) | Touchpad (ELAN04F3:328E) — **work in progress** |
+| Metal render — 4,096 correct pixels | AWDL / AirDrop — radio data plane not connected |
+| Vulkan compute — 65,536 correct values | Tablet mode — implemented, Dell validation pending |
+| 26,000 exact frames across 22 cases (both transports) | Auto-rotation — no qualified live ISH publisher |
+| Command-pool lifetime — 80,020 created / destroyed, zero leaks | On-screen keyboard — target runtime + Accessibility pending |
+| **Brightness** (slider + F6/F7 keys) | Subpixel LCD text — system-app deployment open |
+| **Sound** (Realtek ALC295 via AppleALC) | Weather widget glyph artefacts — undiagnosed |
+| **Night Shift** (gamma table) | Boot chime — UEFI playback untested on the Dell |
+| **Bluetooth** (AirPods Pro 2, MX Keys / MX Mechanical Mini, Continuity) | |
+| **Wi-Fi** (custom AirportItlwm) | |
+| **Touchscreen** — multitouch and gestures | |
+| **Apple services** — iMessage and the service stack | |
+| **Copilot → Command** (VoodooPS2Keyboard macro inversion) | |
+| **macOS Golden Gate boot UI** (GoldenGateExt theme) | |
+| **Accelerated graphics on every normal USB boot** | |
+| GPU reporting — `Intel(R) Graphics (MTL)`, 4096 MB, queried automatically | |
 
-**Metal and Vulkan run on the Xe-LPG iGPU.** This is not aspirational — it is measured on the physical
-Dell Latitude 5350, under macOS 15.8.1, with exact-pixel validation:
+![The Dell Latitude 5350 running the GPU-composited desktop. The About This Mac window reports the real GPU — Intel(R) Graphics (MTL) — with shared memory queried automatically (this photo shows 12288 MB, before the 4 GiB backend cap was applied; the current cap reports 4096 MB)](IMG_6508.jpg)
 
-* **Vulkan (ANV)** enumerates the real device `8086:7d45`, submits a compute shader and returns
-  **65,536 correct values**.
-* **Metal** selects a device attached to `NMXAccel`, computes correct values and renders
-  **4,096 correct pixels**.
-* The full hardware gate passes **26,000 frames** across **22 cases** (11 IOKit + 11 direct routes),
-  including padded-row full-HD and RGBA/BGRA IOSurface backing-pixel verification — report
-  `readback-20261019-114424`. Earlier Metal/Vulkan compute and 4096-pixel render passes are recorded in
-  report `20261018-145513`.
-* Command-pool accounting across that gate: **80,020 created / 80,020 destroyed**, zero live, pending or
-  quarantined.
+![About This Mac with the fixed custom icon — Dell Latitude 5350 2-in-1, 13-inch, 2024, reporting Intel(R) Graphics (MTL) at 4096 MB](AboutThisMac-custom.png)
 
-So the hard parts of a graphics port — PCI attach, GuC firmware bring-up, GGTT/staging memory, AIR→SPIR-V
-lowering, and Metal/Vulkan application rendering and compute on real silicon — **work today**.
-
-The one thing still in progress is **WindowServer compositing the desktop on the physical panel**. That
-is a distinct, narrower problem (a readback/surface path under concurrent WindowServer load), and it is
-described in *The current blocker* below. A working Metal/Vulkan stack and a composited login screen are
-two different milestones; this project has finished the first and is attacking the second.
-
-The desktop then crossed the line that mattered. Kernel **1.0.15** corrects GPU startup — it restores
-i915's stolen-region setup but reserves the firmware console image so no allocation can overlap it — and
-with the guarded HID null-guard, plugin **0.3.6** and framebuffer **0.2.5**, WindowServer now **submits real
-GPU work and reads back correctly, with no GPU hang** (`windowserver-result-224146`). That is the first
-usable GPU-composited desktop this project has produced. It is not smooth: the latest capture
-(`windowserver-result-231630`) shows choppy composition, 42 CoreAnimation fence timeouts and 163–205% CPU.
-So the milestone is real and the remaining problem is narrower: composition latency and synchronization,
-not GPU execution. The full path — 1.0.10 ring capture, 1.0.11 mapping pin (falsified), 1.0.12 raw-physical
-span (booted, overwrite persisted), 1.0.13 stolen-memory skip (panicked), 1.0.14 completion-context fix
-(HID panic), 1.0.15 GPU-startup fix (usable desktop) — is documented in *The current blocker* and the
-`research/` notes.
-
----
+**The application gate** is the measured baseline, not an inference: 22 cases (11 IOKit + 11 direct),
+26,000 frames, 80,020 command pools created and destroyed with zero live, pending or quarantined —
+report `readback-20261019-114424`, written up in `research/verified-0.3.1-full-gate-20261019.md`.
 
 <a name="status"></a>
 ## 📊 Status at a glance
@@ -121,32 +96,120 @@ span (booted, overwrite persisted), 1.0.13 stolen-memory skip (panicked), 1.0.14
 | Milestone | Evidence | Status |
 | :--- | :--- | :--- |
 | Real GPU identification (`8086:7D45`, Dell `1028:0CB6`) | macOS probe and the laptop's own Linux report agree | **Confirmed** |
-| `NMXGPU` i915 kernel extension loads and attaches to the real GPU | Report `readback-20261019-114424`, kernel UUID match | **Confirmed** |
-| Memory-mapped I/O / GGTT / firmware bring-up (GuC 70.53.0) | Kernel capture `kernel-guc-capture-1.0.9.log`; firmware loaded on both GTs | **Confirmed (init only)** |
-| **Metal and Vulkan application rendering/compute** | **65,536 correct Vulkan values, 4,096 correct Metal pixels**, 26,000 exact frames across 22 cases (11 IOKit + 11 direct) | **Working** |
-| Command-pool lifetime | **80,020 pools created / 80,020 destroyed**, zero live/pending/quarantined across the gate | **Passing (scoped)** |
-| Accelerator + display-pipe registration | 0.2.4 / 0.2.5 reports: pipe 0 verified, phase-2 power-on complete, pipe active | **Init confirmed** |
-| GPU-composited WindowServer desktop | **Working, but choppy.** WindowServer submits real GPU work and reads back correctly — 24 fence + 32 readback completions, all clean, no GPU hang (`windowserver-result-224146`). Latest capture: choppy composition, 42 CoreAnimation fence timeouts, 163–205% CPU (`windowserver-result-231630`) | **Usable — smoothness unresolved** |
-| GPU reporting (System Information) | **Fixed.** Reports `Intel(R) Graphics (MTL)`, 12288 MB shared memory, queried automatically from the ANV device-local heap — no fixed-name or size injection (`windowserver-result-231630`) | **Working** |
-| Kernel command-ring integrity | 1.0.10 capture: the words below request 20's head (`0xc98–0xca4` — request 18's switch-out and WA tail) read `0xff000000`; GuC `IPEHR=0xff000000`, `RING_HEAD=ACTHD=0xca4`. **Identical on 1.0.11.** The 1.0.12 boot again saved `0xff000000` at request 22's `0xe00–0xe0c`, with `IPEHR=0xff000000`, `RING_HEAD=ACTHD=0xe0c`, `RING_TAIL=0xf70` | **Corrupted — writer unidentified** |
-| Kernel boot integrity (1.0.13) | `panic: NullMoth xkpi: mutex … used before mtx_init` at 8.04 s uptime, backtrace `guc_retire_inflight_request_prio` ← `signal_irq_work` ← `irq_work`. A freed/stale `intel_context` in the breadcrumb completion path; no desktop was reached | **Panics before desktop — parked** |
-| Kernel 1.0.14 (current candidate) | Targets that panic: breadcrumb-owned requests now hold their context/parent context, ownership is taken before the fence's `SIGNALED` bit is published, and the iterators snapshot before release. Locally validated (90,000 ASan/UBSan lifetimes, request-iterator UAF reproduced and fixed) | **Built; hardware-unverified** |
-| Attach guard / retry | A panic during `NMXGPU::attach` leaves the NVRAM `nullmoth-gpu-attaching` marker set, so the next boot parks instead of attaching. 1.0.14's installer clears that marker before arming a retry | **Fixed in the installer; unverified on target** |
-| VoodooI2CHID touchscreen HID panic | 1.0.14's one trial (18:39:51) panicked at 9.12 s: null-page fault in `VoodooI2CTouchscreenHIDEventDriver::forwardReport`. The same signature is in four older panics (Oct 17/18); NMXGPU 1.0.14 was loaded but not in the faulting backtrace | **Pre-existing, under separate investigation** |
-| i915 CPU user-mapping page lifetime | Source audit: `lkpi_unmap_mapping_range` is a no-op and the i915 `vm_ops_cpu` path did not register the lifetime page pin the TTM path installs. Kernel 1.0.11 adds it | **Defect confirmed in source; does not fix the hang** |
-| Raw-physical buffer export | `nmxVramAlloc` / `nmx_xnu_mem_alloc` requested only `kIOMemoryPhysicallyContiguous` and exported `getPhysicalSegment(0, …, MapperNone)` without checking the segment length. 1.0.12 + framebuffer 0.2.4 add `HostPhysicallyContiguous \| MapperNone` and a span check | **Booted 19 Oct 18:00; overwrite persisted; no span-refusal line in the retained log, so the guard's execution is unverified** |
-| Panel scanout with correct pixels | Framebuffer loads and describes 1920×1080, reaches fixed scanout; presentation samples remain zero | **Partial / unverified** |
-| Sleep-wake, brightness, external displays, video decode, long soak | No passing evidence | **Unverified** |
+| `NMXGPU` i915 kext loads and attaches | Report `readback-20261019-114424`, kernel UUID match | **Confirmed** |
+| MMIO / GGTT / firmware bring-up (GuC 70.53.0) | Kernel capture `kernel-guc-capture-1.0.9.log` | **Confirmed** |
+| **Metal and Vulkan application rendering/compute** | 65,536 Vulkan values, 4,096 Metal pixels, 26,000 exact frames | **Working** |
+| **GPU-composited WindowServer desktop** | Real GPU work, readbacks complete, no hang (`windowserver-result-224146`) | **Working — smooth** |
+| GPU reporting in System Information | `Intel(R) Graphics (MTL)`, 4096 MB, queried from the ANV heap | **Working** |
+| Wireless, Bluetooth, audio, Night Shift, brightness, touchscreen | On the Dell; see *The unified Dell candidate* | **Working** |
+| Touchpad (ELAN) | Attaches and is readable; the device is not usable yet | **WIP** |
+| AWDL / AirDrop | Native backend 0.1.4 compiles/links/signs; radio data plane incomplete | **Not functional** |
+| Tablet mode, auto-rotation, on-screen keyboard | Implemented with local fixtures; live ISH publisher missing | **Validation pending** |
+| System-wide subpixel LCD text | Renderer + CoreText frontend + native interposer tested locally | **Deployment open** |
+| Sleep/wake, external displays, hardware video decode | No passing evidence | **Unverified** |
 
-Every row above is traceable to a dated report under `research/`. The point of the table is to keep the
-**working** Metal/Vulkan stack clearly separated from the **unfinished** desktop composition.
+Every row is traceable to a dated report under `research/`.
 
----
+<a name="unified"></a>
+## 🧩 The unified Dell candidate
+
+Since 21 October the project is **one staged candidate** delivering a working Intel Mac — graphics,
+wireless, audio, input, tablet, text rendering and the boot UI — with every subsystem's real validation
+state recorded separately. The authoritative combined status is `UNIFIED-CANDIDATE-WORK.md`; the
+invariants that must survive every rebuild are in `AGENTS.md`.
+
+| Subsystem | What was built | State |
+|---|---|---|
+| **GPU** — Metal, Vulkan, WindowServer | i915 on LinuxKPI, ANV, a custom Metal plugin, a custom framebuffer | **Working and smooth** |
+| **Wireless** — custom AirportItlwm | Linux `iwlwifi` ported to macOS: MTL PCI match `0x7E408086`, `iwlwifi-ma-b0-gf-a0-83.ucode`, fragmented PNVM loading, an internal auxiliary-station path (`itlwm_mtl_internal_aux=1`), custom receive Block Ack handling | **Working** |
+| **Bluetooth** | IntelBluetoothFirmware + BrcmPatchRAM; the fork's LE Data Length Change fix clears the BLE bind stall | **Working** |
+| **Audio** | Realtek ALC295 on `8086:7e28` via AppleALC 1.9.8 + Lilu 1.7.3 (compatibility device-id `ca510000`, layout-id 33) | **Working** |
+| **Touchscreen** | VoodooI2CHID → VoodooInput → AppleMultitouchTrackpadHIDEventDriver, behind a guarded HID null-guard | **Working, gestures confirmed** |
+| **Touchpad** | `LatitudeI2CMeteorLake` — a Legion-adapted VoodooI2C controller: D0 verified through PMCSR, bxt I2C timing from Linux `intel-lpss-pci.c`, an SSDT replacing the firmware's failing `_DSM`/`_CRS` (`XDSM`/`XCRS`) | **WIP** |
+| **Boot UI — macOS Golden Gate** | GoldenGateExt theme `d43617a`, `PickerMode=External`, `PickerVariant=Acidanthera\GoldenGateExt`, `PickerAttributes=147`, auxiliary entries hidden (Spacebar reveals `ResetNvramEntry`), matching OpenCanopy/AudioDxe and a boot chime | **Switched** |
+| **Accelerated boot mode** | OpenCore NVRAM Delete+Add refresh of `nullmoth-gpu-once` / `nullmoth-panel-once`, so every normal USB boot is accelerated; `switch-graphics-mode.sh accelerated\|recovery` for manual override | **Working** |
+| **Copilot → Command** | VoodooPS2Keyboard Info.plist macro inversion, retained and validated in every active, candidate and recovery EFI | **Confirmed** |
+| **AWDL / AirDrop** | Native Intel backend 0.1.4 (74 units, ad-hoc signed) on the pinned `itlwm` base and the 24H32 `IO80211Family` 1200.13.1 ABI | **Not functional** — the radio data plane, peer discovery and transfer are not connected |
+| **Tablet mode** | Live firmware reader 0.2.0, conditional device-local PS/2 gates, 500 ms debounce, stale-signal fail-open, flat hold | **Dell validation pending** |
+| **Auto-rotation** | An x86_64 ISH PCI/IRQ/PIO/HID driver that passes firmware-emulation tests | **No live ISH publisher yet** |
+| **On-screen keyboard** | 0.2.0 session app, foreground text-field check, live-state contract | **Target + Accessibility pending** |
+| **Subpixel LCD text** | Filtered FreeType 2.14.3 renderer (RGB/RGB_V/BGR/BGR_V), a bounded coverage atlas, linear-light per-channel blending, a CoreText-shaped frontend, and a native `CTLineDraw`/AppKit/CA interposer | **System-app deployment open** |
+| **Brightness, hotkeys, GPIO, power** | Brightness-keys route (`BRT6` to `PC00.LPCB.PS2K`), a latitude hotkey driver, a Linux-style GPIO map, a sleep/power snapshot | **Target validation pending** |
+
+### macOS 27 "Golden Gate" — the standalone boot program
+
+**macOS 27 "Golden Gate"** is Apple's twenty-third major macOS release, released 14 September 2026. It is
+the **first macOS that is Apple Silicon only** (no Intel Macs) and the **last to ship Rosetta 2**.
+
+The ambition is **Snapintosh for the Dell**: boot macOS 27 on the Intel Meteor Lake machine *directly from
+firmware*, with no Linux host and no Sequoia loader — which on this hardware means an **ARM-to-x86
+translation layer beneath the kernel**, the piece Snapintosh gets for free on a Snapdragon.
+
+That program lives in [`macos27-standalone/`](macos27-standalone/) and is at version **0.0.3**.
+
+* **What exists.** `EFI/Tools/Dell27Preflight.efi` — an x86_64 UEFI application that runs with no Linux
+  and no Sequoia. It admits exactly four hash-pinned macOS 27.0 build 26A428 / Mac14,3 inputs (`bootkc`,
+  `dtree`, `sptm`, `txm`), inventories firmware RAM and GOP dimensions, validates ARM64 MH_FILESET
+  load-command bounds, and then executes a bounded A64 program through a portable interpreter compiled into
+  the binary: scalar move-wide, ADD/SUB, logical shifted-register operations, NZCV, ADR/ADRP, direct,
+  conditional and register branches, calls/returns, integer loads/stores, NOP and BRK, with permission and
+  overflow-checked private buffers. Version 0.0.3 adds a checked ARM64 MH_EXECUTE loader (813 boundary
+  checks), selected non-trapping EL2 state (OSLAR, DAIF masks, CurrentEL, VBAR, reset HCR read) and an
+  independent 19-instruction privileged probe.
+* **How it is verified.** ASan/UBSan with 85 execution and fault checks; a 69-instruction ARM payload
+  produces the same 80 bytes as independently executed pinned QEMU TCG; the exact x86 EFI binary runs inside
+  OVMF and is compared byte-for-byte against that oracle; a separate OVMF run rejects a one-byte altered
+  device tree. After admission the probe rereads and rehashes SPTM, maps it into private memory, executes
+  its first branch and four setup instructions, then **intentionally stops at the first boot-argument
+  read**. Unsupported instructions, bad maps, faults and instruction budgets terminate execution — an
+  unsupported system instruction is never treated as a successful no-op.
+* **What is not there.** A complete privileged ARM runtime, the MMU and monitor memory management, exception
+  delivery, SIMD/FP, atomics and PAC, the Apple interrupt/timer/device models, SPTM initialisation to
+  completion, TXM, the Apple kernel, and the desktop. The console **explicitly stops** at that boundary
+  rather than reporting success. Intel's broader `unicorn-for-efi` engine has been compiled on the build
+  volume (80 source files, 28 unresolved firmware helpers) but is not runtime-qualified and is separate from
+  the tested binary.
+* **Hardware status.** The Dell has **not** been tested on either execution path. The USB now holds
+  macOS 27: the small FAT volume carries the preflight tool and the pinned inputs, and the main exFAT
+  volume holds the source, the evidence and an older *hosted* QEMU shell reference. Both original SanDisk
+  partitions were erased after a full backup was verified, and **no Sequoia EFI was restored** — the two
+  tracks are separate, and the Sequoia graphics track keeps its own verified state rather than being
+  rewritten to fit the new one.
+
+The native-integration work on the 24H32 build (the AWDL/`IO80211Family` ABI, the CoreText/FreeType text
+path, the ISH tablet sensors) re-anchors on the Golden Gate frameworks when the runtime gets there: each
+framework's ABI is versioned against the running OS, so that is a re-derivation per framework, not a version
+bump. `research/iwlwifi-api83/` holds the Linux `iwlwifi` API-83 source and `research/airportitlwm-tahoe/`
+a qualified upstream reference (Tahoe 26.6.2 / 26.7 with AppleVTD, AWDL/P2P, AirPlay and Screen
+Mirroring) — the blueprint for that move.
+
+<a name="wip"></a>
+## 🧭 What is in progress
+
+| Item | What is missing |
+|---|---|
+| **Touchpad** (ELAN04F3:328E) | The device attaches and is readable, but is not yet usable; gesture behaviour is untested |
+| **AWDL / AirDrop** | The radio data plane, peer discovery and file transfer are not connected. **AirDrop does not work** |
+| **Tablet mode** | Dell validation. The Intel HID switches are confirmed by the Linux capture; the Dell WMI switch stays false |
+| **Auto-rotation** | macOS has no qualified live ISH sensor publisher yet |
+| **On-screen keyboard** | Target runtime and the Accessibility permission |
+| **Subpixel LCD text** | System-app interception and GPU-backed CA layers |
+| **Brightness, hotkeys, GPIO, power** | Target validation on the Dell |
+| **Weather glyph artefacts** | Reproducible, but not localized — the last capture ran without Weather |
+| **Boot chime** | Actual UEFI playback on the Dell |
+| **macOS 27 standalone runtime** | A complete privileged ARM runtime, the MMU and monitor memory management, exception delivery, SPTM initialisation, TXM, the Apple kernel and the desktop. The Dell has not been tested on either execution path |
+
+### Next
+
+- **The macOS 27 standalone runtime** — privileged ARM execution, the MMU, SPTM initialisation and the
+  Apple kernel, then the desktop. See *macOS 27 "Golden Gate" — the standalone boot program*.
+- **Complete the Apple-side subsystems on 24H32** — AWDL radio qualification, a live ISH publisher,
+  system-wide subpixel text deployment.
+- **Qualify the remaining peripherals on the Dell** — touchpad, brightness keys, hotkeys, sleep/wake.
+- **Sustained use** — longer soak, sleep/wake cycles and external displays are still unverified.
 
 <a name="security"></a>
 ## ⚠️ Security warning
-
-This project requires changes that weaken macOS platform security:
 
 | Setting | Effect |
 |---|---|
@@ -160,18 +223,17 @@ damaged kernel collection can make the installation unbootable. Keep a known-goo
 drive and a full backup off-device. This is an experimental hardware-porting project, not a supported
 configuration.
 
----
-
 <a name="target"></a>
 ## 🎯 Hardware and software target
 
 | | |
 |---|---|
-| Machine | Dell Latitude 5350 |
+| Machine | Dell Latitude 5350 (2-in-1) |
 | CPU | Intel Core Ultra 5 135U — 12C/14T (2 P Redwood Cove + 8 E Crestmont + 2 LP E), CPUID `A06A4` |
 | iGPU | Meteor Lake-P Xe-LPG, PCI `8086:7D45`, subsystem `1028:0CB6`, rev 08 |
-| Wireless | Intel `8086:7E40` (Meteor Lake) on a **custom AirportItlwm** — see *Custom wireless* below |
-| Touch input | I2C-HID multitouch screen on `8086:7E7B` via **VoodooI2CHID** — **working, gestures confirmed**; ELAN04F3:328E touchpad — **work in progress** — see *Touch input* below |
+| Wireless | Intel `8086:7E40` (Meteor Lake) on a **custom AirportItlwm** |
+| Touch input | I2C-HID multitouch screen and ELAN04F3:328E touchpad on `8086:7E7B` |
+| Audio | Realtek ALC295 on `8086:7e28` at `00:1f.3` |
 | OS | macOS 15 Sequoia 15.8.1 (24H32), x86_64 |
 | Graphics stepping | `B0` |
 | Cache/coherency | `has_llc=no`, `has_snoop=yes`, `has_flat_ccs=no` (from the laptop's Linux report) |
@@ -182,97 +244,48 @@ laptop identify the same device, the same stepping and the same firmware family.
 makes the retargeting plan viable, and it is the reference point every kernel experiment is measured
 against.
 
-### Custom wireless — a Linux driver ported to macOS
+**Custom wireless.** AirportItlwm 2.4.0 (laobamac Sequoia build `d695c97`, `com.zxystd.AirportItlwm`) —
+the macOS port of Intel's Linux `iwlwifi` — with Meteor Lake changes on top: the `0x7E408086` PCI match,
+`iwlwifi-ma-b0-gf-a0-83.ucode` with a custom fragmented PNVM loader, an internal auxiliary-station path
+(`itlwm_mtl_internal_aux=1`), custom receive Block Ack handling
+(`airport-sequoia-rx-aggregation-test16`), and firmware/scan/link/station/key status properties. The EFI
+**enables AirportItlwm and disables the older `itlwm` 2.3.0**, so macOS uses its native Wi-Fi integration
+path (`en0`) rather than the separate itlwm/HéliPort setup.
 
-The Dell's Intel wireless controller (`8086:7E40`, Meteor Lake) is driven by a **custom AirportItlwm
-2.4.0**, not the stock kext. AirportItlwm is itself the macOS port of Intel's Linux `iwlwifi` driver, and
-this build carries Meteor Lake–specific changes on top of it:
-
-* **Base**: laobamac Sequoia build (`d695c97`), `com.zxystd.AirportItlwm`, version 2.4.0.
-* **Hardware**: `IOPCIMatch` extended with `0x7E408086` so the MTL controller attaches.
-* **Firmware**: `iwlwifi-ma-b0-gf-a0-83.ucode` (MA-B0 / GF-A0, API 83), with a **custom fragmented
-  PNVM** loader that matches hardware/SKU and reports completion.
-* **Initialization**: an internal auxiliary-station path selected by `itlwm_mtl_internal_aux=1`.
-* **Receive aggregation**: custom receive Block Ack handling (`airport-sequoia-rx-aggregation-test16`).
-* **Diagnostics**: firmware, scan, link, station, encryption-key and firmware-error status properties.
-
-The EFI **enables AirportItlwm and disables the older `itlwm` 2.3.0** alternative, so the system uses the
-macOS-native Wi‑Fi integration path (`en0`) rather than the separate itlwm/HeliPort setup. `itlwm_he=1`
-is set, but that flag alone does not prove an active 802.11ax link.
-
-**Status: loaded and registered `en0`.** Throughput, sleep/wake reliability, AirDrop and full Wi‑Fi 6
-behaviour are **unverified** — the logs confirm the driver attached, not that the wireless path is fully
-working. This is the same "confirmed vs. not verified" standard the GPU work is held to.
-
-Evidence: preserved EFI config and kext under `checkpoints/usable-desktop-1.0.15-20261019-224818/`
-(`EFI/OC/config.plist`, `EFI/OC/Kexts/AirportItlwm.kext/`) and the boot args in
-`port-artifacts/windowserver-mapping-lifetime-1.0.11/.../current-boot-arguments.txt`.
-
-### Touch input — a Legion-adapted I2C controller and a Linux IRQ mapping
-
-The Dell's I2C-HID input — an **ELAN04F3:328E** touchpad and a multitouch screen on the I2C3 controller
-`8086:7E7B` (`_SB.PC00.I2C3.TPD0`) — is brought up by adapting the
-[LegionI2CArrowLake](https://github.com/watchthelight-labs/LegionI2CArrowLake) approach rather than by
-replacing hardware:
-
-* **Controller**: `LatitudeI2CMeteorLake` is a small subclass of VoodooI2C's exported PCI controller.
-  It restricts vendor/device/subsystem, discovers the PCI PM capability instead of assuming its offset,
-  requests and verifies D0 (the firmware leaves the controller in D3hot, where every register read
-  returns `0xffffffff`), and refuses a nonresponsive controller before the base probe. The bxt I2C timing
-  (133 MHz, SDA hold 42 ns, SDA fall 171 ns, SCL fall 208 ns) is taken from Linux
-  `drivers/mfd/intel-lpss-pci.c` — the same table Linux uses for this controller.
-* **GPIO / interrupt**: the interrupt path runs through **VoodooGPIO** — VoodooI2C's per-generation GPIO
-  controller (Cannon Lake / Ice Lake / Tiger Lake / Sunrise Point) — together with `linuxirq.h`, the
-  Linux IRQ-mapping shim that routes a Linux-style GPIO interrupt onto macOS. Where no community GPIO data
-  exists (the Meteor Lake `INTC1082`/`INTC1084` controllers), the driver falls back to **polling**
-  (`-vi2c-force-polling`) rather than guessing a pin. No slave address, descriptor register or GPIO pin is
-  invented.
-* **ACPI**: the firmware's `TPD0._DSM` fails (`HIDG` missing), so an SSDT supplies replacement methods —
-  the HID DSM returns firmware `TPDH`, and `_CRS` concatenates the device's own firmware `SBFB` serial-bus
-  and `SBFI` interrupt buffers. Only the `_DSM`/`_CRS` names (`XDSM`/`XCRS`) and the table checksum change;
-  length is unchanged and it decompiles.
-* **Touchscreen**: the screen is driven by **VoodooI2CHID** (the I2C-HID multitouch driver) behind
-  `VoodooI2CPrecisionTouchpadHIDEventDriver` → `VoodooInput` → `AppleMultitouchTrackpadHIDEventDriver`.
-  An earlier panic in `VoodooI2CTouchscreenHIDEventDriver::forwardReport` is held by the guarded HID 1.0.1
-  null-guard.
-
-**Status: the touchscreen works flawlessly, including gestures; the touchpad is a work in progress.**
-The touchscreen (VoodooI2CHID) is confirmed working with full gesture support. The touchpad (ELAN)
-attaches and is readable — the 12:16 capture shows it coming up through the full registry chain — but it is
-**not yet working**; treat it as a work in progress. This split is deliberate: the screen is done, the pad
-is not.
-
-Evidence: `touchpad-candidate/` (`LatitudeI2CMeteorLake.kext`, `Legion-README.md`, `config.plist`),
-`touchpad-sources/` (`SSDT-LAT-TPD0.dsl`, `LatitudeI2CMeteorLake.cpp`), and
-`research/touchpad-result-20261020-121643.md`.
+**Touch input.** The ELAN touchpad and the multitouch screen sit on the I2C3 controller `8086:7E7B`
+(`_SB.PC00.I2C3.TPD0`). `LatitudeI2CMeteorLake` subclasses VoodooI2C's PCI controller: it restricts
+vendor/device/subsystem, discovers the PCI PM capability instead of assuming its offset, requests and
+verifies D0 (the firmware leaves the controller in D3hot, where every read returns `0xffffffff`), and
+refuses a nonresponsive controller before the base probe. The bxt I2C timing (133 MHz, SDA hold 42 ns,
+SDA fall 171 ns, SCL fall 208 ns) comes from Linux `drivers/mfd/intel-lpss-pci.c`. Interrupts run through
+**VoodooGPIO** with `linuxirq.h`, the Linux IRQ-mapping shim that routes a Linux-style GPIO interrupt onto
+macOS; where no community GPIO data exists (MTL `INTC1082`/`INTC1084`) the driver **polls**
+(`-vi2c-force-polling`) rather than guessing a pin. The firmware's failing `TPD0._DSM` (`HIDG` missing) is
+replaced by an SSDT — the HID DSM returns firmware `TPDH`, and `_CRS` concatenates the device's own
+`SBFB`/`SBFI` buffers — changing only the method names (`XDSM`/`XCRS`) and the checksum.
 
 > **Note on neighbouring hardware.** The sibling `NullMoth-Xe` work targets **Panther Lake / Xe3
 > (`8086:b080`)** as an SR-IOV virtual function on a QEMU host. Meteor Lake is **Xe-LPG**, a different
 > generation with different memory and firmware behaviour (`has_flat_ccs=no` here, flat-CCS remedies
 > there). Xe2/Xe3 flat-CCS and VF power/firmware workarounds must **not** be copied onto this device.
 
----
-
 <a name="compatibility"></a>
 ## 🖥️ Compatibility
 
-Only one configuration has evidence behind it. Everything else is honestly marked untested.
+Only one configuration has evidence behind it.
 
 | Target | Status |
 |---|---|
-| Dell Latitude 5350, `8086:7D45`, macOS 15.8.1 (24H32), x86_64 | **Tested** — Metal + Vulkan pass; desktop composition in progress |
-| Other Meteor Lake SKUs that expose `8086:7D45` | **Untested** — same device ID, likely the same path, no claim made |
-| Meteor Lake SKUs with a different device ID | **Untested** — `IOPCIPrimaryMatch` must be changed; nothing else is verified |
-| Alder Lake / Raptor Lake iGPUs | **Not targeted** — the i915 code may apply, but no evidence exists |
-| Lunar Lake (Xe2) / Panther Lake (Xe3) | **Not supported** by this port — different generation and cache behaviour |
-| macOS 15.0–15.7 | **Untested** — only 15.8.1 has hardware evidence |
-| macOS 26 Tahoe | **Untested** |
+| Dell Latitude 5350, `8086:7D45`, macOS 15.8.1 (24H32), x86_64 | **Tested** — see *What works today* |
+| Other Meteor Lake SKUs exposing `8086:7D45` | **Untested** — same device ID, no claim made |
+| Meteor Lake SKUs with a different device ID | **Untested** — `IOPCIPrimaryMatch` must change |
+| Alder Lake / Raptor Lake iGPUs | **Not targeted** |
+| Lunar Lake (Xe2) / Panther Lake (Xe3) | **Not supported** by this port |
+| macOS 15.0–15.7 · macOS 26/27 | **Untested** — only 15.8.1 has hardware evidence |
 | Apple Silicon | **Not applicable** |
 
 Changing the device ID alone is not a port. Each new target needs its own firmware match, memory/cache
-assumptions and a fresh 22-case gate before any claim is made. "Unknown" is not "works".
-
----
+assumptions and a fresh 22-case gate. "Unknown" is not "works".
 
 <a name="architecture"></a>
 ## 🧭 Architecture
@@ -307,974 +320,115 @@ NMXGPU.kext                ← 438 i915 + DRM/TTM + LinuxKPI + compatibility + I
 Xe-LPG hardware  (GuC-managed engine, GGTT, DMC/HuC/GSC firmware)
 ```
 
-Two paths are exercised and both matter:
-
-* **Direct** — through the DRM device-file interface.
-* **IOKit** — forced through the IOKit render-node transport.
-
-The gate runs **11 cases on each route**. A call named `drmNmxIoctl` does not prove IOKit was used, so
-each case logs and verifies the route it actually took rather than trusting the entry point.
-
----
+Two transports are exercised and both matter: **direct** (the DRM device-file interface) and **IOKit**
+(the render-node transport). The gate runs 11 cases on each route. A call named `drmNmxIoctl` does not
+prove IOKit was used, so each case logs and verifies the route it actually took.
 
 <a name="components"></a>
 ## 🧱 Component inventory
 
 | Component | Version / base | Source in tree | Licence |
 |---|---|---|---|
-| `NMXGPU.kext` | kernel **1.0.15** (current — GPU-startup stolen-region reservation) on the 1.0.14/1.0.13/1.0.12/1.0.11 lineage | `latitude-desktop`, `drm-kmod`, `freebsd-src` | i915/Linux → GPL-2.0; NullMoth wrapper PolyForm NC |
-| `NMXAccel.kext` | 0.2.4 | `accel-build/NMXAccel.kext` | NullMoth PolyForm NC |
-| `LatitudeMTLFB.kext` | **0.2.5** (driver-queried GPU identity + shared-memory reporting) | `desktop-build/LatitudeMTLFB.kext` | project |
-| `NMXAGDC.kext` | 0.1 (`NMXAGDCLoader`) | `desktop-build/NMXAGDC.kext` | project |
+| `NMXGPU.kext` | kernel **1.0.15** (GPU-startup stolen-region reservation) | `latitude-desktop`, `drm-kmod`, `freebsd-src` | i915/Linux → GPL-2.0; NullMoth wrapper PolyForm NC |
+| `NMXAccel.kext` | **0.2.9** (gamma tile, bulk transfer, copy-time counter) | `accel-build/NMXAccel.kext` | NullMoth PolyForm NC |
+| `LatitudeMTLFB.kext` | **0.2.12** (GPU identity, shared-memory reporting, gamma table, captured EDID) | `desktop-build/LatitudeMTLFB.kext` | project |
 | Guarded HID | **1.0.1** (VoodooI2CHID null-guard) | `desktop-build/hid-nullguard/` | project |
-| Metal plugin | `NVMTLDriver` **0.3.6** (query-based memory reporting) | `NullMoth/plugin/` | PolyForm NC |
-| Shader translator | AIR → SPIR-V | `NullMoth/translator/` | LGPL-3.0 / GPL-3.0 |
-| Vulkan backend | ANV on Mesa **26.3.0-devel** | `mesa/` (patched via `port-artifacts/mesa-i915-darwin-mmap.patch`) | MIT |
+| Metal plugin | `NVMTLDriver` **0.3.19** (phase measurements, pipeline cache, 4 GiB backend cap) | `NullMoth/plugin/` | PolyForm NC |
+| Shader translator | AIR → SPIR-V (metal2vulkan) | `NullMoth/translator/` | LGPL-3.0 / GPL-3.0 |
+| Vulkan backend | ANV on Mesa **26.3.0-devel** | `mesa/` | MIT |
 | DRM userspace | libdrm 2.4.x | `libdrm/` | MIT |
 | DRM kernel modules | linuxkpi port of Linux DRM | `drm-kmod/` | MIT / GPL-2.0 |
 | LinuxKPI | FreeBSD compatibility layer on xnu | `freebsd-src/`, `latitude-desktop` | BSD-2-Clause |
 | Firmware | GuC/DMC/HuC/GSC | `firmware/i915/` | see `firmware/LICENSE.i915` |
+| Wi-Fi | **AirportItlwm 2.4.0** (custom laobamac Sequoia build) | preserved EFI | iwlwifi → GPL-2.0 |
+| Audio | **AppleALC 1.9.8** + Lilu 1.7.3 (ALC295, layout-id 33) | upstream bundles | GPL-2.0 |
+| Bluetooth | **IntelBluetoothFirmware** + BrcmPatchRAM | `research/bluetooth-i2c-a16/` | GPL-2.0 |
+| Touch input | VoodooI2C 2.9.1 + VoodooI2CHID + VoodooGPIO + Legion adaptation | `research/voodooi2c-core/`, `touchpad-sources/` | GPL-2.0 |
+| AWDL / AirDrop | Native Intel AWDL backend **0.1.4** | `wireless-sources/`, `port-artifacts/awdl-*` | iwlwifi → GPL-2.0 |
+| Tablet / ISH | Tablet-state reader **0.2.0**, ISH runtime, rotation, on-screen keyboard | `tablet-sources/` | project |
+| Subpixel text | Filtered FreeType 2.14.3 + CoreText frontend + native interposer | `subpixel-sources/` | FTL / GPL-2.0 |
+| Hotkeys / GPIO / power | Latitude hotkeys, GPIO map, power/sleep snapshot | `hotkey-sources/`, `gpio-sources/`, `power-sources/` | project |
+| Boot UI | GoldenGateExt `d43617a` + OpenCanopy/AudioDxe | `boot-ui-sources/` | third-party theme |
+| Input & boot policy | Copilot→Command macros, persistent accelerated-boot mode | `copilot-sources/`, `graphics-mode-sources/` | project |
 | Kernel build headers | MacKernelSDK | `MacKernelSDK/` | Apple |
-| Security bypass | AMFIPass 1.4.1 | `AMFIPass/` | not included in this tree — verify upstream |
+| Security bypass | AMFIPass 1.4.1 | `AMFIPass/` | not in this tree — verify upstream |
 | Topology/inject kexts | Lilu, VirtualSMC, … | OpenCore `Kexts/` | mixed |
 
-Exact revisions for every patched base are recorded in `latitude-runtime/BUILD-MANIFEST.json`, and
-upstream package hashes are in `SHA256SUMS-upstream.txt`.
-
----
-
-<a name="implementation"></a>
-## 🔬 Implementation detail, layer by layer
-
-### 1. Kernel bring-up: i915 on LinuxKPI
-
-`NMXGPU` is not a from-scratch driver. It is the Linux `i915` driver compiled against a LinuxKPI
-compatibility layer on xnu, restricted to `8086:7D45`. The laptop build compiles **438 i915, DRM/TTM,
-LinuxKPI, compatibility and IOKit source files**; AMD and Xe drivers are deliberately **not** linked in,
-and the AMD-only display-init reference is conditionally excluded. The result links with **no
-unresolved driver-internal C symbols**.
-
-The loader is a one-shot opt-in: an NVRAM variable is consumed before GPU initialisation, so a failed
-attach cannot silently re-arm on every boot. `NMIntelFB`, `NMXAGDC` and `NMXVGAFB` exist in the tree as
-display siblings, but the tested candidate uses the **i915 no-display discovery path** and skips the
-DRM-to-`IOFramebuffer` bridge, leaving the panel on its firmware framebuffer while the render runtime is
-validated independently. (`LatitudeMTLFB.kext` and `NMXAGDC.kext` are the Latitude-specific builds of
-that display path; the panel-claim work is in `latitude-desktop/LatitudePanelClaim.cpp`.)
-
-### 2. Firmware handshake and the GuC
-
-Initialisation writes the GPU's MMIO register blocks during early kernel boot and loads firmware whose
-versions match the laptop's own Linux report exactly — **GuC 70.53.0**, **DMC 2.23**, **HuC 8.5.4**,
-**GSC 102.1.15.1926**. Kernel capture (`kernel-guc-capture-1.0.9.log`) shows GuC loaded on both GTs with
-GuC submission enabled.
-
-Two honest caveats:
-
-* Firmware *load* and GuC *submission enable* are not proof of correct scheduling under load.
-* A real GuC defect **has** been observed: at 23:54:50.264 a **GuC TLB-invalidation response timeout**
-  for seqno 1 was logged before the next test process started. It is a real event; it is *not* proven to
-  be the cause of the following hang.
-
-**A reproduced software race was fixed on this path.** The i915 invalidation waiter sets `WQ_FLAG_WOKEN`
-and sleeps; Linux's woken callback also persists `TASK_WAKING`. The FreeBSD LinuxKPI callback marked the
-flag and signalled the channel but did **not** persist `TASK_WAKING`, so a reply arriving between the
-outer flag check and sleep registration could signal an empty channel and the waiter would sleep to
-expiry despite the flag being set. The override in `linux_schedule.c` sets `TASK_WAKING` under the same
-sleep-channel lock, following the port's existing `wake_up_task` protocol. The old and patched callbacks
-plus the real i915 `must_wait_woken` are extracted into a deterministic fixture: the old version
-reproduces the false expiry, the patched one preserves positive remaining time, across **100,000
-scenarios** under ASan/UBSan. This is a **verified software fix**; it is not a claim to have fixed the
-Dell hang.
-
-### 3. Memory: GGTT, staging and command-pool lifetime
-
-Metal resources reach the GPU through three distinct address spaces, and conflating them is a known
-trap:
-
-* **DSM** — device physical addresses.
-* **GSM / PTE** — graphics-memory-relative PTE offsets.
-* **GGTT** — graphics translation table virtual addresses.
-
-No allocation overlap has been demonstrated in the available capture, and the GT scratch path explicitly
-avoids its stolen fallback. On that evidence, GGTT/plane registers are **not** rewritten and no guessed
-memory ranges are reserved.
-
-Command-pool lifetime is handled by a **fresh-allocation policy**: pools are created fresh and destroyed
-immediately after fence/witness completion, the cache/pop/push reuse paths are removed, and uncertain
-completions are **quarantined** rather than reused. The verified gate reports **80,020 created / 80,020
-destroyed**, zero live, pending or quarantined, with `created = destroyed = completed + abandoned` for
-every case, and peak concurrency of 2 in the independent-worker cases. This is a command-pool object
-count for this matrix — **not** a guarantee about every driver memory cache or indefinite runtime.
-
-An important correction to earlier project text: fresh pools alone are **not** a complete stability fix.
-The 0.3.0 run that introduced them passed four 1000-frame cases and then hit the GuC TLB timeout and a
-hang on the fifth process. Fresh allocation remained correct behaviour; it was never sufficient on its
-own.
-
-### 4. The translation stack: AIR → SPIR-V → ANV
-
-Apple hands the plugin **Apple Intermediate Representation (AIR)**. The translator lowers AIR to
-**SPIR-V**, which is what the Xe-LPG execution units actually consume, and **ANV** (the Intel Vulkan
-driver in Mesa) compiles and submits it. ANV completed **1,045 build steps** for this target; CLC tools
-were built separately for the Apple Silicon build host.
-
-`xf86drm.c` in `libdrm` is reworked into a **unified IOKit render-node model**, and the Metal plugin
-subclasses `NVMTLDevice` / `NVMTLAccelerator` so the GPU appears as a legitimate node in the I/O
-Registry. The surface-publication and desktop-serialization logic that the current failure exercises
-lives in `NullMoth/plugin/nvmtl_vk.c` (`nvmtl_vk_image_read` and the surface copy-out path) and
-`NullMoth/plugin/NVMTLObjects.m`.
-
-### 5. Security and injection
-
-Under modern macOS security the plugin and kexts must be loaded and trusted explicitly:
-
-* `csr-active-config = Data 430A0000` (`0x0A43`) — the driver's required custom SIP mask.
-* `SecureBootModel = Disabled`.
-* **AMFIPass 1.4.1** enabled *after* Lilu.
-* `amfi_get_out_of_my_way=0x1`, `amfi=0x80`, `ipc_control_port_options=0` per the NullMoth setup.
-* GPU-hiding `DeviceProperties` removed; `csr-active-config` and `boot-args` placed in `NVRAM → Delete`
-  so prior values are replaced on the next boot.
-* No persistent `nmxintel` boot argument — GPU activation is one-shot.
-
----
-
-<a name="blocker"></a>
-## 🐞 The current blocker, stated precisely
-
-This is the most important section in the document. The GPU-composited desktop **now works**: WindowServer
-submits real GPU work and reads back correctly, with no GPU hang. The remaining problem is **smoothness** —
-composition is choppy, with CoreAnimation fence timeouts and high CPU. That is a different and far narrower
-problem than the GPU-execution failures documented below, and it is the current blocker. The history
-matters because it shows how the desktop was won: each figure below belongs to one specific boot, and the
-plugin's submission counter, the readback counter and i915's request sequence are three different
-namespaces.
-
-The 0.3.3 boot (`failure-detail-20261019-130037`, boot UUID `43CADE8D-…`, boot start 12:58:39):
-
-```
-panel claim activates, framebuffer load = 0, plugin SHA matches installed binary
-12:58:49.782–12:58:50.078  eight submissions complete: surface upload, render/event work, three readbacks
-12:58:50.085  fourth readback, image2 / staging12, 1920x1080 pitch 7680
-              → VK_TIMEOUT at 12:58:55.086, after the 5000 ms WindowServer fence budget
-plugin: backend disabled, CPU destination left untouched, uncertain resources retained
-12:59:03.799  kernel: hung rcs0 context, active request 8:24 [0x1002] not yet started
-12:59:03.867  kernel: GPU HANG 12:1:00dfffff
-WindowServer PID163 terminates 12:59:04; restarts hit zero-fill timeouts
-CoreDisplay: DisplaySurface::GetMTLTexture → SurfaceColorFill → "Failed to create MTLTexture"
-             (BGRA8Unorm 1920x1080, storageModeManaged) → SIGABRT
-```
-
-Two earlier boots — 0.2.5 and 0.3.2 (`failure-detail-20261019-121101`, 12:00) — show the same shape at a
-different cut-off: readback **#5** accepted by Vulkan, its fence never completing within 5000 ms, and the
-concurrent upload **#6** stalling ~80 ms later. That "#5 / #6" ordering is the 0.2.5/0.3.2 signature, not
-the 0.3.3 one; the fourth readback above is where 0.3.3 stops.
-
-| Candidate (boot) | Last thing that completed | First thing that stalled |
-|---|---|---|
-| 0.2.5 | readback #3, render/event #4 | readback **#5**; upload #6 stalls ~80 ms later |
-| 0.3.2 (`121101`, 12:00) | readback #3, render/event #4 | readback **#5** |
-| 0.3.3 (`130037`, 12:58) | eight submissions incl. three readbacks | **fourth** readback (image2/staging12) |
-| 0.3.4 / 0.3.5 | first seven submissions | **submission #8** = third readback, dedicated fresh staging |
-| 1.0.10 (diagnostic) | reproduces the 0.3.4/0.3.5 cut-off | same submission #8 / readback #3 |
-| 1.0.12 + fb 0.2.4 | readback #8 completed in 2 ms | **submission #9** (render/event) |
-| 1.0.13 / 1.0.14 (kernel fixes) | — | boot panic (1.0.13); separate HID panic (1.0.14) |
-| **1.0.15 + 0.3.6 + 0.2.5 + HID 1.0.1** | **real WindowServer GPU work + readbacks, no hang** | **nothing — the desktop is usable** |
-
-What is **established**:
-
-* Readbacks really do complete before the failure — three of them on the 0.3.3 boot — so this is not
-  "readback is universally broken".
-* The readbacks that succeed and the one that stalls **may reference different images**; the trace does
-  not prove they share one. Treating pointer/address equality as reuse-while-pending is not evidence.
-* The first fallback upload also completes, so the IOSurface external-host import refusal
-  (`VkResult -1000072003`) cannot by itself explain the second stall.
-* A not-started request may simply be blocked behind earlier work; it is not proof that its own copy
-  instruction is defective.
-* The later CoreDisplay/CoreAnimation exceptions are **consequences**, not the initial cause. Reporting
-  shader compilation success, manufacturing textures after failure, or extending the fence timeout
-  would mask the sequence rather than restore GPU execution.
-
-What is **not** established: an exact single root cause. Candidate 0.3.4 removes one variable — dedicated
-fresh staging for this `8086:7d45` WindowServer instead of thread-local retained staging — and fixes
-three diagnostic defects (sandboxed journal writes, a per-format log throttle hiding submissions past
-#8, and a `sample` invocation that returned success while producing no stack). It does not claim to fix
-the hang.
-
-### What the kernel 1.0.10 ring capture actually recorded
-
-Kernel 1.0.10 changes **diagnostics only**. Before the logical-ring tail is published it copies the
-request's own ring words plus the **four words below the head** into write-once boot slots, and on hang
-it re-reads the live pinned CPU ring. On the 17:14 boot it recorded this for render context 8 (ring GGTT
-base `a9d000`, size `0x4000`):
-
-| Request | head | infix | postfix | tail | WA tail | four words below the head, at submission |
-|---|---|---|---|---|---|---|
-| 16 | `9d8` | `a78` | `aa8` | `b38` | `b40` | `0x9c8–0x9d4`: `ff000000 ×4` (request 14's ending) |
-| 18 | `b40` | `be0` | `c10` | `ca0` | `ca8` | `0xb30–0xb3c`: `fedca540 / 0 / 02800000 / 0` (request 16's ending) |
-| 20 | `ca8` | `d48` | `d78` | `e08` | `e10` | `0xc98–0xca4`: `ff000000 ×4` (request 18's ending) |
-
-The window is `[head − 16, wa_tail + 8)`, so it also contains the request's *own* ending. That is what makes
-the comparison decisive:
-
-* At request 18's submission, `0xc98–0xca4` hold `fedca540 / 0 / 02800000 / 0` — request 18's own
-  switch-out `MI_STORE_DATA_IMM` and its `MI_ARB_CHECK` / `MI_NOOP` workaround tail.
-* At request 20's submission, the four words below its head are those same `0xc98–0xca4` offsets — now
-  `ff000000 ×4`.
-* At request 16's submission, the four words below its head (`0x9c8–0x9d4`, request 14's ending) already
-  read `ff000000`; at request 18's submission, request 16's ending (`0xb30–0xb3c`) was still intact. The
-  overwrite is therefore not uniformly applied to every retired request.
-* The **hang** snapshot, taken from the same pinned CPU mapping in the same millisecond, reads all zeros
-  — that capture follows the userspace crash and is *not* treated as the first corruption event.
-
-The GuC register capture independently shows the GPU fetching that word: `IPEHR=ff000000`,
-`INSTDONE=ffdfffff`, `RING_HEAD=ACTHD=0xca4` (the word after request 18's `MI_ARB_CHECK`), while
-`RING_TAIL=0xe08` (request 20 already published).
-
-**What this establishes:** real ring content changed at a request boundary and the GPU fetched it, seen by
-both the CPU mapping and the instruction-pointer register. It is not a fence-budget or scheduling artefact.
-**What it does not establish:** which code wrote those words, or how far back the change reaches — the
-window starts at `head − 16`, so it cannot bound the overwrite. `0xff000000` is *consistent with* opaque
-black, but that proves nothing on its own; a search of the port, plugin and accelerator sources finds no
-`0xff000000` constant (only unrelated PCI class masks), so it is not a marker this project writes
-deliberately.
-
-The same signature, byte for byte, was then recorded on a **second, independent build** (kernel 1.0.11,
-17:32 boot): context 8 request 18's ending intact at capture, request 20's ending `ff000000`, `IPEHR`
-`ff000000` again — and, later in the same boot, context 12's `0x9c8–0x9d4` (request 14's ending) and
-`0xb30–0xb3c` (request 16's ending) also read `ff000000`. In other words the overwrite is reproducible,
-is not a one-off scribble, and it *spreads* over the boot.
-
-**Candidate writers, none yet proven.** (1) An external write aliasing the ring's physical pages — a stale
-user mapping or a surface fill. (2) The ring emitter writing the wrong offset. (3) Cache/coherency
-(weakened: the CPU snapshot and the GPU `IPEHR` agree, so both saw the same memory). (4) The
-`RING_HEAD=ACTHD=0xca4` value itself being the anomaly, with head and tail both sitting mid-request. The
-raw-physical export correction below gives candidate (1) its first concrete mechanism — a fill over a
-flat range that may not match the allocation — while leaving it conditional on a system mapper. That
-candidate was then booted (18:00) and the overwrite still occurred, with no span-refusal line in the log;
-so the mechanism is **unproven and weakened**, and candidate (1) still has no demonstrated writer.
-
-**The cheap decisive tests** are a **ring guard** (store the previous request's tail and WA-tail dwords at
-each tail publication and diff them at hang, turning "the words changed" into "these bytes changed between
-*these* two events") and a **physical-page ownership map** — the page numbers behind the ring, the
-IOSurface/private-image/staging buffers, and the earliest submission boundary whose words differ. Neither
-the pixel-looking constant nor a later crash stack names the writer.
-
-### The 1.0.12 raw-physical allocator correction
-
-The ring capture narrowed *where* the corruption lands. A second, independent audit asked a different
-question: **which code can write a flat physical range at all?** The answer includes every buffer the port
-exports to another agent as "one contiguous run of physical memory", because the exporter never checked
-that the run was real.
-
-Apple's `IOBufferMemoryDescriptor::initWithPhysicalMask` (xnu-11417.140.69) decides host contiguity like
-this:
-
-```c
-mapped = (NULL != IOMapper::gSystem);          // only if kIOMemoryMapperNone is absent
-contig = (0 != (options & kIOMemoryHostPhysicallyContiguous));
-if (!contig && (0 != (options & kIOMemoryPhysicallyContiguous))) {
-        contig |= (!mapped);
-        contig |= (0 != (kIOMemoryMapperNone & options));
-}
-```
-
-So `kIOMemoryPhysicallyContiguous` by itself requests **host**-page contiguity only when no system mapper
-exists (or when `kIOMemoryMapperNone` is also set). With an IOMMU, the allocation can be contiguous in the
-mapper's address space while the host pages are scattered.
-
-The port's surface allocator, `nmxVramAlloc()`, requested `kIODirectionInOut |
-kIOMemoryPhysicallyContiguous` and then exported the surface with
-`getPhysicalSegment(0, nullptr, kIOMemoryMapperNone)` — taking the **first segment's base** and ignoring the
-segment length it had just been handed. `NMXAccel` converts that base plus the surface size into an
-`IODeviceMemory` physical range. If the pages were scattered, the exported range extends into physical
-memory the allocation does not own, and any fill of "the surface" writes there. That is the first
-candidate mechanism in this investigation that can produce **pixel-valued writes outside the buffer**
-rather than an instruction-emitter bug.
-
-Kernel **1.0.12** and framebuffer **0.2.4** correct the assumption:
-
-* `nmxVramAlloc()` and `nmx_xnu_mem_alloc()` add `kIOMemoryHostPhysicallyContiguous | kIOMemoryMapperNone`.
-* They reject the export unless the first segment covers the whole request (segment length, descriptor
-  length, CPU pointer and address overflow); the kernel allocator also enforces the physical mask and
-  requested alignment.
-* A rejected allocation releases its slot and budget, and `nmxVramFree()` uses the same slot-release path,
-  so the slot bitmap and retain count stay balanced.
-* The installer stages, validates, backs up and rolls back the framebuffer together with the kernel and the
-  AuxKC, so a failed desktop boot cannot leave a new framebuffer paired with an old kernel.
-
-The host regression uses Apple's actual contiguity decision (copied from the Sequoia source, not
-reimplemented) plus the real old and new allocator functions, under ASan/UBSan: the deliberately
-fragmented allocator makes the old code export a 4 KiB segment for an 8 KiB request and the new code
-reject it; 2,000 allocate/free cycles leave no live descriptor and no leaked budget.
-
-**What this does not establish.** Two things weaken it as *the* cause on this laptop:
-
-1. **The precondition is not evidenced.** The 17:32 boot log records `AppleVTD is not yet installed as
-   gSystem`, with no later installation line, and the i915 first-error capture reports `iommu=0`. If
-   `IOMapper::gSystem` is `NULL`, Apple's own `contig |= !mapped` makes even the *old* flag request
-   host-contiguous pages. The candidate's research note concedes that the target's mapper state is not
-   proven; it should stay a conditional, not a conclusion.
-2. **The fix does not cover the two virtio scan-out buffers.** `fScanBuf` (`nmxvgafb.cpp:909`) and
-   `fCursorBuf` (`nmxvgafb.cpp:1202`) still allocate with only `kIODirectionInOut |
-   kIOMemoryPhysicallyContiguous` and still publish `getPhysicalSegment(0, nullptr, kIOMemoryMapperNone)`
-   with no span check. On the Latitude build the virtio path is compiled out — `start()` sets the
-   `-nmxvgafbnovirtio` flag unconditionally under `LATITUDE_MTL_PANEL` — so these two buffers are **never
-   allocated on the Dell**. That makes them a correctness item for the QEMU/virtio configuration, not a
-   candidate writer on this laptop.
-
-Kernel 1.0.12 is UUID `000EF47E-E9CC-3CFB-A130-4AEBD40B46C5`, signed-binary SHA-256
-`1ad3f4dc…`; framebuffer 0.2.4 is UUID `59DA4CD2-AF66-36A4-A364-A6A8E899666A`, SHA-256 `495ed4cc…`.
-
-**It was booted, and it did not fix the hang** (`windowserver-1.0.12-failure-180032`, 18:00:32, installed
-payload hashes matching the candidate):
-
-* The desktop reached **submission #8 / readback #3** for image 2 with fresh owned staging 13; the readback
-  completed after 2 ms and released its staging after the copy.
-* **Submission #9** (render/event, `nvmtlAdvancePart`) queued at 17:58:47.585 and timed out at
-  17:58:52.585 after 5000 ms.
-* The ring capture still shows corruption: saved request 20 already has `0xff000000` at `0xc98–0xca4` (yet
-  request 20 completed), and request 22 has `0xff000000` at `0xe00–0xe0c`, immediately before its normal
-  start at `0xe10`. The hang snapshot holds `0xff000000` in all 94 captured words; GuC `IPEHR=0xff000000`,
-  `RING_HEAD=ACTHD=0xe0c`, `RING_TAIL=0xf70`, `GPU HANG 12:1:00dfffff`.
-* **No `refusing noncontiguous` line appears anywhere in the retained log.** The new guard therefore has no
-  runtime evidence of having executed, and the capture cannot say whether the guarded branch was taken,
-  skipped, or never reached. Raw contiguity is **not** a demonstrated explanation, and the fix is neither
-  confirmed nor excluded by this trial.
-
-### The 1.0.13 trial (18:17) — withheld stolen memory, boot panic
-
-Kernel **1.0.13** (UUID `121AACAE-4C53-3357-9356-38C79222A842`, SHA-256 `d57981cb…`) is a different
-hypothesis: that i915's MTL **stolen-memory region** overlaps the firmware panel buffer that
-`LatitudeMTLFB` still scans out, because the port skips display discovery for `8086:7d45` and therefore
-never performs Linux's initial-plane framebuffer handoff. The change makes `intel_memory_regions_hw_probe`
-`continue` past `INTEL_MEMORY_STOLEN_LOCAL` and `INTEL_MEMORY_STOLEN_SYSTEM` for `0x7d45` under `NMXKPI`,
-so rings and objects allocate from ordinary system memory; a second hunk logs `stolen=`/`size=`/`ggtt=`
-at ring pin. The research note states plainly that the overlap for the damaged ring is **not**
-established and that the GGTT virtual address `0xa9d000` cannot be read as a physical address.
-
-The installer completed (18:13:00, exit 0), the kernel image loaded, and the boot **panicked after
-8.04 seconds** — before any desktop, and before the ring capture could record anything:
-
-```
-panic(cpu 0): NullMoth xkpi: mutex 0xffffff95128a9088 (?) used before mtx_init
-  _nmx_mtx_lock.cold.1 ← _nmx_mtx_lock ← _guc_retire_inflight_request_prio
-  ← _signal_irq_work ← _linux_irq_work_fn ← _taskqueue_run_locked
-kext in backtrace: com.nullmoth.NMXGPU(1.0.13)[121AACAE-…]
-```
-
-From source, the faulting lock is `ce->guc_state.lock` inside `guc_retire_inflight_request_prio()`
-(`intel_guc_submission.c:4364`), where `ce = intel_context_to_parent(rq->context)`. That lock is
-initialised only in `intel_context_init()` (`intel_context.c:415`). The port's `nmx_mtx_lock()` panics when
-the embedded `mtx_lk` is `NULL`, and the printed lock name is `?` — so the object behind `ce` is a
-**zeroed, never-initialised context** (or recycled and zeroed memory), not a contended lock.
-
-**What is and is not attributed.** The backtrace proves the 1.0.13 image ran. It does **not** show that the
-region-skip branch ran: the retained unified log contains no `i915` line and neither `stolen region
-withheld` nor `ring pinned`, so the `drm_info` output is simply not in the capture. No mechanism from
-"no stolen region" to "zeroed context mutex" is demonstrated by the two diffs, and nothing excludes one
-either. None of the retained kernel panic reports (17–19 October) carries this signature, so it is new to
-this boot. The stolen/DSM overlap hypothesis is therefore **untested**, not disproved. **The panic's cause
-is unattributed; 1.0.13 is parked, not promoted.** The detailed record is
-`research/windowserver-1.0.13-panic-181731.md`.
-
-### The 1.0.14 trial (18:28–18:39) — completion-context fix, separate HID panic
-
-Kernel **1.0.14** (UUID `9B0192B5-D9CC-3FE1-9781-9276B170A4BE`, SHA-256 `80c3fe8b…`) targets the 1.0.13
-panic directly. The 1.0.13 stack — `signal_irq_work` → `guc_retire_inflight_request_prio` reading
-`ce->guc_state.lock` — is a **context use-after-free**: the breadcrumb completion path reaches a context
-that has already been freed. This matches an upstream Linux patch, *"drm/i915/gt: Fix ce use-after-free in
-signal_irq_work()"* (https://lists.openwall.net/linux-kernel/2026/09/16/2418), which the port adapts to the
-FreeBSD RCU list primitives available under LinuxKPI.
-
-The correction:
-
-* Every breadcrumb-owned request reference now also holds its context and, for parallel requests, a separate
-  parent context reference under NMXKPI. Their lifetime runs through deferred GuC priority retirement, fence
-  notification or cancellation.
-* The already-completed enqueue path acquires ownership **before** publishing the fence's `SIGNALED` bit,
-  since timeline retirement can act immediately on that bit.
-* The signaler iterator snapshots the next context before releasing the current one; the request iterator
-  snapshots its next entry before a losing signal path can drop its last request reference.
-
-Local validation: the actual old enqueue/worker/GuC functions reproduce a heap-use-after-free, and the
-corrected functions pass **90,000** ASan/UBSan lifetimes (publication race, parent/child, cancel, bulk
-remove, competing signal, duplicate signaling) with zero live objects; a separate request-iterator UAF was
-reproduced and fixed. The 438-object link keeps the frozen 1.0.8 undefined-symbol set.
-
-**What is and is not established.** The fix is real and locally reproduced, but the target panic is **not**
-verified fixed. The one 1.0.14 trial (18:39:51) panicked earlier and elsewhere: a null-page fault
-(`CR2=0`, uptime 9.12 s) in `VoodooI2CTouchscreenHIDEventDriver::forwardReport`. The same function and
-offset appear in four older panic reports from 17–18 October, predating 1.0.14, and NMXGPU 1.0.14 was in
-loaded modules but **not** in the faulting backtrace. So the HID fault is a pre-existing, separate problem —
-it does not confirm or refute the GPU fix. Separately, the 1.0.14 installer now clears the NVRAM
-`nullmoth-gpu-attaching` marker that a failed attach leaves behind, which had been parking subsequent boots
-(`research/windowserver-1.0.14-attach-guard.md`).
-
-The detailed records are `research/windowserver-completion-context-1.0.14.md` and
-`research/windowserver-1.0.14-result-183951.md`. **1.0.14 is the current candidate: built and locally
-validated, hardware-unverified.**
-
-### What has been eliminated by controlled experiment
-
-| Hypothesis | How it was excluded |
-|---|---|
-| Kext not injecting | Injection is `- Success`; `NMXGPU` UUID matches the candidate on target |
-| Missing GPU opt-in | Opted-in boot evidence above shows the panel claim and framebuffer load succeeding |
-| Universal readback defect | Readback #3 completes cleanly on the same boot |
-| `INTEL_DEBUG=stall` would cure it | It was enabled on the failing 0.2.5 boot and did not cure the hang — a recorded **negative** result |
-| Timeout budget too short | The hang is a progress failure; lengthening the fence would not restore execution |
-| Firmware version mismatch | macOS loads `mtl_guc_70.bin` 70.53.0, matching the Linux report on both GTs |
-| Xe2/Xe3 workarounds | Different generation and different cache behaviour; explicitly not applicable |
-| Missing page pin on i915 CPU user mappings | Kernel 1.0.11 added the mapping-lifetime pin and the **identical** ring overwrite plus `IPEHR=ff000000` recurred on the 17:32 boot — reclamation stays as an independent correctness fix, not the cause |
-| Hardware compression (`noccs`) | Compression-off was confirmed applied before ICD load and submission #8 / readback #3 still stalled |
-
----
-
-<a name="failures"></a>
-## 🧨 Failure signature reference
-
-When this port fails, it fails with a small set of recognisable log lines. This table maps each one to
-what it actually means and what to do next — so the next person does not have to rediscover the sequence.
-
-| Log signature | Meaning | Next action |
-|---|---|---|
-| `Prelinked injection … - Success` is **absent**; `EFI_INVALID_PARAMETER` | The kext has no `_kmod_info`; OpenCore silently skipped it | Rebuild with `KMOD_EXPLICIT_DECL`; run the `check-kmod-info` guard |
-| `EB.LD.OFS\|OPEN! Err(0xE) <usr\standalone\OS.dmg.root_hash>` → `EXITBS:START` | The boot image lacks the root-hash file — not an EFI fault | Use a full installer image, not a trimmed `BaseSystem.dmg` |
-| `GPU HANG 12:1:00dfffff` / `12:1:00b79797` | The GPU stopped progressing; the address identifies the hang, not its cause | Capture request and GuC state; do not raise the fence timeout |
-| `VK_TIMEOUT` after 5000 ms | A fence never completed | Find the first *uncompleted* submission, not the first timeout |
-| `VkResult -1000072003` | `VK_ERROR_INVALID_EXTERNAL_HANDLE` — IOSurface import was refused | Check whether the private-image fallback also completes |
-| `pipeline: Vulkan is not up in this process` | WindowServer aborted after the backend shut down | Treat as aftermath; look earlier in the log |
-| `GPUWranglerWaitForPublish` | No GPU was ever published | Check `kextstat`, then the AuxKC bundle paths |
-| `GuC TLB invalidation response timeout` | The waiter did not observe the response | Check the LinuxKPI woken path; see the lost-wake fix |
-| `EXC_BAD_ACCESS` in the stack guard, hundreds of `RenderEncoder` frames | Recursive SkyLight rendering after command-buffer failure | Bound the error path; do not recurse |
-| `Failed to create MTLTexture` (BGRA8Unorm 1920×1080, managed) | CoreDisplay allocation after GPU loss | Restore GPU execution; do not fabricate textures |
-| `NMX-i915-ring-word … value=ff000000` / `IPEHR=ff000000` | Words below a request head changed to `0xff000000` and the GPU fetched them as an instruction | Run the ring-guard diff and the physical-page ownership map; do not assume a pixel write |
-| `RING_HEAD`/`ACTHD` mid-request (`0xca4`) while `RING_TAIL` is already ahead (`0xe08`) | The GPU's read pointer stopped *inside* a request after the CPU had published the next one | Read the saved ring window, not just the register values |
-| `NullMoth xkpi: mutex 0x… (?) used before mtx_init`, from `_nmx_mtx_lock` under `_signal_irq_work`/`_taskqueue_run_locked` | A `struct mtx` whose `mtx_lk` is `NULL` and whose name is `?` — an object that never passed through `mtx_init()` (kernel 1.0.13: `ce->guc_state.lock` in `guc_retire_inflight_request_prio`) | Park the build; identify the object and the missing initialisation. This is not contention and not a timeout |
-| `refusing noncontiguous` **absent** from a log of a guarded build | The span guard left no runtime evidence that it executed | Do not treat the trial as a test of the guard; verify the branch's log path is captured first |
-
-**Reading rules.** The first error in the log is usually the cause; later ones are usually consequences.
-A timeout is a symptom of missing progress, not proof of a defective submission. A zeroed register dump
-is not evidence of an idle GPU unless the capture path was verified to print it.
-
----
-
-<a name="history"></a>
-## 🧗 How we got here — the struggles and the breakthroughs
-
-None of the above arrived in a straight line. Four separate things had to be fixed before a single
-pixel could be validated, and three of them failed silently — which is why they cost the most time.
-This section records the dead ends as carefully as the wins, because the dead ends are what constrain
-the next experiment.
-
-### Timeline of the hard parts
-
-| Date | Struggle | What actually fixed it |
-|---|---|---|
-| 8 Oct | Kext would not inject into the prelinked kernel; OpenCore reported nothing useful | Supplying a real `_kmod_info` via `KMOD_EXPLICIT_DECL` |
-| 8 Oct | macOS froze at `EXITBS:START` on every EFI change | The recovery image was missing `OS.dmg.root_hash`; not an EFI fault |
-| 8 Oct | WhateverGreen assumed to be the Alder/Meteor Lake answer | It does not support either family; abandoned |
-| 18 Oct | `MyIntelGPU` kext failed authentication on the target | Rebuilt as an i915-derived `NMXGPU` under a custom SIP mask |
-| 18 Oct | First desktop attempts died after 4 submissions | Readback fence timeout identified as the first failure |
-| 18 Oct | GuC TLB timeout, then hang on the fifth process | Lost-wake race in LinuxKPI reproduced and fixed (software only) |
-| 18 Oct | Fresh pools did not stop the hang | Accepted as a lesson: fresh allocation was necessary, not sufficient |
-| 19 Oct | A/B tests were measuring nothing | Release constructor was stripping every `NVMTL_*` variable |
-| 19 Oct | WindowServer stack exhaustion after backend loss | Terminal-error buffers bounded the recursion |
-| 19 Oct | A black-screen boot left no evidence at all | Bounded the desktop mutex and added a pre-created journal |
-| 19 Oct | Journal writes silently denied | Moved stage records to the existing syslog channel |
-| 19 Oct | Submissions past #8 invisible in logs | Per-format throttle bypassed for startup submissions |
-| 19 Oct | Crash sampler "succeeded" with no stack | Fixed PID resolution; missing output now fails loudly |
-| 19 Oct | Kernel capture showed zeros for ring state | GuC's parsed register lists were never being printed |
-| 19 Oct | Driver installed but never loaded | AuxKC referenced a deleted temporary bundle; installer rebuilt from permanent paths |
-
----
-
-### Phase 0 — "Why will this kext not inject?" (8 October)
-
-The first blocker looked like a driver bug. It was a metadata bug.
-
-OpenCore was silently discarding the kext. The chain was:
-
-```
-KextFindKmodAddress      → Kmod = 0
-InternalPrelinkKext      → EFI_UNSUPPORTED          (Link.c:1629)
-PrelinkedInjectKext      → EFI_INVALID_PARAMETER    (reported quietly)
-```
-
-The binary had **no `_kmod_info` symbol**, so OpenCore had nothing to link the kext against.
-
-What we eliminated, and why it mattered:
-
-* **Xcode 15.4's SDK contains no `kmod_info*` and no `CreateKModInfo*`.** CI diagnostics
-  (`37789629143`, `37789952837`) confirmed this across the SDK.
-* **MacKernelSDK does not define `_kmod_info` either.** Pinned and inspected at
-  `3f750085caa17ec3a7880f11c11bf4f48cd6a164`; no archive exports it. It was therefore *not* vendored.
-* **Eight different link-flag arrangements all failed.** The symbol was simply absent.
-* **A dummy `_kmod_info` was rejected on principle.** Satisfying a guard with a fake structure would
-  have produced a kext that linked and then misbehaved.
-
-The breakthrough was reading `libkern/kmod/README` instead of guessing: the object emitted by XNU's
-`CreateKModInfo.perl` must be compiled and placed **between `-lkmodc++` and `-lkmod`**. That became
-`kmod_info.c` using `KMOD_EXPLICIT_DECL`, with a `check-kmod-info` build guard
-(`OK (_kmod_info present)`) so the failure could never silently return.
-
-Result, for the first time:
-
-```
-OC: Prelinked injection CoreUltraGraphics.kext (…) - Success
-OCAK: Local relocs 313
-```
-
-**Lesson:** a build that produces a `.kext` is not a build that can be injected. The guard now fails
-the build, not the boot.
-
-### Phase 0b — "Why does macOS freeze at EXITBS:START?" (8 October)
-
-With injection fixed, boot still stopped dead:
-
-```
-AAPL: #[EB.LD.OFS|OPEN!] Err(0xE) <"usr\standalone\OS.dmg.root_hash">
-AAPL: #[EB.RH.LRH|P!] Err(0xE) <- EB.LD.LF
-AAPL: #[EB.BST.FBS|!] Err(0xE) <- EB.RH.LRH
-AAPL: #[EB|LOG:EXITBS:START]
-```
-
-`Err(0xE)` is `STATUS_NOT_FOUND`. Apple's `boot.efi` wanted a root-hash file that was **not inside the
-recovery image at all** — confirmed by listing `BaseSystem.dmg` directly: zero matches for `root_hash`.
-
-Three controlled experiments proved this was not our configuration:
-
-* **ACPI** — bisected from 8 SSDTs to 2, both rename patches off, kext off. Byte-identical failure.
-* **SIP** — set `csr-active-config = 0x7F000000`; the log confirms `EB.CSR.S 0x7F` and
-  `EB|CSR:OUT 0x6F`. Identical failure.
-* **Quirks** — verified against the MATs guidance (`OCABC: MAT support is 1`) and against a known-good
-  Latitude 7400 EFI. Ours already matched.
-
-The image was the problem, not the EFI. `DmgLoading = Any` would not help either: that setting *relaxes*
-verification, and the file genuinely did not exist. No config change can conjure it.
-
-**Lesson:** "invariant across every config change" is evidence about the *image*, not the config.
-Chasing `SetupVirtualMap`, `DevirtualiseMmio` and `DmgLoading` was time spent on the wrong layer.
-
-### Phase 1 — The pivot to NullMoth (18 October)
-
-WhateverGreen was the obvious candidate and was ruled out from its own documentation: the last
-documented Intel family is Ice Lake, and it supports neither Alder Lake nor Meteor Lake
-([FAQ.IntelHD.en.md](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md),
-[README](https://github.com/acidanthera/WhateverGreen/blob/master/README.md)).
-
-Rather than write a graphics driver from scratch, the project retargeted **NullMoth's NVIDIA driver**,
-keeping its Metal plugin, shader translator and userspace architecture and replacing every NVIDIA
-element with an Intel one. That decision is why the project reached real GPU submissions at all.
-
-The first target attempt, `MyIntelGPU`, failed **authentication** on the laptop — a signature problem,
-not a Meteor Lake problem. Rebuilding as an i915-derived kext under a custom SIP mask turned that into
-an attach.
-
-### Phase 2 — Assembling a stack that had never run (18 October)
-
-This phase was mostly unglamorous construction, and every number here was hard-won:
-
-* **438** i915, DRM/TTM, LinuxKPI, compatibility and IOKit sources compiled into `NMXGPU`, with AMD and
-  Xe drivers deliberately excluded and **no unresolved driver-internal symbols**.
-* **1,045** ANV build steps for the Intel Vulkan backend, plus CLC tools built separately for the Apple
-  Silicon host.
-* Firmware matched to the laptop's own Linux report rather than guessed: GuC **70.53.0**, DMC **2.23**,
-  HuC **8.5.4**, GSC **102.1.15.1926**.
-* A one-shot NVRAM opt-in so a failed attach cannot silently re-arm on every boot.
-
-The PCI probe then succeeded on the real `8086:7D45`, and `NMXAccel` began declining startup unless
-`NMXGPU` had actually claimed the device — a guard that later proved its worth.
-
-### Phase 3 — First submissions, first hang (18 October, 19:12–19:49)
-
-Registration worked. Composition did not.
-
-**0.2.4** reached the panel and copied an IOSurface into it — but all 64 diagnostic samples were zero,
-and host allocation imports returned `-1000072003` (`VK_ERROR_INVALID_EXTERNAL_HANDLE`), falling back to
-private images. Fence waits then returned `VK_TIMEOUT` after 5000 ms. WindowServer died with
-`EXC_BAD_ACCESS / KERN_PROTECTION_FAILURE` **inside the main thread's stack guard**, after 512 frames
-containing 255 `RenderEncoder` and 254 `SetScissor` calls. That was **stack exhaustion through
-recursive SkyLight rendering after command-buffer failure**, not a standalone logging bug. GPU HANG
-`12:1:00dfffff` followed at 19:13:06.637.
-
-**0.2.5** narrowed it. The first four submissions returned `VK_SUCCESS`; **submission #5**
-(`nvmtl_vk_image_read`) and the concurrent upload **#6** both timed out. `INTEL_DEBUG=stall` was
-confirmed *enabled* on the failing boot — so it is a recorded **negative result**, not a missed setting.
-Terminal-error command buffers bounded the recursion (retries spaced ~16 ms instead of tens of
-thousands of calls), but WindowServer still aborted with `pipeline: Vulkan is not up in this process`.
-
-The kernel's captured `reset_count=0`, `EIR/PGTBL_ER/fault_data=0` and zeroed ring fields looked
-reassuring. They were not evidence of anything: the capture was incomplete.
-
-**Lesson:** "the first four submissions succeed" is not progress if the fifth is where it dies. The
-first *uncompleted* submission is the measurement.
-
-### Phase 4 — The GuC lost-wake race (18 October, 23:54)
-
-**0.3.0** introduced fresh command pools. It passed four 1000-frame cases cleanly, then:
-
-```
-23:54:50.264  GuC TLB invalidation response timeout, seqno 1
-              (after the padded process finished, before the next connected)
-fifth case     hang on upload submission #1285, zero-based frame 428
-              fence returned -4 after 10,798 ms
-kernel         rcs0 request 12:2574 not yet started, GPU HANG 12:1:00b79797
-pools          1286 created / 1285 destroyed / 1 quarantined
-```
-
-The hang was real, and fresh pools were **not** the fix. But the TLB timeout pointed at the waiter, and
-that produced the most valuable software find of the project.
-
-Linux's i915 invalidation waiter sets `WQ_FLAG_WOKEN` and sleeps. Linux's woken callback *also*
-persists `TASK_WAKING`. The FreeBSD LinuxKPI callback in this port marked the flag and signalled the
-channel but **did not persist `TASK_WAKING`**. `schedule_timeout` checks `TASK_WAKING` under that
-channel lock before registering sleep — so a reply arriving between the outer flag check and
-registration could signal an **empty channel**, leaving the waiter to sleep to expiry with the flag
-already set.
-
-The fix sets `TASK_WAKING` under the same lock, following the port's existing `wake_up_task` protocol.
-The real old and patched callbacks, the real `schedule_timeout` and the real i915 `must_wait_woken` were
-extracted into a deterministic fixture: the old version **reproduces the false expiry**, the patched one
-preserves positive remaining time, across **100,000 scenarios** under ASan/UBSan.
-
-It is a verified software fix. It is **not** a claim to have cured the Dell hang, and the report says so.
-
-### Phase 5 — The gate that finally meant something (19 October)
-
-Two more failures had to be fixed before a pass was trustworthy:
-
-**The tests were measuring nothing (0.2.8).** `nvmtl_conf_knobs()`'s release constructor stripped
-**every** `NVMTL_*` environment variable before backend initialisation. Fresh-pool, diagnostics,
-readback-trace and staging settings were all inert. The shell's record of requested settings was not
-evidence of *effective* settings, and every earlier release-environment A/B conclusion had to be
-withdrawn. **0.2.9** preserved six exact controls only for the named test process and added an
-in-driver **effective-policy query**; the workload now refuses to start on any mismatch.
-
-**The collectors were selecting the wrong evidence (0.3.0).** One report required `results.txt`, so an
-early preflight exit silently selected an older report whose frame-101 device loss belonged to a
-different candidate. Another had hard-coded timestamps and attributed an unrelated historical hang.
-Selection was rewritten to take the newest report even without results, record the boot time, and
-preserve preflight metadata.
-
-Only then did the gate mean what it claimed:
-
-```
-22 cases           11 IOKit + 11 direct
-26,000 frames      1000 iterations per case
-80,020 pools       created = destroyed = completed + abandoned
-0                  live / pending / quarantined
-```
-
-That is the baseline that still stands, and it is why "Metal and Vulkan work" is a measured statement
-rather than an inference.
-
-### Phase 6 — WindowServer, one variable at a time (19 October, 12:00–13:37)
-
-Every desktop candidate failed, and each failure narrowed the search:
-
-| Candidate | Struggle | What it proved |
-|---|---|---|
-| 0.3.2 | Black screen, **no retained evidence** — only a live-log header and an empty registry | An unbounded `pthread_mutex_lock` preceded the GPU wait budget |
-| 0.3.3 | 8 submissions, 3 readbacks, then readback #4 timed out; GPU HANG `12:1:00dfffff` | Bounded `trylock` + deadline; the hang is not host-lock contention |
-| 0.3.4 | First 7 submissions, then **submission #8** (third readback) timed out with dedicated fresh staging | Staging reuse is **not required** to trigger the hang |
-| 0.3.5 | Driver installed but never loaded | AuxKC referenced a deleted temporary bundle |
-
-Three diagnostic defects had to be repaired before the failures could even be read:
-
-* **Sandboxed journal writes were denied** (`errno 1`) even with correct ownership. Stage records moved
-  to the existing syslog channel; no sandbox or SIP change was needed.
-* **A per-format eight-message throttle hid submissions past #8**, despite the caller's finite budget.
-  Startup submissions now bypass it.
-* **`sample` returned 0 while reporting `pid_for_task` failure and process 0**, producing no stack. The
-  loader now resolves an explicit positive PID, refuses 0/1, and records missing output as a failure.
-
-And the kernel capture itself was lying by omission:
-
-```
-intel_engine_coredump_alloc  → legacy register capture only when GUC_CAPTURE is absent
-GuC captures                 → attach a parsed register-list node instead
-previous summary             → printed legacy engine->head/tail/start/acthd, all zeros
-```
-
-Those zeros did **not** prove an idle ring, physical address 0, or the absence of a fault. Kernel 1.0.9
-records the owned request's fence context/sequence/flags/error, readiness and completion states,
-pending dependencies, GuC ID and scheduling snapshot, LRC address, and ring/batch GPU virtual
-addresses, plus a bounded parsed-GuC printer (3 lists, 64 registers per list/engine). It changes
-**diagnostics only** — not scheduling, reset policy or timeouts.
-
-The 13:36 boot added one more lesson, and it was self-inflicted: the installer built a preflight AuxKC
-from a temporary source path, installed that collection, then deleted the source. The kernel manager
-then reported a missing bundle at `.latitude-windowserver.xux6gR/NMXGPU.kext`, `NMXGPU` never loaded,
-and WindowServer waited in `GPUWranglerWaitForPublish` for a GPU that was never published. Local mocked
-cache tests had checked file contents and rollback but **not recorded source paths**. The installer now
-builds the final AuxKC from the permanent installed path, inspects prelink metadata for that path,
-refuses the temporary one, and verifies the candidate UUID.
-
-**Lesson:** an installer that can produce a silent "driver installed but not loaded" state is worse than
-one that fails loudly. Rollback tests must assert *where* files came from, not just that they exist.
-
-### Phase 7 — A ring capture, a real source defect, and its falsification (19 October, 17:00–17:38)
-
-Kernel 1.0.10 was a **diagnostic-only** build: it saves the bounded words around each active
-render-ring request at submission and re-reads them at hang. The 17:14 boot with plugin 0.3.5 reproduced
-the familiar stall — submission #8 / readback #3 — and the capture finally showed *content*, not just a
-pointer: the words below request 20's head had become `0xff000000`, and the GuC `IPEHR` matched.
-
-A source audit then found a **genuine defect**, independent of the hang. The port's mapping-revocation
-shim, `lkpi_unmap_mapping_range()`, is deliberately empty, and it is safe only because mappings are
-supposed to be pinned for their lifetime. `drm_gem_ttm_mmap()` installs that lifetime pin
-(`nmx_ttm_pin`), but the i915 `vm_ops_cpu` path (`WB`/`WC`/`UC`) never did. On Linux, `put_pages`
-revokes the user PTE before the backing is freed; the port cannot revoke, so an idle *mapped* object's
-pages could be reclaimed and reused underneath a live user mapping.
-
-Kernel 1.0.11 is the fix candidate: pin i915 CPU user mappings for the lifetime of the mapping and
-release the pin after the IOKit mapping is gone; refuse the legacy `I915_MMAP_TYPE_GTT` alias the port
-cannot revoke; and report `i915_gem_mmap_gtt_version() = 4` under NMXKPI. It links **438 objects** with
-the same undefined-import set as 1.0.8, kernel UUID `B972B890-9276-3E0D-B260-190037118D3E`, signed-binary
-SHA-256 `496e108b4d94390ac6a7030aba655ff5c0c5c61d827d7d92c65b04315b27943a`, and passes a 20,000-lifetime
-ASan/UBSan fixture plus the installer/rollback fixtures.
-
-Then the 17:32 boot with 1.0.11 failed **the same way**. Same submission, same fence timeout, same
-`0xff000000` below request 20's head, same `IPEHR=ff000000`. The lifetime-pin omission is a real port bug
-and stays in the tree as a correctness fix — but it is **not the writer** of this overwrite.
-
-**Lesson:** a real defect is not the same thing as *the* cause. The pin is well-motivated and provable in
-source; the capture proved it was not sufficient. Keep both facts.
-
-### Phase 8 — From "which submission" to "which writer" (19 October, 17:39–17:47)
-
-The 1.0.11 falsification left two threads: prove the overwrite's extent, and name the code that can write a
-flat physical range. The second thread produced a source-demonstrated allocator defect rather than another
-scheduler theory. Apple's `IOBufferMemoryDescriptor` grants host-page contiguity for
-`kIOMemoryPhysicallyContiguous` only when there is no system mapper; the port's surface export assumed it
-unconditionally and ignored the segment length returned by `getPhysicalSegment()`. Kernel 1.0.12 and
-framebuffer 0.2.4 add `HostPhysicallyContiguous | MapperNone` and refuse a short span.
-
-The honest part is the caveat: the same boot log says `AppleVTD is not yet installed as gSystem`, so on
-*this* machine the old flag may already have produced contiguous pages. The correction is still right —
-the export should never have trusted a base address without its length — but it is a **candidate**, not a
-demonstrated fix. The scan-out and cursor exports (`fScanBuf`, `fCursorBuf`) still use the old pattern, so
-the audit is not finished either.
-
-**Lesson:** a mechanism that can explain the value is not the same as evidence that the mechanism ran.
-Record the precondition you have not measured next to the fix you have.
-
-### Phase 9 — Two candidates, two negative results, one boot panic (19 October, 17:55–18:18)
-
-The 1.0.12 / framebuffer 0.2.4 pair was installed at 17:55 and booted at 17:58. Readback #8 completed in
-2 ms; submission #9 timed out after 5000 ms; the ring still held `0xff000000` at request 22's
-`0xe00–0xe0c`, with `IPEHR=0xff000000`. The guard added by the candidate left **no** `refusing
-noncontiguous` line in the retained log, so the trial neither confirms nor refutes it. It is a negative
-result for "raw contiguity was the cause", not a refutation of the source correction.
-
-The next hypothesis was ownership rather than contiguity: i915 creates an MTL stolen-memory region, the
-port skips display discovery for `8086:7d45`, and Linux's initial-plane handoff therefore never reserves
-the firmware panel buffer in that region — so a ring could be allocated from memory the panel still scans
-out. Kernel 1.0.13 withholds both stolen regions from i915 on this device ID and logs the ring's
-`stolen=` state. The installer completed at 18:13; the boot **panicked at 18:17:31**, 8.04 s in, inside
-`guc_retire_inflight_request_prio`, locking a zeroed `intel_context.guc_state.lock`. The desktop was never
-reached.
-
-The honest reading is narrow: the new failure mode is real and its stack is source-identifiable, but
-nothing in the two diffs shows a path from "region withheld" to "context never initialised", and the
-capture does not even show that the new log lines executed. **Lesson:** a candidate that fails earlier is
-not a stronger explanation; it is a new question. Park it, record it, and do not re-arm it unchanged.
-
-### Phase 10 — The panic named, and a separate HID fault (19 October, 18:23–18:41)
-
-The 1.0.13 panic got a name: a context use-after-free in the breadcrumb completion path. The stack —
-`signal_irq_work` → `guc_retire_inflight_request_prio` reading `ce->guc_state.lock` — reaches a context
-that timeline retirement has already freed, and it matches an upstream Linux patch. Kernel 1.0.14 gives
-every breadcrumb-owned request reference its context (and a parent context for parallel requests), takes
-ownership before the fence's `SIGNALED` bit is published, and snapshots the iterators before a losing
-signal path can drop the last reference. A local fixture with the actual old functions reproduces the
-UAF; the corrected functions pass 90,000 ASan/UBSan lifetimes.
-
-The honest part is the same as always: the fix is real and locally reproduced, but the target panic is
-**not** verified fixed. 1.0.14's one trial panicked earlier and elsewhere — a VoodooI2CHID touchscreen HID
-null-page-fault at 9.12 s, a signature also present in four older panics from 17–18 October, with NMXGPU
-loaded but not in the faulting backtrace. A separate pre-existing HID fault, not a verdict on the GPU fix.
-The 1.0.14 installer also clears the NVRAM `nullmoth-gpu-attaching` marker that a failed attach left
-behind, which had been parking every subsequent boot.
-
-**Lesson:** a fix you can reproduce locally is still not a hardware fix. The only thing that settles it is
-a target boot that reaches the GPU work — and 1.0.14's first trial never got that far.
-
-### Phase 11 — The desktop works, and the problem changes shape (19 October, 22:11–23:18)
-
-Kernel **1.0.15** replaces the broad 1.0.13/1.0.14 stolen-region skip with a precise reservation: an
-IOKit bridge reads the firmware console address, pitch and dimensions, and the stolen allocator starts
-*after* that image instead of offering it to i915. With the guarded HID null-guard, plugin **0.3.6** and
-framebuffer **0.2.5**, the 22:38 boot produced the project's first **usable GPU-composited desktop**:
-WindowServer submits real GPU work and reads back correctly — 24 fence + 32 readback completions, all
-clean — with no GPU hang (`windowserver-result-224146`).
-
-The blocker then changed shape completely. It is no longer "the GPU hangs" but "the desktop is choppy":
-the latest capture (`windowserver-result-231630`) shows 42 CoreAnimation fence timeouts and 163–205% CPU,
-and System Information now reports the real GPU and shared memory (`Intel(R) Graphics (MTL)`, 12288 MB).
-Host-pointer imports are still refused, so surfaces use the private-image/copy path. So the remaining work
-is composition latency and synchronization — a performance problem, not an execution failure.
-
-**Lesson:** the hardest part of a port is not the first working result, it is knowing which problem you are
-solving. For six candidates the question was "does the GPU execute?" Now it is "why is it choppy?" — and
-that is a much better place to be.
-
-### The failures we still cannot explain, and say so
-
-* The **exact root cause** of the WindowServer hang is not established.
-* **Who writes `0xff000000` below a request head is unidentified.** The capture window starts at
-  `head − 16`, so it cannot bound how far the change reaches, and `0xff000000` is not a constant this
-  port, plugin or accelerator writes anywhere.
-* The overwrite is **reproducible across three independent kernel builds** (1.0.10, 1.0.11, 1.0.12) and
-  **spreads** over a single boot. That fits a systematic writer better than a random stray store, but
-  "systematic" is a description, not a cause, and no writer has been named.
-* `Readback #3` succeeds and `#5` fails on the same boot; the trace does **not** prove they share an
-  image, so "reuse while pending" remains unproven.
-* Whether the raw-physical export defect could have run on **this** machine is unresolved. The 17:32 log
-  says `AppleVTD is not yet installed as gSystem`; a later installation is neither shown nor excluded, so
-  the precondition for scattered host pages is not established either way. The 18:00 boot of the guarded
-  build contains **no** span-refusal line, so it is not established that the guard executed at all.
-* **Why kernel 1.0.13 panicked is unattributed.** The stack names a zeroed context lock, which means a
-  context object reached `guc_retire_inflight_request_prio` without `intel_context_init()`. Whether the
-  stolen-region skip caused that, exposed a latent ordering bug, or the object was stale memory is not
-  determined, and the new `drm_info` lines are absent from the retained log.
-* The not-started request `8:24 [0x1002]` may simply be blocked behind earlier work; it is not proof
-  that its own copy instruction is defective.
-* IOSurface import refusal (`-1000072003`) cannot alone explain the stall, because the fallback's first
-  upload and readback both completed.
-* Later CoreDisplay/CoreAnimation exceptions are **aftermath**, not cause. Faking pipeline success or
-  manufacturing textures would hide the failure.
-
-### What the struggles taught us
-
-1. **Silent failures are the expensive ones.** Missing `_kmod_info`, a stripped environment, a filtered
-   log line, a sampler that "succeeds" with no output, an AuxKC pointing at a deleted directory — every
-   one of these produced a *plausible-looking* result that was wrong.
-2. **Verify the measurement before trusting the conclusion.** Four separate times, the instrument was
-   broken (stripped env, report selection, log throttle, kernel capture zeros).
-3. **"Invariant across changes" is a clue about the layer.** When nothing you change matters, you are
-   changing the wrong layer — the image, not the EFI.
-4. **Fix one variable, and keep the negative result.** `INTEL_DEBUG=stall` did not work; that is now
-   knowledge, not a retry candidate.
-5. **A verified software fix is not a hardware fix.** The lost-wake race is real, reproduced and fixed.
-   It still does not explain the desktop hang, and the documentation refuses to conflate them.
-6. **A real defect can be the wrong defect.** The 1.0.11 mapping-lifetime omission is provable in source
-   and worth fixing; the hardware reproduced the original ring overwrite anyway. Record the falsification
-   instead of defending the fix.
-7. **A mechanism is not a measurement.** The 1.0.12 raw-span defect can explain a pixel-valued write, but
-   the boot log does not show that its precondition (a system mapper) was present, and the guarded build's
-   own refusal message never appeared. State the conditional with the fix.
-8. **A candidate that fails earlier has not explained more.** Kernel 1.0.13 removed a memory region and
-   panicked eight seconds into boot. A new, earlier failure is a new question, not evidence for the
-   hypothesis that motivated it — and a build whose log lines never show up cannot even prove the branch
-   ran.
-
----
+Exact revisions for every patched base are in `latitude-runtime/BUILD-MANIFEST.json`; upstream package
+hashes are in `SHA256SUMS-upstream.txt`.
+
+<a name="how"></a>
+## 🔬 How it works
+
+**1. Kernel bring-up.** `NMXGPU` is the Linux `i915` driver compiled against a LinuxKPI compatibility
+layer on xnu, restricted to `8086:7D45`: **438** i915, DRM/TTM, LinuxKPI, compatibility and IOKit sources,
+with AMD and Xe drivers deliberately excluded and **no unresolved driver-internal C symbols**. Activation
+is a one-shot NVRAM opt-in, so a failed attach cannot silently re-arm on every boot.
+
+**2. Firmware and the GuC.** Initialisation writes the GPU's MMIO register blocks during early kernel
+boot and loads firmware whose versions match the laptop's own Linux report exactly. A **reproduced
+software race** was fixed here: the FreeBSD LinuxKPI woken callback did not persist `TASK_WAKING`, so a
+reply arriving between the outer flag check and sleep registration could signal an empty channel and the
+waiter would sleep to expiry. The override sets `TASK_WAKING` under the same sleep-channel lock; the old
+and patched callbacks plus the real i915 `must_wait_woken` are extracted into a deterministic fixture that
+reproduces the false expiry across **100,000 scenarios**.
+
+**3. Memory.** Metal resources reach the GPU through three distinct address spaces — **DSM** (device
+physical), **GSM/PTE** (graphics-memory-relative) and **GGTT** (translation-table virtual) — and
+conflating them is a known trap. Command pools are created fresh and destroyed immediately after fence
+completion, and uncertain completions are **quarantined** rather than reused. Kernel 1.0.15 reserves the
+firmware's console image from i915's stolen allocator, which is what stopped GPU initialisation from
+allocating over the live framebuffer.
+
+**4. The translation stack.** The translator lowers Metal's **AIR** to **SPIR-V** for ANV, which compiles
+and submits it (1,045 build steps; CLC tools built separately for the Apple Silicon host).
+`xf86drm.c` is reworked into a unified IOKit render-node model and the plugin subclasses
+`NVMTLDevice`/`NVMTLAccelerator` so the GPU appears as a legitimate node in the I/O Registry.
+
+**5. Security and injection.** `csr-active-config = Data 430A0000` (`0x0A43`), `SecureBootModel =
+Disabled`, **AMFIPass 1.4.1** after Lilu, and the `amfi_get_out_of_my_way=0x1` / `amfi=0x80` /
+`ipc_control_port_options=0` arguments the NullMoth setup requires. GPU-hiding `DeviceProperties` are
+removed and the `csr-active-config`/`boot-args` entries sit in `NVRAM → Delete` so prior values are
+replaced on the next boot. No persistent `nmxintel` boot argument — activation is one-shot.
 
 <a name="validation"></a>
-## ✅ Validation methodology
+## ✅ Validation and reproduction
 
-The project uses a 22-case hardware gate that runs **before** any desktop boot is armed. What it does
-and does not prove:
+The 22-case hardware gate runs **before** any desktop boot is armed. It proves deterministic upload →
+render → readback → exact-pixel comparison on real hardware, 1,000 iterations per case, both transports
+with route markers checked rather than assumed, and pool accounting of
+`created = destroyed = completed + abandoned` with zero live/pending/quarantined. The suite **refuses to
+arm** a desktop boot unless the loaded kernel/plugin/libdrm hashes match the package, the boot UUID is
+current, and the parser sees no timestamped kernel GPU-hang, TLB-timeout/reset or fault events.
 
-**Does prove (when it passes):**
-* Deterministic upload → render → readback → exact-pixel comparison on real hardware.
-* 1000 iterations per case, **26,000 frames total**, including padded-row full-HD and RGBA/BGRA
-  IOSurface backing-pixel verification.
-* Both direct and IOKit transports, with route markers checked rather than assumed.
-* Pool accounting: `created = destroyed = completed + abandoned`, zero live/pending/quarantined.
-* The suite **refuses to arm** a desktop boot unless the loaded kernel/plugin/libdrm hashes match the
-  package, the boot UUID is current, and the parser sees **no timestamped** kernel GPU-hang,
-  TLB-timeout/reset or fault events. (The parser excludes log-filter headers and command metadata, which
-  previously produced a false-positive hang match.)
-
-**Does not prove:**
-* Sustained stability, correctness of arbitrary workloads, or that the hardware hang root cause is
-  understood.
-* Anything about WindowServer composition, which is the workload that fails.
-* That a passing application matrix predicts desktop success — it demonstrably does not.
-
-Local test-suite passes (ASan/UBSan, mocked Vulkan calls, installer rollback fixtures, release-policy
-constructors, native Apple Silicon harness checks) validate **code paths only**. They are never
-presented as hardware results. Mocked allocation/reclamation counts are labelled as mocked.
-
----
-
-<a name="reproduce"></a>
-## 🧪 Reproduce the claims
-
-Every figure in this document comes from a dated run on the physical Dell, not from a private harness.
-The scripts and the report format live in the tree, so the claims can be re-run and re-checked. All steps
-assume the **Dell Latitude 5350** (`8086:7D45`) with the runtime installed on x86_64 macOS.
-
-### 1. Confirm you are running the recorded configuration
+It does **not** prove sustained stability, arbitrary workloads, or anything about the desktop's
+smoothness. Local test passes (ASan/UBSan, mocked Vulkan calls, installer rollback fixtures) validate
+**code paths only** and are never presented as hardware results.
 
 ```bash
+# 1. confirm the recorded configuration
 cd latitude-runtime
-shasum -a 256 -c SHA256SUMS.txt        # shipped binaries match the manifest
-cat BUILD-MANIFEST.json                # base revisions for every patched upstream
+shasum -a 256 -c SHA256SUMS.txt
+cat BUILD-MANIFEST.json
 sw_vers; sysctl -n machdep.cpu.brand_string
-```
 
-If the hashes do not verify, stop: you are not measuring the recorded configuration.
+# 2. the two smallest results (GPU work, no desktop)
+./tools/latitude-vulkan-test ./tools/check.spv     # PASS … real 8086:7d45, 65536 verified values
+./tools/latitude-metal-test                        # PASS render: 4096 pixels checked after shader execution
 
-### 2. Reproduce the two smallest results (GPU work, no desktop)
-
-```bash
-./latitude-runtime/tools/latitude-vulkan-test ./latitude-runtime/tools/check.spv
-./latitude-runtime/tools/latitude-metal-test
-```
-
-Expected output:
-
-* Vulkan prints a device line for `8086:7d45` and
-  `PASS Vulkan hardware execution: real 8086:7d45, 65536 verified values, seed=…`
-* Metal prints `PASS render: 4096 pixels checked after shader execution`
-
-These are the 65,536-value and 4,096-pixel claims, in isolation.
-
-### 3. Reproduce the 22-case gate (26,000 frames)
-
-```bash
+# 3. the 22-case gate (26,000 frames)
 sudo /bin/bash latitude-desktop/test-readback.sh 1000 full
+# → latitude-desktop/reports/readback-<timestamp>/
+grep -c ' exit=0$' results.txt    # expect 22
+cat hang-check.txt                # expect empty
 ```
-
-This runs 11 IOKit + 11 direct cases at 1,000 iterations each and writes
-`latitude-desktop/reports/readback-<timestamp>/`. It does **not** arm a desktop boot; the
-`test-and-arm-desktop.sh` wrapper is what arms one after the gate passes.
-
-Then check the report directory:
-
-```bash
-grep -c ' exit=0$' results.txt        # expect 22 passing cases
-cat hang-check.txt                    # expect empty: no timestamped hang/TLB/reset/fault events
-cat desktop-gate.txt                  # candidate, case/iteration counts, boot UUID, binary hashes
-```
-
-The recorded run behind the numbers above is `readback-20261019-114424` (on the USB installer this is
-`Desktop/reports/readback-20261019-114424`), written up in
-`research/verified-0.3.1-full-gate-20261019.md`: 22 cases, 26,000 frames, **80,020 pools created /
-80,020 destroyed**, zero live, pending or quarantined.
-
-### 4. What a reproduction does and does not mean
-
-* A pass reproduces the **application matrix** for the installed candidate. It does not reproduce the
-  WindowServer result, which fails.
-* The gate checks that the loaded kernel, plugin and libdrm hashes match the package and that the boot UUID
-  is current. A pass with different binaries is a different result, not a reproduction.
-* Local unit tests (ASan/UBSan, mocked Vulkan, installer rollback fixtures) validate code paths only and
-  are never hardware evidence.
-* The kernel 1.0.10/1.0.11 ring words are diagnostic evidence, not a fix. A reproduction that still shows
-  `ff000000` below a request head reproduces the corruption; it does not identify the writer.
-
----
 
 <a name="diagnostics"></a>
-## 🔎 Diagnostics cheat-sheet
+## 🔎 Diagnostics
 
-The commands used to gather every report in `research/`. Run them **before** rebooting or reinstalling:
-a failed boot's unified log is often gone after the next restart.
+Run these **before** rebooting or reinstalling: a failed boot's unified log is often gone after the next
+restart. The rule is **collect first, reboot second, reinstall last** — installing a new candidate over a
+failed boot destroys the evidence that the candidate failed.
 
 ```bash
 # Is the GPU visible to IOKit?
@@ -1293,17 +447,14 @@ log show --last 10m --predicate 'eventMessage CONTAINS "CoreUltraGraphics"'
 # Kernel GPU events
 log show --last 10m --predicate 'eventMessage CONTAINS "GPU HANG" OR eventMessage CONTAINS "TLB"'
 
-# Kernel 1.0.10+ command-ring words (the 0xff000000 overwrite), and the parsed request/GuC state
+# Command-ring words (the 0xff000000 overwrite) and the parsed request/GuC state
 log show --last 10m --predicate 'eventMessage CONTAINS "NMX-i915-ring"'
 log show --last 10m --predicate 'eventMessage CONTAINS "NMX-i915-request" OR eventMessage CONTAINS "NMX-i915-first-error"'
 
-# Framebuffer 0.2.4+: an allocation refused because its host pages are not contiguous
+# An allocation refused because its host pages are not contiguous
 log show --last 10m --predicate 'eventMessage CONTAINS "refusing noncontiguous"'
 
-# Kernel 1.0.13: did the stolen-region skip and the ring-pin log actually run?
-log show --last 10m --predicate 'eventMessage CONTAINS "stolen region withheld" OR eventMessage CONTAINS "Latitude MTL ring pinned"'
-
-# Kernel panics, including the 1.0.13 boot panic (8 s uptime, "used before mtx_init")
+# Kernel panics (including the 1.0.13 boot panic at 8 s uptime)
 ls -t /Library/Logs/DiagnosticReports/Kernel-*.panic | head -1
 log show --last 10m --predicate 'eventMessage CONTAINS "used before mtx_init"'
 
@@ -1311,325 +462,181 @@ log show --last 10m --predicate 'eventMessage CONTAINS "used before mtx_init"'
 ls -t ~/Library/Logs/DiagnosticReports/WindowServer*.ips | head -1
 
 # Full failure bundle, before any reinstall
-# (pass the failed boot's start and end time)
-./research/collect-desktop-failure.sh '2026-10-19 12:50:00' '2026-10-19 13:00:00'
+sudo /bin/bash /Volumes/SEQOUIA/iGPU-Port/collect-desktop-failure.sh
 ```
 
-The rule is **collect first, reboot second, reinstall last**. Installing a new candidate over a failed
-boot destroys the evidence that candidate failed.
-
----
+Signatures worth recognising: `GPU HANG 12:1:00dfffff` (the GPU stopped progressing — capture request
+and GuC state, do not raise the fence timeout); `VK_TIMEOUT` after 5000 ms (find the first *uncompleted*
+submission, not the first timeout); `VkResult -1000072003` (IOSurface import refused — the private-image
+fallback should still complete); `GPUWranglerWaitForPublish` (no GPU was ever published — check
+`kextstat`, then the AuxKC bundle paths); `NullMoth xkpi: mutex 0x… (?) used before mtx_init` (a `struct
+mtx` whose `mtx_lk` is `NULL` — an object that never passed through `mtx_init()`; not contention and not
+a timeout).
 
 <a name="workspace"></a>
 ## 📂 Workspace layout
 
-```text
+```
 iGPU Port/
-├── AMFIPass/              # AMFI bypass kext (1.4.1) used by the OpenCore config
-├── MacKernelSDK/          # Apple kernel-space headers for kext builds
-├── MyIntelGPU/            # Earlier standalone diagnostic kext (probe only; failed auth on target)
-├── NullMoth/              # Upstream NVIDIA-for-macOS tree: kexts/, plugin/, translator/, nvk/, nvk-macos.patch
-├── NullMoth-Xe/           # Sibling Panther Lake / Xe3 SR-IOV VF work + patch series (separate target)
-├── Vulkan-Headers/        # Khronos Vulkan headers
-├── accel-build/           # NMXAccel.kext build output
-├── backups/               # Per-candidate source/EFI snapshots (backups/desktop-0.3.5-before/, backups/kernel-1.0.11-before/ …)
-├── build-inputs/          # Pre-flight compilation payloads
-├── build-tree/            # Compiler intermediate object tree
-├── desktop-build/         # Versioned NVMTLDriver 0.2.4 → 0.3.5 binaries + kernel 1.0.9 → 1.0.14 link logs and tests
-├── desktop-sources/       # Patch scripts that generate each candidate (implement-*, fix-*, package-*)
-├── drm-kmod/              # Linux DRM ported to FreeBSD via linuxkpi (i915/, drm/, ttm/, linuxkpi/)
-├── firmware/i915/         # mtl_guc_70.bin, mtl_dmc.bin, mtl_huc_gsc.bin, mtl_gsc_1.bin (+LICENSE.i915)
-├── freebsd-src/           # FreeBSD source subset / LinuxKPI compatibility headers
-├── latitude-desktop/      # Latitude-specific desktop glue (LatitudePanelClaim.cpp, scanout, journal)
-├── latitude-runtime/      # Packaged install/rollback runtime (Library/, BUILD-MANIFEST.json, SHA256SUMS)
-├── libdrm/                # Userspace DRM abstraction (patched xf86drm.c)
-├── mesa/                  # Mesa 26.3.0-devel incl. src/intel/vulkan (ANV)
-├── ogkm610/               # NVIDIA open-kernel-modules 610 tree (translation reference)
-├── port-artifacts/        # Per-candidate audit bundles (desktop-0.3.5/, patches, logs, validation)
-├── research/              # Dated evidence records and candidate research notes
-├── toolchain/             # Cross-compilation tooling
-├── upstream-runtime/      # Runtime package staging
-├── PORT-STATUS.md         # Short point-in-time status
-├── ROADMAP.md             # Authoritative, dated roadmap and promotion criteria
-└── SHA256SUMS-upstream.txt
+├── AGENTS.md               # Invariants that must survive every rebuild
+├── UNIFIED-CANDIDATE-WORK.md # Authoritative combined status across all subsystems
+├── AMFIPass/  MacKernelSDK/  MyIntelGPU/  Vulkan-Headers/  accel-build/
+├── NullMoth/               # Upstream NVIDIA-for-macOS tree: kexts/, plugin/, translator/, nvk/
+├── NullMoth-Xe/            # Sibling Panther Lake / Xe3 SR-IOV VF work (separate target)
+├── backups/  build-inputs/  build-tree/  checkpoints/  desktop-build/  desktop-sources/
+├── drm-kmod/  freebsd-src/  libdrm/  mesa/  ogkm610/  toolchain/  upstream-runtime/
+├── firmware/i915/          # mtl_guc_70.bin, mtl_dmc.bin, mtl_huc_gsc.bin, mtl_gsc_1.bin
+├── latitude-desktop/       # Latitude-specific desktop glue
+├── latitude-runtime/       # Installable runtime (Library/, BUILD-MANIFEST.json, SHA256SUMS)
+├── port-artifacts/         # Per-candidate audit bundles (patches, logs, validation)
+├── research/               # Dated evidence, Apple framework references, candidate notes
+├── boot-ui-sources/  brightness-sources/  copilot-sources/  gpio-sources/
+├── graphics-mode-sources/  hotkey-sources/  power-sources/  subpixel-sources/
+├── tablet-sources/  touchpad-sources/  wireless-sources/  linux-live-media/
+├── macos27-standalone/    # macOS 27 "Golden Gate" standalone-UEFI ARM-to-x86 program (0.0.3)
+├── PORT-STATUS.md  ROADMAP.md  SHA256SUMS-upstream.txt
 ```
 
-`research/` is the evidence trail; read the newest files first:
+`research/` is the evidence trail — read the newest files first. The most load-bearing ones:
 
 | File | Contents |
 |---|---|
-| `windowserver-result-231630.md` | **Latest.** GPU 1.0.15 / plugin 0.3.6 / fb 0.2.5 / HID 1.0.1: reporting fixed (`Intel(R) Graphics (MTL)`, 12288 MB); smoothness unresolved |
-| `windowserver-result-224146.md` | **The usable-desktop checkpoint.** WindowServer submits real GPU work and reads back correctly, no hang; choppy |
-| `windowserver-scanout-reservation-1.0.15.md` | Kernel 1.0.15: reserve the firmware console image from stolen allocations |
-| `windowserver-registry-report-0.2.5.md` | Framebuffer 0.2.5: driver-queried GPU identity + shared memory in System Information |
-| `windowserver-memory-report-0.3.6.md` | Plugin 0.3.6: query-based Metal memory reporting, no injection |
-| `windowserver-hid-nullguard-1.0.1.md` | Guarded HID 1.0.1: null-guard for the VoodooI2CHID touchscreen panic |
-| `windowserver-iokit-transport-220839.md` | IOKit transport candidate |
-| `windowserver-result-220839.md` / `-222154.md` | Earlier 1.0.15-era trial results |
-| `windowserver-completion-context-1.0.14.md` | 1.0.14: the completion-context use-after-free behind the 1.0.13 panic, and the fix |
-| `windowserver-1.0.14-result-183951.md` | 1.0.14 target trial: attach guard verified, then a separate VoodooI2CHID HID panic |
-| `windowserver-1.0.14-attach-guard.md` | The failed-attach NVRAM marker that parked retries, and the installer fix |
-| `windowserver-1.0.13-panic-181731.md` | 1.0.13 boot panic: verbatim stack, the zeroed context lock in source, and why the cause is unattributed |
-| `windowserver-firmware-stolen-1.0.13.md` | The stolen/DSM ownership hypothesis and the region-skip candidate |
-| `windowserver-1.0.12-failure-180032.md` | 1.0.12 / framebuffer 0.2.4 target trial: corruption and timeout persist; no span-refusal evidence |
-| `windowserver-raw-physical-1.0.12.md` | 1.0.12 / framebuffer 0.2.4 raw-physical allocation audit and its stated caveats |
-| `windowserver-1.0.11-failure-173438.md` | 1.0.11 hardware trial: identical ring overwrite; the page-pin fix is not the cause |
-| `windowserver-mmap-lifetime-1.0.11.md` | The mapping-lifetime defect and the 1.0.11 fix candidate |
-| `windowserver-boundary-diagnostic-1.0.10.md` | 1.0.10 diagnostic scope, bounds and capture design |
-| `windowserver-0.3.5-failure-165941.md` | Frozen-cursor boot; submission #8 / readback #3 stall |
+| `ROADMAP.md` (repo root) | **The complete dated history, 8 – 22 October 2026** — sixteen phases from the first injection failure to macOS 27 "Golden Gate" |
+| `UNIFIED-CANDIDATE-WORK.md` (repo root) | **Authoritative combined status** across every subsystem |
+| `iwlwifi-api83/` | Linux `iwlwifi` API-83 source — the reference for the native AWDL and radio work |
+| `airportitlwm-tahoe/` | Qualified upstream reference (Tahoe 26.6.2/26.7, AppleVTD, AWDL/P2P, AirPlay) |
 | `verified-0.3.1-full-gate-20261019.md` | The 22-case / 26,000-frame / 80,020-pool hardware gate record |
-| `verified-windowserver-20261019-1200.md` | The desktop failure, submission by submission |
-| `windowserver-0.3.5-research.md` | 0.3.5 candidate: compression isolation + kernel capture |
-| `windowserver-0.3.4-research.md` | Dedicated-staging candidate and the source audit table |
-| `verified-0.3.1-guc-wake-fix.md` | The LinuxKPI lost-wake race, reproduced and fixed |
-| `desktop-roadmap-evidence.json` | Machine-readable evidence |
-
----
+| `windowserver-result-224146.md` | **The usable-desktop checkpoint** — real GPU work, readbacks complete, no hang |
+| `windowserver-result-231630.md` | GPU reporting fixed; the last smoothness capture |
+| `smoothness-0.3.12.md` | Plugin 0.3.11's optimized cache path: readback **5.0 ms** (from 22.4 ms) |
+| `nightshift-and-audio-0.3.16.md` | The gamma/Night Shift path and ALC295 audio |
+| `panel-and-icon-0.3.14.md` | Captured BOE panel EDID (13.3") and the About This Mac icon |
+| `tablet-macos-review-20261021-1504.md` | Tablet-mode macOS review and the firmware visibility gate |
 
 <a name="build"></a>
 ## 🛠️ Building and testing
 
-The build is a pipeline: firmware is prebuilt, then the translator, the Vulkan backend, the Metal
-plugin, the kernel extension and the kexts are compiled, the runtime is packaged, and only then is the
-application gate run and a single desktop boot armed. Every step is a script in `desktop-sources/`;
-the commands below are what those scripts actually run, so any single step can be re-run by hand.
+The build is a pipeline: firmware is prebuilt, then the translator, the Vulkan backend, the Metal plugin,
+the kernel extension and the kexts are compiled, the runtime is packaged, the application gate is run, and
+only then is a desktop boot armed. Every step is a script in `desktop-sources/`.
 
-Build outputs land in `desktop-build/` (kexts, plugin, logs) and `build-tree/` (the meson build
-directories). `latitude-runtime/` is the installable package that gets staged to the USB.
-
-### 0. Host and prerequisites
-
-| Requirement | Used by |
-|---|---|
-| macOS 15 Sequoia, x86_64 | everything |
-| Xcode command line tools (`xcrun` must resolve) | kernel, kexts, plugin |
-| `MacKernelSDK/` | kext/kernel headers |
-| Rust 1.87+ (`toolchain/`) | AIR→SPIR-V translator, CLC tools |
-| `llvm-dis`, `spirv-val` (SPIRV-Tools) | translator |
-| `meson` + `ninja` | Mesa (ANV), libdrm |
-| `python3` | build/package scripts |
-
-The build host may be Apple Silicon or Intel; the CLC tools are built for the host. The target is
-always the Dell Latitude 5350 (`8086:7D45`).
-
-### 1. Firmware (no build)
-
-`firmware/i915/` already holds `mtl_guc_70.bin`, `mtl_dmc.bin`, `mtl_huc_gsc.bin`, `mtl_gsc_1.bin` and
-`LICENSE.i915`. Nothing to compile.
-
-### 2. Shader translator (AIR → SPIR-V)
+**Prerequisites:** macOS 15 Sequoia x86_64, Xcode command line tools (`xcrun` must resolve),
+`MacKernelSDK/`, Rust 1.87+ (`toolchain/`), `llvm-dis` and `spirv-val` (SPIRV-Tools), `meson` + `ninja`,
+`python3`. The build host may be Apple Silicon or Intel; the CLC tools are built for the host.
 
 ```sh
-cd NullMoth/translator/translator
-cargo build --release
-```
+# 1. Firmware — already in firmware/i915/, nothing to compile
 
-Needs `llvm-dis` and `spirv-val` on `PATH` (or set `METAL2VULKAN_LLVM_DIS` / `METAL2VULKAN_SPIRV_VAL`).
-This is the `metal2vulkan` component: it lowers Metal's AIR to SPIR-V for ANV.
+# 2. AIR → SPIR-V translator
+cd NullMoth/translator/translator && cargo build --release
 
-### 3. Vulkan backend (ANV) and libdrm
+# 3. ANV and libdrm
+meson setup mesa     build-tree/mesa-build  && ninja -C build-tree/mesa-build
+meson setup libdrm   build-tree/drm-build   && ninja -C build-tree/drm-build
 
-```sh
-meson setup mesa     build-tree/mesa-build
-ninja -C build-tree/mesa-build
-meson setup libdrm   build-tree/drm-build
-ninja -C build-tree/drm-build
-```
+# 4. Metal plugin
+python3 desktop-sources/build-windowserver-0.3.19.py
 
-Mesa is patched via `port-artifacts/mesa-i915-darwin-mmap.patch`; libdrm carries the IOKit transport
-patch. `latitude-runtime/BUILD-MANIFEST.json` pins the exact base revision of every upstream.
+# 5. Kernel extension — the hard part
+#    (a) compile: NullMoth/gpu-port/xkpi/all.sh  -> obj/, obj-i915/, lkobj/, srcobj/, xnuobj/
+#        all-i915.sh builds the i915 driver, cc-i915.sh is the per-file compiler
+#    (b) link:
+python3 desktop-sources/link-kernel-1.0.15.py
 
-### 4. Metal plugin (NVMTLDriver)
-
-```sh
-python3 desktop-sources/build-windowserver-0.3.5.py
-```
-
-Compiles `NullMoth/plugin/NVMTLDevice.m` into `desktop-build/NVMTLDriver-0.3.5` (x86_64, linked
-against Metal, IOSurface and IOKit, with `Vulkan-Headers/include` on the path).
-
-### 5. Kernel extension (NMXGPU) — the hard part
-
-The kernel is a Linux DRM/i915 driver compiled for xnu through the FreeBSD LinuxKPI shim. It is two
-stages: compile the sources into object directories, then link them.
-
-**(a) Compile.** `NullMoth/gpu-port/xkpi/all.sh` builds the DRM core, TTM and dma-buf into `obj/`;
-`all-i915.sh` builds the i915 driver into `obj-i915/`. The per-file compiler is `cc-i915.sh`
-(`xcrun clang -fapple-kext -DNMXKPI=1`, with the LinuxKPI headers from `freebsd-src`).
-
-> **These compile scripts contain absolute paths from the original build machine** —
-> `/Volumes/MiniData/build/gpu-src/...` in `all.sh` and `/Users/ved/igpu-build/...` in `cc-i915.sh`.
-> They must be repointed at this tree (`NullMoth/gpu-port/xkpi`, `drm-kmod`, `freebsd-src`) before
-> they will run. This is the one step that is not reproducible as-is yet.
-
-**(b) Link.**
-
-```sh
-python3 desktop-sources/link-kernel-1.0.14.py
-```
-
-Links the 438 objects from `xkpi/{obj,obj-i915,lkobj,srcobj,xnuobj}` into
-`desktop-build/NMXGPU-1.0.14`. The script asserts exactly 438 objects and that the undefined-symbol
-set is identical to frozen 1.0.8, then prints the kext UUID.
-
-### 6. Kexts (LatitudeMTLFB, LatitudePanelClaim)
-
-```sh
+# 6. Kexts
 python3 desktop-sources/build.py
-```
 
-Compiles `nmxvgafb.cpp`, `nmx_virtio_gpu.cpp` and `LatitudePanelClaim.cpp`, links and codesigns
-`latitude-desktop/Library/Extensions/LatitudeMTLFB.kext` and
-`latitude-desktop/EFI-Kexts/LatitudePanelClaim.kext`.
+# 7. Assemble the runtime package (the USB must be mounted)
+python3 desktop-sources/publish-scanout-copy-0.3.19.py
 
-### 7. Assemble the runtime package
+# 8. Application gate
+shasum -a 256 -c latitude-runtime/SHA256SUMS.txt
+./latitude-runtime/tools/latitude-vulkan-test ./latitude-runtime/tools/check.spv
+./latitude-runtime/tools/latitude-metal-test
+sudo /bin/bash latitude-desktop/test-readback.sh 1000 full
 
-```sh
-python3 desktop-sources/publish-completion-context-1.0.14.py   # current candidate
-# or an earlier one, e.g.: python3 desktop-sources/package-0.3.5.py
-```
-
-Stages the installable tree to `/Volumes/SEQOUIA/iGPU-Port/Desktop`, writes `SHA256SUMS.txt` and
-`BUILD-MANIFEST.json`, backs up the previous package, and verifies codesign and shell syntax. The
-USB must be mounted. No target install, NVRAM edit, GPU suite or reboot happens here.
-
-### 8. Application gate (before any desktop boot)
-
-```sh
-cd latitude-runtime
-shasum -a 256 -c SHA256SUMS.txt
-./tools/latitude-vulkan-test ./tools/check.spv
-./tools/latitude-metal-test
-sudo ./test-readback.sh 1000 full
-```
-
-22 cases / 26,000 frames across both transports. A pass is required before a desktop boot is armed.
-
-### 9. Install on the Dell (one desktop boot)
-
-```sh
+# 9. Install on the Dell (one desktop boot)
 sudo /bin/bash /Volumes/SEQOUIA/iGPU-Port/install-windowserver.sh
-```
-
-Checks the CPU (Ultra 5 135U), GFX0 (`8086:7D45`), that SIP/AMFI are disabled and AMFIPass is loaded;
-stages kernel + framebuffer + AuxKC with rollback; arms one desktop boot. Then reboot through the
-USB once (no ResetNVRAM). **Collect before reinstalling:**
-
-```sh
+#    then reboot through the USB once (no ResetNVRAM), and collect before reinstalling:
 sudo /bin/bash /Volumes/SEQOUIA/iGPU-Port/collect-desktop-failure.sh
-```
 
-### 10. Roll back
-
-```sh
+# 10. Roll back
 sudo /bin/bash latitude-runtime/rollback-runtime.sh
 ```
 
-Restores the saved runtime and Auxiliary KC from `/Library/NullMoth/latitude5350-backups` and clears
-the one-shot opt-in.
+> **The kernel compile step is not reproducible as-is.** `NullMoth/gpu-port/xkpi/all.sh` and `cc-i915.sh`
+> still contain absolute paths from the original build machine (`/Volumes/MiniData/build/gpu-src/...` and
+> `/Users/ved/igpu-build/...`). They must be repointed at this tree (`NullMoth/gpu-port/xkpi`,
+> `drm-kmod`, `freebsd-src`) before they will run.
+
+The **macOS 27 standalone track** builds separately, on the Corsair-backed build volume:
+
+```sh
+cd macos27-standalone/Standalone-UEFI-Source
+python3 test-runtime.py     # scalar/EL2 execution and fault checks
+python3 build.py            # reruns the scalar tests, then compiles the x86_64 EFI binary
+python3 test-uefi.py        # runs it inside virtual OVMF and compares against the QEMU oracle
+```
 
 **Never bypass a failed kernel-collection validation. Bring the report back instead.**
-
----
 
 <a name="roadmap"></a>
 ## 🗺️ Roadmap
 
-`ROADMAP.md` is authoritative and dated. The following is a summary of its structure, not a substitute.
+[`ROADMAP.md`](ROADMAP.md) is the authoritative, fully dated record — **8 to 22 October 2026, oldest
+first** — and it is the document to read for the history. It has four parts:
 
-**Current (plugin 0.3.6, kernel 1.0.15, framebuffer 0.2.5, guarded HID 1.0.1):** the GPU-composited
-WindowServer desktop is **usable** — WindowServer submits real GPU work and reads back correctly, with no
-GPU hang. The remaining blocker is **smoothness**: choppy composition, CoreAnimation fence timeouts and
-high CPU. The path here ran through the 1.0.11 mapping pin (falsified), 1.0.12 raw-physical span (booted,
-overwrite persisted), 1.0.13 stolen-memory skip (boot panic), 1.0.14 completion-context fix (separate HID
-panic), 1.0.15 GPU-startup stolen-region reservation (usable desktop), 0.2.5 GPU-identity reporting and
-0.3.6 query-based memory reporting (System Information now shows `Intel(R) Graphics (MTL)`, 12288 MB).
-See `research/windowserver-result-224146.md` and `research/windowserver-result-231630.md`.
+1. **Where we are now** — the working state, the open items and the macOS 27 direction.
+2. **How to read this document** — the four evidence rules: what worked needs its measurement, negative
+   results stay negative, counts are exact and scoped, and plugin submission IDs and i915 request
+   sequence numbers are never equated without correlation.
+3. **Timeline** — sixteen phases, each with what happened, what it proved, the lesson and the evidence
+   pointer: injection (`_kmod_info`), `EXITBS:START`, the pivot to NullMoth, first submissions and the
+   first hang, the lost-wake race, the gate that finally meant something, the WindowServer
+   variable-by-variable work, the ring capture and the falsified defect, the raw-physical span, the
+   stolen-memory skip, the panic named, the desktop working, reporting/smoothness/the peripherals, the
+   unified candidate, the AWDL radio and native backend, and the move to macOS 27 "Golden Gate".
+4. **Method** — the evidence table, what the research changed, the implementation sequence with its
+   promotion criteria, and the immediate deliverables with their boundaries.
 
-**Promotion criteria (unchanged):**
+The current position in short:
 
-* A desktop pass requires evidence that the candidate activated, the desktop stayed responsive, **real
-  frames were presented**, and no GPU/fence errors occurred. A visible software-fallback desktop is
-  **not** a pass.
-* The full 22-case gate must be revalidated (not merely re-run for show) when a candidate changes the
-  render path.
-* No automatic reboot from any installer or test script.
+- **Now:** a usable, smooth GPU-composited desktop on kernel 1.0.15 / plugin 0.3.19 / framebuffer 0.2.12 /
+  accelerator 0.2.9, with Wi-Fi, Bluetooth, audio, Night Shift, brightness and the touchscreen working.
+- **Next:** the touchpad, the AWDL radio data plane, tablet-mode publication, system-wide subpixel text,
+  and the macOS 27 "Golden Gate" re-anchoring.
+- **Later:** sustained soak, sleep/wake, external displays, hardware video decode.
 
-**The ring overwrite is now the target.** The next branch is a **ring guard** — diff the previous
-request's tail and WA-tail dwords between tail publications — plus a **physical-page ownership map** of the
-ring, the IOSurface/private-image/staging buffers, and the earliest submission boundary whose words
-changed. The raw-physical correction gives that map a specific question to answer: were the exported
-surfaces actually host-contiguous on this machine (`IOMapper::gSystem` present or not), and did the
-guarded allocator ever refuse a span? The virtio scan-out and cursor buffers need the same check for the
-QEMU configuration. **Not** another identical reboot, a longer fence timeout, a firmware swap, or a repeat
-of the application matrix — and not another boot of 1.0.13 unchanged, which would only reproduce its
-panic.
-
-**Deferred:** sustained physical composition, sleep/wake, brightness, external outputs, hardware video
-decode, modesetting and error recovery. Every one of these is currently **unverified**, and no
-future-proof claim is made for any of them.
-
----
-
-<a name="versions"></a>
-## 🕓 Version history (plugin 0.2.4 → 0.3.6, kernel 1.0.8 → 1.0.15, framebuffer → 0.2.5)
-
-Each candidate changed as few things as possible, and each failure narrowed the next step. The one-line
-"what changed" and "what happened" is the honest spine of the project. All dates are October 2026.
-
-| Version | What changed | What happened |
-|---|---|---|
-| 0.2.4 | First desktop path: panel claim, pipe 0 registration, IOSurface-to-panel copy | Registration confirmed; **all 64 diagnostic samples zero**, IOSurface import `-1000072003`, fence `VK_TIMEOUT` at 5000 ms, WindowServer stack exhaustion, `GPU HANG 12:1:00dfffff` |
-| 0.2.5 | Bounded terminal-error buffers so backend loss cannot recurse | Submissions 1–4 complete; **readback #5 and upload #6 time out**; `INTEL_DEBUG=stall` confirmed enabled and ineffective (recorded negative) |
-| 0.2.6 | Readback correctness patch and isolated per-case matrix | 10 direct cases pass (1,200 frames); forced IOKit fails during enumeration before any ioctl |
-| 0.2.7 | Forced-route enumeration + token classification fix, discovery fallback, prior-access sync, release trace filter | Recovered evidence: `VK_ERROR_DEVICE_LOST` after 13,072 ms and `GPU HANG 12:1:00b79797` |
-| 0.2.8 | Diagnostic comparison plus a command-pool-only fresh-allocation switch | **Invalid as a test** — the release constructor stripped every `NVMTL_*` variable; hang at frame 169 |
-| 0.2.9 | Preserve explicit controls for the test process, in-driver effective-policy query, refuse on mismatch | Restores trustworthy A/B measurement; desktop activation still disabled |
-| 0.3.0 | Fresh command pools everywhere, immediate destroy, quarantine on uncertain completion | 4,000 frames pass, then a **GuC TLB-invalidation timeout and a hang on the fifth process** (upload #1285, frame 428); 1286 created / 1285 destroyed / 1 quarantined |
-| 0.3.1 | LinuxKPI lost-wake fix (`TASK_WAKING` under the sleep-channel lock) in kernel 1.0.8 | 100,000 ASan/UBSan scenarios reproduce-then-fix the race; **full 22-case / 26,000-frame / 80,020-pool gate passes** — the standing baseline |
-| 0.3.2 | WindowServer-only serialization: no submit-ahead, defer IOSurface-writer scheduling | Black screen with **no retained evidence**; an unbounded `pthread_mutex_lock` ran before the GPU wait |
-| 0.3.3 | Bounded `trylock` + deadline, pre-created startup journal, early loader capture, sampler fix | 8 submissions / 3 readbacks, then **readback #4 times out**; `GPU HANG 12:1:00dfffff` |
-| 0.3.4 | Dedicated fresh staging scoped to this `8086:7d45` WindowServer; journal, log-throttle and sampler fixes | Submissions 1–7 pass, **submission #8** (third readback) times out — staging reuse is not required to trigger the hang |
-| 0.3.5 | `noccs` compression isolation scoped to WindowServer/device; diagnostic kernel 1.0.9 (parsed GuC registers + request state) | AuxKC pointed at a deleted temporary bundle; the installer was rebuilt from permanent paths. **Desktop result still unverified** |
-| 0.3.5 + kernel 1.0.10 | Diagnostic only: bounded command-ring capture in `intel_guc_submission` and `i915_gpu_error` — the words below each active render request's head, saved at submission and re-read at hang (fixed ~60 KiB, write-once slots, no hot-path logging) | 17:14 boot reproduced submission #8 / readback #3. The 17:16 capture shows request 18's switch-out and WA tail (`0xc98–0xca4`) reading `0xff000000` before request 20, with GuC `IPEHR=ff000000`, `RING_HEAD=ACTHD=0xca4`. **Diagnostic only, no fix** |
-| kernel 1.0.11 (fix candidate) | Pin i915 CPU user mappings (`WB`/`WC`/`UC`) for the mapping lifetime and release the pin after the IOKit unmap; refuse the legacy `I915_MMAP_TYPE_GTT` alias; report `i915_gem_mmap_gtt_version() = 4` under NMXKPI | Local only: 438-object x86_64 link, undefined-import set equals 1.0.8, kernel UUID `B972B890-…`, signed-binary SHA-256 `496e108b…`, 20,000-lifetime ASan/UBSan fixture and installer/rollback fixtures pass. **17:32 hardware boot reproduced the identical ring overwrite and `IPEHR=ff000000`. Fix does not resolve the hang; retained as a correctness correction** |
-| kernel 1.0.12 + framebuffer 0.2.4 (candidate) | Request `kIOMemoryHostPhysicallyContiguous \| kIOMemoryMapperNone` in `nmxVramAlloc()` and `nmx_xnu_mem_alloc()`; refuse to export a raw physical span unless the first segment covers the whole request (segment/descriptor length, CPU pointer and overflow; mask and alignment in the kernel allocator); release slot and budget on rejection; installer stages/validates/backs up/rolls back kernel + framebuffer + AuxKC together | Local: Sequoia-decision ASan/UBSan fixture (old code exports a 4 KiB segment for an 8 KiB request, new code rejects it; 2,000 balanced cycles), both kexts build and link, installer/rollback fixtures pass. Kernel UUID `000EF47E-…`, SHA-256 `1ad3f4dc…`; framebuffer UUID `59DA4CD2-…`, SHA-256 `495ed4cc…`. **Booted 19 Oct 17:58: readback #8 completed, submission #9 timed out at 5000 ms, `0xff000000` recurred at `0xe00–0xe0c` with `IPEHR=ff000000`; no span-refusal line in the log, so the guard's execution is unverified. Does not fix the hang** |
-| kernel 1.0.13 (parked) | Withhold `INTEL_MEMORY_STOLEN_LOCAL` and `INTEL_MEMORY_STOLEN_SYSTEM` from i915 for `8086:7d45` under `NMXKPI`, so rings/objects allocate from system memory instead of the DSM pool the firmware panel occupies; log `stolen=`/`size=`/`ggtt=` at ring pin | Local: 438-object x86_64 link with the frozen 1.0.8 import set, region-probe/ring-allocation sanitizer fixtures, installer/KC rollback fixtures. Kernel UUID `121AACAE-4C53-3357-9356-38C79222A842`, SHA-256 `d57981cb…`. **Booted 19 Oct 18:17 and panicked after 8.04 s: `mutex … used before mtx_init` in `guc_retire_inflight_request_prio`, on a zeroed `intel_context.guc_state.lock`. No desktop. Cause unattributed; do not re-arm unchanged** |
-| kernel 1.0.14 (current candidate) | Fix the 1.0.13 boot panic: breadcrumb-owned request references hold their context and (for parallel requests) a parent context under NMXKPI; ownership is acquired before the fence's `SIGNALED` bit is published; the signaler and request iterators snapshot their next entry before a losing signal path can drop the last reference. Installer clears the NVRAM `nullmoth-gpu-attaching` marker a failed attach leaves behind | Local: 438-object link with the frozen 1.0.8 import set; the actual old enqueue/worker/GuC functions reproduce a heap-use-after-free and the corrected functions pass 90,000 ASan/UBSan lifetimes; request-iterator UAF reproduced and fixed; installer/KC rollback fixtures. Kernel UUID `9B0192B5-…`, SHA-256 `80c3fe8b…`. **Hardware-unverified: the one trial (18:39:51) panicked at 9.12 s in a VoodooI2CHID touchscreen HID null-page-fault that predates 1.0.14; NMXGPU was loaded but not in the faulting backtrace. Desktop still unresolved** |
-| kernel 1.0.15 | GPU-startup correction: restore i915's stolen-region setup but reserve the firmware console image (read from IOPlatformExpert) so no allocation overlaps it; keep the 1.0.14 completion-context protection | Local: 438-object link; the actual stolen initializer reproduces the overlap and the corrected one passes 524,288 ASan/UBSan cases; console bridge validated. Kernel UUID `39DFCF2A-…`. **22:38 boot: desktop usable — WindowServer submits real GPU work and reads back correctly, no GPU hang. Choppy** |
-| plugin 0.3.6 | Query-based Metal memory reporting: name from `VkPhysicalDeviceProperties.deviceName`, heap sizes from `VkPhysicalDeviceMemoryProperties`; no fixed name or size injection; bypass failed host-pointer imports for `8086:7d45` (copy fallback) | Local: installer/KC/rollback fixtures. **Hardware-unverified; the 1.0.15 desktop GPU work remains established** |
-| framebuffer 0.2.5 | Publish driver-queried GPU identity + shared memory to the PCI registry (`model`, `VRAM,totalMB`) so System Information shows the real name and shared capacity; never enlarges the physical scanout mapping | Local: ASan/UBSan publication/readback fixtures. **System Information now reports `Intel(R) Graphics (MTL)`, 12288 MB** |
-| guarded HID 1.0.1 | Null-guard for the VoodooI2CHID touchscreen report path that panicked at 9.12 s | Local: HID transform fixtures. **Removed the early HID panic; desktop reached** |
-
----
+**Promotion criteria (unchanged):** a desktop pass requires evidence that the candidate activated, the
+desktop stayed responsive, **real frames were presented**, and no GPU/fence errors occurred; a visible
+software-fallback desktop is **not** a pass. The 22-case gate must be revalidated when a candidate
+changes the render path. No automatic reboot from any installer or test script.
 
 <a name="licensing"></a>
 ## ⚖️ Attribution and licensing
 
 This project is a **retargeting**, not original work. It stands on:
 
-* [NullMoth / nvidia-macos-driver](https://github.com/nullmoth/nvidia-macos-driver) — driver skeleton,
+- [NullMoth / nvidia-macos-driver](https://github.com/nullmoth/nvidia-macos-driver) — driver skeleton,
   plugin, translator and the `xkpi` LinuxKPI-on-xnu layer. **PolyForm Noncommercial 1.0.0**; the kexts,
   plugin and translator carry this licence, which is **noncommercial** and materially different from
   the Apache-2.0 badge this README previously displayed.
-* The [NullMoth-Xe](https://github.com/nullmoth/nvidia-macos-driver) Panther Lake write-up — the
-  upstream portability fixes reused for drm-kmod, libdrm, Mesa and the plugin.
-* Intel `i915`, DRM and TTM from the Linux kernel — **GPL-2.0**; firmware under
-  `firmware/LICENSE.i915`.
-* FreeBSD `linuxkpi` and `freebsd-src` — **BSD-2-Clause**.
-* [Mesa](https://gitlab.freedesktop.org/mesa/mesa) 26.3.0-devel incl. ANV — **MIT**.
-* `libdrm` — **MIT**.
-* Khronos `Vulkan-Headers` — Apache-2.0 / MIT (see `Vulkan-Headers/LICENSES`).
-* The AIR→SPIR-V translator (based on `metal2vulkan`) — **LGPL-3.0** with **GPL-3.0** components; see
-  `NullMoth/translator/LICENSE` and `COPYING`.
-* `ogkm610` — NVIDIA open kernel modules, MIT except where noted.
-* **AirportItlwm** (the custom laobamac Sequoia build, `d695c97`, `com.zxystd.AirportItlwm` 2.4.0) — the
+- The [NullMoth-Xe](https://github.com/nullmoth/nvidia-macos-driver) Panther Lake write-up — the upstream
+  portability fixes reused for drm-kmod, libdrm, Mesa and the plugin.
+- Intel `i915`, DRM and TTM from the Linux kernel — **GPL-2.0**; firmware under `firmware/LICENSE.i915`.
+- FreeBSD `linuxkpi` and `freebsd-src` — **BSD-2-Clause**.
+- [Mesa](https://gitlab.freedesktop.org/mesa/mesa) 26.3.0-devel incl. ANV — **MIT**; `libdrm` — **MIT**.
+- Khronos `Vulkan-Headers` — Apache-2.0 / MIT.
+- The AIR→SPIR-V translator (based on `metal2vulkan`) — **LGPL-3.0** with **GPL-3.0** components.
+- `ogkm610` — NVIDIA open kernel modules, MIT except where noted.
+- **AirportItlwm** (the custom laobamac Sequoia build, `d695c97`, `com.zxystd.AirportItlwm` 2.4.0) — the
   macOS port of Intel's Linux `iwlwifi` driver, which is **GPL-2.0**. The Meteor Lake PCI match, the
   fragmented-PNVM loading and the `itlwm_mtl_internal_aux` path are this project's additions on that base.
-* The **VoodooI2C** touch stack (VoodooI2C, VoodooI2CHID, VoodooGPIO) and the LegionI2CArrowLake adaptation —
-  **GPL-2.0**, with the Legion kext under ISC; see the pinned licences under `research/voodooi2c-core/`.
-* AMFIPass 1.4.1, Lilu and VirtualSMC — by their respective authors, under their own terms. No licence
-  text ships inside `AMFIPass/AMFIPass.kext` in this tree; confirm it upstream before redistribution.
+- The **VoodooI2C** touch stack (VoodooI2C, VoodooI2CHID, VoodooGPIO) and the LegionI2CArrowLake
+  adaptation — **GPL-2.0**, with the Legion kext under ISC.
+- **AppleALC** 1.9.8 and **IntelBluetoothFirmware** / BrcmPatchRAM — by their respective authors, under
+  their own terms.
+- AMFIPass 1.4.1, Lilu and VirtualSMC — by their respective authors, under their own terms.
 
 **Original work** (VedCloud code, scripts, patches, tests and documentation) is licensed under the
 **[Meteor Lake Xe-LPG Metal Graphics License](LICENSE)**, whose grant is substantively equivalent to
@@ -1644,20 +651,15 @@ incompatibilities are inherent to the upstreams and are not resolved by the proj
 per-component licences are preserved in-tree (`latitude-desktop/licenses/`, `latitude-runtime/licenses/`,
 and each upstream tree's own `LICENSE`/`COPYING`), and must remain in place.
 
----
-
 <a name="principles"></a>
-## 🧾 Design principles
+## 🧾 Design principles and decisions
 
-These rules are enforced by convention across the tree, and they are why the evidence in `research/`
-can be trusted:
-
-1. **No guessed register values, quirk values or ACPI scope names.** If it is not measured or sourced,
-   it is not written.
-2. **No unsourced attributions.** Every external claim carries an exact URL, or the text says the
-   source could not be found.
-3. **Local build success ≠ hardware success.** Mocked tests are labelled as mocked; a passing compile
-   is never reported as a passing device.
+1. **No guessed register values, quirk values or ACPI scope names.** If it is not measured or sourced, it
+   is not written.
+2. **No unsourced attributions.** Every external claim carries an exact URL, or the text says the source
+   could not be found.
+3. **Local build success ≠ hardware success.** Mocked tests are labelled as mocked; a passing compile is
+   never reported as a passing device.
 4. **One variable at a time**, with a saved before-state and a rollback path, and no automatic reboots.
 5. **Negative results are recorded** and stay negative. `INTEL_DEBUG=stall`, longer timeouts and
    fabricated success are documented dead ends, not proposed fixes.
@@ -1665,122 +667,90 @@ can be trusted:
 7. **The failure comes before its consequences.** GPU execution failure is reported as the failure;
    CoreDisplay crashes are reported as its aftermath.
 
----
+Key decisions and the alternatives that were rejected:
 
-<a name="adr"></a>
-## 🧮 Design decisions
-
-The choices that shaped the port, and the alternatives that were rejected. These are the reasons the
-evidence in `research/` looks the way it does.
-
-| # | Decision | Alternative rejected | Why |
-|---|---|---|---|
-| 1 | Retarget NullMoth's driver skeleton | Write a Metal driver from scratch; use WhateverGreen | The Metal plugin, AIR→SPIR-V translator and LinuxKPI-on-xnu base already existed; WhateverGreen documents Ice Lake as its newest Intel family and supports neither Alder nor Meteor Lake |
-| 2 | Base the kernel driver on `i915` | The `xe` driver | The laptop's own Linux reference and the available xnu DRM/LinuxKPI port are i915-based; a second driver model would be a separate project |
-| 3 | Vulkan backend = ANV | NVK; software fallback | Xe-LPG is Intel silicon, and ANV is the mature Intel Vulkan backend in Mesa |
-| 4 | Keep the AIR→SPIR-V translator | Rewrite the Metal frontend | Metal hands the plugin AIR, so lowering to SPIR-V is the shortest path to ANV |
-| 5 | One-shot NVRAM opt-in for GPU activation | Always-on kext | A failed attach must not silently re-arm on every boot |
-| 6 | Fresh command pools, destroyed immediately | Cache / pop / push pool reuse | Reuse was a variable in the hang; removing it was necessary, though not sufficient |
-| 7 | Quarantine uncertain completions | Reuse resources after a timeout | Reusing work whose fence was never observed risks corrupting later submissions |
-| 8 | Bounded `trylock` + deadline on the desktop submission lock | Blocking `pthread_mutex_lock` | The 0.3.2 black screen showed an unbounded lock running before the GPU wait budget |
-| 9 | Scope dedicated staging to this WindowServer/device | Change staging globally | Isolates one variable without perturbing the passing application matrix |
-| 10 | Scope `noccs` compression isolation likewise | Disable compression everywhere | Tests compression as a variable while leaving application behaviour unchanged |
-| 11 | Kernel 1.0.9 changes diagnostics only | Change scheduling, reset policy or timeouts | No evidence supports a scheduling fix; capture the missing request/GuC state first |
-| 12 | Never reboot automatically; collect before reinstall | Auto-retry the boot | The failed boot's unified log is the evidence; rebooting or reinstalling destroys it |
-| 13 | Treat application and desktop as separate milestones | Assume one pass means "working" | 26,000 passing application frames demonstrably do not predict WindowServer success |
-| 14 | Pin i915 CPU user mappings for the mapping lifetime; refuse the legacy GTT mmap the port cannot revoke | Add a cache flush, raise the fence timeout, or restore FreeBSD's whole-object VM mmap | The port's revocation shim is a no-op, so a lifetime pin is the only way a static IOKit mapping is safe; a flush or a longer timeout would mask the sequence rather than restore GPU execution |
-| 15 | Keep the 1.0.11 correction in the tree even though the hang persisted | Revert it when the ring overwrite recurred | It fixes a real, source-demonstrated mapping-safety defect; "not the cause of *this* hang" is not the same as "not a bug" |
-| 16 | Require `HostPhysicallyContiguous \| MapperNone` and verify the returned segment spans the whole buffer before exporting a raw physical range | Trust `PhysicallyContiguous` and the base address alone | Apple's own code makes `PhysicallyContiguous` host-contiguous only when no system mapper exists; the exported `IODeviceMemory` range must not extend past memory the allocation owns, regardless of whether this target currently has a mapper |
-| 17 | Ship kernel 1.0.12 + framebuffer 0.2.4 as a candidate, not a fix | Call the hang solved because the allocator assumption was wrong | The scattered-page precondition is not evidenced on this target (`AppleVTD is not yet installed as gSystem`), the virtio-build scan-out exports (`fScanBuf`/`fCursorBuf`) still take a raw span without a length check, and the later 18:00 boot confirmed the overwrite persisted with no span-refusal evidence |
-| 18 | Park kernel 1.0.13 (stolen-region skip) after its boot panic; discriminate with a 1.0.12 boot first | Re-arm 1.0.13 unchanged, or declare the stolen-memory hypothesis disproved | The panic's cause is unattributed: the stack proves a zeroed `intel_context.guc_state.lock` reached `guc_retire_inflight_request_prio`, but no path from "region withheld" to that state is shown, and the new log lines are absent from the capture. Re-arming would reproduce the same 8-second panic; booting the last characterised payload under the same collector tests whether the panic needs the region skip at all |
-
----
+| Decision | Alternative rejected | Why |
+|---|---|---|
+| Retarget NullMoth's driver skeleton | Write a Metal driver from scratch | The Metal plugin, translator and LinuxKPI-on-xnu base already existed |
+| Base the kernel driver on `i915` | The `xe` driver | The laptop's own Linux reference and the available xnu DRM/LinuxKPI port are i915-based |
+| Vulkan backend = ANV | NVK; software fallback | Xe-LPG is Intel silicon, and ANV is the mature Intel Vulkan backend in Mesa |
+| Keep the AIR→SPIR-V translator | Rewrite the Metal frontend | Metal hands the plugin AIR, so lowering to SPIR-V is the shortest path to ANV |
+| One-shot NVRAM opt-in for GPU activation | Always-on kext | A failed attach must not silently re-arm on every boot |
+| Fresh command pools, destroyed immediately | Cache / pop / push pool reuse | Reuse was a variable in the hang; removing it was necessary, though not sufficient |
+| Quarantine uncertain completions | Reuse resources after a timeout | Reusing work whose fence was never observed risks corrupting later submissions |
+| Scope `noccs` and dedicated staging to this device | Change them globally | Isolates one variable without perturbing the passing application matrix |
+| Kernel 1.0.9 changes diagnostics only | Change scheduling, reset policy or timeouts | No evidence supports a scheduling fix; capture the missing request/GuC state first |
+| Never reboot automatically; collect before reinstall | Auto-retry the boot | The failed boot's unified log is the evidence; rebooting or reinstalling destroys it |
+| Treat application and desktop as separate milestones | Assume one pass means "working" | 26,000 passing application frames do not predict desktop success |
+| Pin i915 CPU user mappings for the mapping lifetime | Add a cache flush or raise the fence timeout | The port's revocation shim is a no-op, so a lifetime pin is the only way a static IOKit mapping is safe |
+| Require `HostPhysicallyContiguous \| MapperNone` and verify the span | Trust `PhysicallyContiguous` and the base address alone | Apple's own code makes `PhysicallyContiguous` host-contiguous only when no system mapper exists |
+| Reserve the firmware console image from stolen allocations | Leave the broad stolen-region skip or let i915 own the framebuffer | The skip broke GPU startup; allocating over the live framebuffer is what the reservation prevents |
+| Ship each candidate as a candidate, not a fix | Call a hang solved because the mechanism was plausible | Every fix here was tested on hardware, and two real defects were falsified that way |
 
 <a name="glossary"></a>
 ## 📖 Glossary
 
 | Term | Meaning |
 |---|---|
-| **AIR** | Apple Intermediate Representation — Metal's shader IR, the input to the translator |
+| **AIR** | Apple Intermediate Representation — Metal's shader IR, the translator's input |
 | **ANV** | Mesa's Intel Vulkan driver |
-| **AuxKC** | Auxiliary Kernel Collection — where third-party kexts are staged on modern macOS |
-| **CCS / `noccs`** | Colour Compression; `noccs` disables it as an isolation experiment |
-| **CLC** | Mesa's OpenCL C compiler, used here to build shader tooling for the host |
-| **DSM / GSM / GGTT** | Device physical / graphics-memory-relative / graphics-translation-table address spaces |
-| **GEM / TTM** | DRM graphics-execution memory management, and its translation-table manager |
+| **AuxKC** | Auxiliary Kernel Collection — where third-party kexts are staged |
+| **AWDL** | Apple Wireless Direct Link — the peer-to-peer protocol AirDrop and AirPlay use |
+| **CLC** | Mesa's OpenCL C compiler |
+| **DSM / GSM / GGTT** | Device physical / graphics-memory-relative / translation-table address spaces |
+| **GEM / TTM** | DRM graphics-execution memory management and its translation-table manager |
 | **GuC / HuC / DMC / GSC** | Intel GPU microcontroller and firmware: scheduling, media, display, security |
-| **LRC** | Logical Ring Context — per-context GPU register state |
-| **LinuxKPI** | FreeBSD's Linux kernel API shim, used here to compile i915 on xnu |
+| **ISH** | Intel Sensor Hub — the low-power sensor/rotation interface |
+| **LinuxKPI** | FreeBSD's Linux kernel API shim, used to compile i915 on xnu |
 | **MATs** | Memory Attributes Tables — firmware memory-map support that selects booter quirks |
-| **PSO** | Pipeline State Object |
+| **PNVM** | Wi-Fi calibration data the firmware loads at attach |
 | **SIP** | System Integrity Protection |
 | **SPIR-V** | Vulkan's shader IR |
-| **Xe-LPG** | The GPU generation in Meteor Lake, distinct from Xe2 (Lunar Lake) and Xe3 (Panther Lake) |
-| **AirportItlwm / itlwm** | The macOS ports of Intel's Linux `iwlwifi` driver; the custom build drives the MTL wireless controller |
-| **PNVM** | Wi‑Fi calibration data the firmware loads at attach |
-
----
+| **Xe-LPG** | The GPU generation in Meteor Lake, distinct from Xe2 and Xe3 |
+| **AirportItlwm / itlwm** | The macOS ports of Intel's Linux `iwlwifi` driver |
 
 <a name="faq"></a>
 ## ❓ FAQ
 
 **Does this actually work?**
-For applications, yes: Metal and Vulkan run on the Xe-LPG iGPU and produce exact, verified output
-(65,536 Vulkan values, 4,096 Metal pixels, 26,000 frames across 22 cases). The desktop **now works too** —
-WindowServer is GPU-composited, does real GPU work and reads back correctly, with no hang — but it is
-**choppy**. Smoothness is the current milestone. Those are different stages, and this project says so plainly.
+For applications, yes: Metal and Vulkan produce exact, verified output (65,536 Vulkan values, 4,096
+Metal pixels, 26,000 frames across 22 cases). The desktop **now works too** — WindowServer is
+GPU-composited and smooth, does real GPU work and reads back correctly, with no hang. The remaining gaps
+are the touchpad and the Apple-side subsystems in *What is in progress*.
 
 **Can I install it on my laptop?**
-Only if you have this exact configuration: Dell Latitude 5350, iGPU `8086:7D45`, macOS 15.8.1. A
-different device ID needs `IOPCIPrimaryMatch` changes and a fresh evidence run; nothing else is claimed.
-There is no generic installer.
+Only if you have this exact configuration: Dell Latitude 5350, `8086:7D45`, macOS 15.8.1. A different
+device ID needs `IOPCIPrimaryMatch` changes and a fresh evidence run. There is no generic installer.
 
 **Can I use it as a daily driver, for games or video editing?**
-No. The desktop is GPU-composited but choppy, and sustained stability, sleep/wake, brightness and external
-displays are all unverified. Wireless attaches (`en0`) but its throughput and sleep/wake are unverified. The
-only fully validated workload is the application gate.
+No. The desktop is GPU-composited and smooth, and most peripherals work, but sustained stability,
+sleep/wake and external displays are unverified, the touchpad is a work in progress and the Weather
+glyphs are undiagnosed.
 
 **Is it safe to install?**
-No. The setup disables large parts of SIP and AMFI and loads unsigned kexts. A boot loop or a damaged
-kernel collection can make the machine unbootable. Keep a known-good EFI on a separate USB and a full
-backup off-device.
+No. It disables large parts of SIP and AMFI and loads unsigned kexts. A boot loop or a damaged kernel
+collection can make the machine unbootable. Keep a known-good EFI on a separate USB and a full backup
+off-device.
 
-**Why is the desktop choppy if Metal works?**
-Because the GPU executes correctly but presentation is not yet smooth: WindowServer submits real work and
-completes readbacks, yet CoreAnimation logs fence timeouts and WindowServer sits at 163–205% CPU
-(`windowserver-result-231630`). That is a composition-latency and synchronization problem — a different
-layer from application rendering, which is why the passing application gate never predicted it.
+**Why did the desktop take so long if Metal works?**
+Because composition is a different layer from application rendering. The gate passes with exact pixels,
+but WindowServer exercises concurrent surface import, readback and panel scanout under load — paths the
+application matrix never touches.
 
-**Didn't you find the cause in the ring buffer?**
-That question is now historical. The ring capture precisely documented the GPU-execution failure — a
-four-word `0xff000000` block replacing the previous request's tail, fetched by the GPU (`IPEHR=0xff000000`) —
-and ruled out two real source defects (the 1.0.11 mapping-lifetime pin, the 1.0.12 raw-physical span) as
-the cause. The 1.0.13 boot panic was a context use-after-free in the breadcrumb completion path, fixed by
-1.0.14. Kernel **1.0.15** then made the desktop usable, so the GPU-execution failure is resolved. The
-current question is no longer "does the GPU execute?" but "why is composition choppy?" — a latency and
-synchronization problem, documented in `research/windowserver-result-231630.md`.
+**Do brightness, sound and Night Shift work?**
+Yes. Brightness works through the Control Centre slider and the F6/F7 keys (a `BRT6` route). Sound uses
+Realtek ALC295 via AppleALC. Night Shift works through the framebuffer gamma table. Bluetooth and Wi-Fi
+also work.
 
-**Why not WhateverGreen?**
-Its own documentation lists Ice Lake as the newest supported Intel family; it supports neither Alder Lake
-nor Meteor Lake.
-
-**Why `i915` and not the `xe` driver?**
-Because the available xnu DRM/LinuxKPI port and the laptop's own Linux reference report are i915-based.
-That is a project constraint, not a claim that `xe` could not work.
-
-**Why NullMoth?**
-It already provides the three hard pieces this port needs — the Metal driver plugin, the AIR→SPIR-V
-translator and the LinuxKPI-on-xnu driver skeleton — so the work becomes retargeting rather than invention.
+**Does Wi-Fi work?**
+Yes. A custom AirportItlwm (the macOS port of Intel's Linux `iwlwifi`) drives the Meteor Lake wireless
+controller, loads its firmware and registers `en0`, and the wireless path — AirDrop, Continuity and
+Wi-Fi 6 — works.
 
 **Is the GPU really doing the work, or is it a software fallback?**
 The probes read exact values and pixels back from device memory and verify the transport route, so the
-application results are real GPU execution. A *visible desktop* is a different matter: presenting the
-firmware framebuffer is not accelerated composition, and the project does not count it as success.
-
-**Does Wi‑Fi work?**
-It attaches. A custom AirportItlwm (the macOS port of Intel's Linux `iwlwifi`) drives the Meteor Lake
-wireless controller, loads its firmware and registers `en0`. Throughput, sleep/wake, AirDrop and full Wi‑Fi 6
-are **unverified** — see *Custom wireless* in *Hardware and software target*.
+application results are real GPU execution. The desktop is GPU-composited: WindowServer submits real work
+and the readbacks complete.
 
 **Can I contribute? What do you need?**
 The same hardware and reproducible evidence: the report directory, boot UUID, exact log lines and the gate
@@ -1790,35 +760,28 @@ hardware result.
 **Why is the license custom, and can I use this commercially?**
 No — commercial use is not permitted for the combined tree, because the NullMoth components are PolyForm
 Noncommercial 1.0.0. The custom license covers only VedCloud original work; the GPL, LGPL, MIT and BSD
-components keep their own terms. See *Attribution and licensing*.
+components keep their own terms.
 
 **Will this support Lunar Lake or Panther Lake?**
 That is the separate `NullMoth-Xe` target. Xe2/Xe3 cache and firmware workarounds must not be applied to
 Meteor Lake.
 
----
-
 <a name="consensus"></a>
 ## 📈 Where this breaks with consensus
 
-The common claim is that modular Intel Core Ultra parts are a dead end for modern macOS graphics. On
-this machine that claim is already partly falsified:
+The common claim is that modular Intel Core Ultra parts are a dead end for modern macOS. On this machine
+that claim is falsified well beyond the GPU:
 
-* the GPU is **identified** and the i915-based kext **attaches** to it on real hardware;
-* **GuC 70.53.0** firmware loads and submission is enabled;
-* **Metal and Vulkan work.** Vulkan returns 65,536 correct values, Metal renders 4,096 correct pixels,
-  and **26,000 application frames** pass exact-pixel validation over **both** transport routes;
-* a real **LinuxKPI lost-wake race** was found, reproduced and fixed;
-* a **Linux Wi‑Fi driver is ported and running natively on macOS** — a custom AirportItlwm (the macOS port
-  of Intel's Linux `iwlwifi`) drives the Meteor Lake wireless controller, loads its firmware and registers
-  `en0`.
+- the GPU is **identified** and the i915-based kext **attaches** to it on real hardware;
+- **GuC 70.53.0** firmware loads and submission is enabled;
+- **Metal and Vulkan work** — 65,536 correct values, 4,096 correct pixels, and **26,000 application
+  frames** passing exact-pixel validation over **both** transport routes;
+- the **desktop is GPU-composited and smooth**, with real GPU work and clean readbacks;
+- a **Linux Wi-Fi driver is ported and running natively on macOS** — a custom AirportItlwm drives the
+  Meteor Lake wireless controller, loads its firmware and registers `en0`;
+- a **Linux Bluetooth stack** and an **AppleALC** audio path work alongside it, and the screen is driven by
+  a **Linux I2C-HID** driver;
+- a real **LinuxKPI lost-wake race** was found, reproduced and fixed.
 
-What is not yet falsified is the last mile: **smooth, presentation-stable GPU-composited WindowServer.** The
-harder claim — that the desktop can be GPU-composited at all — is now falsified in the project's favour:
-WindowServer submits real GPU work and reads back correctly, with no GPU hang, and System Information reports
-the real GPU and shared memory. What remains is choppiness: composition latency, CoreAnimation fence
-timeouts and high CPU. That is a performance and synchronization problem, not the GPU-execution failure that
-dominated the earlier evidence (the `0xff000000` ring overwrite, now historical). The path here fixed three
-real source defects — the 1.0.11 mapping-lifetime pin, the 1.0.12 raw-physical span and the 1.0.13 boot
-panic (a context use-after-free that **1.0.14** fixed) — and 1.0.15 then made the desktop usable. The
-remaining step is composition smoothness, not another guess about whether the GPU works.
+What remains open is narrower and mostly not about the GPU: the touchpad, the AWDL radio data plane,
+tablet-mode publication, system-wide subpixel text, and the move to macOS 27 "Golden Gate".

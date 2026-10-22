@@ -1,0 +1,119 @@
++-o IOBluetoothHCIController  <class IOBluetoothHCIController, id 0x10000012e, registered, matched, active, busy 0 (20 ms), retain 9>
+  | {
+  |   "IOProbeScore" = 0
+  |   "CFBundleIdentifier" = "com.apple.iokit.IOBluetoothFamily"
+  |   "IOMatchCategory" = "IOBluetoothHCIController"
+  |   "IOClass" = "IOBluetoothHCIController"
+  |   "IOPersonalityPublisher" = "com.apple.iokit.IOBluetoothFamily"
+  |   "IOProviderClass" = "IOResources"
+  |   "CFBundleIdentifierKernel" = "com.apple.iokit.IOBluetoothFamily"
+  |   "IOMatchedAtBoot" = Yes
+  |   "BluetoothTransportConnected" = Yes
+  |   "Built-In" = Yes
+  |   "IOResourceMatch" = "IOKit"
+  | }
+  | 
+  +-o IOBluetoothACPIMethods  <class IOBluetoothACPIMethods, id 0x10000033d, !registered, !matched, active, busy 0, retain 5>
+  |   {
+  |   }
+  |   
+  +-o IOBluetoothHCIUserClient  <class IOBluetoothHCIUserClient, id 0x100000599, !registered, !matched, active, busy 0, retain 6>
+  |   {
+  |     "IOUserClientCreator" = "pid 156, bluetoothd"
+  |     "IOUserClientDefaultLocking" = Yes
+  |   }
+  |   
+  +-o IOBluetoothDevice  <class IOBluetoothDevice, id 0x10000065d, registered, matched, active, busy 0 (20 ms), retain 8>
+    | {
+    |   "ConnectionHandle" = 1
+    |   "BluetoothObjectID" = 1
+    |   "BD_ADDR" = <4cb04ae57a8a>
+    |   "BTTTYName" = "Bluetooth-Incoming-Port"
+    |   "MaxACLPacketSize" = 0
+    |   "Link Level Encryption" = 0
+    |   "IODEXTMatchCount" = 1
+    |   "DeviceType" = "Serial"
+    |   "BTAddress" = <4cb04ae57a8a>
+    |   "ClassOfDevice" = 0
+    |   "IsInitiator" = Yes
+    | }
+    | 
+    +-o IOUserBluetoothSerialDriver  <class IOUserService, id 0x10000065e, registered, matched, active, busy 0 (4 ms), retain 10>
+      | {
+      |   "IOClass" = "IOUserService"
+      |   "CFBundleIdentifier" = "com.apple.IOUserBluetoothSerialDriver"
+      |   "IOProviderClass" = "IOBluetoothDevice"
+      |   "IOPropertyMatch" = {"ClassOfDevice"=0,"DeviceType"="Serial"}
+      |   "IOUserServerCDHash" = "25ae4466db0802255dd347e8a2560140bd404076"
+      |   "IOUserBluetoothSerialClient" = {"IOClass"="IOUserUserClient","IOUserClass"="IOUserBluetoothSerialClient"}
+      |   "IOMatchedPersonality" = {"IOClass"="IOUserService","CFBundleIdentifier"="com.apple.IOUserBluetoothSerialDriver","IOProviderClass"="IOBluetoothDevice","IOPropertyMatch"={"ClassOfDevice"=0,"DeviceType"="Serial"},"IOUserServerCDHash"="25ae4466db0802255dd347e8a2560140bd404076","IOUserBluetoothSerialClient"={"IOClass"="IOUserUserClient","IOUserClass"="IOUserBluetoothSerialClient"},"PTY"={"IOClass"="IOUserSerial","PTY"={"IOClass"="IOUserUserClient","IOUserClass"="IOUserPseudoSerialUserClient"},"CFBundleIdentifier"="com.apple.driver.driverkit.serial","IOUserClass"="IOUserPseudoSerial"},"IOMatchCategory"="IOUserBluetoothSerialDriver","IOUserServerName"="com.apple.IOUserBluetoothSerialDriver","kOSBundleDextUniqueIdentifier"=<1526ca90d643b7c641f429b8e2b92744a631623b75d77a819cc68546b9fc3ac2>,"IOPersonalityPublisher"="com.apple.IOUserBluetoothSerialDriver","CFBundleIdentifierKernel"="com.apple.driver.driverkit.serial","ClassOfDevice"=0,"IOUserClass"="IOUserBluetoothSerialDriver"}
+      |   "PTY" = {"IOClass"="IOUserSerial","PTY"={"IOClass"="IOUserUserClient","IOUserClass"="IOUserPseudoSerialUserClient"},"CFBundleIdentifier"="com.apple.driver.driverkit.serial","IOUserClass"="IOUserPseudoSerial"}
+      |   "IOProbeScore" = 0
+      |   "IOPowerManagement" = {"CapabilityFlags"=2,"MaxPowerState"=2,"CurrentPowerState"=2}
+      |   "IOMatchCategory" = "IOUserBluetoothSerialDriver"
+      |   "IOUserServerName" = "com.apple.IOUserBluetoothSerialDriver"
+      |   "DeviceAddress" = <4cb04ae57a8a>
+      |   "IOUserClasses" = ("IOUserBluetoothSerialDriver","IOService","OSObject")
+      |   "kOSBundleDextUniqueIdentifier" = <1526ca90d643b7c641f429b8e2b92744a631623b75d77a819cc68546b9fc3ac2>
+      |   "IOPersonalityPublisher" = "com.apple.IOUserBluetoothSerialDriver"
+      |   "CFBundleIdentifierKernel" = "com.apple.driver.driverkit.serial"
+      |   "ClassOfDevice" = 0
+      |   "IOUserClass" = "IOUserBluetoothSerialDriver"
+      | }
+      | 
+      +-o IOUserBluetoothSerialClient  <class IOUserUserClient, id 0x100000661, !registered, !matched, active, busy 0, retain 7>
+      |   {
+      |     "IOUserClass" = "IOUserBluetoothSerialClient"
+      |     "CFBundleIdentifier" = "com.apple.IOUserBluetoothSerialDriver"
+      |     "IOClass" = "IOUserUserClient"
+      |     "IOUserClientCreator" = "pid 156, bluetoothd"
+      |     "IOUserClientDefaultLocking" = Yes
+      |     "IOUserServerName" = "com.apple.IOUserBluetoothSerialDriver"
+      |     "IOUserClasses" = ("IOUserBluetoothSerialClient","IOUserClient","IOService","OSObject")
+      |   }
+      |   
+      +-o IOUserPseudoSerial  <class IOUserSerial, id 0x100000662, registered, matched, active, busy 0 (2 ms), retain 10>
+        | {
+        |   "IOUserClass" = "IOUserPseudoSerial"
+        |   "CFBundleIdentifier" = "com.apple.IOUserBluetoothSerialDriver"
+        |   "HiddenPort" = Yes
+        |   "IOClass" = "IOUserSerial"
+        |   "IOUserClasses" = ("IOUserPseudoSerial","IOUserSerial","IOService","OSObject")
+        |   "IOTTYBaseName" = "Bluetooth-Incoming-Port"
+        |   "PTY" = {"IOClass"="IOUserUserClient","IOUserClass"="IOUserPseudoSerialUserClient"}
+        |   "IOTTYSuffix" = ""
+        |   "IOUserServerName" = "com.apple.IOUserBluetoothSerialDriver"
+        |   "IOServiceDEXTEntitlements" = "com.apple.developer.driverkit.family.serial"
+        | }
+        | 
+        +-o IOSerialBSDClient  <class IOSerialBSDClient, id 0x100000663, registered, matched, active, busy 0 (1 ms), retain 5>
+        |   {
+        |     "IOClass" = "IOSerialBSDClient"
+        |     "CFBundleIdentifier" = "com.apple.iokit.IOSerialFamily"
+        |     "IOProviderClass" = "IOSerialStreamSync"
+        |     "IOTTYBaseName" = "Bluetooth-Incoming-Port"
+        |     "IOSerialBSDClientType" = "IOSerialStream"
+        |     "IOProbeScore" = 1000
+        |     "IOResourceMatch" = "IOBSD"
+        |     "IOMatchedAtBoot" = Yes
+        |     "IOMatchCategory" = "IODefaultMatchCategory"
+        |     "IOTTYDevice" = "Bluetooth-Incoming-Port"
+        |     "IOCalloutDevice" = "/dev/cu.Bluetooth-Incoming-Port"
+        |     "IODialinDevice" = "/dev/tty.Bluetooth-Incoming-Port"
+        |     "IOPersonalityPublisher" = "com.apple.iokit.IOSerialFamily"
+        |     "CFBundleIdentifierKernel" = "com.apple.iokit.IOSerialFamily"
+        |     "IOTTYSuffix" = ""
+        |   }
+        |   
+        +-o IOUserPseudoSerialUserClient  <class IOUserUserClient, id 0x100000664, !registered, !matched, active, busy 0, retain 7>
+            {
+              "IOUserClass" = "IOUserPseudoSerialUserClient"
+              "CFBundleIdentifier" = "com.apple.IOUserBluetoothSerialDriver"
+              "IOClass" = "IOUserUserClient"
+              "IOUserClientCreator" = "pid 156, bluetoothd"
+              "IOUserClientDefaultLocking" = Yes
+              "IOUserServerName" = "com.apple.IOUserBluetoothSerialDriver"
+              "IOUserClasses" = ("IOUserPseudoSerialUserClient","IOUserClient","IOService","OSObject")
+            }
+            
+

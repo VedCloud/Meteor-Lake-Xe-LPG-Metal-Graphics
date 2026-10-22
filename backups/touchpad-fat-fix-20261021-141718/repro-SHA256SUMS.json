@@ -1,0 +1,10 @@
+{
+  "capture-sensors.py": "505d66f48584eb1c70afab53b625a404137c89076830cdb84983c42861ac0efa",
+  "collect-tablet-linux.py": "00d1769a0a2fb2f9dfc98b4dc741a5d0d770029ca1de0380a5dfec46f87b01ba",
+  "README.txt": "76a7abbf85092c8ccfd665942d6c76394e707b35ebd304d1fe4b04d02eedd364",
+  "start-capture.sh": "c5d279f5ab4a1bd0a2222e2ec75356abfc2fa83bc6b79ce5d6a045b601d201b5",
+  "collect-touchpad-linux.py": "20ad34b122f8e7e1030c8ce8b623d02cfb90128ffc3aed92cb976c6a2c7f971a",
+  "start-touchpad-capture.sh": "745c4b5534cd664bd5b26dfe12d4a0ad0761a6dd1bb8308cfc33a7d843f790ca",
+  "TOUCHPAD-CAPTURE.txt": "d174264f07df30d48c7d1491a4173a1df9db5bb9ad183a797ecaf830000e90ee",
+  "test-touchpad-capture.py": "ca8534a251da69eb35d536e42b3e5456cbd8a0b623c19082587cf96ee0e34e8e"
+}

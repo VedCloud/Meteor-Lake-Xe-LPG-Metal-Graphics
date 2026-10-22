@@ -19,6 +19,7 @@
 #include <vulkan/vulkan.h>
 #include "nvmtl_vk.h"
 #include "nvmtl_readback.h"
+#include "nvmtl_present_cost.h"
 #include "nvmtl_tex_upload.h"
 #include "nvmtl_sampler_state.h"
 static int g_sampler_anisotropy, g_sampler_mirror_clamp;
@@ -698,7 +699,7 @@ static int nvmtl_vk_initialize(void)
         else nvlog("first-submit: FAILED to set conservative cache/barrier policy");
     }
     if(nvmtl_windowserver_serial_policy(vendor,g_pci_device,getprogname()))
-        nvmtl_desktop_trace("desktop-policy","candidate0.3.5: noccs; serial completion, no submit-ahead, schedule after publication; dedicated fresh readback staging; fresh command pools",0);
+        nvmtl_desktop_trace("desktop-policy","candidate0.3.12: noccs; serial completion, no submit-ahead, schedule after publication; fence-owned staging plus CPU cache visibility workaround; fresh command pools",0);
     if (!getenv("NVRM_FLUSH_TIMEOUT_MS")) {
         char budget[32]; snprintf(budget, sizeof budget, "%ld", nvmtl_gpu_wait_budget_ms());
         setenv("NVRM_FLUSH_TIMEOUT_MS", budget, 1);
@@ -5379,6 +5380,7 @@ static int nvmtl_submit_trace(uint64_t id)
 int nvmtl_vk_submit_wait_at(nvk_cmdbuf *c, const char *who)
 {
     const int serial=nvmtl_vk_windowserver_serial();
+    const uint64_t start=serial?clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW):0;
     if(serial){
         nvmtl_desktop_trace("desktop-lock-wait",who,0);
         int error=nvmtl_desktop_mutex_enter(&nvmtl_desktop_submit_mutex,nvmtl_gpu_wait_budget_ms());
@@ -5391,10 +5393,19 @@ int nvmtl_vk_submit_wait_at(nvk_cmdbuf *c, const char *who)
         }
         nvmtl_desktop_trace("desktop-lock-acquired",who,0);
     }
+    const uint64_t acquired=start?clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW):0;
     nvmtl_inflight f;
     const int r = nvmtl_vk_submit_begin_at(c, &f, who);
+    const uint64_t submitted=start?clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW):0;
     const int result=r ? r : nvmtl_vk_submit_finish(&f);
+    const uint64_t finished=start?clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW):0;
     if(serial){pthread_mutex_unlock(&nvmtl_desktop_submit_mutex);nvmtl_desktop_trace("desktop-lock-released",who,result);}
+    if(start && finished-start>=50000000ULL){
+        static _Atomic unsigned slowPhases;
+        if(atomic_fetch_add(&slowPhases,1)<32)
+            nvlog("first-submit: submission-phases0.3.19: who=%.48s lock_ms=%.3f begin_ms=%.3f finish_ms=%.3f result=%d",
+                who?who:"?",(acquired-start)*1e-6,(submitted-acquired)*1e-6,(finished-submitted)*1e-6,result);
+    }
     return result;
 }
 int nvmtl_vk_submit_begin_at(nvk_cmdbuf *c, nvmtl_inflight *f, const char *who)
@@ -5941,6 +5952,8 @@ int nvmtl_vk_copy_buffer(nvk_queue *q, nvk_buffer *src, size_t srcOff, nvk_buffe
     return r;
 }
 
+#include "nvmtl_readback_stage.h"
+#include "nvmtl_cpu_cache.h"
 static int nvmtl_vk_readback(nvk_queue *q, nvk_image *img, void *dst, size_t row_bytes,
     uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint32_t level, uint32_t layer)
 {
@@ -5956,11 +5969,19 @@ static int nvmtl_vk_readback(nvk_queue *q, nvk_image *img, void *dst, size_t row
         nvmtl_copy_aspect(img), nvmtl_barrier_aspect(img), bpp, &plan)) {
         nvlog("readback REFUSED invalid image/copy parameters"); return -1;
     }
+    static __thread nvmtl_present_cost cost;
+    const int measure=cost.reports<8 && nvmtl_windowserver_serial_policy(g_vendor,g_pci_device,getprogname());
+    uint64_t stamp[6]={0};
+    if(measure)stamp[0]=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
     nvmtl_vk_image_upload_barrier(img);
     const int desktop_fresh=nvmtl_windowserver_fresh_readback(g_vendor,g_pci_device,getprogname());
-    const int owned = desktop_fresh || getenv("NVMTL_READBACK_STAGE_FRESH") != NULL;
+    const int force_fresh=getenv("NVMTL_READBACK_STAGE_FRESH")!=NULL;
+    const int owned=desktop_fresh || force_fresh;
+    const int retain=desktop_fresh && !force_fresh && nvmtl_cpu_cache_line_size()!=0;
+    int stage_lease=-1;
+    if(desktop_fresh && g_state!=1)return -1;
     nvk_buffer stage = {0};
-    if (owned ? nvmtl_vk_buffer_create(plan.bytes, 3, &stage) : nvmtl_vk_stage(q, plan.bytes, &stage)) {
+    if (owned ? nvmtl_readback_stage_acquire(plan.bytes,retain,&stage,&stage_lease) : nvmtl_vk_stage(q, plan.bytes, &stage)) {
         nvlog("readback FAILED phase=staging-allocation image=%p bytes=%zu owned=%d",img->img,plan.bytes,owned); return -1;
     }
     /* All staging allocation paths require HOST_VISIBLE|HOST_COHERENT. Refuse
@@ -5970,12 +5991,17 @@ static int nvmtl_vk_readback(nvk_queue *q, nvk_image *img, void *dst, size_t row
         (g_memp.memoryTypes[mt].propertyFlags & (VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT|VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) !=
         (VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT|VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) {
         nvlog("readback REFUSED noncoherent or unknown staging memory type %u", mt);
-        if (owned) nvmtl_vk_buffer_destroy(&stage); return -1;
+        if (owned) nvmtl_readback_stage_release(&stage,stage_lease,2); return -1;
     }
+    if(stage_lease>=0 && nvmtl_cpu_cache_sync(stage.map,plan.bytes,stage.size)){
+        nvmtl_readback_stage_release(&stage,stage_lease,2);
+        nvlog("readback REFUSED CPU cache preparation range");return -1;
+    }
+    if(measure)stamp[1]=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
     nvk_cmdbuf c;
     if (nvmtl_vk_cmd_begin(q, &c)) {
         nvlog("readback FAILED phase=record-begin image=%p stage=%p bytes=%zu",img->img,stage.buf,plan.bytes);
-        if (owned) nvmtl_vk_buffer_destroy(&stage); return -1;
+        if (owned) nvmtl_readback_stage_release(&stage,stage_lease,1); return -1;
     }
     static _Atomic uint64_t sequence;
     const uint64_t id = atomic_fetch_add(&sequence,1)+1;
@@ -5988,8 +6014,8 @@ static int nvmtl_vk_readback(nvk_queue *q, nvk_image *img, void *dst, size_t row
     }
     uint64_t tid=0; pthread_threadid_np(NULL,&tid);
     const int trace = id<=32 || getenv("NVMTL_READBACK_TRACE") != NULL;
-    if (trace) nvlog("first-submit: readback #%llu thread=%llu image-id=%llu stage-id=%llu img=%p stage=%p memory=%p offset=%zu type=%u coherent=1 layout=%u mip=%u layer=%u rect=%u,%u,%u,%u pitch=%zu bytes=%zu owned=%d cb=%p",
-        (unsigned long long)id,(unsigned long long)tid,(unsigned long long)image_id,(unsigned long long)stage.trace_id,img->img,stage.buf,stage.mem,stage.poff,mt,img->layout,level,layer,x,y,w,h,row_bytes,plan.bytes,owned,c.cb);
+    if (trace) nvlog("first-submit: readback #%llu thread=%llu image-id=%llu stage-id=%llu img=%p stage=%p memory=%p offset=%zu type=%u coherent=1 layout=%u mip=%u layer=%u rect=%u,%u,%u,%u pitch=%zu bytes=%zu owned=%d cache-slot=%d cb=%p",
+        (unsigned long long)id,(unsigned long long)tid,(unsigned long long)image_id,(unsigned long long)stage.trace_id,img->img,stage.buf,stage.mem,stage.poff,mt,img->layout,level,layer,x,y,w,h,row_bytes,plan.bytes,owned,stage_lease,c.cb);
     pvkCmdPipelineBarrier(c.cb,VK_PIPELINE_STAGE_ALL_COMMANDS_BIT,VK_PIPELINE_STAGE_TRANSFER_BIT,
         0,0,NULL,0,NULL,1,&plan.before);
     pvkCmdCopyImageToBuffer(c.cb,(VkImage)img->img,VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,(VkBuffer)stage.buf,1,&plan.copy);
@@ -6000,19 +6026,39 @@ static int nvmtl_vk_readback(nvk_queue *q, nvk_image *img, void *dst, size_t row
        untouched and avoiding a readback-created divergence across mip levels. */
     pvkCmdPipelineBarrier(c.cb,VK_PIPELINE_STAGE_TRANSFER_BIT,VK_PIPELINE_STAGE_ALL_COMMANDS_BIT,
         0,0,NULL,0,NULL,1,&plan.after);
+    if(measure)stamp[2]=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
     int rc=nvmtl_vk_submit_wait_at(&c,"image readback");
+    if(measure)stamp[3]=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
     if (trace || rc) nvlog("first-submit: readback #%llu completion=%d stage=%p disposition=%s",
-        (unsigned long long)id,rc,stage.buf,rc ? (owned && rc==-1 && g_state==1 ? "release-unsubmitted" : "retained-no-cpu-read") : owned ? "release-after-copy" : "tls-retained");
+        (unsigned long long)id,rc,stage.buf,rc ? (owned && rc==-1 && g_state==1 ? "release-unsubmitted" : "retained-no-cpu-read") : stage_lease>=0 ? "lease-until-cpu-copy" : owned ? "release-after-copy" : "tls-retained");
     /* On an uncertain submission, retain its allocation. Backend shutdown
        prevents further copies; freeing potentially pending memory is unsafe. */
     if (rc) {
-        if(owned && rc==-1 && g_state==1)nvmtl_vk_buffer_destroy(&stage);
+        if(owned)nvmtl_readback_stage_release(&stage,stage_lease,rc==-1 && g_state==1 ? 1:0);
         nvlog("readback FAILED phase=submit-or-completion result=%d image-id=%llu stage-id=%llu; CPU destination untouched",rc,(unsigned long long)image_id,(unsigned long long)stage.trace_id);
         return rc;
     }
-    for (uint32_t row=0;row<plan.rows;row++) memcpy((uint8_t *)dst+(size_t)row*row_bytes,
+    if(stage_lease>=0 && nvmtl_cpu_cache_sync(stage.map,plan.bytes,stage.size)){
+        nvmtl_readback_stage_release(&stage,stage_lease,2);
+        nvlog("readback REFUSED CPU cache visibility range after completed fence; destination untouched");return -1;
+    }
+    if(stage_lease>=0 && trace)nvlog("first-submit: cache-visibility0.3.12: lease=%d bytes=%zu cpu-line=%zu optimized=%d pre-submit-and-post-fence=1",stage_lease,plan.bytes,nvmtl_cpu_cache_line_size(),nvmtl_cpu_cache_optimized()!=0);
+    if (row_bytes==plan.packed_row) memcpy(dst,stage.map,plan.bytes);
+    else for (uint32_t row=0;row<plan.rows;row++) memcpy((uint8_t *)dst+(size_t)row*row_bytes,
         (const uint8_t *)stage.map+(size_t)row*plan.packed_row,plan.packed_row);
-    if (owned) nvmtl_vk_buffer_destroy(&stage);
+    if(measure)stamp[4]=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+    if (owned) nvmtl_readback_stage_release(&stage,stage_lease,1);
+    if(measure){
+        stamp[5]=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+        if(nvmtl_present_cost_add(&cost,stamp,plan.bytes)){
+            const double scale=1e-6/(double)cost.count;
+            nvlog("present-perf0.3.12: readbacks=%llu bytes=%llu avg_ms alloc=%.3f record=%.3f wait=%.3f copy=%.3f cleanup=%.3f max_total_ms=%.3f",
+                (unsigned long long)cost.count,(unsigned long long)cost.bytes,
+                cost.elapsed[0]*scale,cost.elapsed[1]*scale,cost.elapsed[2]*scale,
+                cost.elapsed[3]*scale,cost.elapsed[4]*scale,cost.max_total*1e-6);
+            nvmtl_present_cost_reset(&cost);
+        }
+    }
     return 0;
 }
 int nvmtl_vk_image_read(nvk_queue *q, nvk_image *img, void *dst, size_t row_bytes)

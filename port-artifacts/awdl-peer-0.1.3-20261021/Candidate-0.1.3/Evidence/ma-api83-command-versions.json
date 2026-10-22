@@ -1,0 +1,1187 @@
+{
+  "file": "desktop-build/airport-awdl-radio/itlwm/firmware/iwlwifi-ma-b0-gf-a0-83.ucode",
+  "entries": [
+    {
+      "group": 0,
+      "command": 1,
+      "commandVersion": 99,
+      "notificationVersion": 6
+    },
+    {
+      "group": 1,
+      "command": 8,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 9,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 12,
+      "commandVersion": 5,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 13,
+      "commandVersion": 16,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 14,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 5,
+      "command": 24,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 2,
+      "command": 13,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 28,
+      "commandVersion": 10,
+      "notificationVersion": 7
+    },
+    {
+      "group": 5,
+      "command": 23,
+      "commandVersion": 3,
+      "notificationVersion": 2
+    },
+    {
+      "group": 1,
+      "command": 30,
+      "commandVersion": 2,
+      "notificationVersion": 1
+    },
+    {
+      "group": 0,
+      "command": 42,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 1,
+      "command": 67,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 72,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 79,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 85,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 93,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 203,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 206,
+      "commandVersion": 99,
+      "notificationVersion": 5
+    },
+    {
+      "group": 1,
+      "command": 106,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 119,
+      "commandVersion": 7,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 152,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 155,
+      "commandVersion": 6,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 159,
+      "commandVersion": 6,
+      "notificationVersion": 0
+    },
+    {
+      "group": 12,
+      "command": 4,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 169,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 193,
+      "commandVersion": 99,
+      "notificationVersion": 5
+    },
+    {
+      "group": 1,
+      "command": 208,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 209,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 210,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 162,
+      "commandVersion": 99,
+      "notificationVersion": 4
+    },
+    {
+      "group": 1,
+      "command": 211,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 212,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 225,
+      "commandVersion": 6,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 226,
+      "commandVersion": 5,
+      "notificationVersion": 0
+    },
+    {
+      "group": 11,
+      "command": 255,
+      "commandVersion": 99,
+      "notificationVersion": 4
+    },
+    {
+      "group": 15,
+      "command": 10,
+      "commandVersion": 99,
+      "notificationVersion": 3
+    },
+    {
+      "group": 4,
+      "command": 0,
+      "commandVersion": 1,
+      "notificationVersion": 1
+    },
+    {
+      "group": 1,
+      "command": 238,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 241,
+      "commandVersion": 88,
+      "notificationVersion": 3
+    },
+    {
+      "group": 1,
+      "command": 242,
+      "commandVersion": 8,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 246,
+      "commandVersion": 8,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 197,
+      "commandVersion": 99,
+      "notificationVersion": 5
+    },
+    {
+      "group": 0,
+      "command": 177,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 4,
+      "command": 3,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 4,
+      "command": 4,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 4,
+      "command": 5,
+      "commandVersion": 5,
+      "notificationVersion": 1
+    },
+    {
+      "group": 1,
+      "command": 200,
+      "commandVersion": 1,
+      "notificationVersion": 6
+    },
+    {
+      "group": 4,
+      "command": 7,
+      "commandVersion": 5,
+      "notificationVersion": 0
+    },
+    {
+      "group": 5,
+      "command": 17,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 12,
+      "command": 0,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 12,
+      "command": 2,
+      "commandVersion": 1,
+      "notificationVersion": 4
+    },
+    {
+      "group": 15,
+      "command": 1,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 3,
+      "command": 5,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 3,
+      "command": 251,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 8,
+      "command": 251,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 8,
+      "command": 0,
+      "commandVersion": 13,
+      "notificationVersion": 1
+    },
+    {
+      "group": 8,
+      "command": 4,
+      "commandVersion": 9,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 110,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 86,
+      "commandVersion": 99,
+      "notificationVersion": 5
+    },
+    {
+      "group": 2,
+      "command": 1,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 2,
+      "command": 0,
+      "commandVersion": 99,
+      "notificationVersion": 4
+    },
+    {
+      "group": 8,
+      "command": 254,
+      "commandVersion": 99,
+      "notificationVersion": 3
+    },
+    {
+      "group": 1,
+      "command": 228,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 224,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 8,
+      "command": 5,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 8,
+      "command": 6,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 8,
+      "command": 255,
+      "commandVersion": 99,
+      "notificationVersion": 9
+    },
+    {
+      "group": 12,
+      "command": 254,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 252,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 1,
+      "command": 64,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 66,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 50,
+      "commandVersion": 8,
+      "notificationVersion": 0
+    },
+    {
+      "group": 12,
+      "command": 1,
+      "commandVersion": 6,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 53,
+      "commandVersion": 4,
+      "notificationVersion": 3
+    },
+    {
+      "group": 0,
+      "command": 74,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 1,
+      "command": 145,
+      "commandVersion": 13,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 65,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 5,
+      "command": 8,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 0,
+      "commandVersion": 2,
+      "notificationVersion": 4
+    },
+    {
+      "group": 14,
+      "command": 5,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 6,
+      "commandVersion": 99,
+      "notificationVersion": 6
+    },
+    {
+      "group": 14,
+      "command": 7,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 8,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 9,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 11,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 13,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 16,
+      "commandVersion": 1,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 18,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 19,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 29,
+      "commandVersion": 5,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 30,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 32,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 33,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 34,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 37,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 38,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 39,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 81,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 40,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 36,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 47,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 48,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 49,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 42,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 136,
+      "commandVersion": 3,
+      "notificationVersion": 3
+    },
+    {
+      "group": 14,
+      "command": 54,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 56,
+      "commandVersion": 6,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 57,
+      "commandVersion": 99,
+      "notificationVersion": 9
+    },
+    {
+      "group": 14,
+      "command": 45,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 52,
+      "commandVersion": 1,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 51,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 1,
+      "command": 156,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 157,
+      "commandVersion": 99,
+      "notificationVersion": 15
+    },
+    {
+      "group": 5,
+      "command": 15,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 5,
+      "command": 247,
+      "commandVersion": 99,
+      "notificationVersion": 3
+    },
+    {
+      "group": 12,
+      "command": 3,
+      "commandVersion": 4,
+      "notificationVersion": 0
+    },
+    {
+      "group": 5,
+      "command": 9,
+      "commandVersion": 99,
+      "notificationVersion": 99
+    },
+    {
+      "group": 5,
+      "command": 11,
+      "commandVersion": 99,
+      "notificationVersion": 99
+    },
+    {
+      "group": 14,
+      "command": 59,
+      "commandVersion": 1,
+      "notificationVersion": 1
+    },
+    {
+      "group": 5,
+      "command": 4,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 60,
+      "commandVersion": 99,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 61,
+      "commandVersion": 99,
+      "notificationVersion": 99
+    },
+    {
+      "group": 14,
+      "command": 69,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 70,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 91,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 92,
+      "commandVersion": 1,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 71,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 77,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 93,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 72,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 73,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 62,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 63,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 74,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 64,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 65,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 66,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 67,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 68,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 1,
+      "command": 131,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 253,
+      "commandVersion": 99,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 254,
+      "commandVersion": 99,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 173,
+      "commandVersion": 99,
+      "notificationVersion": 3
+    },
+    {
+      "group": 0,
+      "command": 196,
+      "commandVersion": 99,
+      "notificationVersion": 9
+    },
+    {
+      "group": 1,
+      "command": 174,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 4,
+      "command": 254,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 17,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 26,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 27,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 43,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 44,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 46,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 15,
+      "command": 9,
+      "commandVersion": 1,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 76,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 165,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 14,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 28,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 15,
+      "command": 255,
+      "commandVersion": 99,
+      "notificationVersion": 88
+    },
+    {
+      "group": 14,
+      "command": 55,
+      "commandVersion": 1,
+      "notificationVersion": 88
+    },
+    {
+      "group": 14,
+      "command": 78,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 1,
+      "command": 189,
+      "commandVersion": 88,
+      "notificationVersion": 1
+    },
+    {
+      "group": 2,
+      "command": 14,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 4,
+      "command": 10,
+      "commandVersion": 99,
+      "notificationVersion": 0
+    },
+    {
+      "group": 2,
+      "command": 12,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 79,
+      "commandVersion": 99,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 80,
+      "commandVersion": 99,
+      "notificationVersion": 99
+    },
+    {
+      "group": 14,
+      "command": 21,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 22,
+      "commandVersion": 99,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 23,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 23,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 24,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 89,
+      "commandVersion": 1,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 95,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 96,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 97,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 3,
+      "command": 249,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 3,
+      "command": 255,
+      "commandVersion": 99,
+      "notificationVersion": 3
+    },
+    {
+      "group": 3,
+      "command": 6,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 5,
+      "command": 22,
+      "commandVersion": 2,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 83,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 11,
+      "command": 253,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 11,
+      "command": 252,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 11,
+      "command": 254,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 11,
+      "command": 251,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 90,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 94,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 14,
+      "command": 100,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 2,
+      "command": 11,
+      "commandVersion": 3,
+      "notificationVersion": 0
+    },
+    {
+      "group": 3,
+      "command": 8,
+      "commandVersion": 2,
+      "notificationVersion": 0
+    },
+    {
+      "group": 2,
+      "command": 255,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 5,
+      "command": 245,
+      "commandVersion": 99,
+      "notificationVersion": 3
+    },
+    {
+      "group": 14,
+      "command": 102,
+      "commandVersion": 1,
+      "notificationVersion": 1
+    },
+    {
+      "group": 5,
+      "command": 248,
+      "commandVersion": 99,
+      "notificationVersion": 2
+    },
+    {
+      "group": 14,
+      "command": 101,
+      "commandVersion": 99,
+      "notificationVersion": 1
+    },
+    {
+      "group": 14,
+      "command": 103,
+      "commandVersion": 1,
+      "notificationVersion": 0
+    },
+    {
+      "group": 0,
+      "command": 0,
+      "commandVersion": 0,
+      "notificationVersion": 0
+    }
+  ]
+}

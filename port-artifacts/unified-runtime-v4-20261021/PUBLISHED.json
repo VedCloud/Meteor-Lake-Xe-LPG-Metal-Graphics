@@ -1,0 +1,7 @@
+{
+  "backup": "/Users/ved/Documents/iGPU Port/backups/runtime-v4-before-20261021-183950",
+  "filesPackaged": 103,
+  "DellRuntimeValidated": false,
+  "normalBoot": "accelerated with read-only ISH preflight",
+  "validation": "matching ocvalidate, actual switch/trial fixtures, manifest, signatures, Copilot and frozen graphics passed"
+}

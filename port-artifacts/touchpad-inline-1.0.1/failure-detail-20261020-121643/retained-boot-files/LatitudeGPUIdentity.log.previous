@@ -1,0 +1,13 @@
+Mon Oct 19 23:14:40 BST 2026
+kern.boottime: { sec = 1792448071, usec = 0 } Mon Oct 19 23:14:31 2026
+{
+  "vendor" : 32902,
+  "device" : 32069,
+  "sharedHeapBytes" : 12884901888,
+  "source" : "ANV VkPhysicalDeviceProperties + VkPhysicalDeviceMemoryProperties",
+  "capacityMeaning" : "maximum shared device-local Vulkan heap; not free RAM or dedicated VRAM",
+  "version" : 1,
+  "name" : "Intel(R) Graphics (MTL)",
+  "physicalRAMBytes" : 17179869184
+}
+GPU identity: PCI model and shared VRAM,totalMB publication VERIFIED

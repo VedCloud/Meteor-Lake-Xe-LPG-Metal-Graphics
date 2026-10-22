@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-22",
+  "snapintoshRevision": "28663c30f0a14c1862c099d6ea46f1b3421ab011",
+  "hostOS": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B5101f\n",
+  "scope": "Host installation inventory; not the Dell, not a full 26A428 restore image audit",
+  "binaries": [
+    {
+      "path": "/System/Library/Kernels/kernel",
+      "present": true,
+      "architectures": "x86_64",
+      "architectureQueryExit": 0,
+      "sha256": "eff8f45911ec6620e4b2b4324fa5193655853918827b0883c0d6490a97a5663e"
+    },
+    {
+      "path": "/sbin/launchd",
+      "present": true,
+      "architectures": "arm64e arm64e.x1",
+      "architectureQueryExit": 0,
+      "sha256": "e24305c26a3b2a10f14baa60608b84bd5cb17d8413892da3b111e8e8494aca23"
+    },
+    {
+      "path": "/usr/lib/dyld",
+      "present": true,
+      "architectures": "x86_64 arm64e arm64e.x1",
+      "architectureQueryExit": 0,
+      "sha256": "486c34c02c15bd72fcc6f1093f0f7613e8cca2753145278eadbc7fcc09796dd0"
+    },
+    {
+      "path": "/usr/libexec/WindowServer",
+      "present": false
+    },
+    {
+      "path": "/System/Library/PrivateFrameworks/SkyLight.framework/Versions/A/Resources/WindowServer",
+      "present": true,
+      "architectures": "arm64e arm64e.x1",
+      "architectureQueryExit": 0,
+      "sha256": "5aba0743dc39088614629cf766dfc682d4611dda8674bafc4f1981d1c5ebd5c2"
+    },
+    {
+      "path": "/System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow",
+      "present": true,
+      "architectures": "arm64e arm64e.x1",
+      "architectureQueryExit": 0,
+      "sha256": "d888678d1a3034e6ea1e5227aa13ff0ed2a4e3ba93f2c30c3828ff5a3b60e354"
+    },
+    {
+      "path": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "present": true,
+      "architectures": "arm64e arm64e.x1",
+      "architectureQueryExit": 0,
+      "sha256": "47099f616553791ea00fe29d2f203067ba5648705e5ea8a0b7d161c81ccd1d05"
+    },
+    {
+      "path": "/System/Library/CoreServices/Dock.app/Contents/MacOS/Dock",
+      "present": true,
+      "architectures": "arm64e arm64e.x1",
+      "architectureQueryExit": 0,
+      "sha256": "20abc25288b6390ce31e3f7fd00ae55cc62f9174c70043bf99406143f79ffd15"
+    }
+  ]
+}

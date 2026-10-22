@@ -1,0 +1,1 @@
+2026-10-20 13:14:03.147 Df kernel[0:7d2] (NMXGPU) drmn0: [drm] Latitude MTL: firmware scanout phys=0x60800000 size=0x7e9000 reserved stolen prefix=0x7f0000 usable-end=0x7c00000

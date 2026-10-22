@@ -1,0 +1,29 @@
+{
+  "candidate": "0.3.12",
+  "plugin_sha256": "3eb0fc04b45c0f03bc130d3ee152eb4c0dd5713ba30dd1196cabaa278adc8526",
+  "plugin_uuid": "D97DEED3-66E3-352D-8FF7-76270206D333",
+  "three_plugin_variants_compiled": true,
+  "signatures_verified": true,
+  "new_plugin_imports": [],
+  "missing_plugin_exports": [],
+  "tests": [
+    "actual swizzle-view method ASan/UBSan",
+    "actual tight/padded readback/cache/failure fixtures ASan/UBSan x86_64",
+    "actual publication ordering",
+    "installer/rollback/branding-failure isolation",
+    "loader",
+    "Weather and branding collector success/failure",
+    "release constructor/diagnostic controls",
+    "release logging",
+    "30000 pool lifetimes and completion-gated retirement",
+    "serialized submit timeout/quarantine",
+    "native and x86_64 branding helper resolver/preferences fixtures"
+  ],
+  "frozen_rendering_evidence_preserved": true,
+  "efi_unchanged": true,
+  "hardware_suite_rerun": false,
+  "dell_installation_or_reboot_performed": false,
+  "weather_fixed_on_target": false,
+  "coreanimation_timeouts_fixed_on_target": false,
+  "new_performance_result": null
+}

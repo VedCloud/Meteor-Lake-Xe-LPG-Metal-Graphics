@@ -1,0 +1,4 @@
+current kernel identity query exit=0
+current display profile exit=0
+log search exit=0
+   19130 2775684 /Volumes/SEQOUIA/iGPU-Port/Desktop/reports/failure-detail-20261020-115838/failed-boot.txt

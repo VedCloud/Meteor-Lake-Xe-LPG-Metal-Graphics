@@ -1,0 +1,15 @@
+{
+  "USBVolume": "/Volumes/macOS 27",
+  "EFI": "/Volumes/EFI/EFI/Tools/Dell27Preflight.efi",
+  "EFISHA256": "931ade60f39b34adfd282aef1faa8075ebcff7e0030d50d953a7c1ce9cbda5be",
+  "version": "0.0.3",
+  "PackageFilesVerified": 47,
+  "EFIFilesVerified": 5,
+  "selectedEL2Probe": "PASS QEMU and x86 OVMF",
+  "SPTMEntryProbe": "Five real instructions executed; expected unmapped boot-argument stop",
+  "completeARMRuntime": false,
+  "DefaultBootloaderInstalled": false,
+  "SequoiaEFIRestored": false,
+  "LinuxHostUsed": false,
+  "DellBootTested": false
+}

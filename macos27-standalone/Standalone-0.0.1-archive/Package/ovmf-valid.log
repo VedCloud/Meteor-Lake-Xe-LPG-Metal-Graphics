@@ -1,0 +1,17 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI Misc Device" from PciRoot(0x0)/Pci(0x2,0x0)
+BdsDxe: starting Boot0001 "UEFI Misc Device" from PciRoot(0x0)/Pci(0x2,0x0)
+Dell macOS 27 standalone preflight 0.0.1
+Diagnostic only: no ARM runtime, no kernel execution.
+Profile: macOS 27.0 / 26A428 / Mac14,3
+
+Conventional firmware RAM (MiB): 462
+Current GOP: 1280 x 800, pixels/row 1280
+Checking \macOS27\bootkc ... SHA-256 verified
+Checking \macOS27\dtree ... SHA-256 verified
+Checking \macOS27\sptm ... SHA-256 verified
+Checking \macOS27\txm ... SHA-256 verified
+
+PASS: standalone firmware entry and pinned boot-input admission.
+STOP: ARM-to-x86 execution runtime is UNIMPLEMENTED.
+Boot services remain active. GPU registers, NVRAM and storage untouched.
+Press a key to return to firmware.

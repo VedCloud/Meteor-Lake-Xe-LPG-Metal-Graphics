@@ -1,0 +1,60 @@
+{
+  "commit": "05b19dc81db6aedcf4058525981f7326f57c04e2",
+  "files": [
+    {
+      "path": "meteor-gpio/apply_airport_assert_fixes.py",
+      "sha256": "8c40d2fe637dd5a9e514d787ebccfac351fad7ee09b65d47c1b06b6f41d4ae14",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_assert_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_aux_fixes.py",
+      "sha256": "a23db8bfb6c2ea155e6b9e5378380a129a28efad86e4ca0461cbc22125492363",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_aux_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_baid_fixes.py",
+      "sha256": "7d57173b6b5ad5ea41dbf52a602e114cb331f3fcd6cc464c750a6f2c304efcf3",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_baid_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_connection_fixes.py",
+      "sha256": "56fe0bf8a78054446da3759cdbc68c759dc099a2c783d8e09e473fae93418c82",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_connection_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_firmware.py",
+      "sha256": "2dec7591746084013cf76aac7b3922f51842dd65fb82c5254a9c62718309d10d",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_firmware.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_join_fixes.py",
+      "sha256": "31359914cfadf1903521b1a4a16b5ea052f8882e65e4ebcd6a801a38fa4a26b5",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_join_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_mac_fixes.py",
+      "sha256": "466dc8ead7e4fe1992d245a8e2e844c3ad9e54df42b3d1e2c794778b34c31f68",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_mac_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_phy_fixes.py",
+      "sha256": "c87bb0ada0cba82c22939aeba4d70319c2ea726872ce2990b9195ccb6b88b574",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_phy_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/apply_airport_scan_fixes.py",
+      "sha256": "f7ad1e94bb5d64504804ac6b75cd025b1ab5f75eda68ff6c2ed68e1c4c7ae4f4",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/apply_airport_scan_fixes.py"
+    },
+    {
+      "path": "meteor-gpio/build_airport.py",
+      "sha256": "abbbdf61e70adc0ae326e0d3e577a2b548dffab18497987306ab172bd0f1b628",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/meteor-gpio/build_airport.py"
+    },
+    {
+      "path": ".github/workflows/airport-sequoia.yml",
+      "sha256": "e0d1209ab401ff15d9af3ffb0fe2c6cbae41e686c7d32be77072ed67497f51d8",
+      "url": "https://raw.githubusercontent.com/VedCloud2/CoreUltraGraphics/05b19dc81db6aedcf4058525981f7326f57c04e2/.github/workflows/airport-sequoia.yml"
+    }
+  ]
+}

@@ -323,9 +323,15 @@ IOReturn NMXGPU::setPowerState(unsigned long state, IOService *device)
     bool on = state != 0;
     if (dev_ != nullptr && on == suspended_) {
         int err = nmx_port_power(dev_, on);
-        if (err)
-            IOLog("NullMoth GPU: %s returned %d\n", on ? "resume" : "suspend", err);
-        suspended_ = !on;
+        setProperty("LatitudePowerLastRequestOn", on);
+        setProperty("LatitudePowerLastBackendError", (uint64_t)(uint32_t)err, 32);
+        if (err) {
+            IOLog("NullMoth GPU: %s returned %d; retaining prior logical power state\n",
+                  on ? "resume" : "suspend", err);
+        } else {
+            suspended_ = !on;
+        }
+        setProperty("LatitudePowerSuspended", suspended_);
     }
     return kIOPMAckImplied;
 }

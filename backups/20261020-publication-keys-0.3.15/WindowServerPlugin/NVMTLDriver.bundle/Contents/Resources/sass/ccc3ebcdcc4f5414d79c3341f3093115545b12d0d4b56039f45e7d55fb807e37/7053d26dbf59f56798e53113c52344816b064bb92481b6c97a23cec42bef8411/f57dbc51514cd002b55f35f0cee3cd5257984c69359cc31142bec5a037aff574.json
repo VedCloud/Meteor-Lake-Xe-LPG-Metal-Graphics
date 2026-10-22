@@ -1,0 +1,109 @@
+{
+  "kernel": "trace_bvh",
+  "sass_bytes": 5120,
+  "registers": 45,
+  "constant_bank4_hex": "",
+  "constant_bank4_relocs": [],
+  "global_init_hex": "",
+  "max_stack": 144,
+  "frame_size": 144,
+  "frames": [
+    [
+      6,
+      144
+    ],
+    [
+      9,
+      144
+    ]
+  ],
+  "local_bytes": 288,
+  "crs_stack": 0,
+  "param_bytes": 52,
+  "param_words": 7,
+  "parameters": [
+    {
+      "ordinal": 0,
+      "offset": 0,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 0
+    },
+    {
+      "ordinal": 1,
+      "offset": 8,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 1
+    },
+    {
+      "ordinal": 2,
+      "offset": 16,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 2
+    },
+    {
+      "ordinal": 3,
+      "offset": 24,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 3
+    },
+    {
+      "ordinal": 4,
+      "offset": 32,
+      "size": 8,
+      "kind": "buffer",
+      "metal_index": 4
+    },
+    {
+      "ordinal": 5,
+      "offset": 40,
+      "size": 4,
+      "kind": "hidden",
+      "what": "threads_per_grid.x"
+    },
+    {
+      "ordinal": 6,
+      "offset": 44,
+      "size": 4,
+      "kind": "hidden",
+      "what": "threads_per_grid.y"
+    },
+    {
+      "ordinal": 7,
+      "offset": 48,
+      "size": 4,
+      "kind": "hidden",
+      "what": "threads_per_grid.z"
+    }
+  ],
+  "threadgroup": [],
+  "static_shared_bytes": 64,
+  "barriers": 0,
+  "ftz": true,
+  "function_constants": [],
+  "needs": [
+    "buffer_address",
+    "call_stack",
+    "grid_dimensions",
+    "local_memory",
+    "static_shared_memory"
+  ],
+  "launch_verified_on_hardware": false,
+  "entry": "trace_bvh",
+  "opt_level": "3",
+  "library_sha256": "7053d26dbf59f56798e53113c52344816b064bb92481b6c97a23cec42bef8411",
+  "sass_sha256": "b48c6ed68b075f37ad1a8da1b546653ad82bc52ac8893d189126499a213054c0",
+  "compiler_sha256": "ccc3ebcdcc4f5414d79c3341f3093115545b12d0d4b56039f45e7d55fb807e37",
+  "target": "sm_120-ptx87-cbuf0-0x380-v1",
+  "qualification": "sass-launchrec-v3",
+  "function_constant_values": {},
+  "linked_functions": [],
+  "source": "metallib",
+  "function_constants_unused": [],
+  "visible_functions_unsupplied": [],
+  "schema": 3,
+  "release_ready": false
+}

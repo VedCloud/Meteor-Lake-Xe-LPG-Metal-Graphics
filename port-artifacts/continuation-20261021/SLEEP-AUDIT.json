@@ -1,0 +1,15 @@
+{
+  "reportedSleepSymptom": "stays awake",
+  "activeDSDT": {
+    "path": "EFI/OC/ACPI/DSDT.aml",
+    "sha256": "4a1803ab03293335ca327b6b7c8978d5c89f9339fdad8218c9163637cf872869",
+    "SS3NameZeroAMLOffset": 38106
+  },
+  "decompiledDSDT": "desktop-build/brightness-dsdt.dsl",
+  "S3Exposure": "guarded by If(SS3); Name(SS3,Zero); no writes to SS3 found in this DSDT",
+  "interpretation": "S3 is not exposed by this table; firmware support and live power assertions must be verified before a sleep implementation is selected. Does not establish absence from every SSDT. No SS3/S3 patch applied.",
+  "kernelCorrection": "only commit suspended_ after successful backend callback; tested actual callback with failed/retried transitions; Intel object compiled; not linked or installed",
+  "existingReport": "Desktop/reports/failure-detail-20261021-122257/power",
+  "idleAssertion": "PreventUserIdleSystemSleep from cloudd and idle preventer IODisplayWrangler, historical snapshot, not proof of explicit sleep blocking",
+  "sleepFixed": false
+}

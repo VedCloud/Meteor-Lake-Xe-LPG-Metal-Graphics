@@ -1,0 +1,67 @@
+[
+  {
+    "path": "Documentation/hid/intel-ish-hid.rst",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/Documentation/hid/intel-ish-hid.rst",
+    "sha256": "17123bda4eacac249c919fb18b5b434a82af1a488dac1ad75917c6f4f69e0318"
+  },
+  {
+    "path": "drivers/platform/x86/intel/hid.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/platform/x86/intel/hid.c",
+    "sha256": "ccf1fe2174dba0ac56b8b1dcef3659fd8738870a5815877479b296d779c1f0f9"
+  },
+  {
+    "path": "include/linux/hid-sensor-ids.h",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/include/linux/hid-sensor-ids.h",
+    "sha256": "13259c319f801b5d1cd6fbcf3a087b06bce8991655efae3c06c33395c0881545"
+  },
+  {
+    "path": "drivers/iio/accel/hid-sensor-accel-3d.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/iio/accel/hid-sensor-accel-3d.c",
+    "sha256": "3fdcd87fd69c26a8472687676a5852a96d48bc7f93fafeb1a7111e2051c66763"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ishtp-hid/hid-client.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ishtp-hid/hid-client.c",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ipc/pci-ish.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ipc/pci-ish.c",
+    "sha256": "f01d2364c03d4bbd073f22d8801bfce5c87033e4f8e48ba32ced92ac21587c10"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ipc/hw-ish-regs.h",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ipc/hw-ish-regs.h",
+    "sha256": "72e93eae28d89d63c559ca90fc516b609e80a5c049c25f788069af4fe699c71c"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ipc/hw-ish.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ipc/hw-ish.c",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ishtp/hbm.h",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ishtp/hbm.h",
+    "sha256": "6f13f57f814d98aa05c96ae642217e0e8ce6c71e23f780f2bb996621c0544796"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ishtp/hbm.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ishtp/hbm.c",
+    "sha256": "4f3f94ee4061acc33c4523c769af7b6a0b2c8212b01d6ebe953f2e71ce25b194"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ishtp/ishtp-dev.h",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ishtp/ishtp-dev.h",
+    "sha256": "0a089fcf2b16a36f3ea715a593e78bcd5928f495529f76f5821c20f65aed367e"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ishtp-hid-client.c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ishtp-hid-client.c",
+    "sha256": "849d8894746a356d9fb6502038268875e8819b75a8f26c9e54c744c9385bb5e9"
+  },
+  {
+    "path": "drivers/hid/intel-ish-hid/ishtp-hid.h",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v6.19/drivers/hid/intel-ish-hid/ishtp-hid.h",
+    "sha256": "beb4dc0d7630202996bec5f0c8d4ebd0ac57d9a339ba270c10fcb1c8d95388ad"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "SHA256ReferenceComparisons": 14,
+  "actual26A428Kernel": "PASS",
+  "syntheticFileset": "PASS",
+  "malformedFilesRejected": 47,
+  "ASanUBSan": "PASS",
+  "kernelExecution": false,
+  "efiFormat": "PE32+ x86_64 EFI application",
+  "efiFirmware": "EDK2/OVMF from pinned QEMU tree",
+  "efiSuccessfulAdmission": "PASS: RAM inventory, GOP inventory, all four pinned SHA-256 checks",
+  "efiTamperedInputRejection": "PASS: modified dtree rejected with EFI_SECURITY_VIOLATION",
+  "armKernelExecutedFromEFI": false,
+  "executionRuntime": "UNIMPLEMENTED",
+  "DellHardwareTested": false,
+  "EFIExitBootServicesCalled": false,
+  "exactEFISHA256": "2ba2b91e0c0d48774b3647f189a6e7443df4988106ffc21c795b993a5c727726",
+  "OVMFCases": {
+    "valid": "PASS",
+    "tampered": "PASS"
+  }
+}

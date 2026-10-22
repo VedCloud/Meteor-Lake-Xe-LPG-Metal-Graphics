@@ -1,0 +1,26 @@
+{
+  "scope": "bounded scalar A64 probe only; no ARM macOS kernel execution",
+  "ASanUBSan": "PASS",
+  "coreChecks": 85,
+  "QEMUDifferential": "PASS: all 80 guest result bytes identical",
+  "committedInstructions": 69,
+  "probeSHA256": "ecf7bff920b8e143d84dd675204afdee21db13b4ac44576ec856aa9e13908dcb",
+  "QEMURevision": "bad6336fb24211f8c4e8e946c259bd5b12417340",
+  "results": [
+    55,
+    2882404351,
+    2882404352,
+    1610612736,
+    42,
+    1090523104,
+    0,
+    281472094306304,
+    1879048192,
+    42
+  ],
+  "EL2Differential": "PASS: all 80 bytes identical",
+  "EL2CommittedInstructions": 19,
+  "imageBoundaryChecks": 813,
+  "SPTMEntry": "Five real instructions committed, then intentional unmapped boot-argument DATA_FAULT; no kernel boot",
+  "privilegedScope": "Selected non-trapping EL2 register operations only; HCR/MMU writes remain unsupported"
+}

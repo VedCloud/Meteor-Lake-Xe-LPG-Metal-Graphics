@@ -1,0 +1,16 @@
++-o IntelBluetoothFirmware  <class IntelBluetoothFirmware, id 0x100000440, !registered, !matched, active, busy 0, retain 6>
+    {
+      "IOProbeScore" = 94000
+      "CFBundleIdentifier" = "com.zxystd.IntelBluetoothFirmware"
+      "IOMatchCategory" = "IntelBluetoothFirmware"
+      "IOClass" = "IntelBluetoothFirmware"
+      "IOProviderClass" = "IOUSBHostDevice"
+      "CFBundleIdentifierKernel" = "com.zxystd.IntelBluetoothFirmware"
+      "idProduct" = 51
+      "IOMatchedAtBoot" = Yes
+      "IOPowerManagement" = {"DevicePowerState"=1,"CurrentPowerState"=1,"CapabilityFlags"=2,"MaxPowerState"=1}
+      "idVendor" = 32903
+      "fw_name" = "ibt-0180-0041.sfi"
+    }
+    
+

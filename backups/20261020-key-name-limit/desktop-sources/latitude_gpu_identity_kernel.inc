@@ -1,0 +1,76 @@
+#ifdef LATITUDE_MTL_PANEL
+IOReturn NMXVGAFB::setProperties(OSObject *properties)
+{
+    OSDictionary *outer = OSDynamicCast(OSDictionary, properties);
+    if(outer && outer->getObject("LatitudeReadHotkeyCounters")){
+        if(IOUserClient::clientHasPrivilege(current_task(),kIOClientPrivilegeAdministrator)!=kIOReturnSuccess)return kIOReturnNotPrivileged;
+        if(outer->getObject("LatitudeReadHotkeyCounters")!=kOSBooleanTrue || !fPanelMemoryValidated || fStopping)return kIOReturnBadArgument;
+        setProperty("LatitudeHotkeySnapshotStage","locate EC");
+        OSDictionary *matching=IOService::nameMatching("ECDV");OSIterator *iter=matching?IOService::getMatchingServices(matching):nullptr;
+        if(matching)matching->release();IOReturn result=kIOReturnNotFound;OSObject *entry;
+        while(iter && (entry=iter->getNextObject())){
+            auto ec=OSDynamicCast(IOACPIPlatformDevice,entry);if(!ec)continue;
+            auto snapshot=OSDictionary::withCapacity(5);if(!snapshot){result=kIOReturnNoMemory;break;}
+            const char *paths[]={"\\LQCT","\\LSCT","\\LSFL","\\LBCT","\\LBAR"};
+            const char *names[]={"Query66Entries","SMEEEntries","LastSMEEFlags","BRT6Entries","LastBRT6Argument"};
+            result=kIOReturnSuccess;
+            for(unsigned i=0;i<5;i++){
+                setProperty("LatitudeHotkeySnapshotCounter",names[i]);
+                setProperty("LatitudeHotkeySnapshotStage","validate scalar");
+                result=ec->validateObject(paths[i]);if(result!=kIOReturnSuccess)break;
+                setProperty("LatitudeHotkeySnapshotStage","evaluate scalar");
+                OSObject *raw=nullptr;result=ec->evaluateObject(paths[i],&raw);
+                if(result==kIOReturnSuccess){
+                    setProperty("LatitudeHotkeySnapshotStage","decode scalar");
+                    auto value=OSDynamicCast(OSNumber,raw);
+                    if(value)snapshot->setObject(names[i],value);else result=kIOReturnBadArgument;
+                }
+                if(raw)raw->release();if(result!=kIOReturnSuccess)break;
+            }
+            if(result==kIOReturnSuccess){
+                setProperty("LatitudeHotkeySnapshotStage","publish snapshot");
+                if(!setProperty("LatitudeHotkeyCounters",snapshot))result=kIOReturnNoMemory;
+                else setProperty("LatitudeHotkeySnapshotStage","complete");
+            }
+            snapshot->release();break;
+        }
+        if(iter)iter->release();setProperty("LatitudeHotkeySnapshotResult",(uint64_t)(uint32_t)result,32);return result;
+    }
+
+    OSObject *payload = outer ? outer->getObject("LatitudeGPUIdentity") : nullptr;
+    if (!payload) return IOFramebuffer::setProperties(properties);
+    if (IOUserClient::clientHasPrivilege(current_task(), kIOClientPrivilegeAdministrator) != kIOReturnSuccess)
+        return kIOReturnNotPrivileged;
+    OSDictionary *report = OSDynamicCast(OSDictionary, payload);
+    if (!report) return kIOReturnBadArgument;
+    auto number = [report](const char *key) { return OSDynamicCast(OSNumber, report->getObject(key)); };
+    OSNumber *ver=number("version"), *vendor=number("vendor"), *device=number("device"),
+             *heap=number("sharedHeapBytes"), *ram=number("physicalRAMBytes");
+    OSString *name=OSDynamicCast(OSString, report->getObject("name"));
+    if (!ver || !vendor || !device || !heap || !ram || !name ||
+        ver->unsigned64BitValue()!=1 || vendor->unsigned64BitValue()!=0x8086 || device->unsigned64BitValue()!=0x7d45 ||
+        !latitudeGPUIdentityValid(1,0x8086,0x7d45,name->getCStringNoCopy(),name->getLength(),
+                                 heap->unsigned64BitValue(),ram->unsigned64BitValue())) return kIOReturnBadArgument;
+    IOService *claim=getProvider();
+    IOPCIDevice *pci=claim ? OSDynamicCast(IOPCIDevice,claim->getProvider()) : nullptr;
+    if (!fPanelMemoryValidated || !pci || pci->configRead16(0)!=0x8086 || pci->configRead16(2)!=0x7d45 ||
+        pci->getProperty("nmxgpu-claimed")!=kOSBooleanTrue) return kIOReturnNotReady;
+    OSData *model=OSData::withBytes(name->getCStringNoCopy(),name->getLength()+1);
+    OSNumber *mb=OSNumber::withNumber(heap->unsigned64BitValue() >> 20,32);
+    if (!model || !mb) { OSSafeReleaseNULL(model); OSSafeReleaseNULL(mb); return kIOReturnNoMemory; }
+    bool ok=true;
+    /* PCI is System Information's device record. Mirror onto our services for diagnostics. */
+    IORegistryEntry *entries[3]={pci,this,fAccel};
+    for (auto entry:entries) if (entry) {
+        ok=entry->setProperty("model",model) && ok;
+        ok=entry->setProperty("VRAM,totalMB",mb) && ok;
+        ok=entry->setProperty("NMXSharedMemoryBytes",heap) && ok;
+        ok=entry->setProperty("NMXGPUIdentity",report) && ok;
+        ok=entry->setProperty("NMXMemoryIsShared",kOSBooleanTrue) && ok;
+    }
+    model->release();mb->release();
+    VFBLOG("query-based identity published: %s shared heap %llu bytes (%llu MiB), success=%d",
+           name->getCStringNoCopy(),heap->unsigned64BitValue(),heap->unsigned64BitValue()>>20,ok);
+    return ok ? kIOReturnSuccess : kIOReturnNoMemory;
+}
+#endif

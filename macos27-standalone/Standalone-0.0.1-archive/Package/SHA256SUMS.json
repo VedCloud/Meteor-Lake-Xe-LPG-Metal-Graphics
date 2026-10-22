@@ -1,0 +1,23 @@
+{
+  "BUILD.json": "df45a79b3625bb7e8edebbbb6d3a2a5b39c2a72e624b5fc3587b1206b4245361",
+  "Dell27Preflight.efi": "2ba2b91e0c0d48774b3647f189a6e7443df4988106ffc21c795b993a5c727726",
+  "EDK2-License-History.txt": "ffa82412001a194d32486a7c4bcb4f438555b95f438e8c6dc0a25f0710f3f65a",
+  "EDK2-License.txt": "50ce20c9cfdb0e19ee34fe0a51fc0afe961f743697b068359ab2f862b494df80",
+  "EFI-FILES-SHA256SUMS.json": "226f81a1f3eeebd3d5ae0cb04c31fd099fce5f444be7944ec718d397d5c4be0b",
+  "INPUT-VALIDATION.json": "fa99081ad12ab6b02ead36a08b78b7f077940230928558faa6daf9c2098c8b4f",
+  "README.md": "6d830ae496f3851c182da675a9f401781a00b6f4adda76eb683cfda5884a102e",
+  "SEQUOIA-REFERENCE-HASHES.json": "2b846f0002b8bb524416324bf9eb65f483316b9864004203ef4fa8ac1f30b47c",
+  "STANDALONE-PORTING-MAP.md": "2e2ab84fd23f66d687a384727d6360d59a36057ec91c1024a8bf1676829956ec",
+  "Source/boot_input.c": "3a8e0364208b699e2393dbebc0b9f6e10a24f2ef099811f34b44618bfec891fe",
+  "Source/boot_input.h": "eaf6557acf4b0b20c6323c9ecc88149226e46ef67f71362110e1c3ffbbbb9a06",
+  "Source/build.py": "cf4ab5df5c3e638839d5fae11f3b8ddae648e7df6c82d953d666c5901d6f1c85",
+  "Source/preflight.c": "1d6225a37b4e2a3e154a34faf203a4ce275c1819fc0e9ebc1ab43b40162da5e1",
+  "Source/profile.h": "389702ac829644d50f0e0c4a3ae2caf7ed4116f6e033e543a4e77d27a5567a72",
+  "Source/test-inputs.c": "551eb7d017b1d62165fcd2dd69a395633783b29ceca08a8c8c7d7faa9823d6ec",
+  "Source/test-inputs.py": "172418e2173b20b8704ef20aa34e039617b9c0659c8bfce91e659f9a626fd07a",
+  "Source/test-uefi.py": "65025c3778ad992acb728947aa5ac5de5164c48fb3dbf8b58b30f2f47fb9f9c5",
+  "VALIDATION.json": "3998ba62412b276dfe95e70c467d6282ea66c6bfc619487d07bb6688135fc310",
+  "nullmoth-public-repositories-20261022.json": "9e6ddb273239c8eee0267505d4f3380c0c4d813847ad4d556f9e37064b93fb30",
+  "ovmf-tampered.log": "4fd18c4c9cf6ea58b7772c9128f596121f811d48d3e30d9126851cefd93af80d",
+  "ovmf-valid.log": "9f535e8bd1e69425353bcbf23b1e379becfa607c160440c81dad766abf1c3bed"
+}

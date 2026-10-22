@@ -83,7 +83,7 @@ extern uint64_t (*nvmtl_res2_evict_hook)(uint64_t want);
 #include "nvmtl_probe_controls.h"
 __attribute__((constructor)) static void nvmtl_conf_knobs(void)
 {
-    nvmtl_desktop_trace("plugin-constructor","candidate0.3.7",0);
+    nvmtl_desktop_trace("plugin-constructor","candidate0.3.19",0);
 #if NVMTL_RELEASE
     { extern char **environ; char *names[256]; unsigned n = 0;
       const int probe=nvmtl_probe_controls_enabled(getprogname(),getenv("NVMTL_DIAGNOSTIC_STDERR"));
@@ -1234,10 +1234,13 @@ static id nvmtl_surface_sync(NVMTLTexture *t) {
     static unsigned n; if (n++ < 6 || n % 2000 == 0) nvlog("G13 surface-in #%u: %ux%u surface %p seed %u uploaded", n, r->_i.w, r->_i.h, (void *)r->_surf, seed);
     }
 }
+#include "nvmtl_surface_publication.h"
 - (BOOL)nvmtlSurfaceOut {
     NVMTLTexture *r = _parent ? _parent : self;
     if (!r->_surf || r->_hostOn) return YES;   // the GPU wrote the surface's own pages
+    const uint64_t monitorBegin=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
     @synchronized (nvmtl_surface_sync(r)) {
+    const uint64_t monitorWait=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW)-monitorBegin;
     if (![r nvmtlSurfaceCopyable]) return NO;
     if (r->_vramOn && !nvmtl_vk_surface_dirty((uint32_t)IOSurfaceGetID(r->_surf), (uint32_t)r->_plane)) {
         uint32_t seed = IOSurfaceGetSeed(r->_surf);
@@ -1246,19 +1249,42 @@ static id nvmtl_surface_sync(NVMTLTexture *t) {
         static unsigned nd; if (nd++ < 6 || nd % 5000 == 0) nvlog("surface-out -> dirty, no copy (%ux%u surface %u seed %u, #%u)", r->_i.w, r->_i.h, (unsigned)IOSurfaceGetID(r->_surf), seed, nd);
         return YES;
     }
-    uint64_t t0 = clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
-    uint32_t lockopt = nvmtl_noseed() ? kIOSurfaceLockReadOnly : 0;
-    if (IOSurfaceLock(r->_surf, lockopt, NULL) != kIOReturnSuccess) { nvlog("G13 surface-out: IOSurfaceLock FAILED"); return NO; }
-    void *base = IOSurfaceGetBaseAddressOfPlane(r->_surf, (uint32_t)r->_plane);
-    size_t row = IOSurfaceGetBytesPerRowOfPlane(r->_surf, (uint32_t)r->_plane);
-    int rc = (base && row) ? nvmtl_vk_image_read(r->_q, &r->_i, base, row) : -1;
-    if (!rc && r->_i.bpp == 4) { char tag[24]; snprintf(tag, sizeof tag, "out%u-", (unsigned)IOSurfaceGetID(r->_surf)); nvmtl_frame_dump(tag, base, row, r->_i.w, r->_i.h); }
-    uint32_t seed = 0; IOReturn unlocked = IOSurfaceUnlock(r->_surf, lockopt, &seed); if (lockopt) seed = IOSurfaceGetSeed(r->_surf);
-    if (rc || unlocked != kIOReturnSuccess) { nvlog("G13 surface-out: readback FAILED (%ux%u)", r->_i.w, r->_i.h); return NO; }
+    uint64_t t0=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+    size_t packed=0,bytes=0;void *snapshot=NULL;int lease=-1,rc=-1;
+    const BOOL staged=nvmtl_vk_windowserver_serial() &&
+        !nvmtl_publication_geometry(r->_i.w,r->_i.h,r->_i.bpp,&packed,&bytes) &&
+        (lease=nvmtl_publication_acquire(bytes,&snapshot))>=0;
+    // The same surface-plane monitor stays held; only the external IOSurface
+    // lock is shortened. Never publish or signal completion before GPU success.
+    if(staged){rc=nvmtl_vk_image_read(r->_q,&r->_i,snapshot,packed);if(rc){nvmtl_publication_release(lease);return NO;}}
+    uint64_t prepared=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+    uint32_t lockopt=nvmtl_noseed()?kIOSurfaceLockReadOnly:0;
+    BOOL avoidSyncFallback=NO;
+    if(staged)lockopt|=kIOSurfaceLockAvoidSync;
+    IOReturn lockResult=IOSurfaceLock(r->_surf,lockopt,NULL);
+    if(lockResult==kIOReturnCannotLock && (lockopt&kIOSurfaceLockAvoidSync)){
+        avoidSyncFallback=YES;lockopt&=~kIOSurfaceLockAvoidSync;
+        lockResult=IOSurfaceLock(r->_surf,lockopt,NULL);
+    }
+    if(lockResult!=kIOReturnSuccess){nvmtl_publication_release(lease);nvlog("G13 surface-out: IOSurfaceLock FAILED (%#x)",lockResult);return NO;}
+    uint64_t locked=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+    void *base=IOSurfaceGetBaseAddressOfPlane(r->_surf,(uint32_t)r->_plane);
+    size_t row=IOSurfaceGetBytesPerRowOfPlane(r->_surf,(uint32_t)r->_plane);
+    rc=(base&&row)?(staged?nvmtl_publication_copy(base,row,snapshot,packed,r->_i.h):nvmtl_vk_image_read(r->_q,&r->_i,base,row)):-1;
+    uint64_t copied=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+    uint32_t seed=0;IOReturn unlocked=IOSurfaceUnlock(r->_surf,lockopt,&seed);if(lockopt&kIOSurfaceLockReadOnly)seed=IOSurfaceGetSeed(r->_surf);
+    nvmtl_publication_release(lease);
+    uint64_t finished=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+    static _Atomic unsigned publicationLogs;
+    if((finished-t0>20000000ULL || monitorWait>20000000ULL || atomic_load(&publicationLogs)<8) && atomic_fetch_add(&publicationLogs,1)<64)
+        nvlog("publication0.3.15: surface=%u fmt=%lu %ux%u bpp=%u row=%zu packed=%zu staged=%d monitor_wait_ms=%.3f prepare_ms=%.3f iosurface_lock_ms=%.3f copy_ms=%.3f unlock_ms=%.3f result=%d unlock=%#x lock_options=%u avoid_sync_fallback=%d",
+            (unsigned)IOSurfaceGetID(r->_surf),(unsigned long)[r pixelFormat],r->_i.w,r->_i.h,r->_i.bpp,row,packed,staged,monitorWait*1e-6,
+            (prepared-t0)*1e-6,(locked-prepared)*1e-6,(copied-locked)*1e-6,(finished-copied)*1e-6,rc,unlocked,lockopt,avoidSyncFallback);
+    if(rc || unlocked!=kIOReturnSuccess){nvlog("G13 surface-out: readback FAILED (%ux%u)",r->_i.w,r->_i.h);return NO;}
 
     r->_surfSeed = seed; r->_surfSynced = YES;
     r->_surfGen = r->_vramOn ? r->_surfGen : nvmtl_vram_gen(r->_surf, r->_plane);
-    if (r->_vramOn && !lockopt) nvmtl_vram_tag_set(r->_surf, r->_plane, seed);
+    if (r->_vramOn && !(lockopt&kIOSurfaceLockReadOnly)) nvmtl_vram_tag_set(r->_surf, r->_plane, seed);
     static unsigned n; if (n++ < 6 || n % 2000 == 0) nvlog("G13 surface-out #%u: %ux%u surface %p seed %u, %.2f ms", n, r->_i.w, r->_i.h,
         (void *)r->_surf, seed, (clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW) - t0) / 1e6);
     return YES;
@@ -1478,10 +1504,11 @@ static uint32_t nvmtl_tex_attach_vkfmt(NVMTLTexture *t, int *a8) {
     const uint8_t s4[4] = { (uint8_t)sw.red, (uint8_t)sw.green, (uint8_t)sw.blue, (uint8_t)sw.alpha };
     if (nvmtl_pixfmt_public(f, &vkf, &bpp, &a8) ||
         nvmtl_vk_image_view_create_range_swz([v nvi], vkf, a8, v->_baseLevel, v->_mips, v->_baseSlice, v->_viewSlices, v->_viewType, s4, &nv)) {
-        nvlog("newTextureView:swizzle: par1 the swizzled view could not be built (format %lu) — the view keeps the identity mapping", (unsigned long)f);
-        return v; }
-    if (v->_ownView) nvmtl_vk_image_view_destroy(v->_ownView);
-    v->_ownView = nv; v->_stex = NO;
+        nvlog("newTextureView:swizzle: par1 the swizzled view could not be built (format %lu) — refusing the requested view", (unsigned long)f);
+        return nil; }
+    // Swizzles apply to sampled reads. Keep the identity attachment/storage view.
+    if (v->_swzView) nvmtl_vk_image_view_destroy(v->_swzView);
+    v->_swzView = nv;
     v->_swz = sw; v->_hasSwz = YES;
     nvlog("newTextureView:swizzle: par1 view %p maps r,g,b,a <- %u,%u,%u,%u", (__bridge void *)v, s4[0], s4[1], s4[2], s4[3]);
     return v;
@@ -2925,6 +2952,16 @@ static NVMTLBuffer *nvmtl_bytes_ring(NVMTLCommandBuffer *cb, NSUInteger len, siz
 - (void)setFragmentTexture:(id<MTLTexture>)t atIndex:(NSUInteger)i {
     NVMTLTexture *nt = (NVMTLTexture *)t;
     if (!nt) { nvlog("setFragmentTexture: nil at index %lu", (unsigned long)i); return; }
+    if (!strcmp(getprogname(),"Weather")) {
+        static _Atomic unsigned traceCount;
+        if (atomic_fetch_add(&traceCount,1)<8) {
+            NVMTLTexture *root=nt->_parent ?: nt; MTLTextureSwizzleChannels sw=nt.swizzle;
+            nvlog("first-submit: weather-texture0.3.12: index=%lu fmt=%lu size=%lux%lu swizzle=%u,%u,%u,%u sampled-separate=%d attachment-separate=%d buffer=%d pitch=%lu surf=%d",
+                (unsigned long)i,(unsigned long)nt.pixelFormat,(unsigned long)nt.width,(unsigned long)nt.height,
+                sw.red,sw.green,sw.blue,sw.alpha,nt->_swzView!=NULL,nt->_ownView!=NULL,
+                root->_backBuf!=nil,(unsigned long)nt.bufferBytesPerRow,root->_surf!=NULL);
+        }
+    }
     nvmtl_retain_resource(_cb, nt);
     nvmtl_surface_cpu_dump(nt->_parent ? nt->_parent : nt);
     nvmtl_surface_in_for_cb(_cb, nt);
@@ -4865,10 +4902,19 @@ static void nvmtl_mark_pending(NVMTLCommandBuffer *cb) {
 }
 void nvmtl_mark_published(NVMTLCommandBuffer *cb, NVMTLTexture *t) {
     if (!cb->_pubN || !t->_surf) return;
+    // A split command buffer may write the same plane more than once. Its
+    // publication number must describe the final completed write to that plane.
+    for(NSUInteger i=cb->_nextPart+1;i<cb->_parts.count;i++){
+        NVMTLSubmissionPart *part=cb->_parts[i];
+        for(NVMTLTexture *later in part->surfaces){
+            NVMTLTexture *root=later->_parent?later->_parent:later;
+            if(root->_surf && IOSurfaceGetID(root->_surf)==IOSurfaceGetID(t->_surf) && root->_plane==t->_plane)return;
+        }
+    }
     CFNumberRef num = CFNumberCreate(NULL, kCFNumberLongLongType, &cb->_pubN);
     if (num) { IOSurfaceSetValue(t->_surf, CFSTR("NMXPublished"), num); CFRelease(num); }
 }
-- (void)commit { NVS(NVS_COMMIT); nvmtl_apistat_tick(); nvmtl_mark_pending(self); [self nvmtlSubmitWithEvents]; }
+- (void)commit { if (!strcmp(getprogname(),"WindowServer") || !strcmp(getprogname(),"Weather")) _traceCommitNS=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW); NVS(NVS_COMMIT); nvmtl_apistat_tick(); nvmtl_mark_pending(self); [self nvmtlSubmitWithEvents]; }
 - (id<MTLComputeCommandEncoder>)computeCommandEncoder { NVS(NVS_CENC);
     if (_cbError) return [NVMTLFailedEncoder encoderForDevice:[self device] encodingClass:[NVMTLComputeCommandEncoder class]];
     NVMTLComputeCommandEncoder *e = [NVMTLComputeCommandEncoder new]; e->_cb = self; _nEnc++; return e;
@@ -5035,7 +5081,7 @@ void nvmtl_mark_published(NVMTLCommandBuffer *cb, NVMTLTexture *t) {
 - (uint64_t)signaledValue { return nvmtl_event_read(_condition, &_value); }
 - (void)setSignaledValue:(uint64_t)v { nvmtl_event_signal(self, _condition, &_value, _notifications, v); }
 - (MTLSharedEventHandle *)newSharedEventHandle {
-    static int said; if (!said++) nvlog("newSharedEventHandle: -> nil (cross-process event sharing is not built; this event lives in pid %d only)", getpid());
+    static int said; if (!said++) nvlog("first-submit: shared-event0.3.12: newSharedEventHandle -> nil (cross-process event sharing unsupported; this event lives in pid %d only)", getpid());
     return nil; }
 - (void)notifyListener:(MTLSharedEventListener *)l atValue:(uint64_t)v block:(MTLSharedEventNotificationBlock)b {
     nvmtl_event_notify(self, _condition, &_value, _notifications, l, v, b);

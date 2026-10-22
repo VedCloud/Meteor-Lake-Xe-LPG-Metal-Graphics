@@ -1,0 +1,2 @@
+PASS ordinary opaque and transparent CTLineDraw -> CGImage -> opaque destination RGB composition, image/context ownership, clipping, modified-image and alpha fallback, coordinate placement, state restoration and 200 CFRelease callback lifetimes. Process-local test only.
+PASS ordinary AppKit NSAttributedString drawing: Arial, native San Francisco variable regular/bold, opaque RGB coverage and transparent image composition. Startup loading verified; late activation is unsupported. No Apple system-app deployment or GPU-backed CA claim.

@@ -1,0 +1,6 @@
+{
+  "actualIntelRxCase": "passed ASan/UBSan",
+  "sourceSHA256": "8755602f73e90f21180f6a4da46a82a7cb5b1371d865e5b880d4ef9af08b821e",
+  "hardwareIO": false,
+  "associationIsolation": true
+}

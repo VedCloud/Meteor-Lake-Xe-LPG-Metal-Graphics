@@ -1,0 +1,369 @@
+{
+  "nativeUUID": "13D3592A-A6BE-35E7-984C-0ACD90A76356",
+  "virtualSlots": 500,
+  "protocolSlots": 563,
+  "virtualOverrides": [
+    "free",
+    "configureReport",
+    "updateReport",
+    "start",
+    "stop",
+    "newUserClient",
+    "stringFromReturn",
+    "enable",
+    "prepareBSDInterface",
+    "processBSDCommand",
+    "setInterfaceEnable",
+    "getFeatureFlags",
+    "bpfTap",
+    "setMulticastAddresses",
+    "createPeerManager",
+    "postMessage",
+    "logTxPacket",
+    "logTxCompletionPacket",
+    "inputPacket",
+    "logSkywalkTxReqPacket",
+    "pendingPackets",
+    "packetSpace",
+    "linkState",
+    "setScanningState",
+    "updateLinkParameters",
+    "updateInterfaceCoexRiskPct",
+    "setInterfaceNF",
+    "setDebugFlags",
+    "debugFlags",
+    "setInterfaceChipCounters",
+    "setInterfaceMIBdot11",
+    "setFrameStats",
+    "setInfraSpecificFrameStats",
+    "getWmeTxCounters",
+    "setWoWEnabled",
+    "wowEnabled",
+    "printDataPath",
+    "flushPacketQueues",
+    "cachePeer",
+    "shouldLog",
+    "vlogDebug",
+    "vlogDebugBPF",
+    "getP2PSkywalkPeerMgr",
+    "getEventPipeSize",
+    "createEventPipe"
+  ],
+  "methods": [
+    {
+      "offset": "0xfa0",
+      "name": "getSSID",
+      "type": "apple80211_ssid_data"
+    },
+    {
+      "offset": "0xfa8",
+      "name": "getCHANNEL",
+      "type": "apple80211_channel_data"
+    },
+    {
+      "offset": "0xfb0",
+      "name": "getBSSID",
+      "type": "apple80211_bssid_data"
+    },
+    {
+      "offset": "0xfb8",
+      "name": "getSTATE",
+      "type": "apple80211_state_data"
+    },
+    {
+      "offset": "0xfc0",
+      "name": "getAWDL_SYNC_PARAMS",
+      "type": "apple80211_awdl_sync_params"
+    },
+    {
+      "offset": "0xfc8",
+      "name": "getAWDL_SYNC_ENABLED",
+      "type": "apple80211_awdl_sync_enabled"
+    },
+    {
+      "offset": "0xfd0",
+      "name": "getAWDL_EXTENSION_STATE_MACHINE_PARAMETERS",
+      "type": "apple80211_awdl_extension_state_machine_parameter"
+    },
+    {
+      "offset": "0xfd8",
+      "name": "getAWDL_ELECTION_ID",
+      "type": "apple80211_awdl_election_id"
+    },
+    {
+      "offset": "0xfe0",
+      "name": "getAWDL_ELECTION_METRIC",
+      "type": "apple80211_awdl_election_metric"
+    },
+    {
+      "offset": "0xfe8",
+      "name": "getAWDL_SYNCHRONIZATION_CHANNEL_SEQUENCE",
+      "type": "apple80211_awdl_sync_channel_sequence"
+    },
+    {
+      "offset": "0xff0",
+      "name": "getPEER_CACHE_MAXIMUM_SIZE",
+      "type": "apple80211_peer_cache_maximum_size"
+    },
+    {
+      "offset": "0xff8",
+      "name": "getAWDL_MASTER_CHANNEL",
+      "type": "apple80211_awdl_master_channel"
+    },
+    {
+      "offset": "0x1000",
+      "name": "getAWDL_SYNC_STATE",
+      "type": "apple80211_awdl_sync_state"
+    },
+    {
+      "offset": "0x1008",
+      "name": "getAWDL_ELECTION_RSSI_THRESHOLDS",
+      "type": "apple80211_awdl_election_rssi_thresholds"
+    },
+    {
+      "offset": "0x1010",
+      "name": "getAWDL_PRESENCE_MODE",
+      "type": "apple80211_awdl_presence_mode"
+    },
+    {
+      "offset": "0x1018",
+      "name": "getAWDL_ELECTION_PARAMS",
+      "type": "apple80211_awdl_election_params"
+    },
+    {
+      "offset": "0x1020",
+      "name": "getAWDL_DEVICE_CAPABILITIES",
+      "type": "apple80211_awdl_device_capabilities"
+    },
+    {
+      "offset": "0x1028",
+      "name": "getAWDL_SECONDARY_MASTER_CHANNEL",
+      "type": "apple80211_awdl_secondary_master_channel"
+    },
+    {
+      "offset": "0x1030",
+      "name": "getAWDL_AF_TX_MODE",
+      "type": "apple80211_awdl_af_tx_mode"
+    },
+    {
+      "offset": "0x1038",
+      "name": "getAWDL_MIN_RATE",
+      "type": "apple80211_awdl_min_rate"
+    },
+    {
+      "offset": "0x1040",
+      "name": "getAWDL_ENCRYPTION_TYPE",
+      "type": "apple80211_encrypt"
+    },
+    {
+      "offset": "0x1048",
+      "name": "getAWDL_TXCAL_PERIOD",
+      "type": "apple80211_awdl_txcal_period"
+    },
+    {
+      "offset": "0x1050",
+      "name": "getAWDL_DEV_STATS",
+      "type": "apple80211_awdl_dev_stats"
+    },
+    {
+      "offset": "0x1058",
+      "name": "getAWDL_DFSP_CONFIG",
+      "type": "apple80211_awdl_dfsp_config"
+    },
+    {
+      "offset": "0x1060",
+      "name": "getAWDL_CCA",
+      "type": "apple80211_awdl_cca"
+    },
+    {
+      "offset": "0x1068",
+      "name": "getAWDL_AF_SECONDARY_PAYLOAD_CAPABILITIES",
+      "type": "apple80211_awdl_cap"
+    },
+    {
+      "offset": "0x1070",
+      "name": "getLLW_PARAMS",
+      "type": "apple80211_llw_params"
+    },
+    {
+      "offset": "0x1078",
+      "name": "setSSID",
+      "type": "apple80211_ssid_data"
+    },
+    {
+      "offset": "0x1080",
+      "name": "setCHANNEL",
+      "type": "apple80211_channel_data"
+    },
+    {
+      "offset": "0x1088",
+      "name": "setAWDL_SYNC_PARAMS",
+      "type": "apple80211_awdl_sync_params"
+    },
+    {
+      "offset": "0x1090",
+      "name": "setAWDL_SYNC_ENABLED",
+      "type": "apple80211_awdl_sync_enabled"
+    },
+    {
+      "offset": "0x1098",
+      "name": "setAWDL_EXTENSION_STATE_MACHINE_PARAMETERS",
+      "type": "apple80211_awdl_extension_state_machine_parameter"
+    },
+    {
+      "offset": "0x10a0",
+      "name": "setAWDL_ELECTION_ID",
+      "type": "apple80211_awdl_election_id"
+    },
+    {
+      "offset": "0x10a8",
+      "name": "setAWDL_BSSID",
+      "type": "apple80211_awdl_bssid"
+    },
+    {
+      "offset": "0x10b0",
+      "name": "setAWDL_ELECTION_METRIC",
+      "type": "apple80211_awdl_election_metric"
+    },
+    {
+      "offset": "0x10b8",
+      "name": "setAWDL_SYNCHRONIZATION_CHANNEL_SEQUENCE",
+      "type": "apple80211_awdl_sync_channel_sequence"
+    },
+    {
+      "offset": "0x10c0",
+      "name": "setAWDL_MASTER_CHANNEL",
+      "type": "apple80211_awdl_master_channel"
+    },
+    {
+      "offset": "0x10c8",
+      "name": "setAWDL_SYNC_STATE",
+      "type": "apple80211_awdl_sync_state"
+    },
+    {
+      "offset": "0x10d0",
+      "name": "setAWDL_ELECTION_RSSI_THRESHOLDS",
+      "type": "apple80211_awdl_election_rssi_thresholds"
+    },
+    {
+      "offset": "0x10d8",
+      "name": "setAWDL_PRESENCE_MODE",
+      "type": "apple80211_awdl_presence_mode"
+    },
+    {
+      "offset": "0x10e0",
+      "name": "setPEER_CACHE_CONTROL",
+      "type": "apple80211_peer_cache_control"
+    },
+    {
+      "offset": "0x10e8",
+      "name": "setAWDL_OOB_REQUEST",
+      "type": "apple80211_awdl_oob_request"
+    },
+    {
+      "offset": "0x10f0",
+      "name": "setAWDL_SYNC_FRAME_TEMPLATE",
+      "type": "apple80211_awdl_sync_frame_template"
+    },
+    {
+      "offset": "0x10f8",
+      "name": "setAWDL_ELECTION_PARAMS",
+      "type": "apple80211_awdl_election_params"
+    },
+    {
+      "offset": "0x1100",
+      "name": "setAWDL_PEER_TRAFFIC_REGISTRATION",
+      "type": "apple80211_awdl_peer_traffic_registration"
+    },
+    {
+      "offset": "0x1108",
+      "name": "setAWDL_SECONDARY_MASTER_CHANNEL",
+      "type": "apple80211_awdl_secondary_master_channel"
+    },
+    {
+      "offset": "0x1110",
+      "name": "setAWDL_AF_TX_MODE",
+      "type": "apple80211_awdl_af_tx_mode"
+    },
+    {
+      "offset": "0x1118",
+      "name": "setAWDL_MIN_RATE",
+      "type": "apple80211_awdl_min_rate"
+    },
+    {
+      "offset": "0x1120",
+      "name": "setAWDL_ENCRYPTION_KEYS",
+      "type": "apple80211_key"
+    },
+    {
+      "offset": "0x1128",
+      "name": "setAWDL_ENCRYPTION_TYPE",
+      "type": "apple80211_encrypt"
+    },
+    {
+      "offset": "0x1130",
+      "name": "setAWDL_OOB_AUTO_REQUEST",
+      "type": "apple80211_awdl_oob_request"
+    },
+    {
+      "offset": "0x1138",
+      "name": "setAWDL_TXCAL_PERIOD",
+      "type": "apple80211_awdl_txcal_period"
+    },
+    {
+      "offset": "0x1140",
+      "name": "setAWDL_AWDL_ADVERTISERS",
+      "type": "awdl_peer_advert_add"
+    },
+    {
+      "offset": "0x1148",
+      "name": "setAWDL_DFSP_CONFIG",
+      "type": "apple80211_awdl_dfsp_config"
+    },
+    {
+      "offset": "0x1150",
+      "name": "setAWDL_DFSP_UCSA_CONFIG",
+      "type": "apple80211_awdl_dfsp_ucsa_config"
+    },
+    {
+      "offset": "0x1158",
+      "name": "setCOMPANION_SKYWALK_IF_CREATE",
+      "type": "apple80211_companion_skywalk_if_create"
+    },
+    {
+      "offset": "0x1160",
+      "name": "setAWDL_OOB_SEC_PAYLOAD_REQUEST",
+      "type": "apple80211_awdl_af_sec_payload_request"
+    },
+    {
+      "offset": "0x1168",
+      "name": "setLLW_PARAMS",
+      "type": "apple80211_llw_params"
+    },
+    {
+      "offset": "0x1170",
+      "name": "setTX_RATE",
+      "type": "apple80211_tx_rate"
+    },
+    {
+      "offset": "0x1178",
+      "name": "setP2P_COEX_PROTECTION",
+      "type": "apple80211_p2p_coex_protection"
+    },
+    {
+      "offset": "0x1180",
+      "name": "setPSF_DWELL",
+      "type": "apple80211_awdl_psf_dwell_params"
+    },
+    {
+      "offset": "0x1188",
+      "name": "setAWDL_CONFIG",
+      "type": "apple80211_awdl_config_request"
+    },
+    {
+      "offset": "0x1190",
+      "name": "setAWDL_RTG_PEER_STATS_CONFIG",
+      "type": "apple80211_rtg_peer_stats_cfg"
+    }
+  ]
+}

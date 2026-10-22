@@ -1,0 +1,22 @@
+{
+  "backup": "/Users/ved/Documents/iGPU Port/backups/runtime-v3-before-20261021-175450",
+  "changedEFI": [
+    "OC/config.plist",
+    "OC/ACPI/DSDT.aml",
+    "OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents/Info.plist",
+    "OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents/MacOS/VoodooPS2Keyboard",
+    "OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents/Info.plist",
+    "OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents/MacOS/VoodooPS2Mouse",
+    "OC/Kexts/LatitudeTabletState.kext/Contents/Info.plist",
+    "OC/Kexts/LatitudeTabletState.kext/Contents/MacOS/LatitudeTabletState",
+    "OC/Resources/Audio/OCEFIAudio_VoiceOver_Boot.mp3"
+  ],
+  "addedEFI": [
+    "OC/ACPI/DSDT-Base-Recovery.aml",
+    "OC/ACPI/DSDT-Touchpad-Recovery.aml",
+    "OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents/_CodeSignature/CodeResources",
+    "OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents/_CodeSignature/CodeResources"
+  ],
+  "filesPackaged": 155,
+  "validation": "profiles, fixture switching/trial restore, manifest, signatures, Copilot and frozen graphics passed; Dell boot pending"
+}

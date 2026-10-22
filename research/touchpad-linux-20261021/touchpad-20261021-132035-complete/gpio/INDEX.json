@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "source": "/sys/kernel/debug/gpio",
+      "file": "sysfs-gpio.txt"
+    },
+    {
+      "source": "/sys/kernel/debug/pinctrl/INTC1083:00/pins",
+      "file": "sysfs-pinctrl%2FINTC1083%3A00%2Fpins.txt"
+    },
+    {
+      "source": "/sys/kernel/debug/pinctrl/INTC1083:00/pinmux-pins",
+      "file": "sysfs-pinctrl%2FINTC1083%3A00%2Fpinmux-pins.txt"
+    },
+    {
+      "source": "/sys/kernel/debug/pinctrl/INTC1083:00/pinconf-pins",
+      "file": "sysfs-pinctrl%2FINTC1083%3A00%2Fpinconf-pins.txt"
+    },
+    {
+      "source": "/sys/kernel/debug/pinctrl/INTC1083:00/gpio-ranges",
+      "file": "sysfs-pinctrl%2FINTC1083%3A00%2Fgpio-ranges.txt"
+    }
+  ],
+  "errors": []
+}

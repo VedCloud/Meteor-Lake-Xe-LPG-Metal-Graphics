@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleExecutable</key>
+	<string>LatitudeMTLFB</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.nullmoth.LatitudeMTLFB</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>LatitudeMTLFB</string>
+	<key>CFBundlePackageType</key>
+	<string>KEXT</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.2.6</string>
+	<key>CFBundleVersion</key>
+	<string>0.2.6</string>
+	<key>IOKitPersonalities</key>
+	<dict>
+		<key>LatitudeMTLFB</key>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.nullmoth.LatitudeMTLFB</string>
+			<key>IOClass</key>
+			<string>NMXIntelVGAFB</string>
+			<key>IOMatchCategory</key>
+			<string>IOFramebuffer</string>
+			<key>IOProbeScore</key>
+			<integer>60000</integer>
+			<key>IOProviderClass</key>
+			<string>LatitudePanelClaim</string>
+		</dict>
+	</dict>
+	<key>OSBundleLibraries</key>
+	<dict>
+		<key>com.apple.iokit.IOGraphicsFamily</key>
+		<string>1.0.0</string>
+		<key>com.apple.iokit.IOPCIFamily</key>
+		<string>1.0.0</string>
+		<key>com.apple.kpi.bsd</key>
+		<string>8.0</string>
+		<key>com.apple.kpi.iokit</key>
+		<string>8.0</string>
+		<key>com.apple.kpi.libkern</key>
+		<string>8.0</string>
+		<key>com.apple.kpi.mach</key>
+		<string>8.0</string>
+	</dict>
+</dict>
+</plist>

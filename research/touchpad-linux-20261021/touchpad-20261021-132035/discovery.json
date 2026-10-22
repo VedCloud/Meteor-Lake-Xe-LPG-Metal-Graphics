@@ -1,0 +1,10 @@
+[
+  {
+    "event": "event11",
+    "name": "VEN_04F3:00 04F3:328E Touchpad",
+    "path": "/sys/devices/pci0000:00/0000:00:15.3/i2c_designware.1/i2c-1/i2c-VEN_04F3:00/0018:04F3:328E.0001/input/input15",
+    "vendor": 1267,
+    "product": 12942,
+    "bus": 24
+  }
+]

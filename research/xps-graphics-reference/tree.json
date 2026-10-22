@@ -1,0 +1,2797 @@
+{
+  "sha": "356c818544319aed373ec213c072d08265ce8c40",
+  "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/356c818544319aed373ec213c072d08265ce8c40",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a859a2f4a7015bd6a6312d8345448f6c95c5b43",
+      "size": 90,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9a859a2f4a7015bd6a6312d8345448f6c95c5b43"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf9ecf4282d4c20197e77fd8a2cbb9227fac06ec",
+      "size": 4576,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bf9ecf4282d4c20197e77fd8a2cbb9227fac06ec"
+    },
+    {
+      "path": "EFI",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0aab0237bb570599f08b7c9c916c937c9ccc5c15",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/0aab0237bb570599f08b7c9c916c937c9ccc5c15"
+    },
+    {
+      "path": "EFI/BOOT",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "15360938ffeaca7660f37c26903e3c8abf8a4b6e",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/15360938ffeaca7660f37c26903e3c8abf8a4b6e"
+    },
+    {
+      "path": "EFI/BOOT/BOOTx64.efi",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e2ef8558199b7e85984e4ca826d274024b65bb08",
+      "size": 53248,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e2ef8558199b7e85984e4ca826d274024b65bb08"
+    },
+    {
+      "path": "EFI/OC",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "948db7efea7591db52c399280c71b4820e9a6266",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/948db7efea7591db52c399280c71b4820e9a6266"
+    },
+    {
+      "path": "EFI/OC/ACPI",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fc984cb9da7035eaf78dcea01fb298e2a57ffe5e",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/fc984cb9da7035eaf78dcea01fb298e2a57ffe5e"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-ALS0.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b69e4010d02514dd5fd41c20a9b05a96080c2bf0",
+      "size": 132,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b69e4010d02514dd5fd41c20a9b05a96080c2bf0"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-EC.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e8933547339f83ca09c79c87c6b5a065959d0170",
+      "size": 125,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e8933547339f83ca09c79c87c6b5a065959d0170"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-GPI0.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e33b8d96b510705d0f6e4ee4f57fe3afc8544c8c",
+      "size": 124,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e33b8d96b510705d0f6e4ee4f57fe3afc8544c8c"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-MCHC.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d097f72c36a1e942e0eaf6aed86f95f0e40dd7e1",
+      "size": 105,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d097f72c36a1e942e0eaf6aed86f95f0e40dd7e1"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-PLUG-ALT.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "f760156ef6290d6174df4b3e4fff80aa97156e98",
+      "size": 4120,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/f760156ef6290d6174df4b3e4fff80aa97156e98"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-PNLF.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a4dbfb722009e7c28884b56e869a0544d4e5453b",
+      "size": 141,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a4dbfb722009e7c28884b56e869a0544d4e5453b"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-RTCAWAC.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ceac7a76efa33a6a5be23dcc864db034ada4ad91",
+      "size": 78,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ceac7a76efa33a6a5be23dcc864db034ada4ad91"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-SBUS.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6fbec7384b42ce0ad1e3e952cdee74e4f4ed2ce6",
+      "size": 128,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6fbec7384b42ce0ad1e3e952cdee74e4f4ed2ce6"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-USB-Reset.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bf6251a3f0babecb92bbe7026e117062f632b618",
+      "size": 110,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bf6251a3f0babecb92bbe7026e117062f632b618"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-USBX.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e3eb9a79e58aba8a8a73d9fd146e7fe867d7ea27",
+      "size": 166,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e3eb9a79e58aba8a8a73d9fd146e7fe867d7ea27"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-XOSI.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2250eb2c5e2aee843e02de9bd01f67a4f763bc6c",
+      "size": 233,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/2250eb2c5e2aee843e02de9bd01f67a4f763bc6c"
+    },
+    {
+      "path": "EFI/OC/ACPI/SSDT-XPS-I2C.aml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "966392c5f8c3979ba6f23c0d14324326ef8bde19",
+      "size": 362,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/966392c5f8c3979ba6f23c0d14324326ef8bde19"
+    },
+    {
+      "path": "EFI/OC/Drivers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "558d7cfef5c99edef97be71ae7c4acd32a625b88",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/558d7cfef5c99edef97be71ae7c4acd32a625b88"
+    },
+    {
+      "path": "EFI/OC/Drivers/OpenRuntime.efi",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "0329cc8f7ea613d69b937d6e4a4059aa6e1023ed",
+      "size": 36864,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/0329cc8f7ea613d69b937d6e4a4059aa6e1023ed"
+    },
+    {
+      "path": "EFI/OC/Drivers/ResetNvramEntry.efi",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "47c143c829e04bd273eac0d7595635e841b9bbe8",
+      "size": 45056,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/47c143c829e04bd273eac0d7595635e841b9bbe8"
+    },
+    {
+      "path": "EFI/OC/Kexts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9ef56a565309cbf9c7c93cfc6a0ba8517602dc39",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/9ef56a565309cbf9c7c93cfc6a0ba8517602dc39"
+    },
+    {
+      "path": "EFI/OC/Kexts/BlueToolFixup.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6f076a14aee755ca714625c661489b6e0c926f34",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/6f076a14aee755ca714625c661489b6e0c926f34"
+    },
+    {
+      "path": "EFI/OC/Kexts/BlueToolFixup.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bc727053339e2ea45a814c0792ea5d8301080437",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/bc727053339e2ea45a814c0792ea5d8301080437"
+    },
+    {
+      "path": "EFI/OC/Kexts/BlueToolFixup.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "90d90a0cc92735222000ed64e5cfee27a3ef6262",
+      "size": 2226,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/90d90a0cc92735222000ed64e5cfee27a3ef6262"
+    },
+    {
+      "path": "EFI/OC/Kexts/BlueToolFixup.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "80895b16a0424b1f372e544b2239b4aff4988135",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/80895b16a0424b1f372e544b2239b4aff4988135"
+    },
+    {
+      "path": "EFI/OC/Kexts/BlueToolFixup.kext/Contents/MacOS/BlueToolFixup",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8c834da041ec3258a335f12aa4a934064c47ca99",
+      "size": 41336,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8c834da041ec3258a335f12aa4a934064c47ca99"
+    },
+    {
+      "path": "EFI/OC/Kexts/BrightnessKeys.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3e1814699210904d058aae03489009f0863a9b00",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/3e1814699210904d058aae03489009f0863a9b00"
+    },
+    {
+      "path": "EFI/OC/Kexts/BrightnessKeys.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "21e25f4af3e67686d31fc444389ac125c76726d9",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/21e25f4af3e67686d31fc444389ac125c76726d9"
+    },
+    {
+      "path": "EFI/OC/Kexts/BrightnessKeys.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "98952b2696dc35ae143ea2376a422d9d0e4d3029",
+      "size": 2248,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/98952b2696dc35ae143ea2376a422d9d0e4d3029"
+    },
+    {
+      "path": "EFI/OC/Kexts/BrightnessKeys.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "07c0be78f1ea29aa4a2695e49767e43a646c00e5",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/07c0be78f1ea29aa4a2695e49767e43a646c00e5"
+    },
+    {
+      "path": "EFI/OC/Kexts/BrightnessKeys.kext/Contents/MacOS/BrightnessKeys",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "74c0efc86685a763de1385008019921a6a6a0318",
+      "size": 37040,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/74c0efc86685a763de1385008019921a6a6a0318"
+    },
+    {
+      "path": "EFI/OC/Kexts/CpuTopologyRebuild.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "84bdf676cbcda1a800feab1d2e0a2694310884fa",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/84bdf676cbcda1a800feab1d2e0a2694310884fa"
+    },
+    {
+      "path": "EFI/OC/Kexts/CpuTopologyRebuild.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9c245ae281d264f098f678ea4cb093cce94e93a6",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/9c245ae281d264f098f678ea4cb093cce94e93a6"
+    },
+    {
+      "path": "EFI/OC/Kexts/CpuTopologyRebuild.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "577f3de7c1d0d0ce1125bfb0a9db82def3de8d1a",
+      "size": 2597,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/577f3de7c1d0d0ce1125bfb0a9db82def3de8d1a"
+    },
+    {
+      "path": "EFI/OC/Kexts/CpuTopologyRebuild.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "08a8ca8a4e67d0750225077655837a6ac2b680f8",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/08a8ca8a4e67d0750225077655837a6ac2b680f8"
+    },
+    {
+      "path": "EFI/OC/Kexts/CpuTopologyRebuild.kext/Contents/MacOS/CpuTopologyRebuild",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "640f992ff9265b00a1b94198268399f4e6556305",
+      "size": 32944,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/640f992ff9265b00a1b94198268399f4e6556305"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBTPatcher.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9f8cd2dd632a0a7a50adf61e46182f90a01b12b4",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/9f8cd2dd632a0a7a50adf61e46182f90a01b12b4"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBTPatcher.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "feeabf2acaf1b4277473f8a287fcc33a1f64714f",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/feeabf2acaf1b4277473f8a287fcc33a1f64714f"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBTPatcher.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "fab9df4372f484eb67ffd2b271e1102e9e889e43",
+      "size": 2343,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/fab9df4372f484eb67ffd2b271e1102e9e889e43"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBTPatcher.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c12b3fa6300b9d3280e7f7a798e59d487e3a53e3",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/c12b3fa6300b9d3280e7f7a798e59d487e3a53e3"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBTPatcher.kext/Contents/MacOS/IntelBTPatcher",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "f754c8a3fe0b5dbc0d40926c3ef9f660931f9ce9",
+      "size": 43840,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/f754c8a3fe0b5dbc0d40926c3ef9f660931f9ce9"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBluetoothFirmware.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e91d15dc388d095578bac9789137a9d607226155",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/e91d15dc388d095578bac9789137a9d607226155"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBluetoothFirmware.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "27ce23e4e5f9383e5ae72a2a6e9cd672bff4715c",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/27ce23e4e5f9383e5ae72a2a6e9cd672bff4715c"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBluetoothFirmware.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "32e8ad321eb11a263a522b4fc236527023dae7a4",
+      "size": 8341,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/32e8ad321eb11a263a522b4fc236527023dae7a4"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBluetoothFirmware.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8e85130a140e95a7f3cf01ffaedee4cbd2a3f5b7",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/8e85130a140e95a7f3cf01ffaedee4cbd2a3f5b7"
+    },
+    {
+      "path": "EFI/OC/Kexts/IntelBluetoothFirmware.kext/Contents/MacOS/IntelBluetoothFirmware",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "c1f1196c81ada54e867e605dabccfaf3b4ade74c",
+      "size": 11172264,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c1f1196c81ada54e867e605dabccfaf3b4ade74c"
+    },
+    {
+      "path": "EFI/OC/Kexts/Lilu.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b2990595cb02ac7f617584bb4f0a3da61bca8b98",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/b2990595cb02ac7f617584bb4f0a3da61bca8b98"
+    },
+    {
+      "path": "EFI/OC/Kexts/Lilu.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1b70a689531fbb46a0f20d35ee1f1699f8c77494",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/1b70a689531fbb46a0f20d35ee1f1699f8c77494"
+    },
+    {
+      "path": "EFI/OC/Kexts/Lilu.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5b9455282f9cbbacc6fba07a35882a4888b75019",
+      "size": 2743,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5b9455282f9cbbacc6fba07a35882a4888b75019"
+    },
+    {
+      "path": "EFI/OC/Kexts/Lilu.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5f52f4b10aacfbbf1fb3e6292d3a812f9bccc7c1",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/5f52f4b10aacfbbf1fb3e6292d3a812f9bccc7c1"
+    },
+    {
+      "path": "EFI/OC/Kexts/Lilu.kext/Contents/MacOS/Lilu",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "3e3ecdb84fb1b708a80e20510fef4ead5c84b7d0",
+      "size": 543840,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/3e3ecdb84fb1b708a80e20510fef4ead5c84b7d0"
+    },
+    {
+      "path": "EFI/OC/Kexts/NVMeFix.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7d1d0af6fe79d8959450dcb6f489805ddab9bf54",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/7d1d0af6fe79d8959450dcb6f489805ddab9bf54"
+    },
+    {
+      "path": "EFI/OC/Kexts/NVMeFix.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "09c183370c4b967986071c510a633d8facbd57c9",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/09c183370c4b967986071c510a633d8facbd57c9"
+    },
+    {
+      "path": "EFI/OC/Kexts/NVMeFix.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b491f7a2f39a006a0caa9e537494e48d983204be",
+      "size": 2370,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b491f7a2f39a006a0caa9e537494e48d983204be"
+    },
+    {
+      "path": "EFI/OC/Kexts/NVMeFix.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fede2eee08f204a3260c98f08142893c03ba2f40",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/fede2eee08f204a3260c98f08142893c03ba2f40"
+    },
+    {
+      "path": "EFI/OC/Kexts/NVMeFix.kext/Contents/MacOS/NVMeFix",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "12f088cedd8aa95d7cf21e35bac71799cc04fc9b",
+      "size": 51312,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/12f088cedd8aa95d7cf21e35bac71799cc04fc9b"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4a5f1526becd9a434a56a2429662d8dcb4255c03",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/4a5f1526becd9a434a56a2429662d8dcb4255c03"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6e77d1ffa44a1f84c0a2645ecbf70135a3a76408",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/6e77d1ffa44a1f84c0a2645ecbf70135a3a76408"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "15c7049fe80846b6481c8e22e2773974f5a6fdb6",
+      "size": 3700,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/15c7049fe80846b6481c8e22e2773974f5a6fdb6"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cddfecabf5fd63c73a50e9555ae2c702ca51e6e5",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/cddfecabf5fd63c73a50e9555ae2c702ca51e6e5"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext/Contents/MacOS/NootedGreen",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "73675044d672db2068efc86c7d0396e6da14739b",
+      "size": 480032,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/73675044d672db2068efc86c7d0396e6da14739b"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext/Contents/_CodeSignature",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4a39f2261d1c8ed4a97325e9e951d60670b5b49",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f4a39f2261d1c8ed4a97325e9e951d60670b5b49"
+    },
+    {
+      "path": "EFI/OC/Kexts/NootedGreen.kext/Contents/_CodeSignature/CodeResources",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d5d0fd744123ce3cb54eeee80d01fca7838a081b",
+      "size": 2200,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d5d0fd744123ce3cb54eeee80d01fca7838a081b"
+    },
+    {
+      "path": "EFI/OC/Kexts/RestrictEvents.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8f57646b8735c8689bc3c61be3edf4d0c7ce0928",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/8f57646b8735c8689bc3c61be3edf4d0c7ce0928"
+    },
+    {
+      "path": "EFI/OC/Kexts/RestrictEvents.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4694676b81fa8fc4755042861dc083b03c188de4",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/4694676b81fa8fc4755042861dc083b03c188de4"
+    },
+    {
+      "path": "EFI/OC/Kexts/RestrictEvents.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bff19f92f277e90091013a0188252220083813ae",
+      "size": 5823,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bff19f92f277e90091013a0188252220083813ae"
+    },
+    {
+      "path": "EFI/OC/Kexts/RestrictEvents.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "081d481561ac3a39fd81b15e8da4207d42694457",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/081d481561ac3a39fd81b15e8da4207d42694457"
+    },
+    {
+      "path": "EFI/OC/Kexts/RestrictEvents.kext/Contents/MacOS/RestrictEvents",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "c8afa2c9cc2d58bde0274bc9e2fb0700cf08435b",
+      "size": 52848,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c8afa2c9cc2d58bde0274bc9e2fb0700cf08435b"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fb651c3ce11146b96b4a6ae3878da38e2e07e151",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/fb651c3ce11146b96b4a6ae3878da38e2e07e151"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1b3657c9cf46f6dde9e59de945d512361304bbb0",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/1b3657c9cf46f6dde9e59de945d512361304bbb0"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "31909a936688022fc605a09895691914d358a2f9",
+      "size": 2925,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/31909a936688022fc605a09895691914d358a2f9"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bd4185bfd5191dd078fb945344bd2f924e4ba1c1",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/bd4185bfd5191dd078fb945344bd2f924e4ba1c1"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/MacOS/SMCBatteryManager",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9d0fa9caaf71067ca64b9702cfe1c3cc66baf1db",
+      "size": 209456,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9d0fa9caaf71067ca64b9702cfe1c3cc66baf1db"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/Resources",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "549bf48c4cceb96aaea9afe84003a1d1f4298560",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/549bf48c4cceb96aaea9afe84003a1d1f4298560"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/Resources/SSDT-BATC.dsl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b323aa56f47e1087699a5dbef7ea7014b7f8b80c",
+      "size": 18419,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b323aa56f47e1087699a5dbef7ea7014b7f8b80c"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCDellSensors.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "89a35750ced317f91a416b191a59d8ad77d927a0",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/89a35750ced317f91a416b191a59d8ad77d927a0"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCDellSensors.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "815d7f5d8a5e8b85735c692d02ddb957a09b5362",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/815d7f5d8a5e8b85735c692d02ddb957a09b5362"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCDellSensors.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1395b560c1bc0344eb4ced7c84d883d1045e6bea",
+      "size": 2933,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/1395b560c1bc0344eb4ced7c84d883d1045e6bea"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCDellSensors.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "70ad3e2b02c398b6165ff28631fab6119cb93402",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/70ad3e2b02c398b6165ff28631fab6119cb93402"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCDellSensors.kext/Contents/MacOS/SMCDellSensors",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b21993e617d3e27c7ba2d66ddc870ac259dabd7c",
+      "size": 54976,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b21993e617d3e27c7ba2d66ddc870ac259dabd7c"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCLightSensor.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "37c6585290dcf0fd1909466c0ce80469f9b7e68b",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/37c6585290dcf0fd1909466c0ce80469f9b7e68b"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCLightSensor.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "28d65586bf8c57a7d3e1054a1530f5a4671da9df",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/28d65586bf8c57a7d3e1054a1530f5a4671da9df"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCLightSensor.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8082e05516eaea217b177c21bf662ebb5582c07d",
+      "size": 2467,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8082e05516eaea217b177c21bf662ebb5582c07d"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCLightSensor.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "557f5e31ebf718f2137da8994b312d43a1e1aab3",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/557f5e31ebf718f2137da8994b312d43a1e1aab3"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCLightSensor.kext/Contents/MacOS/SMCLightSensor",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "0c26bc8fb86641483683eda07805d664cc69f966",
+      "size": 34432,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/0c26bc8fb86641483683eda07805d664cc69f966"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCProcessor.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f6d9e465feabf12ada39565820698d0661149640",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f6d9e465feabf12ada39565820698d0661149640"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCProcessor.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "61c7009e2cbbbd5acc3fcdd820faf0fecb907654",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/61c7009e2cbbbd5acc3fcdd820faf0fecb907654"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCProcessor.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "825e736360c6f587ba67e098ee8d72906af0d86f",
+      "size": 2738,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/825e736360c6f587ba67e098ee8d72906af0d86f"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCProcessor.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9be8c0cd663f362a77e9328e4fe35cc441f9113b",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/9be8c0cd663f362a77e9328e4fe35cc441f9113b"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCProcessor.kext/Contents/MacOS/SMCProcessor",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "70c7077feb9bf9627b91949ab42514370249f658",
+      "size": 45064,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/70c7077feb9bf9627b91949ab42514370249f658"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCSuperIO.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c7cbeeae6cfc4316fb7b47be56854ebe25f58019",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/c7cbeeae6cfc4316fb7b47be56854ebe25f58019"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCSuperIO.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ecd821eedee2bf73ab91d7cfaddebdd34730d6b8",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/ecd821eedee2bf73ab91d7cfaddebdd34730d6b8"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCSuperIO.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "79326b931a007a212e59ee17a0c766bcde33a977",
+      "size": 2620,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/79326b931a007a212e59ee17a0c766bcde33a977"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCSuperIO.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "488586faecf9bdbf1d42d7bd52370cba29609655",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/488586faecf9bdbf1d42d7bd52370cba29609655"
+    },
+    {
+      "path": "EFI/OC/Kexts/SMCSuperIO.kext/Contents/MacOS/SMCSuperIO",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8c9f250fe174774717a5e2fe1275c4099b7a9763",
+      "size": 136088,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8c9f250fe174774717a5e2fe1275c4099b7a9763"
+    },
+    {
+      "path": "EFI/OC/Kexts/USBToolBox.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8615c8c3130036909c82b62205ce5084d1f4912e",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/8615c8c3130036909c82b62205ce5084d1f4912e"
+    },
+    {
+      "path": "EFI/OC/Kexts/USBToolBox.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6d97c39a14a88349134c1ababb783faa46538ffe",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/6d97c39a14a88349134c1ababb783faa46538ffe"
+    },
+    {
+      "path": "EFI/OC/Kexts/USBToolBox.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "175b625ebf98e31741b0bd3154829f104fc737be",
+      "size": 1804,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/175b625ebf98e31741b0bd3154829f104fc737be"
+    },
+    {
+      "path": "EFI/OC/Kexts/USBToolBox.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7ff87774b7b6463a4f3b7198170741c18cc5e71c",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/7ff87774b7b6463a4f3b7198170741c18cc5e71c"
+    },
+    {
+      "path": "EFI/OC/Kexts/USBToolBox.kext/Contents/MacOS/USBToolBox",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "89b4106aa44731c4a266473f3715138ce9fa22c5",
+      "size": 39360,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/89b4106aa44731c4a266473f3715138ce9fa22c5"
+    },
+    {
+      "path": "EFI/OC/Kexts/UTBDefault.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "329c8ef771050fabd18b8832576977ef607382e7",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/329c8ef771050fabd18b8832576977ef607382e7"
+    },
+    {
+      "path": "EFI/OC/Kexts/UTBDefault.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c30488ee4476ae1c7bd2cffaf2780497c1cbd236",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/c30488ee4476ae1c7bd2cffaf2780497c1cbd236"
+    },
+    {
+      "path": "EFI/OC/Kexts/UTBDefault.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8a31654832bc71ce480453ed66ff6eb87750314c",
+      "size": 1306,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8a31654832bc71ce480453ed66ff6eb87750314c"
+    },
+    {
+      "path": "EFI/OC/Kexts/VirtualSMC.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7fb03e7dfe921851dcada68aeb3b6d88549d7507",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/7fb03e7dfe921851dcada68aeb3b6d88549d7507"
+    },
+    {
+      "path": "EFI/OC/Kexts/VirtualSMC.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "50dc23098794633aa82c468bcd9cb3e21c0ac1d3",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/50dc23098794633aa82c468bcd9cb3e21c0ac1d3"
+    },
+    {
+      "path": "EFI/OC/Kexts/VirtualSMC.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ab1640d26bea8008df3d6d2a363d1feb8e4949c9",
+      "size": 8652,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ab1640d26bea8008df3d6d2a363d1feb8e4949c9"
+    },
+    {
+      "path": "EFI/OC/Kexts/VirtualSMC.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "382a1c1412fb7cf5a64ee255aecbc7c28e12e5e9",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/382a1c1412fb7cf5a64ee255aecbc7c28e12e5e9"
+    },
+    {
+      "path": "EFI/OC/Kexts/VirtualSMC.kext/Contents/MacOS/VirtualSMC",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "156088bbca5b0aefe83b76b3f852ee7967fc538a",
+      "size": 245820,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/156088bbca5b0aefe83b76b3f852ee7967fc538a"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fc3859cf6eb02395458fd8885a516930ae790b2b",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/fc3859cf6eb02395458fd8885a516930ae790b2b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "29c47af9a35a48cc67155ab8329488db4f5b3f07",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/29c47af9a35a48cc67155ab8329488db4f5b3f07"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "c17aa8a0ba8a30d7051d8ef2e7bf43f46f1eb04b",
+      "size": 22015,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c17aa8a0ba8a30d7051d8ef2e7bf43f46f1eb04b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0092a320e932b3c8bffc7f6a3999957ef464e1fa",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/0092a320e932b3c8bffc7f6a3999957ef464e1fa"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/MacOS/VoodooI2C",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6b21ab3bbf3796e52954decc368d02a3754ad47a",
+      "size": 165944,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6b21ab3bbf3796e52954decc368d02a3754ad47a"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a440e8e94381ba3f758d81082c00fe252c723987",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/a440e8e94381ba3f758d81082c00fe252c723987"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "306f0d971f5bdc3683d0a4935fc493744241042f",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/306f0d971f5bdc3683d0a4935fc493744241042f"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3c086111844c694e34734fe20140db7443dce80a",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/3c086111844c694e34734fe20140db7443dce80a"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext/Contents/Info.plist",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3bcbd6231c1b1aa212fa7ed43366f7233520b99",
+      "size": 3596,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a3bcbd6231c1b1aa212fa7ed43366f7233520b99"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6d121946ae704554b9d723be626ed6407187b574",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/6d121946ae704554b9d723be626ed6407187b574"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext/Contents/MacOS/VoodooGPIO",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1190b8d43db3bdee515dd7064e4912779e170615",
+      "size": 306464,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/1190b8d43db3bdee515dd7064e4912779e170615"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext/Contents/_CodeSignature",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "23777aaf315f224265fe1358589ef30f0e1ca83b",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/23777aaf315f224265fe1358589ef30f0e1ca83b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext/Contents/_CodeSignature/CodeResources",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5d0fd744123ce3cb54eeee80d01fca7838a081b",
+      "size": 2200,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d5d0fd744123ce3cb54eeee80d01fca7838a081b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e1e7c687573db47d59cff1cfd46d86a8b7412436",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/e1e7c687573db47d59cff1cfd46d86a8b7412436"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1a8917e1da961f6b6276c17355c27b7769c8fc75",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/1a8917e1da961f6b6276c17355c27b7769c8fc75"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5a74967ba8d5540827fe5001a1e63d12a2bec4ee",
+      "size": 2392,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5a74967ba8d5540827fe5001a1e63d12a2bec4ee"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dffa2cd54e06f01a0806dd681c2583adfe922da4",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/dffa2cd54e06f01a0806dd681c2583adfe922da4"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext/Contents/MacOS/VoodooI2CServices",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e4869b9c7daeeaea2f1e45030108ee56431d3ff7",
+      "size": 62784,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e4869b9c7daeeaea2f1e45030108ee56431d3ff7"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext/Contents/_CodeSignature",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4a39f2261d1c8ed4a97325e9e951d60670b5b49",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f4a39f2261d1c8ed4a97325e9e951d60670b5b49"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext/Contents/_CodeSignature/CodeResources",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d5d0fd744123ce3cb54eeee80d01fca7838a081b",
+      "size": 2200,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d5d0fd744123ce3cb54eeee80d01fca7838a081b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2758c54229698a6faea1724c25f46e33c15c6f79",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/2758c54229698a6faea1724c25f46e33c15c6f79"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "50712bd0a08408e536c846b2cabc75e2b7395dba",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/50712bd0a08408e536c846b2cabc75e2b7395dba"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "953e6bc9474e6a3465e878d00cd6bed2a06b9472",
+      "size": 2174,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/953e6bc9474e6a3465e878d00cd6bed2a06b9472"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8c64bdc9f1055c93d6a4a7c5c8aff3cec67990e4",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/8c64bdc9f1055c93d6a4a7c5c8aff3cec67990e4"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext/Contents/MacOS/VoodooInput",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "85348f969d552f884f32cfe19ccd7d1135e8a59b",
+      "size": 108352,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/85348f969d552f884f32cfe19ccd7d1135e8a59b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext/Contents/_CodeSignature",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4a39f2261d1c8ed4a97325e9e951d60670b5b49",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f4a39f2261d1c8ed4a97325e9e951d60670b5b49"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext/Contents/_CodeSignature/CodeResources",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d5d0fd744123ce3cb54eeee80d01fca7838a081b",
+      "size": 2200,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d5d0fd744123ce3cb54eeee80d01fca7838a081b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f9eae1c02863d50adafa3843a7c145f06026bc25",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f9eae1c02863d50adafa3843a7c145f06026bc25"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d66594c4cfbc7a5eb8ed1438a6abcb6ba4bcf41a",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/d66594c4cfbc7a5eb8ed1438a6abcb6ba4bcf41a"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "094bfe35f27e60bc05e3b94ea8a651a95ced80c5",
+      "size": 11141,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/094bfe35f27e60bc05e3b94ea8a651a95ced80c5"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "316b085e8dd6436802fdcb2ec118fdddede46042",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/316b085e8dd6436802fdcb2ec118fdddede46042"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext/Contents/MacOS/VoodooI2CHID",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b6f66e4da7ed862564e54e46e62f3c417e290861",
+      "size": 235056,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b6f66e4da7ed862564e54e46e62f3c417e290861"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext/Contents/_CodeSignature",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4a39f2261d1c8ed4a97325e9e951d60670b5b49",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f4a39f2261d1c8ed4a97325e9e951d60670b5b49"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooI2CHID.kext/Contents/_CodeSignature/CodeResources",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d5d0fd744123ce3cb54eeee80d01fca7838a081b",
+      "size": 2200,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d5d0fd744123ce3cb54eeee80d01fca7838a081b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4721ac8880470659b19bfee66fc9a8134df146d5",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/4721ac8880470659b19bfee66fc9a8134df146d5"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "48386ef81e4fc0fbcf751011e71106edac5c8f59",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/48386ef81e4fc0fbcf751011e71106edac5c8f59"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cdbf3c9e945cb8306abdaf7ac0cdfd245b11795a",
+      "size": 4329,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/cdbf3c9e945cb8306abdaf7ac0cdfd245b11795a"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "096349fd43855c79904f99dc2851667036530a84",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/096349fd43855c79904f99dc2851667036530a84"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/MacOS/VoodooPS2Controller",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b2fa0135b20d5227146598aa501b533fd3f90037",
+      "size": 102560,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b2fa0135b20d5227146598aa501b533fd3f90037"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a18750e39734d544b9c7586a96b81f85f743fa91",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/a18750e39734d544b9c7586a96b81f85f743fa91"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7d104af7f4d8eb8915abddcc19f578343061614d",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/7d104af7f4d8eb8915abddcc19f578343061614d"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "96702ec1cb1a90f0da27e65d20c54c7ba9de9d5e",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/96702ec1cb1a90f0da27e65d20c54c7ba9de9d5e"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "953e6bc9474e6a3465e878d00cd6bed2a06b9472",
+      "size": 2174,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/953e6bc9474e6a3465e878d00cd6bed2a06b9472"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9b87d3e625640fbefb60f84f1e04f0582862e7c1",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/9b87d3e625640fbefb60f84f1e04f0582862e7c1"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext/Contents/MacOS/VoodooInput",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "663e48afa45b7ef739143e26cc4c16107dc2391d",
+      "size": 108352,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/663e48afa45b7ef739143e26cc4c16107dc2391d"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext/Contents/_CodeSignature",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4a39f2261d1c8ed4a97325e9e951d60670b5b49",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f4a39f2261d1c8ed4a97325e9e951d60670b5b49"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext/Contents/_CodeSignature/CodeResources",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d5d0fd744123ce3cb54eeee80d01fca7838a081b",
+      "size": 2200,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d5d0fd744123ce3cb54eeee80d01fca7838a081b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "879e6ee34d910044b9cbd814ba3d946680b13442",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/879e6ee34d910044b9cbd814ba3d946680b13442"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4c378ea79ac9c15d77edabd56af7a410e594e0a2",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/4c378ea79ac9c15d77edabd56af7a410e594e0a2"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ef2f99e266361a11025e3dc4bd3ff0abcab1e91a",
+      "size": 20332,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ef2f99e266361a11025e3dc4bd3ff0abcab1e91a"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "11a790542b063812dbf82b4f1e2b6f5777119ab6",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/11a790542b063812dbf82b4f1e2b6f5777119ab6"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext/Contents/MacOS/VoodooPS2Keyboard",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b6e6888c45885fd649ff51003174ce710df07f78",
+      "size": 50344,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b6e6888c45885fd649ff51003174ce710df07f78"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "79465e590da3603401b2b08e36a6a87580c73954",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/79465e590da3603401b2b08e36a6a87580c73954"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a75bf80df7ff23b8d7c08cdb8ef4b3593f47b240",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/a75bf80df7ff23b8d7c08cdb8ef4b3593f47b240"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "fa30079f6cc1529b22b53f09161c00244c8ae707",
+      "size": 2990,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/fa30079f6cc1529b22b53f09161c00244c8ae707"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "db589f6a3223cce701174a9e84832aa57578121b",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/db589f6a3223cce701174a9e84832aa57578121b"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext/Contents/MacOS/VoodooPS2Mouse",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d6511651dc577011344bc25c63d4e4eb5846ff60",
+      "size": 35792,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d6511651dc577011344bc25c63d4e4eb5846ff60"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9f9722baed025fff69262de381bf3e6ab36662d7",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/9f9722baed025fff69262de381bf3e6ab36662d7"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0e3d52de12ab2c23408ad9edadd2bd7ac2890231",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/0e3d52de12ab2c23408ad9edadd2bd7ac2890231"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9126d9f865d680fbf71c7bee9eef88814dfbed3c",
+      "size": 12338,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9126d9f865d680fbf71c7bee9eef88814dfbed3c"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8f007f88eaaa3b3ea6ad267092d2cbe17ee32442",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/8f007f88eaaa3b3ea6ad267092d2cbe17ee32442"
+    },
+    {
+      "path": "EFI/OC/Kexts/VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext/Contents/MacOS/VoodooPS2Trackpad",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "3156a918bd9930038fb8adaa52601683843c57a2",
+      "size": 152808,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/3156a918bd9930038fb8adaa52601683843c57a2"
+    },
+    {
+      "path": "EFI/OC/Kexts/WhateverGreen.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "607db9a96bfde3336c150a26d917c3af8a4b9ef7",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/607db9a96bfde3336c150a26d917c3af8a4b9ef7"
+    },
+    {
+      "path": "EFI/OC/Kexts/WhateverGreen.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e9faff1025bd878e95d53678d833e90d3bc8fe8b",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/e9faff1025bd878e95d53678d833e90d3bc8fe8b"
+    },
+    {
+      "path": "EFI/OC/Kexts/WhateverGreen.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b6f6d39c8e13ae9e348490b3a58f2b4a67fa9d93",
+      "size": 3020,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b6f6d39c8e13ae9e348490b3a58f2b4a67fa9d93"
+    },
+    {
+      "path": "EFI/OC/Kexts/WhateverGreen.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f40435cf912a5698c4c774e803a48e59feac2e41",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f40435cf912a5698c4c774e803a48e59feac2e41"
+    },
+    {
+      "path": "EFI/OC/Kexts/WhateverGreen.kext/Contents/MacOS/WhateverGreen",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "76a951e604d4c206137eac170dd35b4131b0d111",
+      "size": 531800,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/76a951e604d4c206137eac170dd35b4131b0d111"
+    },
+    {
+      "path": "EFI/OC/Kexts/XHCI-unsupported.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5c5361e69b18f30ba9813c3e1dcedd1cc120e785",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/5c5361e69b18f30ba9813c3e1dcedd1cc120e785"
+    },
+    {
+      "path": "EFI/OC/Kexts/XHCI-unsupported.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f64fe7f44e116c57902ce6bf9336268d870ca1dd",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f64fe7f44e116c57902ce6bf9336268d870ca1dd"
+    },
+    {
+      "path": "EFI/OC/Kexts/XHCI-unsupported.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "615a237a8baa71a203a14854f5137ee366a0548b",
+      "size": 4741,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/615a237a8baa71a203a14854f5137ee366a0548b"
+    },
+    {
+      "path": "EFI/OC/Kexts/itlwm.kext",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7e7a9e7566f7b9df35056f4fc0d7f97225ff9d57",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/7e7a9e7566f7b9df35056f4fc0d7f97225ff9d57"
+    },
+    {
+      "path": "EFI/OC/Kexts/itlwm.kext/Contents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "34f4660dc906cdbd77e09e600256a7d5a4638c0d",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/34f4660dc906cdbd77e09e600256a7d5a4638c0d"
+    },
+    {
+      "path": "EFI/OC/Kexts/itlwm.kext/Contents/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "63373c1fc6749c04c285745c67e51312283c6806",
+      "size": 3053,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/63373c1fc6749c04c285745c67e51312283c6806"
+    },
+    {
+      "path": "EFI/OC/Kexts/itlwm.kext/Contents/MacOS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8b2b605fb87c7edaf6a84f21e5dce177d3220aaf",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/8b2b605fb87c7edaf6a84f21e5dce177d3220aaf"
+    },
+    {
+      "path": "EFI/OC/Kexts/itlwm.kext/Contents/MacOS/itlwm",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ee4cee7285f661908d72c93b39451b2f04680a0c",
+      "size": 15985920,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ee4cee7285f661908d72c93b39451b2f04680a0c"
+    },
+    {
+      "path": "EFI/OC/OpenCore.efi",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cc831de3f8df043e73fa4001b63d55ba90760e17",
+      "size": 868352,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/cc831de3f8df043e73fa4001b63d55ba90760e17"
+    },
+    {
+      "path": "EFI/OC/Resources",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f2f14405f0d68138a10b92ec16cb2606dc7bd686",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/f2f14405f0d68138a10b92ec16cb2606dc7bd686"
+    },
+    {
+      "path": "EFI/OC/Resources/Font",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2b56397726331db91afed450dd0471fae38e8fd3",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/2b56397726331db91afed450dd0471fae38e8fd3"
+    },
+    {
+      "path": "EFI/OC/Resources/Font/Font_1x.bin",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a4ef287fa0fa86d8aa92e8429f0788dd1b79fdc2",
+      "size": 1985,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a4ef287fa0fa86d8aa92e8429f0788dd1b79fdc2"
+    },
+    {
+      "path": "EFI/OC/Resources/Font/Font_1x.png",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "3b5f3ef8b7504b98012496e13b37e3a6658baf86",
+      "size": 3426,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/3b5f3ef8b7504b98012496e13b37e3a6658baf86"
+    },
+    {
+      "path": "EFI/OC/Resources/Font/Font_2x.bin",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "714ace8ae2e8a3d10a9ecf078b9cd4f77d5ef815",
+      "size": 1988,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/714ace8ae2e8a3d10a9ecf078b9cd4f77d5ef815"
+    },
+    {
+      "path": "EFI/OC/Resources/Font/Font_2x.png",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a06e748673e852c4a578095e970bda39dca1edb3",
+      "size": 7424,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a06e748673e852c4a578095e970bda39dca1edb3"
+    },
+    {
+      "path": "EFI/OC/Resources/Font/Terminus.hex",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d7422f70a0c5e4fffb0283189a89de6e6e03a57a",
+      "size": 51528,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d7422f70a0c5e4fffb0283189a89de6e6e03a57a"
+    },
+    {
+      "path": "EFI/OC/Resources/Font/TerminusCore.hex",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bab8976fc4d393dad174459cf52ecbac3411914c",
+      "size": 51528,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bab8976fc4d393dad174459cf52ecbac3411914c"
+    },
+    {
+      "path": "EFI/OC/Resources/Image",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "55d9e1484ecce2cd99b6f5d8fe7a7f01a9afbc20",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/55d9e1484ecce2cd99b6f5d8fe7a7f01a9afbc20"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d1ba7c254137f4634c5c967707b54318a884ebe7",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/d1ba7c254137f4634c5c967707b54318a884ebe7"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1f289378c035f6541c66018864649ddcbba3b355",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/1f289378c035f6541c66018864649ddcbba3b355"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/AppleRecv.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "54b49c90e481309d75db7e2272f3598ee60aea11",
+      "size": 98171,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/54b49c90e481309d75db7e2272f3598ee60aea11"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/AppleTM.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7acb4f3e5c3600427efbce0b8349f986fe374aa4",
+      "size": 66217,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/7acb4f3e5c3600427efbce0b8349f986fe374aa4"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d79cbe84d94a2b7c8ea0f1cf3f3087ab8641116e",
+      "size": 2552118,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d79cbe84d94a2b7c8ea0f1cf3f3087ab8641116e"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/BtnFocus.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1627a677bdf3b643ff0ec932440d30401b427348",
+      "size": 2650,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/1627a677bdf3b643ff0ec932440d30401b427348"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Cursor.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e84f19857441bcfad1a9409d96b863b3344ae4e7",
+      "size": 1262,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e84f19857441bcfad1a9409d96b863b3344ae4e7"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Dot.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "60a4c417d0a58a6bb3e74a0ab1daf077b151dfd8",
+      "size": 293,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/60a4c417d0a58a6bb3e74a0ab1daf077b151dfd8"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Enter.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "087d0502f4e9edf7e27ef6c15f4abf9246b6a03c",
+      "size": 1651,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/087d0502f4e9edf7e27ef6c15f4abf9246b6a03c"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/ExtAppleRecv.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2ec68de222ab2b5e9437e5fe00f04920c54c9ce6",
+      "size": 94546,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/2ec68de222ab2b5e9437e5fe00f04920c54c9ce6"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/ExtAppleTM.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ec13a627d5db34440800d8976b8bcae2d416a60e",
+      "size": 76078,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ec13a627d5db34440800d8976b8bcae2d416a60e"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/ExtHardDrive.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "890d769a67125c19f19313c2fe4e7399fb2f0881",
+      "size": 65723,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/890d769a67125c19f19313c2fe4e7399fb2f0881"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/FirmwareSettings.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "54b49c90e481309d75db7e2272f3598ee60aea11",
+      "size": 98171,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/54b49c90e481309d75db7e2272f3598ee60aea11"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/HardDrive.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ec8343f691a72d03fbbd4cc012a064d68744cdbc",
+      "size": 83952,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ec8343f691a72d03fbbd4cc012a064d68744cdbc"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Left.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e3a2313d88f208b03c1d6812c60b7bfeb536a786",
+      "size": 3048,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e3a2313d88f208b03c1d6812c60b7bfeb536a786"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Lock.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "499b10392bf34770cbade97408ceede2ef1d49ed",
+      "size": 2622,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/499b10392bf34770cbade97408ceede2ef1d49ed"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/NetworkBoot.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "54b49c90e481309d75db7e2272f3598ee60aea11",
+      "size": 98171,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/54b49c90e481309d75db7e2272f3598ee60aea11"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/OpticalDrive.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "79c69b79cb13d5adedbd6392dd8e12c3daba92d3",
+      "size": 85314,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/79c69b79cb13d5adedbd6392dd8e12c3daba92d3"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Password.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7a5c2c87b2794b1c56f87425ace875e679516c8b",
+      "size": 808,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/7a5c2c87b2794b1c56f87425ace875e679516c8b"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Restart.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6bc45b23ac225723e34c780b9a8e400ee9f1f160",
+      "size": 5790,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6bc45b23ac225723e34c780b9a8e400ee9f1f160"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Right.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "537a1e21ee3439653fdc301e48efaa0c46cec965",
+      "size": 3019,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/537a1e21ee3439653fdc301e48efaa0c46cec965"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Selected.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8f5915595e89926accb84189d90970ace6134921",
+      "size": 1348,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8f5915595e89926accb84189d90970ace6134921"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Selector.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "44c81a5d4f353a3896187f282e9e906888b9baf9",
+      "size": 3010,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/44c81a5d4f353a3896187f282e9e906888b9baf9"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/SetDefault.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "faa5807469488539a6760e391ee9b3bd547d16af",
+      "size": 3415,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/faa5807469488539a6760e391ee9b3bd547d16af"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Shell.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2e453d6025b551d7152fad73bbe04256e018cb2f",
+      "size": 12072,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/2e453d6025b551d7152fad73bbe04256e018cb2f"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/ShutDown.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ee11240bcba74aa478cca39af2c60fce6b9b737d",
+      "size": 6168,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ee11240bcba74aa478cca39af2c60fce6b9b737d"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Tool.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d8e13fd5cd5c7b63f4c3ab225b1f97b7d8c332ef",
+      "size": 15342,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d8e13fd5cd5c7b63f4c3ab225b1f97b7d8c332ef"
+    },
+    {
+      "path": "EFI/OC/Resources/Image/Acidanthera/GoldenGate/Windows.icns",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cc9e1ade7cb69cc4809a399ffbbba8a4f82fd011",
+      "size": 63399,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/cc9e1ade7cb69cc4809a399ffbbba8a4f82fd011"
+    },
+    {
+      "path": "EFI/OC/Resources/Label",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e2c771c389d1328d4b8fd4816cc78a78a7ddd164",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/e2c771c389d1328d4b8fd4816cc78a78a7ddd164"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Apple.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d3472659f1a875337055be91aefbf53272037266",
+      "size": 1733,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d3472659f1a875337055be91aefbf53272037266"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Apple.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5303b1c652326161a27c0191d5bfea46e8fabc3f",
+      "size": 437,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5303b1c652326161a27c0191d5bfea46e8fabc3f"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/AppleRecv.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9708b38c73ef0d5830f8a4fbe1c249b72189a3a0",
+      "size": 3917,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9708b38c73ef0d5830f8a4fbe1c249b72189a3a0"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/AppleRecv.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d11eee364f0701b0feeb25e762764d5d4197784a",
+      "size": 977,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d11eee364f0701b0feeb25e762764d5d4197784a"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/AppleTM.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cf3cdd3a590cab2390f37f3c1dbef3d9d1a5eac2",
+      "size": 3149,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/cf3cdd3a590cab2390f37f3c1dbef3d9d1a5eac2"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/AppleTM.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "887aa2666ffcf88eda6e07f04bb8bd3bc20baad9",
+      "size": 785,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/887aa2666ffcf88eda6e07f04bb8bd3bc20baad9"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/EFIBoot.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6fe16555a879dede12510c701782926646ddd1d6",
+      "size": 1997,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6fe16555a879dede12510c701782926646ddd1d6"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/EFIBoot.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "28f1a3130113e2c47e2e8bd146adebea096b8dff",
+      "size": 497,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/28f1a3130113e2c47e2e8bd146adebea096b8dff"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/FirmwareSettings.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "743de65f4d4f6c312f93c8def3ce627260f39e20",
+      "size": 3989,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/743de65f4d4f6c312f93c8def3ce627260f39e20"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/FirmwareSettings.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9a644060631eb5c37ce891291893923f04efc154",
+      "size": 1001,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9a644060631eb5c37ce891291893923f04efc154"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/NetworkBoot.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b9553d37a1a2dc97c200ed8c9d4a186ff4c6f198",
+      "size": 2885,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b9553d37a1a2dc97c200ed8c9d4a186ff4c6f198"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/NetworkBoot.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b0f3294d8628112da0c45834f8bbf2280bd01682",
+      "size": 725,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b0f3294d8628112da0c45834f8bbf2280bd01682"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Other.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ee054304f6e08160bfe6083d969a39f47e9743f9",
+      "size": 2165,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ee054304f6e08160bfe6083d969a39f47e9743f9"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Other.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "be76830c62bdd4c3c6c581c41045437ef01d0666",
+      "size": 545,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/be76830c62bdd4c3c6c581c41045437ef01d0666"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/ResetNVRAM.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "37c94252e00911c86eb84e4bfa3a072472ecb772",
+      "size": 3221,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/37c94252e00911c86eb84e4bfa3a072472ecb772"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/ResetNVRAM.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d64bd591c5cde8d7e69e0d79294d7f7398fb28d8",
+      "size": 809,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d64bd591c5cde8d7e69e0d79294d7f7398fb28d8"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/SIPDisabled.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "73293baab4bdc385b52c708e53973d405b3e57bd",
+      "size": 4781,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/73293baab4bdc385b52c708e53973d405b3e57bd"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/SIPDisabled.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6a16cf9dd3c643ef9f5273df5b8b40220616e13d",
+      "size": 1193,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6a16cf9dd3c643ef9f5273df5b8b40220616e13d"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/SIPEnabled.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "41faffa59c29ceb8135e5abe61e8f19db915ace9",
+      "size": 4661,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/41faffa59c29ceb8135e5abe61e8f19db915ace9"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/SIPEnabled.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "c943e6a84ffa3a37f47dbadfd324235021bd23a0",
+      "size": 1169,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c943e6a84ffa3a37f47dbadfd324235021bd23a0"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Shell.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4193b25792a656b918d1152b1746f65dae9f567b",
+      "size": 2405,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/4193b25792a656b918d1152b1746f65dae9f567b"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Shell.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "06dc4ac40ec947288440042fbe3366111178e5d4",
+      "size": 605,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/06dc4ac40ec947288440042fbe3366111178e5d4"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Tool.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9eb557af975ef174ede346b8c3459dfba66ec408",
+      "size": 1037,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9eb557af975ef174ede346b8c3459dfba66ec408"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Tool.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4ca11ce446f28f83863b1fe8a4b2a65a0384c610",
+      "size": 257,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/4ca11ce446f28f83863b1fe8a4b2a65a0384c610"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Windows.l2x",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "87b014e03ed0d66772927623ea3c217f09520c42",
+      "size": 2117,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/87b014e03ed0d66772927623ea3c217f09520c42"
+    },
+    {
+      "path": "EFI/OC/Resources/Label/Windows.lbl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "be97d8692c6fc623d8509e5ea57b5468111e74b5",
+      "size": 533,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/be97d8692c6fc623d8509e5ea57b5468111e74b5"
+    },
+    {
+      "path": "EFI/OC/config-install.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a45781d25798cc29fb425c59bcf5821606fbcaa9",
+      "size": 43903,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a45781d25798cc29fb425c59bcf5821606fbcaa9"
+    },
+    {
+      "path": "EFI/OC/config.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "13a3d6f4666467520864b250dcf0c755a42494de",
+      "size": 44152,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/13a3d6f4666467520864b250dcf0c755a42494de"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6c03929348421c683e693834ff837b67a1ae6781",
+      "size": 10051,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6c03929348421c683e693834ff837b67a1ae6781"
+    },
+    {
+      "path": "NOTICE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90fac268dc5d1be6724a8f4e16548f42c2ff9811",
+      "size": 1037,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/90fac268dc5d1be6724a8f4e16548f42c2ff9811"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59bfe27afe48fd43300d1656afdd2497cdc32028",
+      "size": 6745,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/59bfe27afe48fd43300d1656afdd2497cdc32028"
+    },
+    {
+      "path": "README.pt-BR.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1d1f411b4b029f506f7ba26410e61e388582e05",
+      "size": 3212,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d1d1f411b4b029f506f7ba26410e61e388582e05"
+    },
+    {
+      "path": "acpi",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3f403fc24e4739a8d5d8ea337c3af1a12d26d181",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/3f403fc24e4739a8d5d8ea337c3af1a12d26d181"
+    },
+    {
+      "path": "acpi/SSDT-XPS-I2C.dsl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba5c63b550cee471a656f26fd65f0a4c4b02abff",
+      "size": 1322,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ba5c63b550cee471a656f26fd65f0a4c4b02abff"
+    },
+    {
+      "path": "build-nootedgreen.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6585a58d03dc0075c08c78a79cdaee53a7580506",
+      "size": 2969,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6585a58d03dc0075c08c78a79cdaee53a7580506"
+    },
+    {
+      "path": "build-voodoogpio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69034c9624b99628d5cef6e7e5d16d6d4dc1755",
+      "size": 3203,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e69034c9624b99628d5cef6e7e5d16d6d4dc1755"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "75fc332f0f59053a98ec8f045c5d05d2f0e195e8",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/75fc332f0f59053a98ec8f045c5d05d2f0e195e8"
+    },
+    {
+      "path": "docs/CATALOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d71a8dae0a93637af02d0a772c3747faeec7f99",
+      "size": 238522,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8d71a8dae0a93637af02d0a772c3747faeec7f99"
+    },
+    {
+      "path": "docs/DEBUGGING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f471573e322b79a9584dd14856bf3734dd2cefef",
+      "size": 2536,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/f471573e322b79a9584dd14856bf3734dd2cefef"
+    },
+    {
+      "path": "docs/EXPERIMENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73a68cb86a5131e69385ba4f23e76e7101876863",
+      "size": 24297,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/73a68cb86a5131e69385ba4f23e76e7101876863"
+    },
+    {
+      "path": "docs/HISTORY.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3ed4b84b4f6c9bdc5804738d09bddaa2997d429",
+      "size": 93177,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c3ed4b84b4f6c9bdc5804738d09bddaa2997d429"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f84273361d6dcea38affb50df88f2a173e362ec",
+      "size": 3755,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/7f84273361d6dcea38affb50df88f2a173e362ec"
+    },
+    {
+      "path": "docs/KERNEL-PATCHES.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0293c36c4658b85b6ad778898a8cd4d08939a62c",
+      "size": 7629,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/0293c36c4658b85b6ad778898a8cd4d08939a62c"
+    },
+    {
+      "path": "docs/METAL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3dcc1689d3b4f306c6765d094ef1cd7822159f1",
+      "size": 6350,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c3dcc1689d3b4f306c6765d094ef1cd7822159f1"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84f1061ba0104ca5bf099eab26f4fa8c2616d871",
+      "size": 2669,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/84f1061ba0104ca5bf099eab26f4fa8c2616d871"
+    },
+    {
+      "path": "install.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8825e79500c2b84ebc0c7439bf10b76e85c8c5b",
+      "size": 4384,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b8825e79500c2b84ebc0c7439bf10b76e85c8c5b"
+    },
+    {
+      "path": "macos",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dbb2f5a22ecc43aacdfd81586f7a7e186bc3f012",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/dbb2f5a22ecc43aacdfd81586f7a7e186bc3f012"
+    },
+    {
+      "path": "macos/build-all.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f3be05149135a497df6cf3f0cdde7d766a12a2f",
+      "size": 1114,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5f3be05149135a497df6cf3f0cdde7d766a12a2f"
+    },
+    {
+      "path": "macos/build-shader-compiler.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abc0e565caa870cdf709a81a9e9b4c9087c3e870",
+      "size": 4236,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/abc0e565caa870cdf709a81a9e9b4c9087c3e870"
+    },
+    {
+      "path": "macos/install-macos.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0e7bdaec85125341cb956c4e45e7c3fa5561bf5",
+      "size": 2663,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e0e7bdaec85125341cb956c4e45e7c3fa5561bf5"
+    },
+    {
+      "path": "macos/mtl17-patches.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8d423cbf484ac00e9db846faa91aa2e2db771f5",
+      "size": 1366,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b8d423cbf484ac00e9db846faa91aa2e2db771f5"
+    },
+    {
+      "path": "macos/patch-mtl17.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06ae9bfe922ce9a096f03f4ebcfebec776a548db",
+      "size": 3033,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/06ae9bfe922ce9a096f03f4ebcfebec776a548db"
+    },
+    {
+      "path": "macos/plugin-old-patches.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d9ad95dc5099ba33de52d16d08246c820b9fb17",
+      "size": 4341,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/2d9ad95dc5099ba33de52d16d08246c820b9fb17"
+    },
+    {
+      "path": "macos/src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "23548d35f9438bc0297fff07d95277ff2714a959",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/23548d35f9438bc0297fff07d95277ff2714a959"
+    },
+    {
+      "path": "macos/src/compiler-adapter.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f11cb674f9010ffe11da56a9d538216ee4fd732c",
+      "size": 8456,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/f11cb674f9010ffe11da56a9d538216ee4fd732c"
+    },
+    {
+      "path": "macos/src/libxedrv.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e6ea727f824c7328b8573ae73d29899b1176101",
+      "size": 32743,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/0e6ea727f824c7328b8573ae73d29899b1176101"
+    },
+    {
+      "path": "macos/src/llvm-bridge.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33dce16574fe5ac4c1303b25198cb5cef9ed7077",
+      "size": 8661,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/33dce16574fe5ac4c1303b25198cb5cef9ed7077"
+    },
+    {
+      "path": "macos/vadriver",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "81831ed7f03c1733b05ade59a7b32b70a3765dd3",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/81831ed7f03c1733b05ade59a7b32b70a3765dd3"
+    },
+    {
+      "path": "macos/vadriver/patch-vadriver.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2366ab1a7f2575c18d183ab14b8ec68abfda7423",
+      "size": 1901,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/2366ab1a7f2575c18d183ab14b8ec68abfda7423"
+    },
+    {
+      "path": "macos/vadriver/patch_nodes.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a3efe3925e99eb28ca0f55887852ff3d1c78130",
+      "size": 1759,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5a3efe3925e99eb28ca0f55887852ff3d1c78130"
+    },
+    {
+      "path": "make-efi.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e8dbcb1318f231fded993e0a8aad1fd9871e9cd",
+      "size": 2510,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/3e8dbcb1318f231fded993e0a8aad1fd9871e9cd"
+    },
+    {
+      "path": "patches",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "79640670c6940141954136143a8f51aeb60b5f05",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/79640670c6940141954136143a8f51aeb60b5f05"
+    },
+    {
+      "path": "patches/nootedgreen-vs-upstream-95f8189.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6b605fa85f9ee944461b2a0863e2b6b9ea36bb4",
+      "size": 123120,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d6b605fa85f9ee944461b2a0863e2b6b9ea36bb4"
+    },
+    {
+      "path": "patches/voodoogpio-tigerlakelp-start.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62601c3f730bbff82bfe122f3b6454b5bddf611d",
+      "size": 493,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/62601c3f730bbff82bfe122f3b6454b5bddf611d"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "287d74365422e3bc1cf951666804d5fd5b4e2d63",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/287d74365422e3bc1cf951666804d5fd5b4e2d63"
+    },
+    {
+      "path": "src/LICENSE-NootedGreen",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6c03929348421c683e693834ff837b67a1ae6781",
+      "size": 10051,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6c03929348421c683e693834ff837b67a1ae6781"
+    },
+    {
+      "path": "src/NootedGreen",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "149b25672b2bef479f609772dbb5a9cdd2210f3d",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/149b25672b2bef479f609772dbb5a9cdd2210f3d"
+    },
+    {
+      "path": "src/NootedGreen/AppleIntelParams.hpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b42dd6fe7e450e01fc75e53ba391b4b75f204857",
+      "size": 42484,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b42dd6fe7e450e01fc75e53ba391b4b75f204857"
+    },
+    {
+      "path": "src/NootedGreen/DYLDPatches.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "85f865fb915de9e6a89b6807f7bac7f08f4cf0e1",
+      "size": 20320,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/85f865fb915de9e6a89b6807f7bac7f08f4cf0e1"
+    },
+    {
+      "path": "src/NootedGreen/DYLDPatches.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d1e367a05d1ac2c9cc77d092e3382b4a33c9fe82",
+      "size": 16866,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d1e367a05d1ac2c9cc77d092e3382b4a33c9fe82"
+    },
+    {
+      "path": "src/NootedGreen/DisplayMergeNub.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "44818cc5c10f202536c5aee35b69e193352e103b",
+      "size": 12316,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/44818cc5c10f202536c5aee35b69e193352e103b"
+    },
+    {
+      "path": "src/NootedGreen/DisplayMergeNub.h",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5f954e61d1ea58e9f35115973bf51ca415d7d962",
+      "size": 545,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5f954e61d1ea58e9f35115973bf51ca415d7d962"
+    },
+    {
+      "path": "src/NootedGreen/Firmware.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bc1c6f441f110898074e4607a8ddb17bd7397dfc",
+      "size": 57689,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bc1c6f441f110898074e4607a8ddb17bd7397dfc"
+    },
+    {
+      "path": "src/NootedGreen/Firmware.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e64ea7d1e991bd00b2134cb79dd2af966098b9d5",
+      "size": 355,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e64ea7d1e991bd00b2134cb79dd2af966098b9d5"
+    },
+    {
+      "path": "src/NootedGreen/FirmwareADLP.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b21d5b0629997b44066454375d709bf92e29fe11",
+      "size": 75283,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b21d5b0629997b44066454375d709bf92e29fe11"
+    },
+    {
+      "path": "src/NootedGreen/HDMI.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a6a3f7b3e77b4e7580c0e7f4eb9780e2e213c904",
+      "size": 4630,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a6a3f7b3e77b4e7580c0e7f4eb9780e2e213c904"
+    },
+    {
+      "path": "src/NootedGreen/HDMI.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a02e9dd0e0d7b01a5a10a13defde434f9bd835bc",
+      "size": 4315,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a02e9dd0e0d7b01a5a10a13defde434f9bd835bc"
+    },
+    {
+      "path": "src/NootedGreen/IGGucBinary.h",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "46ef7184671c574394c79071cf4644760aac3a3c",
+      "size": 203120,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/46ef7184671c574394c79071cf4644760aac3a3c"
+    },
+    {
+      "path": "src/NootedGreen/IGHucBinary.h",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7634583a61837e097e98a4fd738cd28bcbb256e3",
+      "size": 43013,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/7634583a61837e097e98a4fd738cd28bcbb256e3"
+    },
+    {
+      "path": "src/NootedGreen/Info.plist",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e291589e6804eb7a43758dd14e29f864f95892b0",
+      "size": 3745,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e291589e6804eb7a43758dd14e29f864f95892b0"
+    },
+    {
+      "path": "src/NootedGreen/IntelDPLinkTraining.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "529c99c780a5a1e15ec7dea2c68c31201bf078b2",
+      "size": 9862,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/529c99c780a5a1e15ec7dea2c68c31201bf078b2"
+    },
+    {
+      "path": "src/NootedGreen/IntelDPLinkTraining.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "64a8728185ee17d676fb8653dcb78ee9efb6b162",
+      "size": 15343,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/64a8728185ee17d676fb8653dcb78ee9efb6b162"
+    },
+    {
+      "path": "src/NootedGreen/kern_gen11.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "dd5bbd3eeb64d6fcc87523a0a2a487b31d704c99",
+      "size": 552791,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/dd5bbd3eeb64d6fcc87523a0a2a487b31d704c99"
+    },
+    {
+      "path": "src/NootedGreen/kern_gen11.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1c4c11ce510645fe292ffb1de9dea67af755a5b5",
+      "size": 86118,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/1c4c11ce510645fe292ffb1de9dea67af755a5b5"
+    },
+    {
+      "path": "src/NootedGreen/kern_genx.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e819e9d6a2e9c7be262ce2316084434d87582c1c",
+      "size": 24396,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e819e9d6a2e9c7be262ce2316084434d87582c1c"
+    },
+    {
+      "path": "src/NootedGreen/kern_genx.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bcc9484b080b4407fc6dbc323be06db18c3c8d52",
+      "size": 3652,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bcc9484b080b4407fc6dbc323be06db18c3c8d52"
+    },
+    {
+      "path": "src/NootedGreen/kern_green.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b1b6831f42b5d8b898839ef636c71d4c3e1cee06",
+      "size": 35934,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b1b6831f42b5d8b898839ef636c71d4c3e1cee06"
+    },
+    {
+      "path": "src/NootedGreen/kern_green.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ea781c1db25d55f43e927c3d3236a54bb36a6bb1",
+      "size": 10460,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ea781c1db25d55f43e927c3d3236a54bb36a6bb1"
+    },
+    {
+      "path": "src/NootedGreen/kern_model.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9b9e1e9557595490aacb36a3d23c0e0c5f82f1da",
+      "size": 4690,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/9b9e1e9557595490aacb36a3d23c0e0c5f82f1da"
+    },
+    {
+      "path": "src/NootedGreen/kern_netdbg.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "560217278fa516141a10ceb19880a7e0dee326a6",
+      "size": 2884,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/560217278fa516141a10ceb19880a7e0dee326a6"
+    },
+    {
+      "path": "src/NootedGreen/kern_netdbg.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ed026c960d269d73fc5c86af579f3b3ef4132af8",
+      "size": 625,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ed026c960d269d73fc5c86af579f3b3ef4132af8"
+    },
+    {
+      "path": "src/NootedGreen/kern_patcherplus.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b4d0e8c8e22fb180077bfcbcfee7e19eae87e416",
+      "size": 3442,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b4d0e8c8e22fb180077bfcbcfee7e19eae87e416"
+    },
+    {
+      "path": "src/NootedGreen/kern_patcherplus.hpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e0ea341e35bd6b2dc8f9f1b24382650003270f7c",
+      "size": 5698,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/e0ea341e35bd6b2dc8f9f1b24382650003270f7c"
+    },
+    {
+      "path": "src/NootedGreen/kern_start.cpp",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "926126a0f550d3a813912079143da48dcc500ed9",
+      "size": 1877,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/926126a0f550d3a813912079143da48dcc500ed9"
+    },
+    {
+      "path": "tools",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2edd5d7d623a7a2464066bb1bf4fb7ab752db336",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/2edd5d7d623a7a2464066bb1bf4fb7ab752db336"
+    },
+    {
+      "path": "tools/XeShim",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3d6a3ccecad7ac948a68507065040819e632b737",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/3d6a3ccecad7ac948a68507065040819e632b737"
+    },
+    {
+      "path": "tools/XeShim/Info.plist",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85f1acfc8bffe5034d6471dc5ea50b2989a0de54",
+      "size": 1391,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/85f1acfc8bffe5034d6471dc5ea50b2989a0de54"
+    },
+    {
+      "path": "tools/XeShim/XeShim.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55dfb70f52e887f1f0ba0a24e99644038856c28b",
+      "size": 14476,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/55dfb70f52e887f1f0ba0a24e99644038856c28b"
+    },
+    {
+      "path": "tools/build-blackhole.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8690bcfe3a717a49886922f622a1c8b4ac46943f",
+      "size": 1341,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/8690bcfe3a717a49886922f622a1c8b4ac46943f"
+    },
+    {
+      "path": "tools/build-kext.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c0d720d4032740b4d9dfc2a8df83d9f16e8468a",
+      "size": 1641,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/1c0d720d4032740b4d9dfc2a8df83d9f16e8468a"
+    },
+    {
+      "path": "tools/diagnostics",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b75919f4d02dec37d2fcec540e34c6a9e7908ea9",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/b75919f4d02dec37d2fcec540e34c6a9e7908ea9"
+    },
+    {
+      "path": "tools/diagnostics/gpu-tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3a0521a2a95d765984ac477386cdfd52d0c3c59c",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/3a0521a2a95d765984ac477386cdfd52d0c3c59c"
+    },
+    {
+      "path": "tools/diagnostics/gpu-tests/xe-tex-tests.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6e0ae5ef044592d2dc59d2171ccf9b9cbb4afa4",
+      "size": 12068,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d6e0ae5ef044592d2dc59d2171ccf9b9cbb4afa4"
+    },
+    {
+      "path": "tools/diagnostics/gpu-tests/xe-tex-tests.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b577a71c78e54340bd8d82d1dadd8ba7d6b21b63",
+      "size": 1731,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b577a71c78e54340bd8d82d1dadd8ba7d6b21b63"
+    },
+    {
+      "path": "tools/diagnostics/gpu-tests/xe-vactx.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24718e545709fc350d66763dcff02fb56f2184fc",
+      "size": 1682,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/24718e545709fc350d66763dcff02fb56f2184fc"
+    },
+    {
+      "path": "tools/diagnostics/gpu-tests/xe-video-check.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b7b9bf16c1fa6f64a40dfda7c1dff6c91741d2e",
+      "size": 3356,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/0b7b9bf16c1fa6f64a40dfda7c1dff6c91741d2e"
+    },
+    {
+      "path": "tools/diagnostics/gpu-tests/xe-vtdec.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "246db687198a45a39f576a0ebfdcfff324d35f7b",
+      "size": 4185,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/246db687198a45a39f576a0ebfdcfff324d35f7b"
+    },
+    {
+      "path": "tools/diagnostics/kcdis.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1daab06f04979775abf0f2f1907d281e7c7ab43d",
+      "size": 1574,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/1daab06f04979775abf0f2f1907d281e7c7ab43d"
+    },
+    {
+      "path": "tools/diagnostics/kcsyms.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3210582724e70d17a44266e2eca0c16d394d8f77",
+      "size": 932,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/3210582724e70d17a44266e2eca0c16d394d8f77"
+    },
+    {
+      "path": "tools/diagnostics/mtl-diff.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4465c2059ce0d9b0f6e1f1ea684666ae62c92b97",
+      "size": 1069,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/4465c2059ce0d9b0f6e1f1ea684666ae62c92b97"
+    },
+    {
+      "path": "tools/diagnostics/shutdown-watch",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e3d11bac454f63c34ef039be8c09657af2d31a99",
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/trees/e3d11bac454f63c34ef039be8c09657af2d31a99"
+    },
+    {
+      "path": "tools/diagnostics/shutdown-watch/instalar.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bf4fb2e0ca1ddac8f75c8bc11dd32b05038a792",
+      "size": 908,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/3bf4fb2e0ca1ddac8f75c8bc11dd32b05038a792"
+    },
+    {
+      "path": "tools/diagnostics/shutdown-watch/local.xe.shutdownwatch.plist",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9dfcb7099c00c3d172b0cfa66226e63bcd11ac5",
+      "size": 461,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c9dfcb7099c00c3d172b0cfa66226e63bcd11ac5"
+    },
+    {
+      "path": "tools/diagnostics/shutdown-watch/xe-shutdown-watch.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00fe88b926c06200e0942324e9dd65851ad9c6a6",
+      "size": 2016,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/00fe88b926c06200e0942324e9dd65851ad9c6a6"
+    },
+    {
+      "path": "tools/diagnostics/xe-atlastest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0786454ae97c7e3cabc43c40e4e65060049d3d17",
+      "size": 3019,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/0786454ae97c7e3cabc43c40e4e65060049d3d17"
+    },
+    {
+      "path": "tools/diagnostics/xe-bufoff.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc38ad313461751458636ffec8e7bdb90a33ff8d",
+      "size": 4224,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/fc38ad313461751458636ffec8e7bdb90a33ff8d"
+    },
+    {
+      "path": "tools/diagnostics/xe-carender.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2b30306085c0d01f6806d6df4b9834d430d2cf4",
+      "size": 4679,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c2b30306085c0d01f6806d6df4b9834d430d2cf4"
+    },
+    {
+      "path": "tools/diagnostics/xe-encspy.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be5dfd2d5ed1cd42080de6d033b32e19bfa7770c",
+      "size": 11046,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/be5dfd2d5ed1cd42080de6d033b32e19bfa7770c"
+    },
+    {
+      "path": "tools/diagnostics/xe-f16test.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6c65c9ac3381b747131d28a588b2e46cd661580",
+      "size": 3329,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/f6c65c9ac3381b747131d28a588b2e46cd661580"
+    },
+    {
+      "path": "tools/diagnostics/xe-fbfetch.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa989dfb6d7f3872016c5f711b09463d38c5efc9",
+      "size": 3156,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/fa989dfb6d7f3872016c5f711b09463d38c5efc9"
+    },
+    {
+      "path": "tools/diagnostics/xe-icontest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45c72528e14c9868efc97bb78e43cee0fbbb4a8e",
+      "size": 1976,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/45c72528e14c9868efc97bb78e43cee0fbbb4a8e"
+    },
+    {
+      "path": "tools/diagnostics/xe-layertest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62dc7fb9b3fc469bb249eff4506895925d942c70",
+      "size": 8757,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/62dc7fb9b3fc469bb249eff4506895925d942c70"
+    },
+    {
+      "path": "tools/diagnostics/xe-miptest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb57568c8a87a33de0b94620438b60e06f4f2c73",
+      "size": 3738,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/bb57568c8a87a33de0b94620438b60e06f4f2c73"
+    },
+    {
+      "path": "tools/diagnostics/xe-modeset-diag.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "218df942e86ed53d4114bf1e5c169dc8d062d9b0",
+      "size": 2953,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/218df942e86ed53d4114bf1e5c169dc8d062d9b0"
+    },
+    {
+      "path": "tools/diagnostics/xe-nocopyfix.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d596745ef8625092b4fea659b3bd67171014daec",
+      "size": 3159,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d596745ef8625092b4fea659b3bd67171014daec"
+    },
+    {
+      "path": "tools/diagnostics/xe-nofetch.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "788b68b3d96a6314ae0b3d307eec6b4bd8995e62",
+      "size": 1112,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/788b68b3d96a6314ae0b3d307eec6b4bd8995e62"
+    },
+    {
+      "path": "tools/diagnostics/xe-panic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "826c2b3126e44734a4f7613294c345629845e193",
+      "size": 1754,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/826c2b3126e44734a4f7613294c345629845e193"
+    },
+    {
+      "path": "tools/diagnostics/xe-pbtest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "118fbc50f918766d941cf360bba5e67a940ecdbb",
+      "size": 1608,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/118fbc50f918766d941cf360bba5e67a940ecdbb"
+    },
+    {
+      "path": "tools/diagnostics/xe-sleep-diag.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4ef0e3de20d5270db49f891777847850f721ef25",
+      "size": 2058,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/4ef0e3de20d5270db49f891777847850f721ef25"
+    },
+    {
+      "path": "tools/diagnostics/xe-vatrace.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ece7347ee7615ea77e87ef923a7c3cb8e453aaa3",
+      "size": 15603,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/ece7347ee7615ea77e87ef923a7c3cb8e453aaa3"
+    },
+    {
+      "path": "tools/diagnostics/xe-vfmttest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22f8efcdab347ebea067ff4ffb1c1ec4d3ea78f5",
+      "size": 4671,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/22f8efcdab347ebea067ff4ffb1c1ec4d3ea78f5"
+    },
+    {
+      "path": "tools/diagnostics/xe-vttest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "614790bab0b12bbb162a6f7c275bc030de22b749",
+      "size": 6432,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/614790bab0b12bbb162a6f7c275bc030de22b749"
+    },
+    {
+      "path": "tools/diagnostics/xe-xfertest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5714812d87619f47072722493d3db3896f84ad7e",
+      "size": 1302,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/5714812d87619f47072722493d3db3896f84ad7e"
+    },
+    {
+      "path": "tools/diagnostics/xe-xrtest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5bc47fc52b0505372072748c150fdaa4a1ce602",
+      "size": 2839,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/c5bc47fc52b0505372072748c150fdaa4a1ce602"
+    },
+    {
+      "path": "tools/diagnostics/xe-yuvtest.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b87b9af8b47fec715b38a5267e873bb40978d56f",
+      "size": 3167,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/b87b9af8b47fec715b38a5267e873bb40978d56f"
+    },
+    {
+      "path": "tools/xe-brilho.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a220d3c991f64f81f4c6b00f19e95ab010c186af",
+      "size": 5993,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/a220d3c991f64f81f4c6b00f19e95ab010c186af"
+    },
+    {
+      "path": "tools/xe-perfil.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30e6d3634429f89325235043d257e71763754917",
+      "size": 1358,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/30e6d3634429f89325235043d257e71763754917"
+    },
+    {
+      "path": "tools/xe-res.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "597868242eb65b8023ed19cc250a95f484b4a620",
+      "size": 3796,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/597868242eb65b8023ed19cc250a95f484b4a620"
+    },
+    {
+      "path": "tools/xe.h",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f3d187ef3115671085467206f28f1d6de67933c",
+      "size": 686,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/6f3d187ef3115671085467206f28f1d6de67933c"
+    },
+    {
+      "path": "tools/xectl.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3f19e18ee31f525392444cf1502620196659a3a",
+      "size": 8435,
+      "url": "https://api.github.com/repos/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe/git/blobs/d3f19e18ee31f525392444cf1502620196659a3a"
+    }
+  ],
+  "truncated": false
+}

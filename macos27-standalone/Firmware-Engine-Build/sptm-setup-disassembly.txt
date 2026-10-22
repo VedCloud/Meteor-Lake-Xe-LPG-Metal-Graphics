@@ -1,0 +1,21 @@
+0xfffffff0270af000:  9f 10 10 d5   msr	oslar_el1, xzr
+0xfffffff0270af004:  df 4f 03 d5   msr	daifset, #0xf
+0xfffffff0270af008:  f4 03 00 aa   mov	x20, x0
+0xfffffff0270af00c:  e5 03 1f aa   mov	x5, xzr
+0xfffffff0270af010:  80 02 40 f9   ldr	x0, [x20]
+0xfffffff0270af014:  1f 0c 00 f1   cmp	x0, #0x3
+0xfffffff0270af018:  4b 02 00 54   b.lt	0xfffffff0270af060
+0xfffffff0270af01c:  85 42 42 f9   ldr	x5, [x20, #0x480]
+0xfffffff0270af020:  05 02 00 b4   cbz	x5, 0xfffffff0270af060
+0xfffffff0270af024:  e6 03 05 aa   mov	x6, x5
+0xfffffff0270af028:  07 f8 82 d2   mov	x7, #0x17c0
+0xfffffff0270af02c:  df 7c 81 a8   stp	xzr, xzr, [x6], #0x10
+0xfffffff0270af030:  e7 40 00 f1   subs	x7, x7, #0x10
+0xfffffff0270af034:  c1 ff ff 54   b.ne	0xfffffff0270af02c
+0xfffffff0270af038:  00 00 e0 f2   movk	x0, #0, lsl #0x30
+0xfffffff0270af03c:  00 00 c0 f2   movk	x0, #0, lsl #0x20
+0xfffffff0270af040:  80 aa a9 f2   movk	x0, #0x4d54, lsl #0x10
+0xfffffff0270af044:  60 0a 8a f2   movk	x0, #0x5053
+0xfffffff0270af048:  a0 00 00 f9   str	x0, [x5]
+0xfffffff0270af04c:  00 00 e0 f2   movk	x0, #0, lsl #0x30
+

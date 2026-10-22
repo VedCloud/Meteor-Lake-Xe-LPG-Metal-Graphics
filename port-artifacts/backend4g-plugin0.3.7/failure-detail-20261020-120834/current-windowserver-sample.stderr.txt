@@ -1,0 +1,3 @@
+Sampling process 163 for 3 seconds with 10 milliseconds of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 163 written to file /Volumes/SEQOUIA/iGPU-Port/Desktop/reports/failure-detail-20261020-120834/current-windowserver-sample.txt

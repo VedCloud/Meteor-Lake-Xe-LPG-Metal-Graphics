@@ -1,0 +1,11 @@
+{
+  "upstream": "https://github.com/seemoo-lab/owl",
+  "commit": "0ee3263f944ea721c355f826aa90d636d012a512",
+  "privatePatch": "radio-wire-alignment.patch",
+  "patchedSourceSHA256": {
+    "src/wire.c": "559e1b7012b9753bb158dd01e7dc676ea7adea5be6e8e227503511494884fd7f",
+    "src/tx.c": "46ca423a0592bd69b4fcabf3b5acc04469fdf1e0a2adbd5b4052b4b5e8f733ee",
+    "src/rx.c": "132fe73015a37f3511f282ad86bb8a7c1e31c41c63227cedfa24a31949041e11"
+  },
+  "license": "GPL-3.0-or-later; radiotap BSD"
+}

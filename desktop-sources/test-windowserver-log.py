@@ -29,6 +29,11 @@ post='''int main(void){
  for(int i=0;i<24;i++)nvlog("vk: repeated FAIL %d",i);assert(output==before+16);
  before=output;nvlog("memory-report0.3.6: heap 0 bytes 8589934592 flags 1");assert(output==before+1);
  before=output;nvlog("pipeline-cache0.3.7: graphics result=0 elapsed_us=200 cache=1");assert(output==before+1);
+ before=output;nvlog("publication0.3.15: surface=1 staged=1 prepare_ms=5 iosurface_lock_ms=0");assert(output==before+1);
+ before=output;nvlog("glyph-layout0.3.15: process=Weather fmt=10 pitch=128");assert(output==before+1);
+ before=output;nvlog("ordinary per-draw detail");assert(output==before);
+ before=output;for(int i=0;i<64;i++)nvlog("publication0.3.15: bounded fixture %d",i);assert(output==before+64);
+ before=output;for(int i=0;i<32;i++)nvlog("glyph-layout0.3.15: bounded fixture %d",i);assert(output==before+32);
  puts("PASS actual release logger: all24 finite desktop submissions survive site throttle,256-stage cap, non-WindowServer trace disabled, application/failure throttling preserved; no file-write path");}
 '''
 with tempfile.TemporaryDirectory() as d:

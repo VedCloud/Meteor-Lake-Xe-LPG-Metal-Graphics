@@ -1,0 +1,101 @@
+{
+  "baseline_checkpoint": "usable-desktop-real-memory-0.2.5-20261019-232025",
+  "gpu": {
+    "baseline": "usable-desktop-real-memory-0.2.5-20261019-232025",
+    "backend_heap_cap_bytes": 4294967296,
+    "scope": "Darwin integrated 8086:7d45, min(normal ANV shared heap,4GiB), per physical-device heap/allocation accounting; not a physical reservation or kernel-wide aggregate RAM quota",
+    "backend_sha256": "0061729e94f341dbecb2e6d2bcc5b8416d3b7bd3c077143ff292ca22b149152e",
+    "plugin_version": "0.3.7",
+    "plugin_sha256": "df48a79c1a43cbb9617426bd0d59316429e2b8ed613d800fb6e3bb990361a366",
+    "plugin_uuid": "1CFB311D-A260-334C-8B6F-1BAAA6EF62C4",
+    "reporting": "existing reporter queries actual backend heap; GPU name remains automatic",
+    "allocator_enforced": true,
+    "pipeline_cache": "one device-lifetime cache only in integrated MTL WindowServer; default internally synchronized flags; failed cache creation retains uncached path; command pools remain fresh",
+    "build": "ANV incremental cross-build/link pass; three plugin variants pass",
+    "local_tests": [
+      "actual ANV heap policy and allocation prefix ASan/UBSan: scope,4GiB boundary,current usage,page rounding,integer-wrap rejection",
+      "actual pipeline cache helper ASan/UBSan: default synchronization flags,owner device,existing explicit cache,disabled/creation-failed fallback",
+      "release logging pass",
+      "installer backend replacement/readback/signature failure rollback fixtures pass",
+      "loader active/fallback/reporting-failure isolation and early/late samples pass",
+      "collector crash/panic retention fixture pass"
+    ],
+    "external_symbols": "backend exports/imports unchanged; plugin old exports retained, no added external imports",
+    "hardware_cap_verified": false,
+    "smoothness_improvement_verified": false,
+    "full_gpu_suite_rerun": false
+  },
+  "touchpad": {
+    "controller": "8086:7e7b subsystem1028:0cb6 PCI00:15.3",
+    "device": "ELAN04f3:328e, ACPI _SB.PC00.I2C3.TPD0",
+    "extension": "LatitudeI2CMeteorLake1.0.0",
+    "sha256": "f04a8d24d370397681487286899ab535261a4177f3fab8ceac47e50aed74f9b1",
+    "upstream": "https://github.com/watchthelight-labs/LegionI2CArrowLake",
+    "upstream_revision": "15ebc45d2e5aa63eebaff01a736acd402a7c3de1",
+    "adaptation": "Current USB binary lacks upstream PCILakeController; tiny subclass links to existing VoodooI2CPCIController, discovers PM capability and verifies D0; exact Dell ID/subsystem and Linux bxt timing; polling scoped to PCI15.3",
+    "acpi": {
+      "source_sha256": "42d65940f44de1482427a022f254e86c9f5c5b40b360418c4aefbc33facec063",
+      "patched_sha256": "0ec22912c7393a60532960ed04dacfb0662f85cf4b453848091c400849548ace",
+      "table_length_unchanged": true,
+      "checksum_zero": true,
+      "scoped_device": "_SB.PC00.I2C3.TPD0",
+      "method_renames": [
+        {
+          "offset": 541559,
+          "old": "_DSM",
+          "new": "XDSM"
+        },
+        {
+          "offset": 541675,
+          "old": "_CRS",
+          "new": "XCRS"
+        }
+      ],
+      "changed_offsets": [
+        9,
+        541559,
+        541675
+      ],
+      "new_methods": "_DSM returns firmware TPDH directly for HID descriptor; _CRS concatenates firmware SBFB and SBFI, polling controller avoids GPIO routing; _STA and _INI untouched",
+      "hardware_verified": false
+    },
+    "config": {
+      "baseline": "usable-desktop-real-memory-0.2.5-20261019-232025",
+      "semantic_changes": [
+        "one scoped I2C3 controller kext",
+        "one TPD0 SSDT",
+        "force-polling only on PCI15.3"
+      ],
+      "all_enabled_kext_paths_valid": true,
+      "single_voodoo_input_enabled": true,
+      "boot_args_unchanged": true,
+      "PS2_fallback_preserved": true,
+      "HID_nullguard_preserved": true,
+      "no_gpu_model_or_vram_injection": true,
+      "config_sha256": "851fa908d4cc352cd38aa6e9a13dce98b73e8dae452a743cbd032bc2a2fec84f",
+      "hardware_verified": false
+    },
+    "checks": [
+      "x86_64 extension build/link/signature pass;9 Voodoo base imports resolve in current core",
+      "actual power helper65535 PMCSR words/capability bounds/device checks/stuck refusal ASan/UBSan pass",
+      "actual SSDT executed in ACPICA: HID address/support bits/resource bytes pass",
+      "DSDT decompile/checksum/length validation; only3 byte offsets changed:2 method initial letters+checksum",
+      "actual rollback script isolated fixtures pass: exact original config/DSDT restore; later config/DSDT edits refused without mutation"
+    ],
+    "hardware_gestures_verified": false,
+    "PS2_fallback_retained": true
+  },
+  "unchanged_gpu_and_runtime_payloads": {
+    "WindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "81981def42d7761c68a12fc70ea57ea7f48b8eaf6628578739c4a859977ec037",
+    "PreviousWindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "80c3fe8bfa639a1f6cd52a29ab485695d4f18ae289f70e39bbc4b021fb0ab0f6",
+    "WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB": "4ff96f638d9942e9a3a6b642b443b3a1ab257d88692aa51cf2efa2dde84c104f",
+    "Library/Extensions/NMXGPU.kext/Contents/MacOS/NMXGPU": "9b8cd6315b6bf6080b09d7e258921d7461efbb2e3b2140a24bf8e30dc7c5d078",
+    "Library/Extensions/NMXAccel.kext/Contents/MacOS/NMXAccel": "9359839810f6e345b15ae9221f4cf3aacd2b0a497f23bb9bb118100df3421361",
+    "WindowServerTransport/libdrm.2.dylib": "2e0eb9f1cf0105aa22d24fc7368c78f30cda645ef9110c7dfeeed7baf3ca2c5f",
+    "Library/GPUBundles/nvmtl/libvulkan_intel.dylib": "9a6f971802c37e9cbfbf3a90b6c8863c47b75bfcfe5ffb981ba7132f30f55ba3",
+    "Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/NVMTLDriver": "153afd4b5a34008b2c27307dee646798c2180ab68a5e536d0901445d34a7fc2c",
+    "Library/NullMoth/latitude-gpu-identity": "2a1ed79bfb2362a8051c9c5e15f9d2dcbbe27719879ff87bb3cdc4dfcc934bca"
+  },
+  "hardware_trial_required": true,
+  "full_gpu_suite_rerun": false
+}

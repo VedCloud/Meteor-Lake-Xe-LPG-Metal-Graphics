@@ -1,0 +1,9 @@
+# Result131729: visual improvement with expensive cache maintenance
+
+Boot13:13:56,collection13:17:29,plugin0.3.10 hash19d4bd0b9a891205056dd6ae566dd9675eeed8e4044b9f2dba49166b937fea6f confirmed. User reports transparency and earlier artifacts seem fixed;heavy pointer remains,Weather text remains corrupt. Visual correctness is user-observed and not proven for all applications.
+
+Eight timing windows,56 successful readbacks. Weighted phase averages milliseconds:prep/cache-before9.015,record0.088,wait3.570,post-cache+copy9.754,cleanup0.001;total22.428. Compare0.3.9 recorded total4.318ms and0.3.8 total33.877ms. Captured live stream has7CoreAnimation timeouts,noGPU HANG/wedged strings,and no copied crash/panic filenames datedOctober20. The3second current sample is idle(274/275main-thread stacks in machmessage waits),not an interaction CPU measurement.
+
+Weather PID1008 successfully connected through IOKit DRM after expected sandbox render-node denial;this is not proof of a failed driver connection. Kernel reports45556CPU wakeups over~8seconds (~5648/sec). Collector did not sample Weather itself. Glyph corruption is not diagnosed by these messages;do not change swizzle/blending/texture formats from this evidence alone.
+
+Candidate0.3.11 targets the measured serial cache-maintenance cost using CPUID-gated CLFLUSHOPT batching with the same before/after MFENCE boundaries. Original Dell Linux cpuinfo lists clflushopt;runtime check remains mandatory. Existing collector extended for Weather3second stack when running and CPUfeature metadata. Optimized instruction could not execute on build-host Rosetta(feature absent); actual legacy helper ran, optimized dispatch/fence/address behavior exercised using injected instruction callbacks, and cross-built code inspected for CLFLUSHOPT/MFENCE. Target performance remains unverified.

@@ -1,0 +1,11 @@
+{
+  "translationUnits": [
+    "AirportItlwm/AirportItlwmV2.cpp",
+    "itlwm/hal_iwx/ItlIwx.cpp"
+  ],
+  "arch": "x86_64",
+  "kernelHeaders": "MacKernelSDK",
+  "linkedKext": false,
+  "installed": false,
+  "hardwareTested": false
+}

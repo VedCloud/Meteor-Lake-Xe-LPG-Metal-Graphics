@@ -1,0 +1,1 @@
+D="$HOME/Desktop/AirKing_USB"; mkdir -p "$D"; sw_vers > "$D/macOS.txt"; system_profiler SPUSBDataType SPPCIDataType > "$D/USB_PCI.txt"; ioreg -p IOService -l -w0 > "$D/IORegistry.txt"; ioreg -p IOService -r -c IOPCIDevice -l -w0 > "$D/PCI.txt"; kmutil showloaded > "$D/Kexts.txt" 2>&1; diskutil list physical > "$D/Disks.txt"; cd "$HOME/Desktop"; zip -qr AirKing_USB.zip AirKing_USB

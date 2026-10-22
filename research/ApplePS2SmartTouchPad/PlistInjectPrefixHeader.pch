@@ -1,0 +1,27 @@
+//
+//  PlistInjectPrefixHeader.pch
+//  BTFirmwareUploader
+//
+//  Created by EMlyDinEsH on 10/26/15.
+//  Copyright © 2016 EMlyDinEsH. All rights reserved.
+//
+
+#ifndef PlistInjectPrefixHeader_pch
+#define PlistInjectPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define TARGET_MAC_OSX_10_12 0
+
+#if TARGET_MAC_OSX_10_12
+#define OSX_FAMILY_VER      11.0.0
+#define IOHID_VER           1.0.0b1
+#else
+#define OSX_FAMILY_VER      8.0.0
+#define IOHID_VER           1.0.0b1
+#endif
+
+#define COPYRIGHT_STRING    Copyright © EMlyDinEsH (mg-dinesh@live.com) 2012-2016. All rights reserved.
+
+#endif /* PlistInjectPrefixHeader_pch */

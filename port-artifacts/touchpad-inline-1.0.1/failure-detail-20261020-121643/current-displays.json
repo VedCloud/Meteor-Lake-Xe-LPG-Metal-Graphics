@@ -1,0 +1,14 @@
+{
+  "SPDisplaysDataType" : [
+    {
+      "_name" : "spdisplays_display",
+      "spdisplays_device-id" : "0x7d45",
+      "spdisplays_revision-id" : "0x0008",
+      "spdisplays_vendor" : "Intel",
+      "spdisplays_vram_shared" : "",
+      "sppci_bus" : "spdisplays_builtin",
+      "sppci_device_type" : "spdisplays_gpu",
+      "sppci_kextinfo" : "sppci_kextnotloaded"
+    }
+  ]
+}

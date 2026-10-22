@@ -1,0 +1,222 @@
+--- a/src/wire.c
++++ b/src/wire.c
+@@ -33,7 +33,9 @@
+ 	if (len < 0)
+ 		return NULL;
+ 	struct buf *buf = (struct buf *) malloc(sizeof(struct buf));
++	if (!buf) return NULL;
+ 	buf->data = (uint8_t *) malloc(len);
++	if (!buf->data && len) { free(buf); return NULL; }
+ 	buf->orig = buf->data;
+ 	buf->len = len;
+ 	buf->owned = 1;
+@@ -44,6 +46,7 @@
+ 	if (len < 0)
+ 		return NULL;
+ 	struct buf *buf = (struct buf *) malloc(sizeof(struct buf));
++	if (!buf) return NULL;
+ 	buf->data = (uint8_t *) data;
+ 	buf->orig = data;
+ 	buf->len = len;
+@@ -81,56 +84,60 @@
+ }
+ 
+ int write_u8(struct buf *buf, int offset, uint8_t value) {
+-	if (offset < 0 || offset + 1 > buf->len)
++	if (offset < 0 || offset > buf->len || 1 > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	*(buf->data + offset) = value;
+ 	return 1;
+ }
+ 
+ int write_le16(struct buf *buf, int offset, uint16_t value) {
+-	if (offset < 0 || offset + 2 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	*(uint16_t *) (buf->data + offset) = htole16(value);
++	if (offset < 0 || offset > buf->len || 2 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	uint16_t encoded = htole16(value);
++	memcpy(buf->data + offset, &encoded, sizeof(encoded));
+ 	return 2;
+ }
+ 
+ int write_be16(struct buf *buf, int offset, uint16_t value) {
+-	if (offset < 0 || offset + 2 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	*(uint16_t *) (buf->data + offset) = htobe16(value);
++	if (offset < 0 || offset > buf->len || 2 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	uint16_t encoded = htobe16(value);
++	memcpy(buf->data + offset, &encoded, sizeof(encoded));
+ 	return 2;
+ }
+ 
+ int write_le32(struct buf *buf, int offset, uint32_t value) {
+-	if (offset < 0 || offset + 4 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	*(uint32_t *) (buf->data + offset) = htole32(value);
++	if (offset < 0 || offset > buf->len || 4 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	uint32_t encoded = htole32(value);
++	memcpy(buf->data + offset, &encoded, sizeof(encoded));
+ 	return 4;
+ }
+ 
+ int write_be32(struct buf *buf, int offset, uint32_t value) {
+-	if (offset < 0 || offset + 4 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	*(uint32_t *) (buf->data + offset) = htobe32(value);
++	if (offset < 0 || offset > buf->len || 4 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	uint32_t encoded = htobe32(value);
++	memcpy(buf->data + offset, &encoded, sizeof(encoded));
+ 	return 4;
+ }
+ 
+ int write_ether_addr(struct buf *buf, int offset, const struct ether_addr *addr) {
+-	if (offset < 0 || offset + ETHER_ADDR_LEN > buf->len)
++	if (offset < 0 || offset > buf->len || ETHER_ADDR_LEN > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	*(struct ether_addr *) (buf->data + offset) = *addr;
+ 	return ETHER_ADDR_LEN;
+ }
+ 
+ int write_bytes(struct buf *buf, int offset, const uint8_t *bytes, int length) {
+-	if (offset < 0 || offset + length > buf->len)
++	if (offset < 0 || length < 0 || offset > buf->len || length > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	memcpy(buf->data + offset, bytes, length);
+ 	return length;
+ }
+ 
+ int read_u8(const struct buf *buf, int offset, uint8_t *value) {
+-	if (offset < 0 || offset + 1 > buf->len)
++	if (offset < 0 || offset > buf->len || 1 > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	if (value)
+ 		*value = *(buf->data + offset);
+@@ -138,39 +145,51 @@
+ }
+ 
+ int read_le16(const struct buf *buf, int offset, uint16_t *value) {
+-	if (offset < 0 || offset + 2 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	if (value)
+-		*value = le16toh(*(uint16_t *) (buf->data + offset));
++	if (offset < 0 || offset > buf->len || 2 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	if (value) {
++		uint16_t encoded;
++		memcpy(&encoded, buf->data + offset, sizeof(encoded));
++		*value = le16toh(encoded);
++	}
+ 	return 2;
+ }
+ 
+ int read_be16(const struct buf *buf, int offset, uint16_t *value) {
+-	if (offset < 0 || offset + 2 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	if (value)
+-		*value = be16toh(*(uint16_t *) (buf->data + offset));
++	if (offset < 0 || offset > buf->len || 2 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	if (value) {
++		uint16_t encoded;
++		memcpy(&encoded, buf->data + offset, sizeof(encoded));
++		*value = be16toh(encoded);
++	}
+ 	return 2;
+ }
+ 
+ int read_le32(const struct buf *buf, int offset, uint32_t *value) {
+-	if (offset < 0 || offset + 4 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	if (value)
+-		*value = le32toh(*(uint32_t *) (buf->data + offset));
++	if (offset < 0 || offset > buf->len || 4 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	if (value) {
++		uint32_t encoded;
++		memcpy(&encoded, buf->data + offset, sizeof(encoded));
++		*value = le32toh(encoded);
++	}
+ 	return 4;
+ }
+ 
+ int read_be32(const struct buf *buf, int offset, uint32_t *value) {
+-	if (offset < 0 || offset + 4 > buf->len)
+-		return OUT_OF_BOUNDS;
+-	if (value)
+-		*value = be32toh(*(uint32_t *) (buf->data + offset));
++	if (offset < 0 || offset > buf->len || 4 > buf->len - offset)
++		return OUT_OF_BOUNDS;
++	if (value) {
++		uint32_t encoded;
++		memcpy(&encoded, buf->data + offset, sizeof(encoded));
++		*value = be32toh(encoded);
++	}
+ 	return 4;
+ }
+ 
+ int read_ether_addr(const struct buf *buf, int offset, struct ether_addr *addr) {
+-	if (offset < 0 || offset + ETHER_ADDR_LEN > buf->len)
++	if (offset < 0 || offset > buf->len || ETHER_ADDR_LEN > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	if (addr)
+ 		*addr = *(struct ether_addr *) (buf->data + offset);
+@@ -178,7 +197,7 @@
+ }
+ 
+ int read_bytes(const struct buf *buf, int offset, const uint8_t **bytes, int length) {
+-	if (offset < 0 || offset + length > buf->len)
++	if (offset < 0 || length < 0 || offset > buf->len || length > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	if (bytes)
+ 		*bytes = buf->data + offset;
+@@ -186,7 +205,7 @@
+ }
+ 
+ int read_bytes_copy(const struct buf *buf, int offset, uint8_t *bytes, int length) {
+-	if (offset < 0 || offset + length > buf->len)
++	if (offset < 0 || length < 0 || offset > buf->len || length > buf->len - offset)
+ 		return OUT_OF_BOUNDS;
+ 	if (bytes)
+ 		memcpy(bytes, buf->data + offset, length);
+--- a/src/tx.c
++++ b/src/tx.c
+@@ -278,7 +278,8 @@
+ 	tlv->flags = 3;
+ 	tlv->name_length = (uint8_t) len;
+ 	memcpy(tlv->name, state->name, len);
+-	*(uint16_t *) (tlv->name + len) = htobe16(AWDL_DNS_SHORT_LOCAL);
++	uint16_t dns_suffix = htobe16(AWDL_DNS_SHORT_LOCAL);
++	memcpy(tlv->name + len, &dns_suffix, sizeof(dns_suffix));
+ 
+ 	return sizeof(struct tl) + le16toh(tlv->length);
+ }
+@@ -356,7 +357,8 @@
+ 
+ int ieee80211_add_fcs(const uint8_t *start, uint8_t *end) {
+ 	uint32_t crc = crc32(start, end - start);
+-	*(uint32_t *) end = htole32(crc);
++	uint32_t encoded_crc = htole32(crc);
++	memcpy(end, &encoded_crc, sizeof(encoded_crc));
+ 	return sizeof(uint32_t);
+ }
+ 
+--- a/src/rx.c
++++ b/src/rx.c
+@@ -430,8 +430,11 @@
+ 		if (iter.is_radiotap_ns) {
+ 			switch (iter.this_arg_index) {
+ 				case IEEE80211_RADIOTAP_TSFT: /* https://www.radiotap.org/fields/TSFT.html */
+-					if (tsft)
+-						*tsft = le64toh(*(uint64_t *) iter.this_arg);
++					if (tsft) {
++						uint64_t encoded_tsft;
++						memcpy(&encoded_tsft, iter.this_arg, sizeof(encoded_tsft));
++						*tsft = le64toh(encoded_tsft);
++					}
+ 					break;
+ 				case IEEE80211_RADIOTAP_FLAGS:
+ 					if (flags)

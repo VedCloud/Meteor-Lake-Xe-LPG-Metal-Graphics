@@ -1,0 +1,227 @@
+{
+  "BuildMachineOSBuild" => "21G320"
+  "CFBundleDevelopmentRegion" => "en"
+  "CFBundleExecutable" => "VoodooI2CHID"
+  "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+  "CFBundleInfoDictionaryVersion" => "6.0"
+  "CFBundleName" => "VoodooI2CHID"
+  "CFBundlePackageType" => "KEXT"
+  "CFBundleShortVersionString" => "1.0.1"
+  "CFBundleSupportedPlatforms" => [
+    0 => "MacOSX"
+  ]
+  "CFBundleVersion" => "1.0.1"
+  "DTCompiler" => "com.apple.compilers.llvm.clang.1_0"
+  "DTPlatformBuild" => "14C18"
+  "DTPlatformName" => "macosx"
+  "DTPlatformVersion" => "13.1"
+  "DTSDKBuild" => "22C55"
+  "DTSDKName" => "macosx13.1"
+  "DTXcode" => "1420"
+  "DTXcodeBuild" => "14C18"
+  "IOKitPersonalities" => {
+    "Intel ACPI Sensor Hub Enabler" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "IOClass" => "VoodooI2CSensorHubEnabler"
+      "IONameMatch" => [
+        0 => "INT33D0"
+      ]
+      "IOProviderClass" => "IOACPIPlatformDevice"
+    }
+    "Sensor Hub Event Driver" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "DeviceUsagePairs" => [
+        0 => {
+          "DeviceUsage" => 1
+          "DeviceUsagePage" => 32
+        }
+      ]
+      "IOClass" => "VoodooI2CSensorHubEventDriver"
+      "IOProbeScore" => 100
+      "IOProviderClass" => "IOHIDInterface"
+    }
+    "VoodooI2CHIDDevice" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "IOClass" => "VoodooI2CHIDDevice"
+      "IOProbeScore" => 100
+      "IOPropertyMatch" => {
+        "compatible" => "PNP0C50"
+      }
+      "IOProviderClass" => "VoodooI2CDeviceNub"
+    }
+    "VoodooI2CHIDDevice Generic Mouse HID Event Driver" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "DeviceUsagePairs" => [
+        0 => {
+          "DeviceUsage" => 2
+          "DeviceUsagePage" => 1
+        }
+      ]
+      "HIDAccelCurves" => [
+        0 => {
+          "HIDAccelGainLinear" => 65536
+          "HIDAccelIndex" => 0
+          "HIDAccelTangentSpeedLinear" => 524288
+        }
+        1 => {
+          "HIDAccelGainCubic" => 5243
+          "HIDAccelGainLinear" => 60293
+          "HIDAccelGainParabolic" => 26214
+          "HIDAccelIndex" => 8192
+          "HIDAccelTangentSpeedLinear" => 537395
+          "HIDAccelTangentSpeedParabolicRoot" => 1245184
+        }
+        2 => {
+          "HIDAccelGainCubic" => 6554
+          "HIDAccelGainLinear" => 60948
+          "HIDAccelGainParabolic" => 36045
+          "HIDAccelIndex" => 32768
+          "HIDAccelTangentSpeedLinear" => 543949
+          "HIDAccelTangentSpeedParabolicRoot" => 1179648
+        }
+        3 => {
+          "HIDAccelGainCubic" => 7864
+          "HIDAccelGainLinear" => 61604
+          "HIDAccelGainParabolic" => 46531
+          "HIDAccelIndex" => 45056
+          "HIDAccelTangentSpeedLinear" => 550502
+          "HIDAccelTangentSpeedParabolicRoot" => 1114112
+        }
+        4 => {
+          "HIDAccelGainCubic" => 9830
+          "HIDAccelGainLinear" => 62259
+          "HIDAccelGainParabolic" => 57672
+          "HIDAccelIndex" => 57344
+          "HIDAccelTangentSpeedLinear" => 557056
+          "HIDAccelTangentSpeedParabolicRoot" => 1048576
+        }
+        5 => {
+          "HIDAccelGainCubic" => 11796
+          "HIDAccelGainLinear" => 62915
+          "HIDAccelGainParabolic" => 69468
+          "HIDAccelIndex" => 65536
+          "HIDAccelTangentSpeedLinear" => 563610
+          "HIDAccelTangentSpeedParabolicRoot" => 983040
+        }
+        6 => {
+          "HIDAccelGainCubic" => 14418
+          "HIDAccelGainLinear" => 63570
+          "HIDAccelGainParabolic" => 81920
+          "HIDAccelIndex" => 98304
+          "HIDAccelTangentSpeedLinear" => 570163
+          "HIDAccelTangentSpeedParabolicRoot" => 917504
+        }
+        7 => {
+          "HIDAccelGainCubic" => 17695
+          "HIDAccelGainLinear" => 64225
+          "HIDAccelGainParabolic" => 95027
+          "HIDAccelIndex" => 131072
+          "HIDAccelTangentSpeedLinear" => 576717
+          "HIDAccelTangentSpeedParabolicRoot" => 851968
+        }
+        8 => {
+          "HIDAccelGainCubic" => 21627
+          "HIDAccelGainLinear" => 64881
+          "HIDAccelGainParabolic" => 108790
+          "HIDAccelIndex" => 163840
+          "HIDAccelTangentSpeedLinear" => 583270
+          "HIDAccelTangentSpeedParabolicRoot" => 786432
+        }
+        9 => {
+          "HIDAccelGainCubic" => 26214
+          "HIDAccelGainLinear" => 65536
+          "HIDAccelGainParabolic" => 123208
+          "HIDAccelIndex" => 196608
+          "HIDAccelTangentSpeedLinear" => 589824
+          "HIDAccelTangentSpeedParabolicRoot" => 786432
+        }
+      ]
+      "IOClass" => "IOHIDEventDriver"
+      "IOProbeScore" => 100
+      "IOPropertyMatch" => {
+        "Transport" => "I2C"
+      }
+      "IOProviderClass" => "IOHIDInterface"
+    }
+    "VoodooI2CHIDDevice Multitouch HID Event Driver" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "DeviceUsagePairs" => [
+        0 => {
+          "DeviceUsage" => 4
+          "DeviceUsagePage" => 13
+        }
+        1 => {
+          "DeviceUsage" => 5
+          "DeviceUsagePage" => 13
+        }
+        2 => {
+          "DeviceUsage" => 2
+          "DeviceUsagePage" => 13
+        }
+      ]
+      "IOClass" => "VoodooI2CMultitouchHIDEventDriver"
+      "IOProbeScore" => 200
+      "IOProviderClass" => "IOHIDInterface"
+    }
+    "VoodooI2CHIDDevice Precision Touchpad HID Event Driver" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "DeviceUsagePairs" => [
+        0 => {
+          "DeviceUsage" => 5
+          "DeviceUsagePage" => 13
+        }
+      ]
+      "IOClass" => "VoodooI2CPrecisionTouchpadHIDEventDriver"
+      "IOProbeScore" => 300
+      "IOProviderClass" => "IOHIDInterface"
+      "ProcessBluetoothMouseStopsTrackpad" => 0
+      "ProcessUSBMouseStopsTrackpad" => 0
+      "QuietTimeAfterTyping" => 100
+      "RM,deliverNotifications" => 1
+    }
+    "VoodooI2CHIDDevice Stylus HID Event Driver" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "DeviceUsagePairs" => [
+        0 => {
+          "DeviceUsage" => 2
+          "DeviceUsagePage" => 13
+        }
+      ]
+      "IOClass" => "VoodooI2CStylusHIDEventDriver"
+      "IOProbeScore" => 300
+      "IOProviderClass" => "IOHIDInterface"
+    }
+    "VoodooI2CHIDDevice Touchscreen HID Event Driver" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "DeviceUsagePairs" => [
+        0 => {
+          "DeviceUsage" => 4
+          "DeviceUsagePage" => 13
+        }
+      ]
+      "IOClass" => "VoodooI2CTouchscreenHIDEventDriver"
+      "IOProbeScore" => 400
+      "IOProviderClass" => "IOHIDInterface"
+    }
+    "VoodooI2CHIDSYNA3602Device" => {
+      "CFBundleIdentifier" => "com.alexandred.VoodooI2CHID"
+      "IOClass" => "VoodooI2CHIDSYNA3602Device"
+      "IOProbeScore" => 200
+      "IOPropertyMatch" => {
+        "name" => "SYNA3602"
+      }
+      "IOProviderClass" => "VoodooI2CDeviceNub"
+    }
+  }
+  "LSMinimumSystemVersion" => "10.11"
+  "NSHumanReadableCopyright" => "Copyright © 2017 Alexandre Daoud. All rights reserved."
+  "OSBundleLibraries" => {
+    "com.alexandred.VoodooI2C" => "2.0"
+    "com.apple.iokit.IOACPIFamily" => "1.4"
+    "com.apple.iokit.IOHIDFamily" => "2.0"
+    "com.apple.kpi.iokit" => "14"
+    "com.apple.kpi.libkern" => "14"
+    "com.apple.kpi.mach" => "13.0"
+  }
+  "OSBundleRequired" => "Root"
+}

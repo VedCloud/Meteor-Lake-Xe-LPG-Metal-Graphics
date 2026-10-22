@@ -1,0 +1,28 @@
+{
+  "candidate": "tablet-input-observation-20261021",
+  "normalGraphics": "accelerated-every-boot",
+  "copilotMappingPreserved": true,
+  "workingGraphicsBinariesChanged": false,
+  "passiveObserverEnabledOnNormalBoot": true,
+  "observerHardwareBootValidated": false,
+  "modeActuationEnabled": false,
+  "automaticRotationEnabled": false,
+  "automaticKeyboardPopupEnabled": false,
+  "keyboardManualPanelCompiled": true,
+  "onScreenKeyboardIntentImplemented": true,
+  "ISHTransportStatus": "Bounded packet framing/XYZ decoding implemented offline; PCI firmware/IPC/HBM/interrupt/DMA runtime not implemented",
+  "touchTransformStatus": "Normalized affine transform tested; existing Wacom rotation path identified; coordinated framebuffer transaction not implemented",
+  "capturedTabletSamplesReplayed": 50,
+  "capturedTouchpadFrames": 4007,
+  "touchpadTrialEnabledInNormalProfile": false,
+  "optionalGPIOVersion": "0.1.1 diagnostic instrumentation; same pin and register policy",
+  "backup": "/Users/ved/Documents/iGPU Port/backups/tablet-input-candidate-20261021",
+  "modifiedEFI": [
+    "OC/config.plist"
+  ],
+  "addedEFI": [
+    "OC/Kexts/LatitudeTabletObserver.kext/Contents/Info.plist",
+    "OC/Kexts/LatitudeTabletObserver.kext/Contents/MacOS/LatitudeTabletObserver",
+    "OC/Kexts/LatitudeTabletObserver.kext/Contents/_CodeSignature/CodeResources"
+  ]
+}

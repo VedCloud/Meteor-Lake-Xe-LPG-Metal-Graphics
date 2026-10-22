@@ -1,0 +1,3 @@
+gpiochip0: 451 GPIOs, parent: platform/INTC1083:00, INTC1083:00:
+ gpio-373 (                    |TPL0 GpioInt(0)     ) in  hi IRQ ACTIVE LOW
+ gpio-387 (                    |TPD0 GpioInt(0)     ) in  hi IRQ ACTIVE LOW

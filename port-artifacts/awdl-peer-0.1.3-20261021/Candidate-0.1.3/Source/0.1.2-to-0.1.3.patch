@@ -1,0 +1,78 @@
+--- a/AirportItlwm/AirportItlwmV2.cpp
++++ b/AirportItlwm/AirportItlwmV2.cpp
+@@ -475,6 +475,8 @@
+     registerService();
+     provider->setProperty("LatitudeAirportStage", "start-success");
+     setProperty("LatitudeAWDLRadioBridgeReady",latitudeAWDLBridgeStart());
++    setProperty("LatitudeAWDLPeerDataReady",false);
++    setProperty("LatitudeAWDLPeerTransportState","unbound; native queues and secondary firmware context required");
+     return true;
+ }
+ 
+--- a/itlwm/hal_iwx/ItlIwx.cpp
++++ b/itlwm/hal_iwx/ItlIwx.cpp
+@@ -13287,18 +13287,39 @@
+             }
+                 
+             case IWX_WIDE_ID(IWX_MAC_CONF_GROUP, IWX_SESSION_PROTECTION_NOTIF): {
+-                struct iwx_session_prot_notif *notif;
+-                SYNC_RESP_STRUCT(notif, pkt, struct iwx_session_prot_notif *);
+-                if (!notif->status) {
+-                    XYLog("Session protection failure\n");
++                // API83 notification v2 is exactly 16 bytes. Classify before
++                // touching association state; P2P sessions have their own MAC
++                // and configuration and must never clear the AP time event.
++                size_t payloadLength=iwx_rx_packet_payload_len(pkt);
++                if(payloadLength==sizeof(struct iwx_session_prot_notif))
++                    bus_dmamap_sync(sc->sc_dmat,data->map,sizeof(*pkt),
++                        sizeof(struct iwx_session_prot_notif),BUS_DMASYNC_POSTREAD);
++                LatitudeAWDLPeer::SessionEvent event;
++                auto bss=(struct iwx_node *)sc->sc_ic.ic_bss;
++                auto route=LatitudeAWDLPeer::route(pkt->data,
++                    payloadLength,bss?bss->in_id:UINT32_MAX,event);
++                if(route==LatitudeAWDLPeer::Route::Peer) {
++                    uint64_t now=0;clock_get_uptime(&now);absolutetime_to_nanoseconds(now,&now);
++                    latitudeAWDLScheduler.notification(event.mac,event.configuration,
++                        event.status,event.start,now);
++                    IOService *parent=getController()?getController()->getProvider():nullptr;
++                    if(parent) {
++                        parent->setProperty("LatitudeAWDLSessionPhase",(uint32_t)latitudeAWDLScheduler.phase,32);
++                        parent->setProperty("LatitudeAWDLSessionForeign",latitudeAWDLScheduler.foreign,64);
++                        parent->setProperty("LatitudeAWDLSessionFailures",latitudeAWDLScheduler.failures,64);
++                    }
++                    break;
++                }
++                if(route!=LatitudeAWDLPeer::Route::Association) {
++                    XYLog("Ignoring unowned or malformed session protection notification\n");
++                    break;
++                }
++                if (!event.status) {
++                    XYLog("Association session protection failure\n");
+                     sc->sc_flags &= ~IWX_FLAG_TE_ACTIVE;
+                     break;
+                 }
+-                if (!notif->start) {
+-                    /*
+-                     * By now, we should have finished association
+-                     * and know the dtim period.
+-                     */
++                if (!event.start) {
+                     sc->sc_flags &= ~IWX_FLAG_TE_ACTIVE;
+                     XYLog("%s finish association\n", __FUNCTION__);
+                 }
+--- a/itlwm/hal_iwx/ItlIwx.hpp
++++ b/itlwm/hal_iwx/ItlIwx.hpp
+@@ -1,4 +1,5 @@
+ #include <LatitudeAWDLRadio.h>
++#include <LatitudeAWDLPeerTransport.h>
+ /*
+ * Copyright (C) 2020  钟先耀
+ *
+@@ -192,6 +193,7 @@
+     
+     int latitudeAWDLCurrentChannel(const void *,size_t);
+     LatitudeAWDLRadio::Queue latitudeAWDLReceiveQueue;
++    LatitudeAWDLPeer::Scheduler latitudeAWDLScheduler;
+     void latitudeAWDLStatus(LatitudeAWDLRadio::Status &);
+     void latitudeAWDLCapture(struct iwx_softc *,mbuf_t,int,int);
+ 

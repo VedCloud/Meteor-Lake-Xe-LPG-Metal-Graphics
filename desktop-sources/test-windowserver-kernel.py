@@ -17,6 +17,10 @@ with tempfile.TemporaryDirectory(prefix='ws-kernel-') as d:
   (pkg/'WindowServerFramebuffer/LatitudeMTLFB-UUID.txt').write_text('11111111-2222-3333-4444-555555555555')
   (pkg/'WindowServerFramebuffer/LatitudeMTLFB-VERSION.txt').write_text('0.2.4')
   fb=lib/'Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB';fb.parent.mkdir(parents=True,exist_ok=True);fb.write_text('old-framebuffer')
+  for folder,text in [(pkg/'WindowServerAccelerator/NMXAccel.kext','new-accelerator'),(lib/'Extensions/NMXAccel.kext','old-accelerator')]:
+   f=folder/'Contents/MacOS/NMXAccel';f.parent.mkdir(parents=True);f.write_text(text)
+  (pkg/'WindowServerAccelerator/NMXAccel-UUID.txt').write_text('33333333-2222-3333-4444-555555555555')
+  (pkg/'WindowServerAccelerator/NMXAccel-VERSION.txt').write_text('0.2.4')
   shutil.copy2(r/'latitude-desktop/validate-kernel-prelink',pkg/'validate-kernel-prelink')
   emitter=pkg/'emit-prelink';emitter.write_text('#!'+sys.executable+'\n'+"""import os,plistlib
 entry={'CFBundleIdentifier':'com.nullmoth.NMXGPU','CFBundleVersion':'1.0.15','OSBundleUUID':bytes.fromhex('e770b98514a43adea1ee63204c3a9996'),'_PrelinkBundlePath':os.environ['MOCK_KERNEL_DEST'],'_PrelinkExecutableRelativePath':'Contents/MacOS/NMXGPU','_PrelinkExecutableSize':3071690}
@@ -25,7 +29,8 @@ if os.environ['MODE']=='bad-uuid':entry['OSBundleUUID']=bytes(16)
 import sys
 fb=dict(entry,CFBundleIdentifier='com.nullmoth.LatitudeMTLFB',CFBundleVersion='0.2.4',OSBundleUUID=bytes.fromhex('11111111222233334444555555555555'),_PrelinkBundlePath=os.environ['MOCK_KERNEL_DEST'].replace('NMXGPU.kext','LatitudeMTLFB.kext'),_PrelinkExecutableRelativePath='Contents/MacOS/LatitudeMTLFB')
 if os.environ['MODE']=='bad-framebuffer':fb['OSBundleUUID']=bytes(16)
-sys.stdout.buffer.write(plistlib.dumps({'_PrelinkInfoDictionary':[entry,fb]}))
+ac=dict(fb,CFBundleIdentifier='com.nullmoth.NMXAccel',OSBundleUUID=bytes.fromhex('33333333222233334444555555555555'),_PrelinkBundlePath=os.environ['MOCK_KERNEL_DEST'].replace('NMXGPU.kext','NMXAccel.kext'),_PrelinkExecutableRelativePath='Contents/MacOS/NMXAccel')
+sys.stdout.buffer.write(plistlib.dumps({'_PrelinkInfoDictionary':[entry,fb,ac]}))
 """);emitter.chmod(0o755)
   mocks['kmutil']='\nif [ "$1" = create ]; then\n  output=\'\'; paths=\'\'\n  while [ "$#" -gt 0 ]; do\n    case "$1" in -A) shift; output=$1;; -p) shift; paths="$paths $1";; esac\n    shift\n  done\n  case "$output" in *next-aux.kc) [ "$MODE" != preflight-fail ] && [ "$MODE" != kc-preflight ] || exit 6;; *installed-aux.kc) [ "$MODE" != final-build-fail ] || exit 7;; esac\n  printf \'new-cache\\n%s\\n%s\\n\' "$MOCK_UUID" "$paths" > "$output"\n  exit 0\nfi\nif [ "$1" = inspect ]; then exec "$MOCK_PRELINK_EMITTER"; fi\nif [ "$MODE" = kernel ]; then echo \'com.nullmoth.NMXGPU (1.0.7) wrong-uuid\'\nelif [ "$MODE" != cache-repair ]; then echo \'com.nullmoth.NMXGPU (1.0.8) verified-NMXGPU-uuid\'; fi\necho \'com.nullmoth.NMXAccel (0.2.4) verified-NMXAccel-uuid\'\necho com.dhinakg.AMFIPass\n'
   (pkg/'WindowServerKernel/NMXGPU-UUID.txt').write_text('E770B985-14A4-3ADE-A1EE-63204C3A9996')

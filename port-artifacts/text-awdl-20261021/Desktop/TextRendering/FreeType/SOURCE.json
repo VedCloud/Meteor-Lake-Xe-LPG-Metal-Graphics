@@ -1,0 +1,11 @@
+{
+  "version": "2.14.3",
+  "source": "https://download.savannah.gnu.org/releases/freetype/freetype-2.14.3.tar.xz",
+  "tarSHA256": "36bc4f1cc413335368ee656c42afca65c5a3987e8768cc28cf11ba775e785a5f",
+  "architectures": [
+    "x86_64",
+    "arm64"
+  ],
+  "externalCompressionAndShapingLibraries": false,
+  "FT_CONFIG_OPTION_SUBPIXEL_RENDERING": true
+}

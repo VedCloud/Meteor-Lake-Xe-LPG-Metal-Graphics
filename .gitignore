@@ -52,5 +52,18 @@ upstream-runtime/pkgroot/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/ai
 latitude-runtime/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/air-runtime/libLLVM.dylib
 backups/desktop-0.2.6-before/package/Library/GPUBundles/NVMTLDriver.bundle/Contents/MacOS/air-runtime/libLLVM.dylib
 toolchain/rustup/toolchains/stable-aarch64-apple-darwin/lib/libLLVM.dylib
+# Any libLLVM.dylib is a build product; backups of the full runtime also carry it.
+libLLVM.dylib
 nullmoth-nvidia-2.0.2.tar.gz
 
+# Very large third-party reference payloads: Apple's Kernel Debugging Kit
+# package and a Fedora live image used for the guided Linux hardware capture.
+# Both are re-downloadable and are not project source.
+research/kdk-24H32-expanded/
+linux-live-media/
+
+# macOS cruft
+.DS_Store
+
+# Apple Kernel Debugging Kit disk image (883 MB) — re-downloadable from Apple.
+research/Kernel_Debug_Kit_24H32.dmg

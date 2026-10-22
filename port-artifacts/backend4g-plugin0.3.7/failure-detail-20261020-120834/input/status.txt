@@ -1,0 +1,4 @@
+LatitudeI2CMeteorLakeController exit=0
+VoodooI2CHIDDevice exit=0
+VoodooI2CPrecisionTouchpadHIDEventDriver exit=0
+VoodooInput exit=0

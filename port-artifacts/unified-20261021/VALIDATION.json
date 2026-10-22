@@ -1,0 +1,23 @@
+{
+  "candidate": "unified-20261021",
+  "checkedAt": "2026-10-21T17:20:03.788509+01:00",
+  "checks": {
+    "matchingOpenCore109ValidateFourProfiles": "passed",
+    "packageHashes": "passed",
+    "codesignIntelComponents": "passed",
+    "frozenGraphicsBaseline": "unchanged and verified",
+    "CopilotMapping": "verified",
+    "fixtureAcceleratedRecovery": "passed with HIDD/state toggle",
+    "fixtureOptionalTouchpadApplyRestore": "passed; normal base unchanged",
+    "FreeTypeRealGlyphs": "passed ASan/UBSan; 7990 requests",
+    "CoreTextFrontend": "passed four layouts ASan/UBSan",
+    "tabletACPIAndState": "mocked AML + mocked IOKit tests passed; hardware pending"
+  },
+  "limitations": [
+    "System-wide FreeType interception/component-alpha composition incomplete",
+    "ISH sensor runtime and automatic rotation incomplete",
+    "Built-in input suppression disabled pending verified mode",
+    "AWDL radio data plane incomplete",
+    "Dell tablet GUI and preboot chime/theme need runtime confirmation"
+  ]
+}

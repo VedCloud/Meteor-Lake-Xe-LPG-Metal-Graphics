@@ -1,0 +1,22 @@
+{
+  "candidate": "tablet-input-observation-20261021",
+  "compiledX86Kexts": [
+    "LatitudeTabletObserver 0.1.0",
+    "LatitudeGPIO 0.1.1 (optional trial only)"
+  ],
+  "compiledSessionApp": "Latitude Tablet Keyboard 0.1.0; target runtime untested",
+  "orientationSamplesReplayed": 50,
+  "ELANGesturePhasesComplete": 5,
+  "ELANFrames": 4007,
+  "nativePolicySanitizers": "passed",
+  "descriptorDecoderMalformedInputTests": 2500,
+  "packetAndTouchTransformTests": "passed",
+  "collectorFATRegression": "passed",
+  "isolatedCandidateApplyRestore": "passed",
+  "OpenCoreValidation": "passed actual four profiles and active EFI; AppleDouble files excluded",
+  "copilotPreserved": true,
+  "graphicsBaselinePreserved": true,
+  "automaticFeaturesEnabled": false,
+  "sensorTransportRuntimeImplemented": false,
+  "bootValidationPending": true
+}

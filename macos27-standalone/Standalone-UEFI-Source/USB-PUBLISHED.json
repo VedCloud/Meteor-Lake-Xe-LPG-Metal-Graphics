@@ -1,0 +1,12 @@
+{
+  "USBVolume": "/Volumes/macOS 27",
+  "EFI": "/Volumes/EFI/EFI/Tools/Dell27Preflight.efi",
+  "EFISHA256": "2ba2b91e0c0d48774b3647f189a6e7443df4988106ffc21c795b993a5c727726",
+  "EFIFilesVerified": 9,
+  "PackageFilesVerified": 21,
+  "DefaultBootloaderInstalled": false,
+  "ARMRuntimeImplemented": false,
+  "SequoiaEFIRestored": false,
+  "LinuxHostUsed": false,
+  "DellBootTested": false
+}

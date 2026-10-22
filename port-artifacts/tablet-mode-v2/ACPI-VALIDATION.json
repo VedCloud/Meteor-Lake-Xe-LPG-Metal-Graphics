@@ -1,0 +1,18 @@
+[
+  {
+    "profile": "Base",
+    "originalSHA256": "e79df56999ebd7ee99036ff2a1c7a0c503c34a45b4ae6ff769b2b69cfe88d9ad",
+    "modifiedSHA256": "4a1803ab03293335ca327b6b7c8978d5c89f9339fdad8218c9163637cf872869",
+    "HIDD_STANameOffset": 538722,
+    "sameLength": true,
+    "onlyChange": "HIDD _STA->XSTA plus ACPI checksum"
+  },
+  {
+    "profile": "Touchpad",
+    "originalSHA256": "49a29171b50b85af76e8fbda2ec014e972584cb38a652e1f36e4e924515d2d9a",
+    "modifiedSHA256": "aa18d3f14961a90f98699aca4514bda448c1d7072e7719afd97afe2b5753f686",
+    "HIDD_STANameOffset": 538722,
+    "sameLength": true,
+    "onlyChange": "HIDD _STA->XSTA plus ACPI checksum"
+  }
+]

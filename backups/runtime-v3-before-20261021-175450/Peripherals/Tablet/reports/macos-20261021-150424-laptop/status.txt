@@ -1,0 +1,7 @@
+ACPI plane captured; presence alone does not establish tablet state
+Native tablet inventory exit=0
+LatitudeTabletObserver exit=0
+IOHIDDevice exit=0
+ApplePS2Keyboard exit=0
+VoodooI2CHIDDevice exit=0
+NMXVGAFB exit=0

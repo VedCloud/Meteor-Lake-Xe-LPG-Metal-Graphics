@@ -1,0 +1,11 @@
+{
+  "artifact": "Dell27Preflight.efi",
+  "SHA256": "931ade60f39b34adfd282aef1faa8075ebcff7e0030d50d953a7c1ce9cbda5be",
+  "edk2Revision": "b117e495e38bba3709b1baa573769200c50d1ae2",
+  "standaloneEFI": true,
+  "kernelExecution": false,
+  "scalarARMProbe": true,
+  "version": "0.0.3",
+  "selectedEL2Probe": true,
+  "SPTMEntryProbe": true
+}

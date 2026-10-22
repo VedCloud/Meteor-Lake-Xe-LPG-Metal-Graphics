@@ -1,0 +1,1 @@
+kern.bootargs: -v debug=0x100 keepsyms=1 itlwm_he=1 itlwm_mtl_internal_aux=1 amfi_get_out_of_my_way=0x1 amfi=0x80 ipc_control_port_options=0 

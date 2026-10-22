@@ -1,0 +1,11 @@
+{
+  "normal_usb_mode": "accelerated-every-boot",
+  "efi_only_changed": "OC/config.plist",
+  "graphics_binaries_changed": false,
+  "copilot_user_confirmed": true,
+  "copilot_retained": true,
+  "tablet_auto_features_enabled": false,
+  "tablet_blocker": "No verified macOS ISH transport, sensor orientation samples or mode signal in supplied reports",
+  "updated_files": 29,
+  "boot_validation_pending": true
+}

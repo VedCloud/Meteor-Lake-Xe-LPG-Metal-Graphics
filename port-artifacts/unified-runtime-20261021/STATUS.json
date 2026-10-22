@@ -1,0 +1,17 @@
+{
+  "candidate": "unified-runtime-20261021-v3",
+  "effectiveHIDDVisibilityFix": "direct scoped rename in supplied DSDT; original recovery tables retained",
+  "tabletReader": "0.2.1",
+  "conditionalPS2SuppressionArmed": true,
+  "inputUnknownOrStale": "enabled",
+  "DellRuntimeValidated": false,
+  "automaticRotationEnabled": false,
+  "ISHPCITransportImplemented": false,
+  "FreeTypeSystemAppsIntegrated": false,
+  "FreeTypeComponentAlphaLayerTests": "passed",
+  "AWDLRadioPathConnected": false,
+  "AWDLEngineOfflineTests": "passed",
+  "chime": "48 kHz MP3, speaker mask 1; target playback pending",
+  "graphicsBinariesChanged": false,
+  "CopilotMacrosPreserved": true
+}

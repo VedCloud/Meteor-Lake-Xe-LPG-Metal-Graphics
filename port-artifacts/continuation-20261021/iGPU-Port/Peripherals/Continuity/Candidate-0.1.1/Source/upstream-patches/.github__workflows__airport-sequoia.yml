@@ -1,0 +1,41 @@
+name: Latitude AirportItlwm Sequoia trial
+on:
+  push:
+    branches: [meteor-lake-gpio-build]
+    paths: ['meteor-gpio/**', '.github/workflows/airport-sequoia.yml']
+  pull_request:
+    branches: [main]
+    paths: ['meteor-gpio/**', '.github/workflows/airport-sequoia.yml']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: laobamac/itlwm
+          ref: d695c971420cc8af0daa286dcd3297e8236c0a63
+          path: .deps/airport
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: acidanthera/MacKernelSDK
+          ref: 3f750085caa17ec3a7880f11c11bf4f48cd6a164
+          path: .deps/airport/MacKernelSDK
+          persist-credentials: false
+      - name: Build patched Sequoia AirportItlwm
+        run: |
+          set -euo pipefail
+          mkdir -p ci-airport
+          python3 meteor-gpio/build_airport.py 2>&1 | tee ci-airport/build.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Latitude-AirportItlwm-Sequoia
+          path: ci-airport/
+          if-no-files-found: error

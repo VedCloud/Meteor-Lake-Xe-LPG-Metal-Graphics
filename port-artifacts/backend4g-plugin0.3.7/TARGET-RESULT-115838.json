@@ -1,0 +1,40 @@
+{
+  "report": "failure-detail-20261020-115838",
+  "boot": "2026-10-20 11:55:41 BST",
+  "backend_sha256": "0061729e94f341dbecb2e6d2bcc5b8416d3b7bd3c077143ff292ca22b149152e",
+  "backend_shared_heap_bytes": 4294967296,
+  "system_information_shared_mib": 4096,
+  "pipeline_cache_active": true,
+  "traced_graphics_pipeline_times_us": [
+    65678,
+    4197,
+    6309,
+    5233,
+    16,
+    10032,
+    168705,
+    253580
+  ],
+  "coreanimation_timeout_lines": 47,
+  "windowserver_cpu_snapshots_percent": [
+    32.2,
+    202.8,
+    124.4
+  ],
+  "logged_initial_fence_completions": 24,
+  "logged_initial_readback_completions": 32,
+  "logged_initial_nonzero_completions": 0,
+  "trace_counts_are_capped_not_total_frames": true,
+  "new_gpu_hang_device_lost_or_wedge_seen": false,
+  "new_dated_current_boot_crash_or_panic_file": false,
+  "touchpad_controller_attached_D0_verified": true,
+  "ELAN_touchpad_nub_registered": false,
+  "precision_touchpad_driver_present": false,
+  "existing_Magic_Trackpad_stack_origin": "Wacom touchscreen 056a:4a19, not ELAN04f3:328e",
+  "touchpad_blocker": "SSDT TPD0FIX scope AE_NOT_FOUND during table load; external replacement methods absent",
+  "late_profile_available": false,
+  "late_profile_failure": "sample killed after10s while processing symbols",
+  "new_USB_fix": "exact replacement bodies inlined inside existing DSDT TPD0 methods; external SSDT removed, interpreter test pass; gestures still require target confirmation",
+  "collector_update": "current WindowServer stack sample with25s watchdog, input chain and exact backend hash retained",
+  "smoothness_fixed": false
+}

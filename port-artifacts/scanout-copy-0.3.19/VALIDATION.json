@@ -1,0 +1,37 @@
+{
+  "candidate": "0.3.19",
+  "components": {
+    "accelerator": "0.2.9",
+    "framebuffer": "0.2.10",
+    "plugin": "0.3.19",
+    "target_validated": false,
+    "weather_fixed": false,
+    "physical_keys_fixed": false,
+    "timeouts_fixed": false,
+    "full_render_suite_rerun": false,
+    "publication_lock": "AvoidSync on fenced staging snapshot; CannotLock falls back; no early completion",
+    "accelerator_uuid": "71A4E57D-56B7-3C39-BF2F-BA2E91789457",
+    "framebuffer_uuid": "DB311D7D-7C60-3490-AD9C-5974B31373B5",
+    "plugin_uuid": "5D5ADC33-CB2A-3D24-B5F9-ADD2A83C54C4"
+  },
+  "no_new_kernel_imports": true,
+  "gamma_copy_integer_only_disassembly": true,
+  "gamma_copy_stack_frame_bytes": 1384,
+  "tests": [
+    "x86_64 Metal/framebuffer/accelerator compilation and signatures",
+    "60 gamma tile guard-page layouts and scalar-reference pixels/alpha/padding/source preservation",
+    "gamma decoder and framebuffer setter",
+    "actual surface publication: AvoidSync, CannotLock fallback, lock errors, GPU errors, saturated staging and completion marker",
+    "actual event completion ordering",
+    "root counter endpoint with absolute ACPI path",
+    "collector capture and absent Weather",
+    "installer and three-kext AuxKC preflight/rollback fixtures"
+  ],
+  "target_performance_verified": false,
+  "weather_fixed": false,
+  "physical_brightness_keys_fixed": false,
+  "timeouts_fixed": false,
+  "night_shift_confirmed_in_previous_candidate": true,
+  "full_gpu_suite_rerun": false,
+  "target_installed_or_armed": false
+}

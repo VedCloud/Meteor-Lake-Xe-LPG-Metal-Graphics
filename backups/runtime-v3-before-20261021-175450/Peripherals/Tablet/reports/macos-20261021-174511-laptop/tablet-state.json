@@ -1,0 +1,98 @@
+{
+  "tabletState" : "unknown: no firmware method evaluated",
+  "displays" : [
+    {
+      "width" : 1920,
+      "height" : 1080,
+      "builtIn" : 1,
+      "displayID" : 2034428800,
+      "rotation" : 0
+    }
+  ],
+  "version" : "0.3.0",
+  "liveStateQueryResult" : 0,
+  "liveTabletStates" : [
+
+  ],
+  "hidDevices" : [
+    {
+      "path" : "IOService:\/IOResources\/BrightnessKeys\/IOHIDKeyboardEventDevice",
+      "PrimaryUsagePage" : 1,
+      "VendorID" : 1452,
+      "Product" : "Keyboard",
+      "PrimaryUsage" : 6,
+      "ProductID" : 65535
+    },
+    {
+      "VendorID" : 1452,
+      "Product" : "Keyboard",
+      "PrimaryUsagePage" : 1,
+      "path" : "IOService:\/AppleACPIPlatformExpert\/PS2K\/ps2controller\/ApplePS2Controller\/ApplePS2KeyboardDevice\/ApplePS2Keyboard\/IOHIDKeyboardEventDevice",
+      "Transport" : "PS2",
+      "PrimaryUsage" : 6,
+      "ProductID" : 65535
+    },
+    {
+      "VendorID" : 1452,
+      "Product" : "Mouse",
+      "PrimaryUsagePage" : 1,
+      "path" : "IOService:\/AppleACPIPlatformExpert\/PC00\/AppleACPIPCI\/I2C0@15\/VoodooI2CPCIController\/VoodooI2CControllerNub\/VoodooI2CControllerDriver\/TPL0\/VoodooI2CHIDDevice\/IOHIDInterface\/VoodooI2CTouchscreenHIDEventDriver\/VoodooI2CMultitouchInterface\/VoodooI2CNativeEngine\/VoodooInput\/TrackpointDevice\/IOHIDPointingEventDevice",
+      "Transport" : "I2C",
+      "PrimaryUsage" : 2,
+      "ProductID" : 65535
+    },
+    {
+      "VendorID" : 1452,
+      "Product" : "Mouse",
+      "PrimaryUsagePage" : 1,
+      "path" : "IOService:\/AppleACPIPlatformExpert\/PS2K\/ps2controller\/ApplePS2Controller\/ApplePS2MouseDevice\/ApplePS2Mouse\/IOHIDPointingEventDevice",
+      "Transport" : "PS2",
+      "PrimaryUsage" : 2,
+      "ProductID" : 65535
+    },
+    {
+      "VendorID" : 1386,
+      "IOProviderClass" : "VoodooI2CDeviceNub",
+      "IOClass" : "VoodooI2CHIDDevice",
+      "PrimaryUsage" : 4,
+      "PrimaryUsagePage" : 13,
+      "path" : "IOService:\/AppleACPIPlatformExpert\/PC00\/AppleACPIPCI\/I2C0@15\/VoodooI2CPCIController\/VoodooI2CControllerNub\/VoodooI2CControllerDriver\/TPL0\/VoodooI2CHIDDevice",
+      "Transport" : "I2C",
+      "ProductID" : 18969
+    },
+    {
+      "VendorID" : 1452,
+      "Product" : "Magic Trackpad 2",
+      "PrimaryUsagePage" : 1,
+      "path" : "IOService:\/AppleACPIPlatformExpert\/PC00\/AppleACPIPCI\/I2C0@15\/VoodooI2CPCIController\/VoodooI2CControllerNub\/VoodooI2CControllerDriver\/TPL0\/VoodooI2CHIDDevice\/IOHIDInterface\/VoodooI2CTouchscreenHIDEventDriver\/VoodooI2CMultitouchInterface\/VoodooI2CNativeEngine\/VoodooInput\/VoodooInputSimulatorDevice",
+      "Transport" : "I2C",
+      "PrimaryUsage" : 2,
+      "ProductID" : 641
+    },
+    {
+      "VendorID" : 1452,
+      "Product" : "Magic Trackpad 2",
+      "PrimaryUsagePage" : 65280,
+      "path" : "IOService:\/AppleACPIPlatformExpert\/PC00\/AppleACPIPCI\/I2C0@15\/VoodooI2CPCIController\/VoodooI2CControllerNub\/VoodooI2CControllerDriver\/TPL0\/VoodooI2CHIDDevice\/IOHIDInterface\/VoodooI2CTouchscreenHIDEventDriver\/VoodooI2CMultitouchInterface\/VoodooI2CNativeEngine\/VoodooInput\/VoodooInputActuatorDevice",
+      "Transport" : "I2C",
+      "PrimaryUsage" : 13,
+      "ProductID" : 641
+    }
+  ],
+  "automaticRotationReady" : false,
+  "observerQueryResult" : 0,
+  "acpiDevices" : [
+    {
+      "path" : "IOACPIPlane:\/_SB\/PC00\/ISHD@120000"
+    }
+  ],
+  "displayQueryResult" : 0,
+  "hidQueryResult" : 0,
+  "acpiQueryResult" : 0,
+  "sensorDevices" : [
+
+  ],
+  "passiveObservers" : [
+
+  ]
+}

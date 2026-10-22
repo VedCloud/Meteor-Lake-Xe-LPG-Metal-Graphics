@@ -208,7 +208,14 @@ static int nvmtl_skip_empty_on(void) {
     dispatch_async(order, ^{
         dispatch_sync(target, ^{
             for (MTLCommandBufferHandler handler in handlers) {
+                const uint64_t callbackStart=self->_traceCommitNS ? clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW) : 0;
                 handler(self);
+                if (callbackStart) {
+                    const uint64_t elapsed=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW)-callbackStart;
+                    static _Atomic unsigned callbackReports;
+                    if (elapsed>=50000000ULL && atomic_fetch_add(&callbackReports,1)<16)
+                        nvlog("first-submit: slow-callback0.3.12: cb=%p scheduled=%d elapsed_ms=%.3f",(__bridge void *)self,scheduled,elapsed*1e-6);
+                }
                 if (scheduled) dispatch_group_leave(self->_scheduledGroup);
                 dispatch_group_leave(self->_callbackGroup);
             }
@@ -442,11 +449,14 @@ static void nvmtl_gsub_ahead_pass1(void) {
     if (part->commands.cb || ahead) {
         [self nvmtlMarkScheduled];
         if (!_legacyKernelStart) _legacyKernelStart = clock_gettime_nsec_np(CLOCK_UPTIME_RAW) / 1e9;
+        const uint64_t phaseBegin=_traceCommitNS ? clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW) : 0;
         int result;
+        uint64_t phaseImported=phaseBegin;
         if (part->inflight) result = nvmtl_gsub_finish(part);
         else if (part->aheadFailed) result = part->aheadFailed;
         else {
             for (NVMTLBuffer *buffer in nvmtl_submission_copies(part->resources, NO)) nvmtl_buffer_sync_in(buffer);
+            if(phaseBegin)phaseImported=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
             result = nvmtl_vk_submit_wait(&part->commands);
         }
         if (result == -2) {
@@ -454,13 +464,26 @@ static void nvmtl_gsub_ahead_pass1(void) {
             [nvmtl_quarantined_parts addObject:part];
         }
         if (result == 0) [self nvmtlCollectDeviceTiming:&part->commands];
+        const uint64_t phaseWait=phaseBegin ? clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW) : 0;
+        uint64_t phaseSurfaces=phaseWait;
         BOOL published = result == 0;
         if (published) {
             for (NVMTLTexture *texture in part->surfaces) {
                 if (![texture nvmtlSurfaceOut]) published = NO;
                 else nvmtl_mark_published(self, texture->_parent ? texture->_parent : texture);
             }
+            if(phaseBegin)phaseSurfaces=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
             for (NVMTLBuffer *buffer in nvmtl_submission_copies(part->resources, YES)) nvmtl_buffer_sync_out(buffer);
+        }
+        if (phaseBegin) {
+            const uint64_t now=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+            static _Atomic unsigned slowReports;
+            if (now-_traceCommitNS>=50000000ULL && atomic_fetch_add(&slowReports,1)<32)
+                nvlog("first-submit: slow-part0.3.19: cb=%p part=%lu/%lu elapsed_before_part_ms=%.3f gpu_wait_ms=%.3f publish_ms=%.3f surfaces=%lu result=%d published=%d import_ms=%.3f surface_out_ms=%.3f buffer_out_ms=%.3f",
+                    (__bridge void *)self,(unsigned long)_nextPart,(unsigned long)_parts.count,
+                    (phaseBegin-_traceCommitNS)*1e-6,(phaseWait-phaseBegin)*1e-6,(now-phaseWait)*1e-6,
+                    (unsigned long)part->surfaces.count,result,published,
+                    (phaseImported-phaseBegin)*1e-6,(phaseSurfaces-phaseWait)*1e-6,(now-phaseSurfaces)*1e-6);
         }
         if (!published) {
             [self nvmtlFinishExecution:[NSError errorWithDomain:MTLCommandBufferErrorDomain code:MTLCommandBufferErrorInternal

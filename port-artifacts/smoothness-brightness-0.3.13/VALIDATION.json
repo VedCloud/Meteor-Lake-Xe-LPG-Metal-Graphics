@@ -1,0 +1,40 @@
+{
+  "candidate": "0.3.13",
+  "accelerator_version": "0.2.5",
+  "accelerator_uuid": "8096FC0D-5CBB-398A-A0C9-935AB3CCAF7E",
+  "framebuffer_version": "0.2.6",
+  "framebuffer_uuid": "387BD567-165D-3528-A009-F78D802FEE8A",
+  "metal_plugin": "0.3.12 unchanged",
+  "tests": [
+    "x86_64 kernel builds and signatures",
+    "actual copy helper ASan/UBSan tight/padded/guard-page/overflow/deadline cases",
+    "actual PWM planner ASan/UBSan all 65536 levels and invalid-state rejection",
+    "native/x86_64 frame observer timestamp/idle/percentile fixtures without capture",
+    "installer new-accelerator success, wrong prelink UUID failure and complete rollback",
+    "collector default/explicit end, Weather/crash/branding/frame-observer fixtures"
+  ],
+  "new_accelerator_imports": [
+    "_absolutetime_to_nanoseconds",
+    "_nanoseconds_to_absolutetime"
+  ],
+  "missing_prior_accelerator_exports": [],
+  "existing_mach_kpi_dependency": true,
+  "target_kc_resolution_pending": true,
+  "baseline_preserved": true,
+  "efi_unchanged": true,
+  "full_hardware_suite_rerun": false,
+  "host_real_capture": false,
+  "dell_installation_or_arming_or_reboot": false,
+  "dell_brightness_verified": false,
+  "coreanimation_timeouts_fixed_on_target": false,
+  "weather_fixed_on_target": false,
+  "new_target_performance_result": null,
+  "total_render_latency_measured": false,
+  "frozen_runtime_hashes": {
+    "WindowServerKernel/NMXGPU.kext/Contents/MacOS/NMXGPU": "81981def42d7761c68a12fc70ea57ea7f48b8eaf6628578739c4a859977ec037",
+    "WindowServerPlugin/NVMTLDriver.bundle/Contents/MacOS/NVMTLDriver": "3eb0fc04b45c0f03bc130d3ee152eb4c0dd5713ba30dd1196cabaa278adc8526",
+    "Library/Extensions/NMXAccel.kext/Contents/MacOS/NMXAccel": "9359839810f6e345b15ae9221f4cf3aacd2b0a497f23bb9bb118100df3421361",
+    "WindowServerBackend/libvulkan_intel.dylib": "0061729e94f341dbecb2e6d2bcc5b8416d3b7bd3c077143ff292ca22b149152e",
+    "WindowServerTransport/libdrm.2.dylib": "2e0eb9f1cf0105aa22d24fc7368c78f30cda645ef9110c7dfeeed7baf3ca2c5f"
+  }
+}

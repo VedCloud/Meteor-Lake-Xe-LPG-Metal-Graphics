@@ -1,0 +1,11 @@
+
+Hardware Port: PCI Serial Adapter (22)
+Device: pci-serial22
+Ethernet Address: N/A
+
+Hardware Port: Wi-Fi
+Device: en0
+Ethernet Address: 4c:b0:4a:e5:7a:86
+
+VLAN Configurations
+===================

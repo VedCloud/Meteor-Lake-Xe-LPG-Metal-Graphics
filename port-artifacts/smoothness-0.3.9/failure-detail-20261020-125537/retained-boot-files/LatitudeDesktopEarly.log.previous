@@ -1,0 +1,281 @@
+Tue Oct 20 12:51:18 BST 2026
+kern.boottime: { sec = 1792497072, usec = 0 } Tue Oct 20 12:51:12 2026
+Filtering the log data using "(process == "kernel" OR process == "WindowServer") AND (logType == 16 OR logType == 17 OR composedMessage CONTAINS[c] "panic" OR composedMessage CONTAINS[c] "NMX" OR composedMessage CONTAINS[c] "Latitude" OR composedMessage CONTAINS[c] "drmn" OR composedMessage CONTAINS[c] "i915" OR composedMessage CONTAINS[c] "NullMoth")"
+Timestamp               Ty Process[PID:TID]
+2026-10-20 12:51:19.407 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/com.apple.kernelmanagerd/TemporaryItems
+2026-10-20 12:51:19.407 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/db/loadedkextmt.plist.sb-4e64ebf9-CKAFeR
+2026-10-20 12:51:19.416 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/com.apple.kernelmanagerd/TemporaryItems
+2026-10-20 12:51:19.416 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/db/loadedkextmt.plist.sb-4e64ebf9-dGTAJX
+2026-10-20 12:51:19.419 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/com.apple.kernelmanagerd/TemporaryItems
+2026-10-20 12:51:19.419 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/db/loadedkextmt.plist.sb-4e64ebf9-dvJWix
+2026-10-20 12:51:19.423 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/com.apple.kernelmanagerd/TemporaryItems
+2026-10-20 12:51:19.423 E  kernel[0:7b2] (Sandbox) Sandbox: kernelmanagerd(124) deny(1) file-write-create /private/var/db/loadedkextmt.plist.sb-4e64ebf9-dzGXpr
+2026-10-20 12:51:19.444 E  WindowServer[163:854] [com.apple.defaults:User Defaults] All kCFPreferencesCurrentUser domains in this process will be volatile, because homeDirPath starts with /var/empty
+2026-10-20 12:51:19.547 E  kernel[0:870] (Sandbox) Sandbox: UARPUpdaterServiceDisplay(326) deny(1) file-issue-extension target:/private/var/db/accessoryupdater/Library/Preferences/com.apple.uarpupdaterservice.display.plist extension-class:com.apple.cfprefsd.read
+2026-10-20 12:51:19.548 E  kernel[0:870] (Sandbox) Sandbox: UARPUpdaterServiceDisplay(326) deny(1) file-issue-extension target:/private/var/db/accessoryupdater/Library/Preferences/.GlobalPreferences.plist extension-class:com.apple.cfprefsd.read
+2026-10-20 12:51:19.548 E  kernel[0:870] (Sandbox) Sandbox: UARPUpdaterServiceDisplay(326) deny(1) file-issue-extension target:/private/var/db/accessoryupdater/Library/Preferences/.GlobalPreferences_m.plist extension-class:com.apple.cfprefsd.read
+2026-10-20 12:51:19.548 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in CGXConstructVirtualFramebuffer 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbce3	CGXConstructVirtualFramebuffer + 2080
+	2  	    0x7ff8064bb3e2	CGXConstructVirtualFramebufferSet + 411
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806568b86	displayDidCreateSessionProc + 9
+	5  	    0x7ff80a107274	(anonymous namespace)::ServerNotifier::invoke_callbacks(unsigned int, void*, unsigned long) const + 352
+	6  	    0x7ff80a106a2b	WSPostLocalNotification + 46
+	7  	    0x7ff80a126cb5	createSessionWithOwner(__CFDictionary const*, CGXCredentials, void*, unsigned int, bool, unsigned int, unsigned int*) + 838
+	8  	    0x7ff80a2165cf	WSInitialize + 3564
+	9  	    0x7ff80a348d95	SLXServer + 1309
+	10 	       0x10e8806d1	11  WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	11 	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.549 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting main display 0x00000000 offline 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbb64	CGXConstructVirtualFramebuffer + 1697
+	2  	    0x7ff8064bb3e2	CGXConstructVirtualFramebufferSet + 411
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806568b86	displayDidCreateSessionProc + 9
+	5  	    0x7ff80a107274	(anonymous namespace)::ServerNotifier::invoke_callbacks(unsigned int, void*, unsigned long) const + 352
+	6  	    0x7ff80a106a2b	WSPostLocalNotification + 46
+	7  	    0x7ff80a126cb5	createSessionWithOwner(__CFDictionary const*, CGXCredentials, void*, unsigned int, bool, unsigned int, unsigned int*) + 838
+	8  	    0x7ff80a2165cf	WSInitialize + 3564
+	9  	    0x7ff80a348d95	SLXServer + 1309
+	10 	       0x10e8806d1	11  WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	11 	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.555 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x41dc9d00 main in CGXMainDisplayDevice 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8065658d4	CGXMainDisplayDevice + 577
+	2  	    0x7ff806541161	CGXFullScreenAppIsRunning + 9
+	3  	    0x7ff80a3212f9	eventDidCreateSessionProc(CGSNotificationType, void*, unsigned int, void*) + 83
+	4  	    0x7ff80a107274	(anonymous namespace)::ServerNotifier::invoke_callbacks(unsigned int, void*, unsigned long) const + 352
+	5  	    0x7ff80a106a2b	WSPostLocalNotification + 46
+	6  	    0x7ff80a126cb5	createSessionWithOwner(__CFDictionary const*, CGXCredentials, void*, unsigned int, bool, unsigned int, unsigned int*) + 838
+	7  	    0x7ff80a2165cf	WSInitialize + 3564
+	8  	    0x7ff80a348d95	SLXServer + 1309
+	9  	       0x10e8806d1	10  WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	10 	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.623 E  WindowServer[163:376] [com.apple.CFBundle:loading] Cannot find executable for CFBundle/CFPlugIn 0x6000003a8000 </System/Library/HIDPlugins/AppleSPUHIDStatistics.plugin> (not loaded)
+2026-10-20 12:51:19.623 E  WindowServer[163:376] [com.apple.CFBundle:plugin] Cannot find function pointer AppleSPUHIDStatisticsFactory for factory <CFUUID 0x600003a80240> 75F07127-BB06-490A-B1B9-81AE65DF0646 in CFBundle/CFPlugIn 0x6000003a8000 </System/Library/HIDPlugins/AppleSPUHIDStatistics.plugin> (not loaded)
+2026-10-20 12:51:19.639 E  kernel[0:268] (Sandbox) Sandbox: com.apple.AmbientDisplayAgent(340) deny(1) mach-lookup com.apple.windowserver
+2026-10-20 12:51:19.642 E  WindowServer[163:376] [com.apple.iohid:default] IOHIDSessionFilterCreateWithClass Failed to initialize filter
+2026-10-20 12:51:19.642 E  WindowServer[163:376] [com.apple.iohid:default] IOHIDSessionFilterCreateWithClass failed for bundle {
+    BuildMachineOSBuild = 23A344014;
+    CFBundleDevelopmentRegion = en;
+    CFBundleExecutable = HIDRMSessionFilter;
+    CFBundleIdentifier = "com.apple.HIDRMSessionFilter";
+    CFBundleInfoDictionaryVersion = "6.0";
+    CFBundleName = HIDRMSessionFilter;
+    CFBundleNumericVersion = 16809984;
+    CFBundlePackageType = BNDL;
+    CFBundleShortVersionString = "1.0";
+    CFBundleSupportedPlatforms =     (
+        MacOSX
+    );
+    CFBundleVersion = 1;
+    DTCompiler = "com.apple.compilers.llvm.clang.1_0";
+    DTPlatformBuild = 24H12;
+    DTPlatformName = macosx;
+    DTPlatformVersion = "15.8";
+    DTSDKBuild = 24H12;
+    DTSDKName = "macosx15.8.internal";
+    DTXcode = 1630;
+    DTXcodeBuild = 16E6052g;
+    LSMinimumSystemVersion = "15.8";
+    NSPrincipalClass = HIDRMSessionFilter;
+}
+2026-10-20 12:51:19.650 E  WindowServer[163:376] [com.apple.accessories:ApplePCIeAnalytics] Failed to send analytics event! (eventName: com.apple.accessories.IOPCIDevice.FirstMatch)
+2026-10-20 12:51:19.670 E  WindowServer[163:8af] [com.apple.CoreRCPlugin:default] Failed to add IOAVVideoInterface matching notification for analytics 0xe00002c2
+2026-10-20 12:51:19.700 E  kernel[0:3d0] (Sandbox) 1 duplicate report for Sandbox: com.apple.AmbientDisplayAgent(340) deny(1) mach-lookup com.apple.windowserver
+2026-10-20 12:51:19.700 E  kernel[0:3d0] (Sandbox) Sandbox: findmybeaconingd(343) deny(1) user-preference-read kcfpreferencesanyapplication
+2026-10-20 12:51:19.757 E  kernel[0:266] (Sandbox) 1 duplicate report for Sandbox: findmybeaconingd(343) deny(1) user-preference-read kcfpreferencesanyapplication
+2026-10-20 12:51:19.757 E  kernel[0:266] (Sandbox) Sandbox: findmybeaconingd(343) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:19.759 E  WindowServer[163:376] [com.apple.CFBundle:plugin] AddInstanceForFactory: No factory registered for id <CFUUID 0x600003a97440> 13AA9C44-6F1B-11D4-907C-0005028F18D5
+2026-10-20 12:51:19.787 E  WindowServer[163:8af] [com.apple.iohid:default] Unable to register display dim notification: 1001
+2026-10-20 12:51:19.790 E  WindowServer[163:8af] [com.apple.Multitouch:Plugin] Failed to register mach port in bootstrap namespace: xpc_connection_send_message_with_reply_sync failed: Connection invalid
+2026-10-20 12:51:19.790 E  WindowServer[163:8af] (HSTouchHIDService) Assertion failed (<private> @ <private>:129): <private>
+2026-10-20 12:51:19.870 E  WindowServer[163:376] [com.apple.defaults:User Defaults] All kCFPreferencesCurrentUser domains in this process will be volatile, because homeDirPath starts with /var/empty
+2026-10-20 12:51:19.879 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Error: No property 'FB_Triage', or property isn't a string.
+2026-10-20 12:51:19.879 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Error: Can't get value for key 'Triage'.
+2026-10-20 12:51:19.909 E  WindowServer[163:376] (IOPresentment) Error: Unable to acquire map
+2026-10-20 12:51:19.913 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - 	
+	0  	    0x7ff8064979b8	std::__1::pair<std::__1::__hash_iterator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, CoreDisplay::DisplayPipe>, void*>*>, bool> std::__1::__hash_table<std::__1::__hash_value_type<unsigned long long, CoreDisplay::DisplayPipe>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, CoreDisplay::DisplayPipe>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, CoreDisplay::DisplayPipe>, std::__1::equal_to<unsigned long long>, std::__1::hash<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, CoreDisplay::DisplayPipe>>>::__emplace_unique_impl<std::__1::piecewise_construct_t const&, std::__1::tuple<unsigned long long&>, std::__1::tuple<unsigned long long&>>(std::__1::piecewise_construct_t const&, std::__1::tuple<unsigned long long&>&&, std::__1::tuple<unsigned long long&>&&) + 4340
+	1  	    0x7ff806574a4b	CoreDisplay::Framebuffer::Framebuffer(unsigned int, unsigned long long, unsigned int, unsigned long long) + 3601
+	2  	    0x7ff8064ff402	CoreDisplay::GPU::GPU(__GPUWranglerGPU*, dispatch_queue_s*) + 744
+	3  	    0x7ff8065140d5	invocation function for block in CoreDisplay::GPUController::GPUController() + 2634
+	4  	    0x7ff8152e2531	GPUWranglerRegisterEventBlock + 1077
+	5  	    0x7ff8065372b9	CGXMappedDisplayStart + 4409
+	6  	    0x7ff8065621f2	CGXDisplayDriverInitialize + 972
+	7  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	8  	    0x7ff80a21675a	WSInitialize + 3959
+	9  	    0x7ff80a348d95	SLXServer + 1309
+	10 	       0x10e8806d1	11  WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	11 	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.917 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Error: No property 'FB_Triage', or property isn't a string.
+2026-10-20 12:51:19.917 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Error: Can't get value for key 'Triage'.
+2026-10-20 12:51:19.919 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in AddCGXDisplayDeviceToDeviceList 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff806560995	AddCGXDisplayDeviceToDeviceList + 209
+	2  	    0x7ff8065624d4	CGXDisplayDriverInitialize + 1710
+	3  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	4  	    0x7ff80a21675a	WSInitialize + 3959
+	5  	    0x7ff80a348d95	SLXServer + 1309
+	6  	       0x10e8806d1	7   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	7  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.933 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - isBroadwellOrLater_block_invoke: sysctlbyname fail with error status 0x00000000
+2026-10-20 12:51:19.933 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - isSkylakeOrLater_block_invoke: sysctlbyname fail with error status 0x00000000
+2026-10-20 12:51:19.933 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - isCannonLakeOrLater_block_invoke: sysctlbyname fail with error status 0x00000000
+2026-10-20 12:51:19.934 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Display id 0x00000000 -> 0x5b81c5c0
+2026-10-20 12:51:19.934 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - device_preserves_framebuffer: IOFBNeedsRefresh key not found in IORegistry
+2026-10-20 12:51:19.934 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - device_preserves_framebuffer: needs_refresh = NO
+2026-10-20 12:51:19.984 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in CGXConstructVirtualFramebuffer 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbce3	CGXConstructVirtualFramebuffer + 2080
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.984 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting main display 0x00000000 offline 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbb64	CGXConstructVirtualFramebuffer + 1697
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.984 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in CGXConstructVirtualFramebuffer 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbce3	CGXConstructVirtualFramebuffer + 2080
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.985 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting main display 0x00000000 offline 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbb64	CGXConstructVirtualFramebuffer + 1697
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.985 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in CGXConstructVirtualFramebuffer 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbce3	CGXConstructVirtualFramebuffer + 2080
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.985 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting main display 0x00000000 offline 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbb64	CGXConstructVirtualFramebuffer + 1697
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.986 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in CGXConstructVirtualFramebuffer 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbce3	CGXConstructVirtualFramebuffer + 2080
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.986 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting main display 0x00000000 offline 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbb64	CGXConstructVirtualFramebuffer + 1697
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.987 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting offline display 0x00000000 main in CGXConstructVirtualFramebuffer 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbce3	CGXConstructVirtualFramebuffer + 2080
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:19.987 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Setting main display 0x00000000 offline 	
+	0  	    0x7ff80649ce23	CoreDisplay::AddMainOfflineBreadcrumb(bool, char const*, ...) + 317
+	1  	    0x7ff8064bbb64	CGXConstructVirtualFramebuffer + 1697
+	2  	    0x7ff8064bb34b	CGXConstructVirtualFramebufferSet + 260
+	3  	    0x7ff806562d5f	setup_virtual_framebuffers() + 11
+	4  	    0x7ff806562517	CGXDisplayDriverInitialize + 1777
+	5  	    0x7ff80a1ac7d1	WS::Displays::CoreDisplayManager::initialize() + 43
+	6  	    0x7ff80a21675a	WSInitialize + 3959
+	7  	    0x7ff80a348d95	SLXServer + 1309
+	8  	       0x10e8806d1	9   WindowServer                        0x000000010e8806d1 WindowServer + 1745
+	9  	    0x7ff803f6b530	start + 3056
+2026-10-20 12:51:20.026 E  WindowServer[163:376] [com.apple.coreanimation:Render] unable to register bootstrap port com.apple.CARenderServer: 44f
+2026-10-20 12:51:20.045 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Reconfiguration started
+2026-10-20 12:51:20.055 E  WindowServer[163:376] [com.apple.CoreDisplay:default] [ERROR] - Reconfiguration finished
+2026-10-20 12:51:20.425 E  kernel[0:565] (Sandbox) 3 duplicate reports for Sandbox: findmybeaconingd(343) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:20.425 E  kernel[0:565] (Sandbox) Sandbox: nesessionmanager(142) deny(1) system-fsctl (_IO "h" 47)
+2026-10-20 12:51:20.475 E  kernel[0:7f6] (Sandbox) Sandbox: softwareupdated(115) deny(1) nvram-get ForceDisplayRotationInEFI
+2026-10-20 12:51:20.475 E  kernel[0:7f6] (Sandbox) Sandbox: softwareupdated(115) deny(1) nvram-get run-efi-updater
+2026-10-20 12:51:20.475 E  kernel[0:7f6] (Sandbox) Sandbox: softwareupdated(115) deny(1) nvram-get fm-spstatus
+2026-10-20 12:51:20.475 E  kernel[0:7f6] (Sandbox) Sandbox: softwareupdated(115) deny(1) nvram-get AAPL,PanicInfo000K
+2026-10-20 12:51:20.475 E  kernel[0:7f6] (Sandbox) Sandbox: softwareupdated(115) deny(1) nvram-get AAPL,PanicInfo000L
+2026-10-20 12:51:20.557 E  kernel[0:565] (Sandbox) Sandbox: nesessionmanager(142) deny(1) system-fsctl (_IO "h" 47)
+2026-10-20 12:51:20.672 E  WindowServer[163:376] [com.apple.SkyLight:processes] 0[SetFrontProcessWithInfo]: CPS: Denying SecurityAgent the right to be in front because it is not in the list of permittedFrontASNs
+2026-10-20 12:51:20.681 E  WindowServer[163:376] [com.apple.SkyLight:processes] 0[SetFrontProcessWithInfo]: CPS: Denying SecurityAgent the right to be in front because it is not in the list of permittedFrontASNs
+2026-10-20 12:51:20.943 E  kernel[0:268] (Sandbox) Sandbox: corebrightnessd(159) deny(1) mach-lookup com.apple.coreservices.launchservicesd
+2026-10-20 12:51:20.946 E  kernel[0:267] (Sandbox) Sandbox: corebrightnessd(159) deny(1) mach-lookup com.apple.CARenderServer
+2026-10-20 12:51:20.952 E  WindowServer[163:376] [com.apple.SkyLight:default] CGXPostReplyMessage: Server reply mach_msg: (ipc/send) invalid memory
+2026-10-20 12:51:22.283 E  WindowServer[163:376] [com.apple.defaults:User Defaults] Could not issue sandbox extension for plist at <private>
+2026-10-20 12:51:22.283 E  kernel[0:376] (Sandbox) Sandbox: WindowServer(163) deny(1) file-issue-extension target:/..plist extension-class:com.apple.cfprefsd.read-write
+2026-10-20 12:51:22.283 E  WindowServer[163:376] [com.apple.defaults:User Defaults] Couldn't write values for keys (
+    PhotosensitiveMitigation
+) in CFPrefsPlistSource<0x60000149d280> (Domain: com.apple.Accessibility, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: Yes): Path not accessible
+2026-10-20 12:51:22.434 E  kernel[0:2d3] (Sandbox) Sandbox: ctkd(386) deny(1) mach-lookup com.apple.CoreServices.coreservicesd
+2026-10-20 12:51:22.443 E  kernel[0:266] (Sandbox) Sandbox: ctkd(386) deny(1) mach-lookup com.apple.DiskArbitration.diskarbitrationd
+2026-10-20 12:51:22.547 E  kernel[0:2d3] (Sandbox) 1 duplicate report for Sandbox: ctkd(386) deny(1) mach-lookup com.apple.DiskArbitration.diskarbitrationd
+2026-10-20 12:51:22.547 E  kernel[0:2d3] (Sandbox) Sandbox: dasd(145) deny(1) mach-lookup com.apple.OSIntelligence.charging
+2026-10-20 12:51:22.792 E  kernel[0:266] (Sandbox) Sandbox: systemstats(102) deny(1) mach-lookup com.apple.tccd.system
+2026-10-20 12:51:22.797 E  kernel[0:2d3] (Sandbox) 1 duplicate report for Sandbox: systemstats(102) deny(1) mach-lookup com.apple.tccd.system
+2026-10-20 12:51:22.797 E  kernel[0:2d3] (Sandbox) Sandbox: systemstats(102) deny(1) mach-lookup com.apple.server.bluetooth.le.att.xpc
+2026-10-20 12:51:22.802 E  kernel[0:266] (Sandbox) Sandbox: systemstats(102) deny(1) mach-lookup com.apple.tccd
+2026-10-20 12:51:22.802 E  kernel[0:266] (Sandbox) Sandbox: systemstats(102) deny(1) mach-lookup com.apple.tccd.system
+2026-10-20 12:51:22.802 E  kernel[0:266] (Sandbox) Sandbox: systemstats(102) deny(1) mach-lookup com.apple.tccd
+2026-10-20 12:51:22.802 E  kernel[0:266] (Sandbox) Sandbox: systemstats(102) deny(1) mach-lookup com.apple.tccd.system
+2026-10-20 12:51:23.039 E  kernel[0:266] (Sandbox) Sandbox: systemstats(396) deny(1) mach-lookup com.apple.cmio.registerassistantservice
+2026-10-20 12:51:23.049 E  kernel[0:266] (Sandbox) Sandbox: systemstats(396) deny(1) mach-lookup com.apple.cmio.registerassistantservice.system-extensions
+2026-10-20 12:51:25.747 E  WindowServer[163:8fa] [com.apple.BezelServices:KeyboardTelemetryServiceFilter] Unable to get device address for <private>
+2026-10-20 12:51:25.747 E  WindowServer[163:9d5] [com.apple.BezelServices:KeyboardTelemetryServiceFilter] Unable to get device address for <private>
+2026-10-20 12:51:25.902 E  WindowServer[163:376] [com.apple.SkyLight:processes] 0[SetFrontProcessWithInfo]: CPS: Application SecurityAgent/0x0-0x7007 tried to make itself frontmost, and the front process is NULL, so allowing it to be in front.
+2026-10-20 12:51:29.969 E  kernel[0:44c] rtrequest_common_locked: route already exists: 192.168.1.0->link#0->en0
+2026-10-20 12:51:30.320 E  kernel[0:2d3] (Sandbox) Sandbox: findmybeaconingd(343) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:30.465 E  kernel[0:2d3] (Sandbox) 7 duplicate reports for Sandbox: findmybeaconingd(343) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:30.465 E  kernel[0:2d3] (Sandbox) Sandbox: searchpartyd(282) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:30.465 E  kernel[0:2d3] (Sandbox) Sandbox: findmybeaconingd(343) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:31.016 E  kernel[0:3ea] (Sandbox) 1 duplicate report for Sandbox: findmybeaconingd(343) deny(1) mach-lookup com.apple.timed.xpc
+2026-10-20 12:51:31.016 E  kernel[0:3ea] (Sandbox) Sandbox: apsd(135) deny(1) user-preference-write com.apple.apsd

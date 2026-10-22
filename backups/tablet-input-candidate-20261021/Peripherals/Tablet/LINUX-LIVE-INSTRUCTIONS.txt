@@ -1,0 +1,38 @@
+DELL LIVE LINUX SENSOR CAPTURE
+
+This USB runs Fedora Xfce 44 x86_64 live. No OS installation is required.
+
+1. Connect this SanDisk USB to the Dell.
+2. Power on, press F12, and select the UEFI SanDisk USB entry directly.
+   Do not launch the SEQOUIA OpenCore USB for this Linux capture.
+3. Choose "Dell sensor capture - Fedora Live". Wait for the live desktop.
+   Do not click Install to Hard Drive.
+4. Open Terminal and run:
+
+   sudo /bin/bash /run/initramfs/live/start-capture.sh
+
+5. Press Enter once at the initial laptop-position prompt. Follow the timed
+   instructions: normal laptop, folded landscape tablet, portrait left,
+   portrait right, then back to laptop. No keys are needed while folded.
+6. Wait for SAVED. Shut down Linux and return the SanDisk USB to the Mac.
+
+Logs are written to the separate LATSENSORS data partition. The collector reads
+HID sensor descriptors, IIO readings, EV_SW switch state and firmware tables.
+It does not read typed keys, grab input devices, or install to an internal disk.
+It loads standard sensor modules in this temporary live session. The boot
+parameter intel_hid.enable_sw_tablet_mode=2 requests the documented at-probe
+Intel HID tablet-switch report, so its initial state can be captured.
+
+The original NEW VOLUME files are backed up on the Mac under:
+/Users/ved/Documents/iGPU Port/backups/new-volume-before-linux-20261021
+
+The SEQOUIA USB was separately configured for accelerated graphics on every
+normal boot. Its confirmed Copilot Command mapping is retained.
+
+Fedora source:
+https://fedoraproject.org/spins/xfce/download/
+Official image: Fedora-Xfce-Live-44-1.7.x86_64.iso
+SHA256: 55ea8cb52ac16e62f436e37f9fdb4e978d7b9f75814a9d42e8b69d05e3b496ad
+
+This live USB requires a Dell boot test. Automatic macOS rotation and tablet
+input suppression are not installed by booting this Linux collector.

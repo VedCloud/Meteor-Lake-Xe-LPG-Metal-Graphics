@@ -1,0 +1,36 @@
+{
+  "SPDisplaysDataType" : [
+    {
+      "_name" : "Intel(R) Graphics (MTL)",
+      "_spdisplays_vram" : "4096 MB",
+      "spdisplays_device-id" : "0x7d45",
+      "spdisplays_mtlgpufamilysupport" : "spdisplays_metal3",
+      "spdisplays_ndrvs" : [
+        {
+          "_name" : "Unknown Display",
+          "_spdisplays_display-product-id" : "717",
+          "_spdisplays_display-serial-number2" : "0",
+          "_spdisplays_display-vendor-id" : "756e6b6e",
+          "_spdisplays_displayID" : "5b81c5c0",
+          "_spdisplays_displayPath" : "IOService:/AppleACPIPlatformExpert/PC00/AppleACPIPCI/GFX0@2/LatitudePanelClaim/NMXIntelVGAFB",
+          "_spdisplays_displayRegID" : "5d17",
+          "_spdisplays_pixels" : "1920 x 1080",
+          "_spdisplays_resolution" : "1920 x 1080",
+          "spdisplays_connection_type" : "spdisplays_internal",
+          "spdisplays_depth" : "CGSThirtytwoBitColor",
+          "spdisplays_main" : "spdisplays_yes",
+          "spdisplays_mirror" : "spdisplays_off",
+          "spdisplays_online" : "spdisplays_yes",
+          "spdisplays_pixelresolution" : "spdisplays_1080p",
+          "spdisplays_resolution" : "1920 x 1080"
+        }
+      ],
+      "spdisplays_revision-id" : "0x0008",
+      "spdisplays_vendor" : "Intel",
+      "spdisplays_vram_shared" : "4096 MB",
+      "sppci_bus" : "spdisplays_builtin",
+      "sppci_device_type" : "spdisplays_gpu",
+      "sppci_model" : "Intel(R) Graphics (MTL)"
+    }
+  ]
+}

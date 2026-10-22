@@ -1,0 +1,9 @@
+{
+  "fullIntelKextCompiledLinkedSigned": true,
+  "units": 74,
+  "ledgerASanUBSan": "passed normal, duplicate response/reclaim, failure, missing response, reset abort and cookie wrap",
+  "nativeLifecycle": "Sequoia base factory delegation compiled, not target tested",
+  "actualTrialScript": "passed previous candidate apply, original restore, idempotence and unexpected-driver refusal in temporary fixture",
+  "hardwareRFValidated": false,
+  "AirDropFunctional": false
+}

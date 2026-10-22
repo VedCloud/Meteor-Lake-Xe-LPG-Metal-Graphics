@@ -15,12 +15,26 @@ cd "$HERE/.."
 shasum -a 256 -c "$HERE/WINDOWSERVER-BASELINE-SHA256SUMS.txt" > "$REPORT/baseline-check.txt"
 echo 'Verified the saved22case/26000frame baseline. No GPU tests will run.'
 kmutil showloaded > "$REPORT/loaded-kexts.txt" 2>&1
-for spec in 'NMXAccel 0.2.4'; do
-  set -- $spec
-  expected_uuid=$(cat "$HERE/$1-UUID.txt")
-  grep -F "com.nullmoth.$1 ($2)" "$REPORT/loaded-kexts.txt" | grep -F "$expected_uuid" >/dev/null || { echo "Loaded $1 differs from the verified baseline; no changes made."; exit 2; }
-  cmp -s "$HERE/Library/Extensions/$1.kext/Contents/MacOS/$1" "/Library/Extensions/$1.kext/Contents/MacOS/$1" || { echo "Installed $1 differs from baseline."; exit 2; }
+accel_source=''
+for candidate in baseline diagnostic previous pre-gamma pre-colour pre-timing; do
+  if [ "$candidate" = baseline ]; then version=0.2.4; bundle="$HERE/Library/Extensions/NMXAccel.kext"; uuid_file="$HERE/NMXAccel-UUID.txt"
+  elif [ "$candidate" = previous ]; then version=$(cat "$HERE/PreviousWindowServerAccelerator/NMXAccel-VERSION.txt"); bundle="$HERE/PreviousWindowServerAccelerator/NMXAccel.kext"; uuid_file="$HERE/PreviousWindowServerAccelerator/NMXAccel-UUID.txt"
+  elif [ "$candidate" = pre-timing ]; then
+    [ -f "$HERE/PreTimingWindowServerAccelerator/NMXAccel-VERSION.txt" ] || continue
+    version=$(cat "$HERE/PreTimingWindowServerAccelerator/NMXAccel-VERSION.txt"); bundle="$HERE/PreTimingWindowServerAccelerator/NMXAccel.kext"; uuid_file="$HERE/PreTimingWindowServerAccelerator/NMXAccel-UUID.txt"
+  elif [ "$candidate" = pre-colour ]; then
+    [ -f "$HERE/PreColourWindowServerAccelerator/NMXAccel-VERSION.txt" ] || continue
+    version=$(cat "$HERE/PreColourWindowServerAccelerator/NMXAccel-VERSION.txt"); bundle="$HERE/PreColourWindowServerAccelerator/NMXAccel.kext"; uuid_file="$HERE/PreColourWindowServerAccelerator/NMXAccel-UUID.txt"
+  elif [ "$candidate" = pre-gamma ]; then version=$(cat "$HERE/PreGammaWindowServerAccelerator/NMXAccel-VERSION.txt"); bundle="$HERE/PreGammaWindowServerAccelerator/NMXAccel.kext"; uuid_file="$HERE/PreGammaWindowServerAccelerator/NMXAccel-UUID.txt"
+  else version=$(cat "$HERE/WindowServerAccelerator/NMXAccel-VERSION.txt"); bundle="$HERE/WindowServerAccelerator/NMXAccel.kext"; uuid_file="$HERE/WindowServerAccelerator/NMXAccel-UUID.txt"; fi
+  if grep -F "com.nullmoth.NMXAccel ($version)" "$REPORT/loaded-kexts.txt" | grep -F "$(cat "$uuid_file")" >/dev/null; then
+    cmp -s "$bundle/Contents/MacOS/NMXAccel" /Library/Extensions/NMXAccel.kext/Contents/MacOS/NMXAccel || { echo 'Loaded/installed accelerator mismatch; no changes made.'; exit 2; }
+    accel_source=$candidate; break
+  fi
 done
+[ -n "$accel_source" ] || { echo 'Unexpected accelerator identity; no changes made.'; exit 2; }
+codesign --verify --strict "$HERE/WindowServerAccelerator/NMXAccel.kext"
+
 # Accept only the frozen baseline kernel or this exact diagnostic kernel.
 kernel_source=''
 for candidate in baseline previous diagnostic; do
@@ -40,7 +54,7 @@ if [ -z "$kernel_source" ] && ! grep -F 'com.nullmoth.NMXGPU (' "$REPORT/loaded-
   nvram -d nullmoth-panel-once 2>/dev/null || true
 fi
 [ -n "$kernel_source" ] || { echo 'Unexpected loaded GPU kernel; no changes made.'; exit 2; }
-cmp -s "$HERE/Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreviousWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || { echo 'Unexpected installed framebuffer; no changes made.'; exit 2; }
+cmp -s "$HERE/Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/WindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreviousWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreEDIDWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreGammaWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreColourWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreTimingWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreScalarWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || cmp -s "$HERE/PreNameLimitWindowServerFramebuffer/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB" /Library/Extensions/LatitudeMTLFB.kext/Contents/MacOS/LatitudeMTLFB || { echo 'Unexpected installed framebuffer; no changes made.'; exit 2; }
 codesign --verify --strict "$HERE/WindowServerFramebuffer/LatitudeMTLFB.kext"
 codesign --verify --strict "$HERE/validate-kernel-prelink"
 codesign --verify --strict "$HERE/WindowServerKernel/NMXGPU.kext"
@@ -157,9 +171,21 @@ nvram nullmoth-gpu-once > "$REPORT/armed-markers.txt"
 nvram nullmoth-panel-once >> "$REPORT/armed-markers.txt"
 success=1
 echo "WindowServer scanout-reservation-1.0.15 installed. Backup: $BACKUP"
-echo 'Includes NMXGPU1.0.15: validated firmware scanout prefix reserved; remaining stolen memory restored for i915. Completion-context correction retained. LatitudeMTLFB0.2.5 publishes driver-queried PCI model and shared-memory capacity. Reporting candidate needs next-boot validation.'
-echo 'Metal plugin0.3.7: device-lifetime pipeline cache for MTL WindowServer; fresh command pools unchanged. ANV backend enforces a 4GiB shared heap ceiling; actual queried heap is published by the reporter. Smoothness needs target validation.'
+echo 'Includes NMXGPU1.0.15: validated firmware scanout prefix reserved; remaining stolen memory restored for i915. Completion-context correction retained. LatitudeMTLFB0.2.12 retains driver-queried PCI model and shared-memory capacity. Reporting candidate needs next-boot validation.'
+echo 'Includes NMXAccel0.2.9: transaction LUT/diagonal CSC bridge; kernel REP MOVSB front copy with SFENCE; same copy bounds and presentation ordering. LatitudeMTLFB0.2.12 adds guarded PWM0 brightness parameters; period/polarity/link/pipe settings preserved.'
+echo 'Framebuffer0.2.12 queries the unregistered ACPI LCD through IOACPIPlane and evaluates local four-character LDBG; diagnostic stages retained. Key routing remains BRTKEYS revision4.'
+echo 'Metal plugin0.3.19: fenced staging uses guarded AvoidSync lock with normal fallback; bounded slow submission phases. Publication and completion ordering preserved. Night Shift was confirmed on 0.3.18. This candidate adds bounded bulk gamma copies, corrected counter lookup and slow-phase attribution. Physical keys, Weather text and remaining stalls still need verification.'
 echo 'Includes WindowServer IOKit transport correction: denied writable render opens use an IOKit token; device identity uses the established DRM file. Startup ioctl results captured.'
 echo 'ONE desktop boot armed. Reboot through this USB once when ready.'
 echo 'No hardware suite was rerun. The installer has not rebooted the laptop.'
 echo 'If the panel fails, power off and boot this USB again for fallback; run collect-desktop-failure.sh.'
+
+# Branding owns its snapshot/backup transaction. A cosmetic failure must not undo
+# the already committed and armed graphics candidate.
+if ! /bin/bash "$HERE/install-about-this-mac.sh" > "$REPORT/about-this-mac.txt" 2>&1; then
+  cat "$REPORT/about-this-mac.txt"
+  echo 'Graphics candidate 0.3.19 installed and ONE boot armed; About This Mac branding failed. See the separate report above.'
+  echo 'Retry cosmetics with sudo /bin/bash /Volumes/SEQOUIA/iGPU-Port/Desktop/install-about-this-mac.sh; no graphics tests required.'
+  exit 4
+fi
+cat "$REPORT/about-this-mac.txt"

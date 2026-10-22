@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "uuid": "UUID: 31EC771E-C667-3C2C-8D97-809BF1E60638 (x86_64) /Users/ved/Documents/iGPU Port/desktop-build/tablet-observer/LatitudeTabletObserver.kext/Contents/MacOS/LatitudeTabletObserver",
+  "binarySHA256": "06458d4f56a7bccdc0d2bcfe95546574d3e1c3e5ee1c2edf800a34ac6335ccba",
+  "installed": false,
+  "inputActuation": false,
+  "sensorTransport": false
+}

@@ -1,0 +1,28 @@
+{
+  "base": "d695c971420cc8af0daa286dcd3297e8236c0a63",
+  "MTLfixes": "05b19dc81db6aedcf4058525981f7326f57c04e2",
+  "unitsCompiled": 74,
+  "emptyUpstreamBuildReference": [
+    "F8D94CCE2B9ABFE20081A3C4"
+  ],
+  "privateRevision": "0.1.4-native-backend-integration",
+  "signature": "verified",
+  "binarySHA256": "00532f0e85f20cb81dc812500581d8045488cef11f3b6f754a3aee7ce16e291e",
+  "experimentalGate": "latitude-awdl-native=1",
+  "automaticRadioTransmission": false,
+  "installed": false,
+  "hardwareValidated": false,
+  "AirDropFunctional": false,
+  "remaining": [
+    "Dell qualification of selected 0.1.2 root radio bridge",
+    "Native AWDL factory and typed control handlers",
+    "Native action input metadata and peer discovery",
+    "Native dequeue worker and completion-status adapter",
+    "Runtime grant/deadline timers and peer channel negotiation",
+    "Firmware qualification of secondary PHY/P2P/listener contexts",
+    "Native IPv6/mDNS and verified AirDrop file transfer"
+  ],
+  "nativeBackendCompiled": true,
+  "nativeFrontendConnected": false,
+  "nativeEntryPointCallerPresent": false
+}

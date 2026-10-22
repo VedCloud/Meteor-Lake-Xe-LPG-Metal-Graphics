@@ -1,0 +1,159 @@
+{
+  "version": "0.1.0",
+  "actuationEnabled": false,
+  "macOSSensorTransportImplemented": false,
+  "sampleCount": 50,
+  "positions": {
+    "laptop": {
+      "samples": 10,
+      "medianMS2": {
+        "x": -0.271812514,
+        "y": -6.960882257,
+        "z": -6.977665226000001
+      },
+      "gravityNormRangeMS2": [
+        9.849051446088746,
+        9.878731381053568
+      ],
+      "switches": {
+        "Intel HID switches": [
+          false
+        ]
+      },
+      "replayedDecision": {
+        "mode": "laptop",
+        "physicalPose": "landscape",
+        "suppressBuiltInIntent": false
+      }
+    },
+    "tablet": {
+      "samples": 10,
+      "medianMS2": {
+        "x": -0.154522948,
+        "y": 1.22883889,
+        "z": -9.798812202
+      },
+      "gravityNormRangeMS2": [
+        9.858557171308538,
+        9.915024414067782
+      ],
+      "switches": {
+        "Intel HID switches": [
+          true
+        ],
+        "Dell tablet mode switch": [
+          false
+        ]
+      },
+      "replayedDecision": {
+        "mode": "tablet",
+        "physicalPose": "landscape",
+        "suppressBuiltInIntent": true
+      }
+    },
+    "portrait-left": {
+      "samples": 10,
+      "medianMS2": {
+        "x": 9.366833387,
+        "y": 0.11752491000000001,
+        "z": -3.308720908
+      },
+      "gravityNormRangeMS2": [
+        9.878803616094318,
+        9.97170473754872
+      ],
+      "switches": {
+        "Intel HID switches": [
+          true
+        ],
+        "Dell tablet mode switch": [
+          false
+        ]
+      },
+      "replayedDecision": {
+        "mode": "tablet",
+        "physicalPose": "portrait-left",
+        "suppressBuiltInIntent": true
+      }
+    },
+    "portrait-right": {
+      "samples": 10,
+      "medianMS2": {
+        "x": -9.33006579,
+        "y": -0.518840363,
+        "z": -3.1541146090000005
+      },
+      "gravityNormRangeMS2": [
+        9.830363678654114,
+        9.933857491751393
+      ],
+      "switches": {
+        "Intel HID switches": [
+          true
+        ],
+        "Dell tablet mode switch": [
+          false
+        ]
+      },
+      "replayedDecision": {
+        "mode": "tablet",
+        "physicalPose": "portrait-right",
+        "suppressBuiltInIntent": true
+      }
+    },
+    "laptop-return": {
+      "samples": 10,
+      "medianMS2": {
+        "x": 0.166618649,
+        "y": -8.061208614000002,
+        "z": -5.691676968
+      },
+      "gravityNormRangeMS2": [
+        9.840285712456978,
+        9.892681595754167
+      ],
+      "switches": {
+        "Intel HID switches": [
+          false
+        ],
+        "Dell tablet mode switch": [
+          false
+        ]
+      },
+      "replayedDecision": {
+        "mode": "laptop",
+        "physicalPose": "landscape",
+        "suppressBuiltInIntent": false
+      }
+    }
+  },
+  "inputs": [
+    {
+      "file": "laptop-samples.jsonl",
+      "sha256": "17aaeab7b1be0e54f85a6770711de2f2cc45996e4d9eddbbd0bc071709dbe0e4"
+    },
+    {
+      "file": "tablet-samples.jsonl",
+      "sha256": "7210f70841214c9a44314c0d91d347ba4eb040cc636d2895291737c244c4f3f5"
+    },
+    {
+      "file": "portrait-left-samples.jsonl",
+      "sha256": "329aa40d49abbb2bdfdb87a93146f9220e5925976873f8435494f36108ffb7fb"
+    },
+    {
+      "file": "portrait-right-samples.jsonl",
+      "sha256": "f6d5c99626651b35ee3553b2e3d1552a31491fdeb1810ce13fa6b7935ac1e5e7"
+    },
+    {
+      "file": "laptop-return-samples.jsonl",
+      "sha256": "162c59e0af5ea3e86ac9b49c8db05f5487adf02792493e8a218690372c00add1"
+    }
+  ],
+  "notes": [
+    "Physical pose labels are not yet framebuffer/touch transform angles.",
+    "Inverted orientation was not captured on hardware.",
+    "Intent is policy output only; no keyboard or touchpad is disabled by this replay.",
+    "Intel HID switches is the measured mode source; Dell WMI switch stayed false.",
+    "The zero quaternion is invalid; acceleration is the calibrated source."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "base": "d695c971420cc8af0daa286dcd3297e8236c0a63",
+  "MTLfixes": "05b19dc81db6aedcf4058525981f7326f57c04e2",
+  "unitsCompiled": 74,
+  "emptyUpstreamBuildReference": [
+    "F8D94CCE2B9ABFE20081A3C4"
+  ],
+  "signature": "verified",
+  "binarySHA256": "383865bdaf1399a1b66482bf3da45361612ac4ebde4bea51c3e6a24a51a90ab6",
+  "experimentalGate": "latitude-awdl-current-channel=1",
+  "automaticRadioTransmission": false,
+  "installed": false,
+  "hardwareValidated": false,
+  "AirDropFunctional": false,
+  "remaining": [
+    "firmware qualification of current-channel action path",
+    "TX completion and receive demultiplexing",
+    "off-channel scheduling and secondary MAC/stations",
+    "native Skywalk peer data, IPv6/mDNS, AirDrop transfer"
+  ]
+}

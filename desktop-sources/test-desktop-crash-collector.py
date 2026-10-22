@@ -3,7 +3,7 @@ import tempfile,subprocess,os,time
 r=Path(__file__).resolve().parent.parent
 with tempfile.TemporaryDirectory(prefix='desktop-crash-collector-') as tmp:
  base=Path(tmp)
- for mode in ['pass','no-crash','history-fails']:
+ for mode in ['pass','no-crash','history-fails','no-weather']:
   p=base/mode;p.mkdir();(p/'bin').mkdir();system=p/'system reports';user=p/'user home';(user/'Library/Logs/DiagnosticReports').mkdir(parents=True);system.mkdir()
   if mode!='no-crash':
    for folder in [system,user/'Library/Logs/DiagnosticReports']:
@@ -18,16 +18,65 @@ with tempfile.TemporaryDirectory(prefix='desktop-crash-collector-') as tmp:
    (panics/'OtherApp.ips').write_text('unrelated')
   retained=p/'retained-source';retained.mkdir();(retained/'LatitudeDesktopLive.log').write_text('failed boot live evidence');(retained/'LatitudeDesktopRegistry.log.previous').write_text('previous registry evidence')
   for name in ['LatitudeDesktopAttempt.trace','LatitudeDesktopAttempt.trace.previous','LatitudeWindowServerSample.txt','LatitudeWindowServerSample.stderr.txt']:(retained/name).write_text('captured '+name)
-  script=(r/'desktop-sources/collect-desktop-failure.sh').read_text().replace('crash_root=/Library/Logs/DiagnosticReports','crash_root="'+str(system)+'"',1).replace('user_home=${HOME:-/var/root}','user_home="'+str(user)+'"').replace('/usr/bin/log show','log show').replace('/usr/sbin/system_profiler','system_profiler').replace('/usr/sbin/ioreg','ioreg').replace('/Library/Logs/$saved',str(retained)+'/$saved').replace('/Library/GPUBundles',str(p/'missing-runtime'))
+  script=(r/'desktop-sources/collect-desktop-failure.sh').read_text().replace('crash_root=/Library/Logs/DiagnosticReports','crash_root="'+str(system)+'"',1).replace('user_home=${HOME:-/var/root}','user_home="'+str(user)+'"').replace('/usr/bin/log show','log show').replace('/usr/bin/pmset','pmset').replace('/usr/sbin/system_profiler','system_profiler').replace('/usr/sbin/ioreg','ioreg').replace('/usr/bin/pgrep','pgrep').replace('/usr/bin/sample','sample').replace('/Library/Logs/$saved',str(retained)+'/$saved').replace('/Library/GPUBundles',str(p/'missing-runtime')).replace('/bin/launchctl','launchctl').replace('/usr/bin/id','id').replace('      sleep 8\n','      : # fixture observation window\n')
   script=script.replace('for panic_root in /Library/Logs/DiagnosticReports /Library/Logs/PanicReporter; do','for panic_root in "'+str(panics)+'"; do').replace('/Library/Logs/panic.log',str(p/'missing-legacy-panic.log'))
+  (user/'Library/Application Support/LatitudeInput').mkdir(parents=True)
+  brightness=user/'Library/Application Support/LatitudeInput/latitude-brightness'
+  brightness.write_text('#!/bin/bash\n[ "$1" = diagnose ] || exit 9\necho \'{"version":"0.2.0","systemBrightness":0.5}\'\n')
+  brightness.chmod(0o755)
   (p/'collect-desktop-failure.sh').write_text(script)
-  for name,body in {'ioreg':'echo fixture-input-chain','system_profiler':'echo \'{"SPDisplaysDataType":[]}\'', 'uname':'echo x86_64','sysctl':'echo boot-fixture','sw_vers':'echo version-fixture','log':'echo "fixture history"; exit "${MOCK_LOG_RESULT:-0}"','sleep':'exec /bin/sleep 3'}.items():
+  for name,body in {'pmset':'echo fixture-pmset','pgrep':'if [ "$2" = Weather ]; then [ "$MODE" != no-weather ] || exit 1; echo 1008; else echo 163; fi','sample':'echo current-stack > "${@: -1}"; touch "$MOCK_SAMPLE_DONE"','ioreg':'echo fixture-input-chain','system_profiler':'echo \'{"SPDisplaysDataType":[]}\'', 'uname':'echo x86_64','sysctl':'echo boot-fixture','sw_vers':'echo version-fixture','log':'printf \'%s\\n\' "$*" > "$MOCK_LOG_ARGS"; echo "fixture history gamma AppleALC"; exit "${MOCK_LOG_RESULT:-0}"','sleep':'exec /bin/sleep 3'}.items():
    f=p/'bin'/name;f.write_text('#!/bin/bash\n'+body+'\n');f.chmod(0o755)
+  (p/'Peripherals/Power').mkdir(parents=True)
+  power=p/'Peripherals/Power/latitude-power-snapshot';power.write_text('#!/bin/bash\necho \'{"battery":{"Voltage":12000,"Amperage":-1000},"discharge_power_w":12}\'\n');power.chmod(0o755)
   (p/'Desktop/reports').mkdir(parents=True)
-  env=os.environ.copy();env.update(PATH=str(p/'bin')+':/usr/bin:/bin',SUDO_USER='',MOCK_LOG_RESULT='1' if mode=='history-fails' else '0')
-  c=subprocess.run(['/bin/bash',str(p/'collect-desktop-failure.sh')],env=env,capture_output=True,text=True,timeout=3)
+  (p/'Desktop/AboutThisMac').mkdir(parents=True)
+  helper=p/'Desktop/AboutThisMac/latitude-about-this-mac'
+  helper.write_text('#!/bin/bash\n[ "$1" = diagnose ] || exit 9\nprintf \'<plist version="1.0"><dict><key>fixture</key><true/></dict></plist>\\n\'\n[ "$MODE" != no-crash ]\n')
+  helper.chmod(0o755)
+  key=p/'Desktop/latitude-key-state';key.write_text('#!/bin/bash\necho \'{"requestResult":0,"counters":{"Query66Entries":2}}\'\n');key.chmod(0o755)
+  frame=p/'Desktop/latitude-frame-pacing';frame.write_text('#!/bin/bash\necho \'{"status":"fixture-captured","total_render_latency_ms":null}\'\n');frame.chmod(0o755)
+  for name,body in {'id':'echo 501','launchctl':'if [ "${@: -1}" = diagnose ]; then exec "${@: -2:1}" diagnose; else exec "${@: -1}"; fi'}.items():
+   f=p/'bin'/name;f.write_text('#!/bin/bash\n'+body+'\n');f.chmod(0o755)
+
+
+  date_stub=p/'bin/date';date_stub.write_text('#!/bin/bash\nif [ "$*" = "+%Y-%m-%d %H:%M:%S" ]; then if [ -e "$MOCK_SAMPLE_DONE" ]; then echo "2026-10-20 15:00:59"; else echo "2026-10-20 15:00:00"; fi; else exec /bin/date "$@"; fi\n');date_stub.chmod(0o755)
+  env=os.environ.copy();env.update(MOCK_SAMPLE_DONE=str(p/'sample-done'),MOCK_LOG_ARGS=str(p/'log-args'),PATH=str(p/'bin')+':/usr/bin:/bin',SUDO_USER='fixture-user',MODE=mode,MOCK_LOG_RESULT='1' if mode=='history-fails' else '0')
+  args=['2026-10-20 14:00:00','2026-10-20 15:00:03'] if mode=='no-crash' else []
+  c=subprocess.run(['/bin/bash',str(p/'collect-desktop-failure.sh'),*args],env=env,capture_output=True,text=True,timeout=3)
   assert c.returncode==(1 if mode=='history-fails' else 0),c.stdout+c.stderr
+  report=next((p/'Desktop/reports').glob('failure-detail-*'));assert '"systemBrightness":0.5' in (report/'brightness-system-state.json').read_text()
   out=next((p/'Desktop/reports').glob('failure-detail-*'));copied=list((out/'WindowServer-crashes').rglob('*.ips'))
+  assert ('end=2026-10-20 15:00:03' if mode=='no-crash' else 'end=2026-10-20 15:00:59') in (out/'log-window.txt').read_text()
+  assert 'fixture' in (out/'about-this-mac.plist').read_text()
+  assert 'fixture-captured' in (out/'frame-pacing.json').read_text()
+  assert 'exit=0' in (out/'frame-pacing.status.txt').read_text()
+  assert (out/'front-copy-before.txt').exists() and (out/'front-copy-after.txt').exists()
+  assert 'Query66Entries' in (out/'input/firmware-key-counters.json').read_text()
+  assert 'exit=0' in (out/'input/firmware-key-counters.status.txt').read_text()
+  assert (out/'input/ec-acpi.txt').exists()
+  assert (out/'power/battery-before.json').exists() and (out/'power/battery-after.json').exists()
+  assert 'fixture-pmset' in (out/'power/pmset-custom.txt').read_text()
+  assert (out/'input/LatitudeGPIO.txt').exists()
+  assert (out/'bluetooth/system-profiler.json').exists()
+  assert (out/'bluetooth/IntelBluetoothFirmware.txt').exists()
+  assert (out/'input/TPD0-acpi.txt').exists()
+  assert (out/'input/dell-wmi-hotkeys.txt').exists()
+  assert (out/'input/dell-wmi-hotkeys.txt').exists()
+  assert (out/'input/dell-wmi-acpi.txt').exists()
+  assert (out/'input/graphics-acpi.txt').exists()
+  assert 'nmxfb_gamma_ns' in (r/'desktop-sources/collect-desktop-failure.sh').read_text()
+  assert (out/'display-path-counters.txt').exists()
+  assert 'fixture-input-chain' in (out/'gamma-registry.txt').read_text()
+  for name in ['AppleHDAController','IOHDACodecDevice','AppleHDACodecGeneric','IOAudioDevice']:
+   assert 'fixture-input-chain' in (out/'audio'/f'{name}.txt').read_text()
+  assert (out/'audio/devices.json').exists()
+  assert (out/'input/BrightnessKeys.txt').exists() and (out/'input/ApplePS2Keyboard.txt').exists()
+  assert 'AppleALC' in (out/'new-feature-log-summary.txt').read_text()
+  for token in ['coreaudiod','corebrightnessd','displaypolicyd','AppleALC','AppleHDA']:
+   assert token in (p/'log-args').read_text()
+
+  assert ('exit=1' if mode=='no-crash' else 'exit=0') in (out/'about-this-mac.status.txt').read_text()
   assert len(copied)==(0 if mode=='no-crash' else 2),list(out.rglob('*'))
   assert not list((out/'WindowServer-crashes').rglob('*.crash'))
   panic_files=list((out/'Kernel-panics').rglob('*.ips'))+list((out/'Kernel-panics').rglob('*.panic'))
@@ -38,6 +87,8 @@ with tempfile.TemporaryDirectory(prefix='desktop-crash-collector-') as tmp:
   assert (out/'retained-boot-files/LatitudeDesktopLive.log').read_text()=='failed boot live evidence'
   assert (out/'retained-boot-files/LatitudeDesktopRegistry.log.previous').read_text()=='previous registry evidence'
   for name in ['LatitudeDesktopAttempt.trace','LatitudeDesktopAttempt.trace.previous','LatitudeWindowServerSample.txt','LatitudeWindowServerSample.stderr.txt']:assert (out/'retained-boot-files'/name).read_text()=='captured '+name
+  assert ('skipped' if mode=='no-weather' else 'PID=1008 exit=0') in (out/'weather-sample.status.txt').read_text()
+  if mode!='no-weather':assert (out/'weather-sample.txt').read_text().strip()=='current-stack'
   assert 'MISSING LatitudePanelLoad.log'  in (out/'retained-files-status.txt').read_text()
   if copied:
    assert all(f.read_text().startswith('full crash stack ') for f in copied)

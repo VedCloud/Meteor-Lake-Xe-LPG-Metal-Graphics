@@ -1,0 +1,47 @@
+{
+  "candidate": "smoothness0.3.8",
+  "plugin_version": "0.3.8",
+  "plugin_sha256": "bb3d4644787e3fd101975420da3eb35eaee0f6eff28e349c4880f7dbdbcdc425",
+  "plugin_uuid": "E72F0C3D-4D99-3A00-9839-26DACBC87831",
+  "evidence": {
+    "report": "failure-detail-20261020-120834",
+    "live_log_lines": 199637,
+    "four_multitouch_chatter_classes_lines": 160893,
+    "live_log_coreanimation_render_timeouts": 47,
+    "idle_sample": "271/275 main-thread samples waiting; no compiler frames in three-second steady-state capture",
+    "causality": "capture overhead is established configuration; contribution to choppiness/CPU/timeouts not measured"
+  },
+  "changes": [
+    "both startup log streams filtered to relevant diagnostics, info level; errors/faults retained",
+    "late sample watchdog10->25seconds, matches successful collector sample policy",
+    "target WindowServer successful readbacks aggregate allocation/record/wait/copy/cleanup phase times,max total,bytes; two-second report interval,eight reports per calling thread,existing logger throttling; clocks bypassed after report cap",
+    "motion capture8seconds,35second watchdog,cumulative CPU-time context for delta analysis"
+  ],
+  "unchanged": [
+    "fresh command pools",
+    "readback staging lifetime/coherence",
+    "all render/transfer/host barriers",
+    "serial submission and fence ordering",
+    "NMXGPU1.0.15",
+    "LatitudeMTLFB0.2.5",
+    "NMXAccel0.2.4",
+    "ANV4GiB backend",
+    "automatic GPU name/actual heap reporting",
+    "restored touchpad EFI"
+  ],
+  "checks": [
+    "three plugin variants crosscompiled",
+    "signature strict verify",
+    "no new external imports,no missing prior exports",
+    "actual readback ASan/UBSan20k mocked allocations reclaimed,padded correctness,timeout retains memory/destination untouched",
+    "present cost ASan/UBSan sums,clock order,throttle/report limit",
+    "actual submission wrapper serialization/recursive/error/deadline fixtures",
+    "actual NSPredicate diagnostic preservation/HID exclusion fixtures",
+    "loader active/fallback/reporting/sample-failure fixtures",
+    "installer backup/rollback/one-shot failure fixtures",
+    "release log policy"
+  ],
+  "smoothness_verified": false,
+  "timeouts_fixed_verified": false,
+  "full_gpu_suite_rerun": false
+}

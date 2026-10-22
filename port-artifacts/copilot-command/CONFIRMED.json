@@ -1,0 +1,11 @@
+{
+  "status": "user-confirmed working Command key",
+  "date": "2026-10-21",
+  "implementation": "PS/2 driver Macro Inversion; Info.plist only",
+  "artifact_sha256": {
+    "macros.json": "5134f7a98f24c4a7da3893f807a510e54e6f837b2d36b1ec8eec5333bcee012b",
+    "VoodooPS2Keyboard.kext/Contents/Info.plist": "5f1ff2ec4e0a4a1333555093cd1a47be6469bf89a2ad96907614f906b7c3c95b",
+    "VoodooPS2Keyboard.kext/Contents/MacOS/VoodooPS2Keyboard": "a1e4903278b2028da9fea8feeb911026fb029ed8164d947bd7481245ae86193b"
+  },
+  "usb_publication": "Confirmed mapping already applied on USB; new retention tooling pending reconnect"
+}

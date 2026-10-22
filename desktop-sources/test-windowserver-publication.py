@@ -23,7 +23,7 @@ static int gpu_result,copies,scheduled,drained,serial=1;
 typedef NSMutableSet NVMTLResSet;
 @interface NVMTLBuffer:NSObject @end
 @implementation NVMTLBuffer @end
-@interface NVMTLCommandBuffer:NSObject{@public BOOL _executionDone,_scheduleAfterPublish,_wasScheduled,_gpuTimingInvalid,_gpuTimingSeen;NSUInteger _nextPart;NSMutableArray *_parts,*_presentations,*_scratch,*_stTwins,*_scheduledHandlers;id _present,_e78Ring,_resources;NSMutableSet *_surfOverwrites;NSUInteger _e78RingOff;void *_g79BRing[8];NSCondition *_completionCondition;NSError *_cbError;MTLCommandBufferStatus _cbstatus;nvmtl_gpu_interval _gpuTiming;double _legacyKernelStart,_legacyKernelEnd,_gpuStart,_gpuEnd;}
+@interface NVMTLCommandBuffer:NSObject{@public BOOL _executionDone,_scheduleAfterPublish,_wasScheduled,_gpuTimingInvalid,_gpuTimingSeen;NSUInteger _nextPart;NSMutableArray *_parts,*_presentations,*_scratch,*_stTwins,*_scheduledHandlers;id _present,_e78Ring,_resources;NSMutableSet *_surfOverwrites;NSUInteger _e78RingOff;void *_g79BRing[8];NSCondition *_completionCondition;NSError *_cbError;MTLCommandBufferStatus _cbstatus;nvmtl_gpu_interval _gpuTiming;double _legacyKernelStart,_legacyKernelEnd,_gpuStart,_gpuEnd;uint64_t _traceCommitNS;}
 - (void)nvmtlDispatchHandlers:(NSArray *)h scheduled:(BOOL)b;
 - (void)nvmtlCollectDeviceTiming:(nvk_cmdbuf *)c;
 - (void)nvmtlReleaseCapacity;

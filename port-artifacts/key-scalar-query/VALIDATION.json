@@ -1,0 +1,18 @@
+{
+  "framebuffer": "0.2.11",
+  "framebuffer_uuid": "CAE16FC3-ACC7-3171-928B-7D1E2BB6B614",
+  "scope": "Root-only scalar ACPI counter query/stage reporting; helper rejects cached counters on failure",
+  "no_new_undefined_kernel_imports": true,
+  "tests": [
+    "actual root reporting endpoint ASan/UBSan: scalar reads, missing/invalid/error results and stage/counter metadata",
+    "actual key-state helper ASan/UBSan: success, failure-stage metadata and no stale counters after failed request",
+    "actual AML firmware/PS2 route and direct scalar counter checks",
+    "x86_64 framebuffer/helper builds and signatures",
+    "guarded installer compatibility and rollback fixture"
+  ],
+  "firmware_key_source_confirmed": false,
+  "brightness_keys_fixed": false,
+  "hardware_query_verified": false,
+  "gpu_suite_rerun": false,
+  "target_installed_or_armed": false
+}

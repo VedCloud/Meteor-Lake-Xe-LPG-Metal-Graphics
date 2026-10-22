@@ -114,7 +114,8 @@ void nvlog(const char *fmt, ...) {
     const char *diagnostic_env = getenv("NVMTL_DIAGNOSTIC_STDERR");
     const int diagnostic = diagnostic_env && !strcmp(diagnostic_env, "1");
     uint64_t rep; const int dropped = nvlog_dropped(fmt, &rep);
-    const int startup = !strcmp(getprogname(),"WindowServer") && !strncmp(fmt,"first-submit:",13);
+    const int startup = (!strcmp(getprogname(),"WindowServer") && !strncmp(fmt,"first-submit:",13)) ||
+        !strncmp(fmt,"publication0.3.15:",17) || !strncmp(fmt,"glyph-layout0.3.15:",18);
     if (dropped && !diagnostic && !startup) return;
     char b[512]; va_list a; va_start(a, fmt); vsnprintf(b, sizeof b, fmt, a); va_end(a);
     char t[640];
@@ -957,6 +958,14 @@ static void nvmtl_host_keep(NVMTLDevice *dev, NVMTLTexture *t)
     t->_fbo = nvmtl_desc_fbo(d);
     uint32_t vkf = 0, bpp = 0; int a8 = 0;
     if (nvmtl_pixfmt(d.pixelFormat, &vkf, &bpp, &a8)) return nil;
+    if(surf && (w<512 || h<128)){
+        static _Atomic unsigned glyphLayouts;
+        if(atomic_fetch_add(&glyphLayouts,1)<32)
+            nvlog("glyph-layout0.3.15: process=%s surface=%u plane=%lu fmt=%lu vk=%u bpp=%u a8=%d size=%zux%zu pitch=%zu element=%zu allocation=%zu",
+                getprogname(),(unsigned)IOSurfaceGetID(surf),(unsigned long)plane,(unsigned long)d.pixelFormat,vkf,bpp,a8,w,h,
+                IOSurfaceGetBytesPerRowOfPlane(surf,(uint32_t)plane),IOSurfaceGetBytesPerElementOfPlane(surf,(uint32_t)plane),IOSurfaceGetAllocSize(surf));
+    }
+
     int wantStex = (d.usage & MTLTextureUsageShaderWrite) != 0;
     NSArray *key = surf ? @[@(IOSurfaceGetID(surf)), @(plane), @(w), @(h), @(d.pixelFormat), @(t->_ropt), @(t->_fbo)] : nil;
     NVMTLTexture *backing = key ? [cache objectForKey:key] : nil;

@@ -1,0 +1,35 @@
+{
+  "status": "host-validated candidate; Dell boot required",
+  "bluetooth_usb_id": "8087:0033",
+  "intel_version": "2.5.1 fork",
+  "bluetool_version": "2.7.2 official release (reference advertises 2.7.3, not an available release)",
+  "Lilu": "existing 1.7.3 retained",
+  "touchpad": "ELAN04F3:328E; 8086:7e7b, Dell 1028:0cb6; opt-in trial",
+  "touchpad_method_changes": [
+    {
+      "method": "_DSM",
+      "flags_offset": 541563,
+      "end": 541643,
+      "replacement_bytes": 56,
+      "available_bytes": 80
+    },
+    {
+      "method": "_CRS",
+      "flags_offset": 541679,
+      "end": 541749,
+      "replacement_bytes": 12,
+      "available_bytes": 70
+    }
+  ],
+  "touchpad_disabled_ps2_pointer_plugins": [
+    "VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext",
+    "VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext"
+  ],
+  "base_config_sha256": "d981a6e93904e3b589bbd8f8d6896e71561b33c784bb327005fd78264791e239",
+  "base_dsdt_sha256": "e79df56999ebd7ee99036ff2a1c7a0c503c34a45b4ae6ff769b2b69cfe88d9ad",
+  "default_config_sha256": "c07f2ad8514d7cff3b0d0a9dd0e1975b72e1e2188e6de63fd30a54961d32d3d7",
+  "trial_config_sha256": "0c07e9bd6cd37002e8cc5f46fede408a451e8d505ab48155fa99a53cd397f8f0",
+  "trial_dsdt_sha256": "a2393119f4ac1c9bdf9ede1a2bc733d286aa5c8db6131c717fbbca22eaeadacd",
+  "hardware_verified": false,
+  "full_gpu_tests_rerun": false
+}

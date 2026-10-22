@@ -1,0 +1,14 @@
+# Comparison with the Latitude driver
+
+Pinned reference commit356c818544319aed373ec213c072d08265ce8c40. The reference uses Apple Tiger Lake16.0.32 Metal/kexts on Raptor Lake, with NootedGreen/Tahoe adapters. Latitude uses Meteor Lake ANV/Vulkan and custom NullMoth Metal/IOKit/framebuffer on Sequoia. Binary offsets, kernel symbols, private IOSurface structure offsets, GuC-less scheduling and hardcoded GPU frequency are not portable.
+
+Graphics leads:
+1. Unaligned zero-copy image bases: reference libxedrv v15 copies offsets not divisible by256 (notably0x20) and retains the deallocator until texture release. Latitude already has buffer-view refusal/copy fallback in NVMTLObjects.m and Vulkan image-alias pitch/offset validation. Audit exact base+offset+row bounds, copied image initialization, lifetime and updates for Weather/CARenderer paths before adding duplicate fallback. Narrow tests at offset0/0x20/aligned offsets with R8/A8/BGRA/RGBA16Float and odd widths; not a full hardware rendering rerun.
+2. Multi-plane IOSurface: reference fixes a Tahoe private-layout mismatch causing lost chroma. Latitude should continue public plane accessors; validate real per-plane offsets/pitches/formats. Never import reference IOSurface+0x98.
+3. Copy/render synchronization: reference pageon/pageoff needed an event wait after its cross-engine barrier was removed. Audit our actual Vulkan image layout/access barriers, submission ordering and IOSurface CPU/GPU ownership, with pixel generation markers. Their CPU-wait workaround is not proof it fixes our publication stalls; blanket waits may worsen latency.
+4. Reference global copy rerouting caused missing Chrome icons, fixed by narrowing to misaligned copies. Do not globally change row pitch to64/128 or copy every texture.
+5. GPU frequency: their no-GuC TGL path was stuck low. Our GuC/ANV path differs; measure frequency before changing it. No forced maximum-frequency patch based on this reference.
+
+Input lead: reference CHANGELOG20Oct/STATUS reports intermittent keyboard/trackpad/touchscreen freezes/I2C stuck while polling, fixed by GPIO trackpad + APIC touchscreen, firmware _CRS and patched TigerLakeLP VoodooGPIO. This is relevant to the Latitude reported simultaneous input freezes and final I2C timeout. It does not prove the same cause. Dell GPIO ID/pin/controller support and target resource descriptors need validation before switching Meteor Lake interrupts. Current HID readguard still repairs proven failed-read/length bugs, but cannot be described as fixing the controller-level timeout. Preserve the in-progress candidate until its report arrives; do not change active USB mid-install.
+
+Reference docs contain some differing current claims (Chrome GPU support/status and GPU-frequency floors); source changes and target hardware evidence take priority. No GPU/input binaries or boot settings were changed by this comparison.

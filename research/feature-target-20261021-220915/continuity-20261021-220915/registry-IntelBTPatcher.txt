@@ -1,0 +1,14 @@
++-o IntelBTPatcher  <class IntelBTPatcher, id 0x100000334, !registered, !matched, active, busy 0, retain 4>
+    {
+      "IOProbeScore" = 0
+      "CFBundleIdentifier" = "com.zxystd.IntelBTPatcher"
+      "IOMatchCategory" = "IntelBTPatcher"
+      "IOClass" = "IntelBTPatcher"
+      "IOProviderClass" = "IOResources"
+      "CFBundleIdentifierKernel" = "com.zxystd.IntelBTPatcher"
+      "IOMatchedAtBoot" = Yes
+      "VersionInfo" = "REL-251-2026-06-27"
+      "IOResourceMatch" = "IOKit"
+    }
+    
+

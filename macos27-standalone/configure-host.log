@@ -1,0 +1,4 @@
+python determined to be '/opt/homebrew/bin/python3.11'
+python version: Python 3.11.16
+mkvenv: Creating non-isolated virtual environment at 'pyvenv'
+../configure: line 953: /Volumes/Corsair: No such file or directory

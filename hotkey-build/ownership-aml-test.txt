@@ -1,0 +1,86 @@
+acpi_sem_0
+acpi_sem_1
+acpi_sem_2
+acpi_sem_3
+acpi_sem_4
+acpi_sem_5
+acpi_sem_6
+acpi_sem_7
+acpi_sem_8
+acpi_sem_9
+acpi_sem_10
+acpi_sem_11
+acpi_sem_12
+acpi_sem_13
+acpi_sem_14
+acpi_sem_15
+acpi_sem_16
+
+Intel ACPI Component Architecture
+AML Execution/Debug Utility version 20260408
+Copyright (c) 2000 - 2026 Intel Corporation
+
+
+
+ACPI: RSDP 0x000000010050DE30 000024 (v02 Intel )
+ACPI: XSDT 0x0000000100DD21D0 00003C (v00 Intel  AcpiExec 00001001 INTL 20260408)
+ACPI: FACP 0x000000010050DCC8 000114 (v05 Intel  AcpiExec 00001001 INTL 20260408)
+ACPI: DSDT 0x0000000100DD2ED0 000282 (v02 LAT535 KEYMOCK  00000001 INTL 20260408)
+ACPI: FACS 0x000000010050DE58 000040
+ACPI: SSDT 0x0000000100DD1ED0 000281 (v02 LAT535 BRTKEYS  00000005 INTL 20260408)
+acpi_sem_17
+acpi_sem_18
+acpi_sem_19
+acpi_sem_20
+acpi_sem_21
+
+ACPI table initialization:
+Table [DSDT: KEYMOCK ] (id 01) -   23 Objects with   7 Devices,   0 Regions,    8 Methods (0/8/0 Serial/Non/Cvt)
+Table [SSDT: BRTKEYS ] (id 02) -   11 Objects with   0 Devices,   0 Regions,    5 Methods (1/4/0 Serial/Non/Cvt)
+ACPI: 2 ACPI AML tables successfully acquired and loaded
+
+Final data object initialization: Namespace contains 43 (0x2B) objects
+Initializing General Purpose Events (GPEs):
+    Initialized GPE 00 to 7F [_GPE] 16 regs on interrupt 0x0 (SCI)
+    Initialized GPE 80 to FF [_GPE] 16 regs on interrupt 0x0 (SCI)
+acpi_sem_22
+acpi_sem_23
+acpi_sem_24
+acpi_sem_25
+acpi_sem_26
+acpi_sem_27
+acpi_sem_28
+acpi_sem_29
+acpi_sem_30
+acpi_sem_31
+acpi_sem_32
+acpi_sem_33
+Initializing Device/Processor/Thermal objects and executing _INI/_STA methods:
+    Executed 0 _INI methods requiring 0 _STA executions (examined 9 objects)
+Evaluating \_SB.PC00.GFX0.BRT6
+ACPI Exec: Global:    Received a Device Notify on [PS2K] 0x792d0481b0 Value 0x366 (Hardware-Specific)
+No object was returned from evaluation of \_SB.PC00.GFX0.BRT6
+Evaluating \_SB.AMW0.LBRG
+acpi_sem_34
+0x1 Outstanding allocations after evaluation of \_SB.AMW0.LBRG
+Evaluation of \_SB.AMW0.LBRG returned object 0x792d028000, external buffer length 18
+  [Integer] = 0000000000000001
+
+Evaluating \_SB.PC00.GFX0.BRT6
+No object was returned from evaluation of \_SB.PC00.GFX0.BRT6
+Evaluating \_SB.PC00.GFX0.BRT6
+No object was returned from evaluation of \_SB.PC00.GFX0.BRT6
+Evaluating \_SB.AMW0.LBRG
+Evaluation of \_SB.AMW0.LBRG returned object 0x792d028000, external buffer length 18
+  [Integer] = 0000000000000000
+
+Evaluating \_SB.PC00.GFX0.BRT6
+ACPI Exec: Global:    Received a Device Notify on [PS2K] 0x792d0481b0 Value 0x365 (Hardware-Specific)
+No object was returned from evaluation of \_SB.PC00.GFX0.BRT6
+0x792cc057b0 Length 0x0048   utcache-0345 [Operand Object]       Method  RefCount 0x0001
+0x792cc040b0 Length 0x0048   utcache-0345 [Operand Object]       Method  RefCount 0x0001
+0x100dd2960 Length 0x0023  nsxfname-0615 [Not a Descriptor] 
+0x100dd2900 Length 0x0023  nsxfname-0615 [Not a Descriptor] 
+ACPI Error: 4 (0x4) Outstanding cache allocations (20260408/uttrack-794)
+Input file desktop-build/hotkey-mock.aml, Length 0x282 (642) bytes
+Input file desktop-build/hotkey-counters.aml, Length 0x281 (641) bytes

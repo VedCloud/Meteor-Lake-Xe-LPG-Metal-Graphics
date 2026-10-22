@@ -1,0 +1,8 @@
+{
+  "version": "0.2.0",
+  "uuid": "UUID: 2B0E909F-DAD1-3C6B-B7FD-818C8EAC39E8 (x86_64) /Users/ved/Documents/iGPU Port/desktop-build/tablet-state/LatitudeTabletState.kext/Contents/MacOS/LatitudeTabletState",
+  "binarySHA256": "f790af06c3e2abf6ff44f92be40fce8f2a3b486f94a36cbcb40b3886ee8a9f6f",
+  "installed": false,
+  "inputActuation": false,
+  "sensorTransport": false
+}

@@ -13,7 +13,7 @@ static inline int nvmtl_windowserver_serial_policy(uint16_t vendor, uint16_t dev
     return vendor == 0x8086 && (device == 0x7d45 || device == 0x7d55) && process && !strcmp(process,"WindowServer");
 }
 
-/* Dedicated readback allocation: avoid TLS retention and suballocation/park reuse
+/* Owned readback staging, independent of the app TLS/suballocation/park paths,
    only for the physical Meteor Lake WindowServer candidate. */
 static inline int nvmtl_windowserver_fresh_readback(uint16_t vendor,uint16_t device,const char *process)
 {

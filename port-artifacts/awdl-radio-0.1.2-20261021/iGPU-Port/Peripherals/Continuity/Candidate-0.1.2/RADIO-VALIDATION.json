@@ -1,0 +1,17 @@
+{
+  "helper": "current-channel root-only IOUserClient to real Intel HAL",
+  "IntelCompilation": "passed and signed",
+  "ASanUBSan": "actual queue, parser, PSF/MIF engine-to-parser, peer lifecycle and truncation sweep passed",
+  "upstreamWireFix": "memcpy-based unaligned reads/writes and overflow-safe bounds; strict sanitizer recovery disabled",
+  "automaticTransmission": false,
+  "hostRadioOpened": false,
+  "DellHardwareValidated": false,
+  "AirDropFunctional": false,
+  "sourceSHA256": {
+    "latitude-awdl-radio.cpp": "7bf45846461899379cb46f684f19ca812b61da69b306404a3575ccfcc2c5f4d1",
+    "LatitudeAWDLRadio.h": "2c60168ed255e475210a89c16be23d8ca5348e8cab14d550e752ef580e592b36",
+    "test-awdl-radio.cpp": "f25b05e0d7f442310fe1df8cf3b1eabf970ac16b256b548f3f9085bf3f2c690f",
+    "LatitudeAWDLUserClient.inc": "fdd5445e3eed4717919f6119764dc987870c095304feb865867805190edf4c95",
+    "LatitudeAWDLEngineBridge.h": "d28f3d8a123f6ad8897d33e293dadc88130df561b87b7e3a31be0aaee441c748"
+  }
+}

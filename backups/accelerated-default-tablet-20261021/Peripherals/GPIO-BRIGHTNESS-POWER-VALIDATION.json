@@ -1,0 +1,45 @@
+{
+  "scoped": "TPD0 _DSM/_CRS only",
+  "changes": [
+    {
+      "method": "_DSM",
+      "flags_offset": 541563,
+      "end": 541643,
+      "replacement_bytes": 56,
+      "available_bytes": 80
+    },
+    {
+      "method": "_CRS",
+      "flags_offset": 541679,
+      "end": 541749,
+      "replacement_bytes": 12,
+      "available_bytes": 70
+    }
+  ],
+  "checksum": 0,
+  "linux_gpio_id": "INTC1083",
+  "gpio": 387,
+  "physical_pad": 232,
+  "group": "GPP_D_3",
+  "gpio_resource": "Dell runtime SBFG, no guessed pin injection",
+  "hardware_verified": false,
+  "gpio_uuid": "50FBFCAB-5BEF-3047-8BDA-79BE7199C73E",
+  "hid_version": "1.0.3",
+  "hid_uuid": "53EA81AD-1674-3350-ADC1-07D13FC70A52",
+  "power_settings_changed": false,
+  "low_power_mode_included": false,
+  "default_trial_enabled": false,
+  "host_tests": [
+    "actual GPIO MMIO/IOKit fixture",
+    "map bounds/ownership/lock cases",
+    "AML body execution",
+    "65536 HID report lengths",
+    "brightness key mapping",
+    "actual installer rerun/path escaping fixture",
+    "actual USB apply/restore fixture",
+    "collector fixture",
+    "x86 builds/signatures and GPIO dependency imports"
+  ],
+  "hardware_irq_delivery_verified": false,
+  "battery_savings_measured": false
+}

@@ -1,0 +1,30 @@
+DELL ELAN TOUCHPAD CAPTURE (Linux Live)
+
+Boot the SanDisk with F12 > UEFI SanDisk > Dell sensor capture - Fedora Live.
+Keep the laptop unfolded. In Terminal run:
+
+sudo /bin/bash /run/initramfs/live/start-touchpad-capture.sh
+
+Press Enter once when prompted. Follow five timed phases: one-finger movement,
+two-finger scrolling, pinch, three-finger swipe, four-finger swipe. Each has
+3 seconds to lift fingers followed by 8 seconds of movement. No typing is needed
+while capturing. Xfce need not perform a desktop action for these gestures;
+the collector checks raw touch contact delivery rather than desktop bindings.
+
+Reports go to LATSENSORS/reports/touchpad-<timestamp>. Wait for SAVED, shut down
+Linux, then return the SanDisk to the Mac. Existing sensor reports are preserved.
+
+Includes: exact ELAN 04f3:328e I2C HID descriptor and physical ancestry, absolute
+ranges/slot capacity, firmware tables, GPIO/pinctrl metadata, IRQ counters and
+kernel transport errors before/after, and per-gesture frame/contact/drop metrics.
+Delivery gaps include finger lifts and pauses and are not WindowServer frame
+latency. No keyboard events, pointer-coordinate traces or tracking IDs are saved.
+Only the selected ELAN touchpad event node is opened, its identity is rechecked,
+and no EVIOCGRAB or driver/power configuration change is made. Read-only debugfs
+may be mounted to expose GPIO diagnostics. No packages or OS installation needed.
+
+This is a diagnostic collector, not a macOS touchpad driver or a gesture fix.
+
+Collector update 2026-10-21: sysfs GPIO names are percent-encoded for FAT32.
+An unavailable optional GPIO file is indexed as an error and does not prevent
+the gesture phases. hardware.json is saved before optional GPIO capture.

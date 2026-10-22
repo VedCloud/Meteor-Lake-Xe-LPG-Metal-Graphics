@@ -1,0 +1,6 @@
+{
+  "actualHALBodies": "strict ASan/UBSan passed",
+  "externalKernelAndFirmwarePrimitives": "substituted; no hardware I/O",
+  "AirDropFunctional": false,
+  "sourceSHA256": "c381f7519d10a9a8c652b93d2c59ce391abf8f2ec3d112f21fec1e57cd93f6f2"
+}

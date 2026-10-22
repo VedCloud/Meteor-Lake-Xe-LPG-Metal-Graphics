@@ -1,0 +1,11 @@
+{
+  "theme": "https://github.com/HJebbour/GoldenGateExt-OpenCore-Theme",
+  "themeCommit": "d43617aef6ffff047d004d68832a71b156ae8f28",
+  "OpenCoreExactActiveBuild": "81ecf1a7e75c318dfc859ddabe5b91f4af757231",
+  "coreLoaderChanged": false,
+  "chimeFileSHA256": "7914bd202b1f539d1d8aafb7a371ee8008936bc5323094e52ca6439cf411e3ad",
+  "hdaController": "PciRoot(0x0)/Pci(0x1F,0x3)",
+  "allCodecOutputsEnabled": true,
+  "gainCeilingDB": -15,
+  "hardwarePlaybackValidated": false
+}

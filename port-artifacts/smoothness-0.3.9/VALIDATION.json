@@ -1,0 +1,30 @@
+{
+  "candidate": "smoothness0.3.9",
+  "plugin_sha256": "21d840174b9a6695d426130a9237d2b5dba66d352dd365d92d82b9bc8b84e01d",
+  "plugin_uuid": "0C3643ED-878E-3776-BAFE-8F726BFE8C86",
+  "basis": "failure-detail-20261020-123840:72 successful readbacks weighted preparation/allocation24.126ms,record0.096ms,submit/wait3.888ms,CPUcopy3.712ms,cleanup2.055ms,total33.877ms;43 CoreAnimation timeout messages",
+  "scope": "8086:7d45 WindowServer owned readback staging only",
+  "retention": "4 exclusive slots,requested payload up to16MiB each,at most64MiB plus driver allocation alignment/overhead;oversize/busy slots use previous fresh path;quarantined slots count toward four",
+  "lifetime": "lease held from buffer acquisition through successful fence and CPU copy;known unsubmitted resources return idle,uncertain submission quarantines,invalid map/type discards known-idle stage;growth destroys old idle stage before replacement;process-lifetime bounded cache",
+  "unchanged": [
+    "fresh command pools and retirement",
+    "all GPU/host memory barriers",
+    "serial submit and publication/scheduling order",
+    "kernel1.0.15/framebuffer0.2.5/accelerator0.2.4",
+    "ANV4GiB backend/transport/reporting",
+    "restored touchpad EFI",
+    "graphics-filtered logs and25sec sample watchdog"
+  ],
+  "tests": [
+    "three plugin builds",
+    "ASan/UBSan actual lease helper:8000 concurrent cycles,growth,allocation failure unlock,invalid-map discard,quarantine,contention/oversize/forced-fresh fallback,bounded outstanding count",
+    "ASan/UBSan actual readback:1000 cached padded copies allocate once,record-begin failure releases lease,noncoherent cached stage discarded,uncertain submit retains allocation/destination untouched,quarantined stage skipped",
+    "previous forced-fresh20k allocation/reclaim and failure/padding suite retained",
+    "actual submission serialization/recursive flush/deadline quarantine fixtures pass",
+    "loader/installer rollback and graphics log predicate fixtures pass",
+    "signature verified,no added external imports,no prior exports missing"
+  ],
+  "hardware_tested": false,
+  "smoothness_or_timeouts_fixed_verified": false,
+  "full_gpu_suite_rerun": false
+}
