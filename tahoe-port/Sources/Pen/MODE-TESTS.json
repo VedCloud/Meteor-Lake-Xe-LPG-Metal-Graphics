@@ -1,0 +1,5 @@
+{
+  "actualInitializerReplay": "PASS actual input-mode initializer: reassert mode 2, preserve device index, malformed/short/read/write/verify failures, rollback, target guard and no buffer leaks",
+  "hardwareVerified": false,
+  "actualFeatureWireReplay": "PASS actual unchanged I2C feature transport: GET/SET 0x0e wire bytes, length prefixes, single report ID and device-index preservation"
+}

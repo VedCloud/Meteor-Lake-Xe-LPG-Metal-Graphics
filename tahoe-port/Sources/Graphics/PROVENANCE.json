@@ -1,0 +1,19 @@
+{
+  "version": "0.3.21",
+  "source": "https://github.com/jwx29/NvGfx/tree/meteor-lake-local",
+  "referenceRead": "/Users/ved/Downloads/NvGfx-meteor-lake-local",
+  "secondaryReference": "https://github.com/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe",
+  "scope": "A8 output-lane translation, alpha equation and clears. No Raptor Lake binary, CPU or MMIO patches copied. Attachment helpers produce identity views while preserving A8 sampling swizzles; existing retirement/fence lifecycle retained.",
+  "backendChangeLimitedToIdentityAttachmentViews": true,
+  "legacyTranslatorExportsPreserved": true,
+  "hardwareTested": false,
+  "checks": [
+    "native Rust AIR/SPIR-V output routing",
+    "actual x86_64 C translator ABI and old-binary negative control",
+    "all 19 alpha blend factors and 16 write masks",
+    "identity attachment helper routing and failure handling under ASan/UBSan",
+    "signed x86_64 bundle"
+  ],
+  "backup": "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Published-previous/graphics-0.3.20-before-a8-20261027-123842",
+  "VulkanReference": "https://docs.vulkan.org/spec/latest/chapters/renderpass.html#VUID-VkRenderingInfo-colorAttachmentCount-09479"
+}

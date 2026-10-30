@@ -1,0 +1,8 @@
+{
+  "version": "0.3.21",
+  "hardwareTested": false,
+  "files": {
+    "NVMTLDriver": "b534f12deb395c8949049eccac456ff6df947c6e536b2b2edd93b20423fa1ef3",
+    "libnvmtl_translate.dylib": "fdd0ffd97b1c2a0b2a5f07723b95573eee898e9a5a90e648246d53dee57b1526"
+  }
+}

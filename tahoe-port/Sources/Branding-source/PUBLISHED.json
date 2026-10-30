@@ -1,0 +1,17 @@
+{
+  "iconSHA256": "04c9102b5bcc4a3dd1a654b96238a913133565938f5a12631b7a20481758e652",
+  "helperSHA256": "b6b9a280390a39770d4a1692c54b72c977c783ef0d7c02baabd4dfdea8c8c0e9",
+  "publishedGraphicsRoots": [
+    "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Tahoe-Combined-Runtime",
+    "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Candidate/Tahoe-Port/Graphics",
+    "/Volumes/macOS Tahoe/Tahoe-Port/Graphics"
+  ],
+  "name": "Dell Latitude 5350 2-in-1",
+  "detail": "13-inch, 2024",
+  "normalPenDriver": "1.0.4",
+  "optInTouchpadDriverWithPenFixes": "1.0.5",
+  "nibOnDellVerified": false,
+  "graphicsValueSource": "unchanged ANV-backed identity/heap reporting",
+  "hardwareBrandingVerified": false,
+  "hostInstalled": false
+}

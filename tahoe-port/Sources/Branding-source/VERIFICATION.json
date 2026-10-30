@@ -1,0 +1,12 @@
+{
+  "roots": [
+    "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Tahoe-Combined-Runtime",
+    "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Candidate/Tahoe-Port/Graphics",
+    "/Volumes/macOS Tahoe/Tahoe-Port/Graphics"
+  ],
+  "sourceIconExactMatch": true,
+  "normalEFIUnchanged": true,
+  "hostInstalled": false,
+  "DellAppearanceVerified": false,
+  "callbackTestsPassed": true
+}

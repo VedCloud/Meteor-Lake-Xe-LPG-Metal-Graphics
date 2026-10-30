@@ -1,0 +1,21 @@
+{
+  "actualProductionBlockTested": true,
+  "systemChangesMocked": true,
+  "cases": [
+    {
+      "mode": "full",
+      "stubExit": 0,
+      "actualExit": 0
+    },
+    {
+      "mode": "full",
+      "stubExit": 42,
+      "actualExit": 42
+    },
+    {
+      "mode": "accelerator-only",
+      "stubExit": 42,
+      "actualExit": 0
+    }
+  ]
+}

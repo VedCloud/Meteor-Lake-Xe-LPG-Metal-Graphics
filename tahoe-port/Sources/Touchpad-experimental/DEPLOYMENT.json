@@ -1,0 +1,30 @@
+{
+  "selected": {
+    "trial": "1.0.10",
+    "diskSelection": "apply",
+    "hardwareVerified": false,
+    "appliedUTC": "20261028-142025",
+    "baselineBackup": "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Touchpad-FeatureSafety-1.0.10/Before-Apply-20261028-142025/EFI",
+    "HIDUUID": "DD586643-A8A0-3E86-AE74-DA3294CAAEBC",
+    "fixes": [
+      "failed feature reads do not publish invalid data",
+      "complete transfer-length encoding and extended report IDs",
+      "complete 16-bit Dell input-mode write",
+      "previous controller partial-transfer and native contact bounds guards retained"
+    ],
+    "preserved": "PS2 keyboard/controller and Copilot mapping, graphics, audio, quiet boot, chime and Windows boot support",
+    "note": "Reboot through this USB required; hardware stability not yet confirmed."
+  },
+  "USBDataDevice": "disk8s2",
+  "USBRealEFIDevice": "disk8s1",
+  "backup": "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Touchpad-FeatureSafety-1.0.10/Before-Apply-20261028-142025",
+  "changedActiveFiles": [
+    "OC/Kexts/VoodooI2CHID.kext/Contents/Info.plist",
+    "OC/Kexts/VoodooI2CHID.kext/Contents/MacOS/VoodooI2CHID"
+  ],
+  "copyReadyFoldersUpdated": true,
+  "internalDiskModified": false,
+  "ocvalidate": "passed",
+  "copilotRetention": "passed",
+  "inputRestoreFixture": "passed; includes previous-version upgrade, rollback and exact baseline restore"
+}

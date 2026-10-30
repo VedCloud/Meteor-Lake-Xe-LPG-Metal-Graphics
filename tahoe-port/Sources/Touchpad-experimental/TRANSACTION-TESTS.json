@@ -1,0 +1,10 @@
+{
+  "previousVersionUpgrade": true,
+  "productionHardwareAndDiskGuardsMockedForFixtureOnly": true,
+  "actualTransactionLogic": "passed",
+  "applyRestoreByteEquality": true,
+  "idempotence": true,
+  "interruptedCommitRollback": true,
+  "unrelatedEditRefused": true,
+  "baselineConfigSHA256": "43ded00dbd6623012bd44b1d69342fd16fa29f885539171f0a7599ca4896f7e9"
+}

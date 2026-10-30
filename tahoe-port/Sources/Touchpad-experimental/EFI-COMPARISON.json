@@ -1,0 +1,10 @@
+{
+  "source": "/Volumes/EFI/EFI",
+  "candidate": "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Touchpad-FeatureSafety-1.0.10/EFI",
+  "changedFiles": [
+    "OC/Kexts/VoodooI2CHID.kext/Contents/Info.plist",
+    "OC/Kexts/VoodooI2CHID.kext/Contents/MacOS/VoodooI2CHID"
+  ],
+  "graphicsBootAudioKeyboardAndConfigUnchanged": true,
+  "activeUSBChanged": false
+}

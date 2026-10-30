@@ -1,0 +1,7 @@
+{
+  "file": "FwBinary.cpp",
+  "bytes": 92110469,
+  "sha256": "9dfe105fd4d34c2bafcba7800793bb4244ffffceb1eb6c587c8d55bfa4d8cee2",
+  "sourceArchive": "Tahoe-Corresponding-Sources-20261030.tar.gz",
+  "reason": "Generated 92 MB firmware C array is included in the complete source release, not duplicated in Git."
+}

@@ -1,0 +1,9 @@
+#import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonDigest.h>
+static NSString*hash(NSString*p){NSFileHandle*f=[NSFileHandle fileHandleForReadingAtPath:p];if(!f)return nil;CC_SHA256_CTX c;CC_SHA256_Init(&c);while(1){NSData*d=[f readDataOfLength:1024*1024];if(!d.length)break;CC_SHA256_Update(&c,d.bytes,(CC_LONG)d.length);}[f closeFile];unsigned char out[CC_SHA256_DIGEST_LENGTH];CC_SHA256_Final(out,&c);NSMutableString*s=[NSMutableString new];for(unsigned i=0;i<sizeof(out);i++)[s appendFormat:@"%02x",out[i]];return s;}
+int main(int argc,const char**argv){@autoreleasepool{@try{
+ if(argc==4&&!strcmp(argv[1],"--same")){NSString*a=hash(@(argv[2])),*b=hash(@(argv[3]));if(!a||!b)return 2;return [a isEqual:b]?0:1;}
+ if(argc==3&&!strcmp(argv[1],"--file")){NSString*h=hash(@(argv[2]));if(!h)return 2;puts(h.UTF8String);return 0;}
+ if(argc!=4||strcmp(argv[1],"--check"))return 2;NSString*root=[[@(argv[2]) stringByStandardizingPath]stringByResolvingSymlinksInPath];NSString*s=[NSString stringWithContentsOfFile:@(argv[3]) encoding:NSUTF8StringEncoding error:nil];if(!s)return 2;unsigned checked=0;
+ for(NSString*line in [s componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet]){if(!line.length)continue;if(line.length<67||![[line substringWithRange:NSMakeRange(64,2)]isEqual:@"  "])return 2;NSString*rel=[line substringFromIndex:66];if(rel.isAbsolutePath||[rel.pathComponents containsObject:@".."])return 2;NSString*p=[[root stringByAppendingPathComponent:rel]stringByResolvingSymlinksInPath];if(![p hasPrefix:[root stringByAppendingString:@"/"]])return 2;NSString*got=hash(p);if(!got||![got isEqual:[line substringToIndex:64]]){fprintf(stderr,"Checksum mismatch: %s\n",rel.UTF8String);return 2;}checked++;}if(!checked)return 2;printf("Verified %u package files with native SHA256\n",checked);return 0;
+ }@catch(NSException*e){fprintf(stderr,"Checksum error: %s\n",e.name.UTF8String);return 2;}}}

@@ -1,0 +1,18 @@
+{
+  "decoder": "PASS 8192 descriptor-derived hover/tip/eraser/button/axis/pressure/tilt cases; malformed reports rejected",
+  "newKernelImports": [],
+  "changedBaselineFiles": [
+    "VoodooI2CMultitouchHIDEventDriver.hpp",
+    "VoodooI2CTouchscreenHIDEventDriver.cpp",
+    "VoodooI2CHIDDevice.hpp",
+    "VoodooI2CTouchscreenHIDEventDriver.hpp",
+    "VoodooI2CHIDDevice.cpp"
+  ],
+  "transportLogicChanged": false,
+  "passiveWireCountersAdded": true,
+  "baselineSHA256": "cd088492963094dd12a148fcd443c571289185890a54b26c190ca6531a7ca3c6",
+  "candidateSHA256": "f173a63484858df0c777bc12888ec7528782b8882f69c09d3e8fa417b6583188",
+  "hardwareVerified": false,
+  "actualAdapterReplay": "PASS actual adapter: mixed reports, hover/contact/lift, vendor report, short read, disabled input held-button release, contact-only proximity, pressure-not-click and adaptive polling activity",
+  "actualTransportPollingReplay": "PASS actual unchanged transport: idle 50ms; native pen traffic restores 2ms busy polling"
+}

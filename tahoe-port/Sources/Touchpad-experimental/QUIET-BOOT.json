@@ -1,0 +1,13 @@
+{
+  "backup": "/Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Touchpad-FeatureSafety-1.0.10/Quiet-Boot-Before-20261028-142443",
+  "debugLogging": false,
+  "verboseBoot": false,
+  "diagnosticArgumentsRemoved": [
+    "debug=0x100",
+    "keepsyms=1"
+  ],
+  "versionExposure": false,
+  "inputVersion": "1.0.10",
+  "restoreTransactionTests": "passed",
+  "normalAccelerationPreserved": true
+}

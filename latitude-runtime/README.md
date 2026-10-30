@@ -1,3 +1,5 @@
+> **30 October 2026:** This directory retains the historical Sequoia package. For current Tahoe 0.3.21 payloads and corresponding sources, see [packages](../packages/). Do not install Sequoia binaries onto Tahoe.
+
 # Latitude 5350 acceleration test
 
 This is a complete experimental render-runtime build for the physical Meteor Lake 8086:7D45 GPU, not just the PCI diagnostic. It has not yet executed on the Dell. A successful build is not proof of hardware acceleration.

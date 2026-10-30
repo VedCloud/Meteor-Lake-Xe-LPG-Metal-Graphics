@@ -4,18 +4,22 @@
 ![Platform](https://img.shields.io/badge/Platform-Sequoia_15.8.1_%2B_Tahoe_26.7.1-blue)
 ![Arch](https://img.shields.io/badge/Arch-x86__64-informational)
 ![Bootloader](https://img.shields.io/badge/Bootloader-OpenCore_1.0.9-9cf)
+
 ![Hardware](https://img.shields.io/badge/Hardware-Intel_Core_Ultra_5_135U-orange)
 ![Graphics](https://img.shields.io/badge/Graphics-Xe--LPG%20%2F%208086%3A7D45-red)
-![Firmware](https://img.shields.io/badge/Firmware-GuC_70.53.0-blue)<br>
+![Firmware](https://img.shields.io/badge/Firmware-GuC_70.53.0-blue)
+
 ![API](https://img.shields.io/badge/API-Metal%20%2F%20Vulkan-purple)
 ![Vulkan](https://img.shields.io/badge/Vulkan-ANV_%2F_Mesa_26.3.0--devel-purple)
 ![Kernel](https://img.shields.io/badge/Kext-i915_on_LinuxKPI-red)
-![Darwin](https://img.shields.io/badge/Darwin_27-ARM64_VMAPLE__WindowServer_startup-blueviolet)
-![Language](https://img.shields.io/badge/Language-C%20%2F%20Obj--C%20%2F%20C%2B%2B-blueviolet)<br>
+![Language](https://img.shields.io/badge/Language-C%20%2F%20Obj--C%20%2F%20C%2B%2B-blueviolet)
+
 ![Status](https://img.shields.io/badge/Status-Metal%20%2B%20Vulkan%20working-brightgreen)
 ![Desktop](https://img.shields.io/badge/Desktop-WindowServer_working-brightgreen)
 ![Verified](https://img.shields.io/badge/Sequoia_gate-26%2C000_frames-brightgreen)
 ![Candidate](https://img.shields.io/badge/Tahoe_baseline-graphics_0.3.21-yellow)
+
+![Darwin](https://img.shields.io/badge/Darwin_27-ARM64_VMAPLE__WindowServer_startup-blueviolet)
 
 **Metal and Vulkan run on the Intel Core Ultra (Meteor Lake-P) Xe-LPG iGPU (`8086:7D45`) of a Dell
 Latitude 5350 on macOS 15 Sequoia and macOS Tahoe 26.7.1**, with a working GPU-composited desktop.
@@ -32,15 +36,25 @@ performance, touchpad and the Apple-side subsystems remain under investigation. 
 "Golden Gate"** runtime has reached native recovery services and **WindowServer startup**; its graphical
 installer has not appeared yet.
 
-**Start here:**
+![Dell Latitude 5350 2-in-1 running macOS Tahoe 26.7.1 with the custom Dell icon and About This Mac window](Tahoe-26.7.1-desktop.png)
 
-- *Does it work?* → [What works today](#works) and [The unified Dell candidate](#unified)
-- *What is broken or next?* → [What is in progress](#wip)
-- *How does it work?* → [Architecture](#architecture) and [How it works](#how)
-- *Build it* → [Building and testing](#build)
-- *Read the evidence* → [`research/`](research/) (newest files first)
+*Latest screenshot: Tahoe 26.7.1, 16 GB RAM, custom Dell identity and the requested “Intel Iris Xe Graphics”
+label. The physical GPU remains Meteor Lake Xe-LPG (`8086:7D45`); 4096 MB is reported shared graphics
+memory, not dedicated VRAM. The screenshot does not replace rendering tests.*
+
+**Start here**
+
+| I want to… | Read / download |
+|---|---|
+| See what works | [Current results](#works) · [Open issues](#wip) |
+| Get the current packages | [Tahoe graphics/audio, Wi-Fi, sources and macOS 27 engine](packages/) |
+| Understand or build the port | [Architecture](#architecture) · [Build instructions](#build) |
+| Check the evidence | [Validation](#validation) · [Dated research](research/) |
 
 ## 📑 Contents
+
+<details>
+<summary>Browse the full documentation</summary>
 
 - [What works today](#works)
 - [Status at a glance](#status)
@@ -62,6 +76,8 @@ installer has not appeared yet.
 - [Glossary](#glossary)
 - [FAQ](#faq)
 - [Where this breaks with consensus](#consensus)
+
+</details>
 
 <a name="works"></a>
 ## ✅ What works today
@@ -85,11 +101,7 @@ installer has not appeared yet.
 | **Accelerated graphics on every normal USB boot** | |
 | GPU reporting — requested `Intel Iris Xe Graphics` display label, 4096 MB shared-heap cap; real PCI identity retained | |
 
-![Dell Latitude 5350 2-in-1 running macOS Tahoe 26.7.1 with the custom Dell icon and About This Mac window](Tahoe-26.7.1-desktop.png)
 
-*Latest screenshot: Tahoe 26.7.1, 16 GB RAM, custom Dell identity and the requested “Intel Iris Xe Graphics”
-label. The physical GPU remains Meteor Lake Xe-LPG (`8086:7D45`); 4096 MB is reported shared graphics
-memory, not dedicated VRAM. The screenshot does not replace rendering tests.*
 
 **The application gate** is the measured baseline, not an inference: 22 cases (11 IOKit + 11 direct),
 26,000 frames, 80,020 command pools created and destroyed with zero live, pending or quarantined —
@@ -98,6 +110,9 @@ This **Sequoia** application gate has not been rerun as a fresh Tahoe 26.7.1 val
 
 <a name="status"></a>
 ## 📊 Status at a glance
+
+<details>
+<summary>Evidence and validation for each milestone</summary>
 
 | Milestone | Evidence | Status |
 | :--- | :--- | :--- |
@@ -117,13 +132,18 @@ This **Sequoia** application gate has not been rerun as a fresh Tahoe 26.7.1 val
 The original measurements are recorded under `research/`; later Tahoe runtime results also include
 the working-checkpoint reports and user-confirmed hardware behavior. Keep those scopes separate.
 
+</details>
+
 <a name="unified"></a>
 ## 🧩 The unified Dell candidate
 
-Since 21 October the project is **one staged candidate** delivering a working Intel Mac — graphics,
-wireless, audio, input, tablet, text rendering and the boot UI — with every subsystem's real validation
-state recorded separately. The authoritative combined status is `UNIFIED-CANDIDATE-WORK.md`; the
+The combined Dell work covers graphics, wireless, audio, input, tablet features, text rendering and
+the boot UI. Working features and unfinished experiments are tracked separately; packaged code alone
+does not establish a hardware result. The authoritative combined status is `UNIFIED-CANDIDATE-WORK.md`; the
 invariants that must survive every rebuild are in `AGENTS.md`.
+
+<details>
+<summary>Subsystem implementations, versions and validation details</summary>
 
 | Subsystem | What was built | State |
 |---|---|---|
@@ -143,6 +163,8 @@ invariants that must survive every rebuild are in `AGENTS.md`.
 | **Subpixel LCD text** | Filtered FreeType 2.14.3 renderer (RGB/RGB_V/BGR/BGR_V), a bounded coverage atlas, linear-light per-channel blending, a CoreText-shaped frontend, and a native `CTLineDraw`/AppKit/CA interposer | **System-app deployment open** |
 | **Brightness, hotkeys, GPIO, power** | Brightness-keys route (`BRT6` to `PC00.LPCB.PS2K`), a latitude hotkey driver, a Linux-style GPIO map, a sleep/power snapshot | **Target validation pending** |
 
+</details>
+
 ### macOS 27 "Golden Gate" — the standalone boot program
 
 The supplied **macOS 27 build 26A428** is the ARM64 target for this separate firmware-runtime experiment.
@@ -153,8 +175,12 @@ firmware*, with no Linux host and no Sequoia loader — which on this hardware m
 translation layer beneath the kernel**, the piece Snapintosh gets for free on a Snapdragon.
 
 The original **0.0.3 preflight** source lives in [`macos27-standalone/`](macos27-standalone/).
-The full-engine experiments have advanced beyond it in the Corsair-backed workspace; they are not all
-published in that historical folder.
+The full-engine experiments have advanced beyond it. The current source, upstream overlay and diagnostic
+EFI are now published in [`macos27-standalone/full-engine/`](macos27-standalone/full-engine/) and the
+[dated package release](packages/); the original preflight folder remains historical.
+
+<details>
+<summary>Earlier 0.0.3 preflight milestone and its verification</summary>
 
 * **Original preflight milestone (preserved).** `EFI/Tools/Dell27Preflight.efi` — an x86_64 UEFI application that runs with no Linux
   and no Sequoia. It admits exactly four hash-pinned macOS 27.0 build 26A428 / Mac14,3 inputs (`bootkc`,
@@ -172,6 +198,9 @@ published in that historical folder.
   its first branch and four setup instructions, then **intentionally stops at the first boot-argument
   read**. Unsupported instructions, bad maps, faults and instruction budgets terminate execution — an
   unsupported system instruction is never treated as a successful no-op.
+
+</details>
+
 * **Current full-engine progress — 30 October.** Native Darwin 27 kernel execution and pmap startup,
   HFS recovery-root bring-up, **launchd, recoveryosd, OpenDirectory, LaunchServices and CoreServices**
   startup have been observed. **Native WindowServer startup is now reached**; earlier baseline captures
@@ -348,6 +377,9 @@ prove IOKit was used, so each case logs and verifies the route it actually took.
 <a name="components"></a>
 ## 🧱 Component inventory
 
+<details>
+<summary>Full component inventory, locations and licenses</summary>
+
 | Component | Version / base | Source in tree | Licence |
 |---|---|---|---|
 | `NMXGPU.kext` | kernel **1.0.15** (GPU-startup stolen-region reservation) | `latitude-desktop`, `drm-kmod`, `freebsd-src` | i915/Linux → GPL-2.0; NullMoth wrapper PolyForm NC |
@@ -377,6 +409,8 @@ prove IOKit was used, so each case logs and verifies the route it actually took.
 
 Exact revisions for every patched base are in `latitude-runtime/BUILD-MANIFEST.json`; upstream package
 hashes are in `SHA256SUMS-upstream.txt`.
+
+</details>
 
 <a name="how"></a>
 ## 🔬 How it works
@@ -447,6 +481,9 @@ cat hang-check.txt                # expect empty
 <a name="diagnostics"></a>
 ## 🔎 Diagnostics
 
+<details>
+<summary>Diagnostic commands and failure signatures</summary>
+
 Run these **before** rebooting or reinstalling: a failed boot's unified log is often gone after the next
 restart. The rule is **collect first, reboot second, reinstall last** — installing a new candidate over a
 failed boot destroys the evidence that the candidate failed.
@@ -494,8 +531,13 @@ fallback should still complete); `GPUWranglerWaitForPublish` (no GPU was ever pu
 mtx` whose `mtx_lk` is `NULL` — an object that never passed through `mtx_init()`; not contention and not
 a timeout).
 
+</details>
+
 <a name="workspace"></a>
 ## 📂 Workspace layout
+
+<details>
+<summary>Source tree and research-file guide</summary>
 
 ```
 iGPU Port/
@@ -534,6 +576,8 @@ iGPU Port/
 | `panel-and-icon-0.3.14.md` | Captured BOE panel EDID (13.3") and the About This Mac icon |
 | `tablet-macos-review-20261021-1504.md` | Tablet-mode macOS review and the firmware visibility gate |
 
+</details>
+
 <a name="build"></a>
 ## 🛠️ Building and testing
 
@@ -541,7 +585,7 @@ iGPU Port/
 scripts do not reproduce the later Tahoe 0.3.21 checkpoint. Tahoe uses a separate qualified graphics/audio
 package with exact framework-family/ABI checks and kernel-collection preflight/rollback. Do not bypass
 a failed validation or install the Sequoia package onto Tahoe. Keep `keepsyms=1` for Tahoe SimpleHDA; it
-retains symbols without enabling visible verbose boot. Some later builders/packages are outside this checkout.
+retains symbols without enabling visible verbose boot. Current Tahoe payloads and matching sources are now available through [packages/](packages/).
 
 The build is a pipeline: firmware is prebuilt, then the translator, the Vulkan backend, the Metal plugin,
 the kernel extension and the kexts are compiled, the runtime is packaged, the application gate is run, and
@@ -597,7 +641,7 @@ sudo /bin/bash latitude-runtime/rollback-runtime.sh
 > `drm-kmod`, `freebsd-src`) before they will run.
 
 The **historical macOS 27 0.0.3 preflight** builds separately, on the Corsair-backed build volume
-(the current full-engine candidate has additional private-workspace sources and is not reproduced by these commands):
+(the current full-engine candidate is published in `macos27-standalone/full-engine/` and is not reproduced by these older commands):
 
 ```sh
 cd macos27-standalone/Standalone-UEFI-Source
@@ -627,7 +671,7 @@ first** — and it is the document to read for the history. It has four parts:
 4. **Method** — the evidence table, what the research changed, the implementation sequence with its
    promotion criteria, and the immediate deliverables with their boundaries.
 
-The current position in short:
+Current position:
 
 - **Now:** Sequoia's recorded 26,000-frame application baseline and a working **Tahoe 26.7.1 desktop**,
   restored to graphics **0.3.21**, with Wi-Fi, Bluetooth, ALC295 audio, Night Shift, panel brightness,
@@ -744,6 +788,9 @@ Key decisions and the alternatives that were rejected:
 <a name="faq"></a>
 ## ❓ FAQ
 
+<details>
+<summary>Installation, runtime, Wi-Fi and licensing questions</summary>
+
 **Does this actually work?**
 For applications, yes: Metal and Vulkan produce exact, verified output (65,536 Vulkan values, 4,096
 Metal pixels, 26,000 frames across 22 cases). The desktop **now works too** — WindowServer is
@@ -799,6 +846,8 @@ components keep their own terms.
 **Will this support Lunar Lake or Panther Lake?**
 That is the separate `NullMoth-Xe` target. Xe2/Xe3 cache and firmware workarounds must not be applied to
 Meteor Lake.
+
+</details>
 
 <a name="consensus"></a>
 ## 📈 Where this breaks with consensus

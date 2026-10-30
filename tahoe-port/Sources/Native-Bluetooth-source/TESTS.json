@@ -1,0 +1,20 @@
+{
+  "codecReplay": "PASS native LE codec: original features retained, per-handle PHY/data-length, malformed/error/unrelated/disconnect/expiry cases, 250000 fuzz packets",
+  "kernel": "25G241",
+  "missingImports": [],
+  "targetHooksResolved": [
+    "__ZN15IOUSBHostDevice13deviceRequestEP9IOServiceRN11StandardUSB13DeviceRequestEPvP18IOMemoryDescriptorRjP19IOUSBHostCompletionj",
+    "__ZN17IOUSBHostIOSource2ioEP18IOMemoryDescriptorjP19IOUSBHostCompletionj",
+    "__ZN17IOUSBHostIOSource2ioEP18IOMemoryDescriptorjRjj",
+    "__ZN17IOUSBHostIOSource2ioEP18IOMemoryDescriptorjP26IOUSBHostBundledCompletionj",
+    "__ZN13IOUSBHostPipe28initWithDescriptorsAndOwnersEPKN11StandardUSB18EndpointDescriptorEPKNS0_23ConfigurationDescriptorEP22AppleUSBHostControllerP15IOUSBHostDeviceP18IOUSBHostInterfaceht",
+    "__ZN17IOUSBHostIOSource14initWithOwnersEP22AppleUSBHostControllerP15IOUSBHostDevice",
+    "__ZN17IOUSBHostIOSource4freeEv"
+  ],
+  "binarySHA256": "2d41f9c87574d396e1204722d87cdc9168537e5d447cdbafb8ae0c13915b512e",
+  "nativeSystemPairingOnDellVerified": false,
+  "arbitraryUSBFilteringDisabled": false,
+  "guessedPrivateObjectOffsetsUsed": false,
+  "sourceReference": "OpenIntelWireless/IntelBluetoothFirmware issue 514 and if-lensman/Hackintosh-MacPro7-1-EFI patches/IntelBTPatcher",
+  "actualUSBCallbackReplay": "PASS actual native USB callbacks: source scope, nested wrappers, deferred lifetimes, bundled length, immediate failure cleanup, bounded buffers"
+}

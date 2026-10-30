@@ -1,0 +1,21 @@
+{
+  "revision": "40a8d07ba3cef067d9a6455c163dbed8d94f8e38",
+  "modifiedFiles": {
+    "efi/include/glue_internal.h": "2cf37dff96f6ba557684e7b1da953f8dd03c4a9782ae0a8c486e8334ffaddedd",
+    "include/unicorn/arm64.h": "d02e79477cd0f77d14ed3005d906634c153a9b0dc835dc5adf7b6f38c1445363",
+    "qemu/accel/tcg/cpu-exec.c": "95e6d96c3e623db2e43233ab0e786d127ac7343629bd4ca30cfd72b722cd9197",
+    "qemu/accel/tcg/cputlb.c": "82adbb11f3e19a01afdea4b9a402d7046e0f0028845d1afeea0dae8986fedd07",
+    "qemu/accel/tcg/translate-all.c": "ce6bf582dc643cb13fe5aed4f839c1fab49ec0f4033e59f9cf5d6ef82a146604",
+    "qemu/target/arm/cpu.h": "3ddf507a3f75ba4280f0d0964c3f4016382c12af8a3beabd9b4db67cb11462a7",
+    "qemu/target/arm/cpu64.c": "b01be699597c6db4acce331d3199472c709c66ec7e6b08e2c6b806507c9c40b8",
+    "qemu/target/arm/helper.c": "6799df4e28d26869903b431622b5a11852fe643e4e866a3872b4a9a1511a9f4f",
+    "qemu/target/arm/internals.h": "71de220b7b477cdd30a17efcc94efc50cc7eb047be506ef7dfe8692333eede27",
+    "qemu/target/arm/monitor-gic.c.inc": "fe41dd040a32e91cf607a9521b931b3711505f67c104b3716387e09a47f2e2f8",
+    "qemu/target/arm/pauth_helper.c": "e4b2887a3128c825c3e8b5e09c17d8cc451e5d88046fb5e9938941dbd3c9c539",
+    "qemu/target/arm/tlb_helper.c": "85bd05cdea9afb7434f0ed695cc800b2ada165e40241d6efd7f4b0af57d9ca59",
+    "qemu/target/arm/translate-a64.c": "1ed0231a18944cb4a511819abcec9cba8f782c2c8909667aa581ec2a0b4b475f",
+    "qemu/target/arm/unicorn_aarch64.c": "7f751015081f83726a436f105d0e4734d985894b6bb825a0296d867087290253",
+    "qemu/target/arm/vmapple-pac.c.inc": "9fa2206a389be47362d99d69d93d14c89188cc5771c8a83f509d87417657f5aa",
+    "qemu/util/oslib-efi.c": "05e35ba77b8637f92f97638e73ed739f67cc90e9b0f070bb3ab2871bc02d57ed"
+  }
+}

@@ -1,0 +1,80 @@
+#pragma once
+#include <stddef.h>
+#include <stdint.h>
+#if defined(__x86_64__)
+#include <cpuid.h>
+#include <immintrin.h>
+#endif
+
+static size_t nvmtl_cpu_cache_line_size(void)
+{
+#if defined(__x86_64__)
+    unsigned a,b,c,d;
+    if(!__get_cpuid(1,&a,&b,&c,&d) || !(d&(1u<<19)))return 0;
+    size_t size=((b>>8)&255)*8;
+    return size && !(size&(size-1)) ? size:0;
+#else
+    return 0;
+#endif
+}
+
+static int nvmtl_cpu_cache_optimized(void)
+{
+#if defined(__x86_64__)
+    unsigned a,b,c,d;
+    return __get_cpuid_count(7,0,&a,&b,&c,&d) && (b&(1u<<23));
+#else
+    return 0;
+#endif
+}
+
+static int nvmtl_cpu_cache_range(uintptr_t address,size_t bytes,size_t capacity,
+                                size_t line,uintptr_t *last)
+{
+    if(!address || !bytes || bytes>capacity || !line || (line&(line-1)) ||
+       bytes-1>UINTPTR_MAX-address)return -1;
+    *last=address+bytes-1;
+    return 0;
+}
+
+/* Addresses remain inside the allocation, including an unaligned first line. */
+static int nvmtl_cpu_cache_next(uintptr_t address,uintptr_t last,size_t line,uintptr_t *next)
+{
+    size_t step=line-(address&(line-1));
+    if(last-address<step)return 0;
+    *next=address+step;
+    return 1;
+}
+
+#if defined(__x86_64__)
+__attribute__((target("clflushopt")))
+static void nvmtl_cpu_cache_batch(uintptr_t address,uintptr_t last,size_t line)
+{
+    _mm_mfence();
+    do { _mm_clflushopt((const void *)address); }
+    while(nvmtl_cpu_cache_next(address,last,line,&address));
+    _mm_mfence();
+}
+#endif
+
+/* Port workaround for retained IOKit mappings. This supplements rather than
+   replaces the Vulkan host barrier and successful GPU fence. */
+static int nvmtl_cpu_cache_sync(void *base,size_t bytes,size_t capacity)
+{
+    const size_t line=nvmtl_cpu_cache_line_size();
+    uintptr_t address=(uintptr_t)base,last;
+    if(nvmtl_cpu_cache_range(address,bytes,capacity,line,&last))return -1;
+#if defined(__x86_64__)
+    if(nvmtl_cpu_cache_optimized()){
+        nvmtl_cpu_cache_batch(address,last,line);
+        return 0;
+    }
+    _mm_mfence();
+    do { _mm_clflush((const void *)address); }
+    while(nvmtl_cpu_cache_next(address,last,line,&address));
+    _mm_mfence();
+    return 0;
+#else
+    return -1;
+#endif
+}

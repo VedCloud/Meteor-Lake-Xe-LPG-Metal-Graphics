@@ -1,0 +1,379 @@
+{
+  "vendor": 1386,
+  "product": 18969,
+  "descriptorBytes": 893,
+  "descriptorSHA256": "736da28251ded541292a1de9fb44c62f74147f303d4d0ec1849c28a65e1c1efd",
+  "descriptorFNV1a64": "0x3640bb7bf38ad70a",
+  "penFields": [
+    {
+      "id": 20,
+      "bit": 0,
+      "size": 1,
+      "page": 13,
+      "usage": 66,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 1,
+      "size": 1,
+      "page": 13,
+      "usage": 68,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 2,
+      "size": 1,
+      "page": 13,
+      "usage": 69,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 3,
+      "size": 1,
+      "page": 13,
+      "usage": 60,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 4,
+      "size": 1,
+      "page": 13,
+      "usage": 90,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 5,
+      "size": 1,
+      "page": 13,
+      "usage": 50,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 6,
+      "size": 1,
+      "page": 13,
+      "usage": 0,
+      "min": 0,
+      "max": 1,
+      "constant": true
+    },
+    {
+      "id": 20,
+      "bit": 7,
+      "size": 1,
+      "page": 13,
+      "usage": 0,
+      "min": 0,
+      "max": 1,
+      "constant": true
+    },
+    {
+      "id": 20,
+      "bit": 8,
+      "size": 16,
+      "page": 1,
+      "usage": 48,
+      "min": 0,
+      "max": 29376,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 24,
+      "size": 16,
+      "page": 1,
+      "usage": 49,
+      "min": 0,
+      "max": 16524,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 40,
+      "size": 16,
+      "page": 13,
+      "usage": 48,
+      "min": 0,
+      "max": 4095,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 56,
+      "size": 16,
+      "page": 65280,
+      "usage": 91,
+      "min": -32768,
+      "max": 32767,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 72,
+      "size": 32,
+      "page": 13,
+      "usage": 91,
+      "min": -2147483648,
+      "max": 2147483647,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 104,
+      "size": 8,
+      "page": 65280,
+      "usage": 0,
+      "min": 0,
+      "max": 255,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 112,
+      "size": 8,
+      "page": 13,
+      "usage": 59,
+      "min": 0,
+      "max": 255,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 120,
+      "size": 16,
+      "page": 13,
+      "usage": 61,
+      "min": -9000,
+      "max": 9000,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 136,
+      "size": 16,
+      "page": 13,
+      "usage": 62,
+      "min": -9000,
+      "max": 9000,
+      "constant": false
+    },
+    {
+      "id": 20,
+      "bit": 152,
+      "size": 16,
+      "page": 13,
+      "usage": 86,
+      "min": 0,
+      "max": 65535,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 0,
+      "size": 1,
+      "page": 65297,
+      "usage": 66,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 1,
+      "size": 1,
+      "page": 65297,
+      "usage": 68,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 2,
+      "size": 1,
+      "page": 65297,
+      "usage": 69,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 3,
+      "size": 1,
+      "page": 65297,
+      "usage": 60,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 4,
+      "size": 1,
+      "page": 65297,
+      "usage": 90,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 5,
+      "size": 1,
+      "page": 65297,
+      "usage": 50,
+      "min": 0,
+      "max": 1,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 6,
+      "size": 1,
+      "page": 65297,
+      "usage": 0,
+      "min": 0,
+      "max": 1,
+      "constant": true
+    },
+    {
+      "id": 11,
+      "bit": 7,
+      "size": 1,
+      "page": 65297,
+      "usage": 0,
+      "min": 0,
+      "max": 1,
+      "constant": true
+    },
+    {
+      "id": 11,
+      "bit": 8,
+      "size": 16,
+      "page": 1,
+      "usage": 48,
+      "min": 0,
+      "max": 29376,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 24,
+      "size": 16,
+      "page": 1,
+      "usage": 49,
+      "min": 0,
+      "max": 16524,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 40,
+      "size": 16,
+      "page": 13,
+      "usage": 48,
+      "min": 0,
+      "max": 4095,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 56,
+      "size": 16,
+      "page": 65280,
+      "usage": 91,
+      "min": -32768,
+      "max": 32767,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 72,
+      "size": 32,
+      "page": 13,
+      "usage": 91,
+      "min": -2147483648,
+      "max": 2147483647,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 104,
+      "size": 8,
+      "page": 65280,
+      "usage": 0,
+      "min": 0,
+      "max": 255,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 112,
+      "size": 8,
+      "page": 13,
+      "usage": 59,
+      "min": 0,
+      "max": 255,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 120,
+      "size": 16,
+      "page": 13,
+      "usage": 61,
+      "min": -9000,
+      "max": 9000,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 136,
+      "size": 16,
+      "page": 13,
+      "usage": 62,
+      "min": -9000,
+      "max": 9000,
+      "constant": false
+    },
+    {
+      "id": 11,
+      "bit": 152,
+      "size": 16,
+      "page": 13,
+      "usage": 86,
+      "min": 0,
+      "max": 65535,
+      "constant": false
+    }
+  ],
+  "inputBits": {
+    "28": 144,
+    "19": 144,
+    "255": 8,
+    "20": 168,
+    "11": 168,
+    "16": 160,
+    "31": 168,
+    "1": 40
+  }
+}

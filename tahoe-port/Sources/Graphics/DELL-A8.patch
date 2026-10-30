@@ -1,0 +1,228 @@
+--- a/plugin/NVMTLDevice.m
++++ b/plugin/NVMTLDevice.m
+@@ -1400,11 +1400,29 @@
+             nvlog("blend: operation %lu is not a value this driver knows", (unsigned long)op); return -1;
+     }
+ }
+-static int nvmtl_blend_from(MTLRenderPipelineColorAttachmentDescriptor *ca, int noWrite, nvk_blend_state *b) {
++// A8 is stored as R8. Evaluate Metal's alpha blend equation in Vulkan's red lane.
++// Source/constant factors still refer to shader/constant alpha; destination alpha lives in R8.red.
++static uint32_t nvmtl_a8_factor(uint32_t f) {
++    switch (f) {
++    case VK_BLEND_FACTOR_SRC_COLOR: return VK_BLEND_FACTOR_SRC_ALPHA;
++    case VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR: return VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;
++    case VK_BLEND_FACTOR_DST_ALPHA: return VK_BLEND_FACTOR_DST_COLOR;
++    case VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA: return VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR;
++    case VK_BLEND_FACTOR_CONSTANT_COLOR: return VK_BLEND_FACTOR_CONSTANT_ALPHA;
++    case VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR: return VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA;
++    case VK_BLEND_FACTOR_SRC1_COLOR: return VK_BLEND_FACTOR_SRC1_ALPHA;
++    case VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR: return VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA;
++    case VK_BLEND_FACTOR_SRC_ALPHA_SATURATE: return VK_BLEND_FACTOR_ONE;
++    default: return f;
++    }
++}
++static int nvmtl_blend_from(MTLRenderPipelineColorAttachmentDescriptor *ca, int noWrite, int a8, nvk_blend_state *b) {
+     *b = (nvk_blend_state){ .enabled = ca.blendingEnabled,
+         .src_rgb = VK_BLEND_FACTOR_ONE, .dst_rgb = VK_BLEND_FACTOR_ZERO, .op_rgb = VK_BLEND_OP_ADD,
+         .src_alpha = VK_BLEND_FACTOR_ONE, .dst_alpha = VK_BLEND_FACTOR_ZERO, .op_alpha = VK_BLEND_OP_ADD };
+-    if (!noWrite) {
++    if (!noWrite && a8) {
++        if (ca.writeMask & MTLColorWriteMaskAlpha) b->write_mask |= VK_COLOR_COMPONENT_R_BIT;
++    } else if (!noWrite) {
+         if (ca.writeMask & MTLColorWriteMaskRed) b->write_mask |= VK_COLOR_COMPONENT_R_BIT;
+         if (ca.writeMask & MTLColorWriteMaskGreen) b->write_mask |= VK_COLOR_COMPONENT_G_BIT;
+         if (ca.writeMask & MTLColorWriteMaskBlue) b->write_mask |= VK_COLOR_COMPONENT_B_BIT;
+@@ -1433,6 +1451,7 @@
+ }
+ MTLRenderPipelineDescriptor *nvmtl_gl_rewrite_descriptor(MTLRenderPipelineDescriptor *d, NSError **err);
+ void nvmtl_gl_tag_reflection(id refl, MTLRenderPipelineDescriptor *d);
++NSData *nvmtl_translate_samplers(NVMTLFunction *, NSDictionary *, uint32_t, NSString **);
+ - (id<MTLRenderPipelineState>)newRenderPipelineStateWithDescriptor:(MTLRenderPipelineDescriptor *)d error:(NSError **)err {
+     if (err) *err = nil;
+     d = nvmtl_gl_rewrite_descriptor(d, err); if (!d) return nil;
+@@ -1458,15 +1477,23 @@
+     if ([samplePayload isKindOfClass:[NSDictionary class]] && !nvmtl_vk_sample_positions_backend())
+         return nvmtl_fail(err, @"pipeline: fragment sample positions require the checked NVIDIA runtime payload contract");
+     NVMTLRenderPipelineState *ps = [NVMTLRenderPipelineState new];
+-    nvk_rt rt; memset(&rt, 0, sizeof rt);
++    nvk_rt rt; memset(&rt, 0, sizeof rt); uint32_t a8mask = 0;
+     for (uint32_t i = 0; i < NVMTL_NCOL; i++) {
+         MTLRenderPipelineColorAttachmentDescriptor *ca = d.colorAttachments[i];
+         if (ca.pixelFormat == MTLPixelFormatInvalid) continue;
+         uint32_t svk = 0, sbpp = 0; int sa8 = 0;
+         if (nvmtl_pixfmt(ca.pixelFormat, &svk, &sbpp, &sa8))
+             return nvmtl_fail(err, [NSString stringWithFormat:@"pipeline: colour attachment %u pixel format %lu not carried by this driver", i, (unsigned long)ca.pixelFormat]);
+-        if (nvmtl_blend_from(ca, noFrag, &rt.blend[i]))
++        if (nvmtl_blend_from(ca, noFrag, sa8, &rt.blend[i]))
+             return nvmtl_fail(err, [NSString stringWithFormat:@"pipeline: colour attachment %u has a blend factor or operation this driver cannot translate (the reason is the preceding \"blend:\" log line)", i]);
++        if (sa8) {
++            a8mask |= 1u << i;
++            if (rt.blend[i].enabled) {
++                rt.blend[i].src_rgb = nvmtl_a8_factor(rt.blend[i].src_alpha);
++                rt.blend[i].dst_rgb = nvmtl_a8_factor(rt.blend[i].dst_alpha);
++                rt.blend[i].op_rgb = rt.blend[i].op_alpha;
++            }
++        }
+         rt.cfmt[i] = svk; rt.ncol = i + 1;
+     }
+     for (uint32_t i = 0; i < rt.ncol; i++) {
+@@ -1517,8 +1544,20 @@
+             @"pipeline: REFUSED — %@ is a visible function, not an entry point (vertex %lu B, fragment %lu B)",
+             !vf->_spirv.length ? vf->_fname : ff->_fname,
+             (unsigned long)vf->_spirv.length, (unsigned long)ff->_spirv.length]);
++    NVMTLFunction *ffx = ff;   // the fragment stage as built: an A8-target variant when a colour attachment is A8Unorm
++    ps->_a8mask = a8mask;
++    if (a8mask && !noFrag) {
++        NSString *why = nil; NSData *fa = nvmtl_translate_samplers(ff, nil, a8mask, &why);
++        if (!fa) return nvmtl_fail(err, [NSString stringWithFormat:@"pipeline: A8 target variant of %@ REFUSED: %@", ff->_fname, why ?: @"?"]);
++        if (fa != ff->_spirv) {
++            ffx = [NVMTLFunction new]; ffx->_spirv = fa; ffx->_fname = ff->_fname; ffx->_stage = ff->_stage; ffx->_fc = ff->_fc;
++            ffx->_refl = ff->_refl; ffx->_airNames = ff->_airNames; ffx->_arguments = ff->_arguments; ffx->_embedded = ff->_embedded;
++            static _Atomic unsigned na8; if (atomic_fetch_add(&na8, 1) < 8)
++                nvlog("a8-target0.3.21: %s mask %#x (%lu B variant)", ff->_fname.UTF8String, a8mask, (unsigned long)fa.length);
++        }
++    }
+     uint32_t rsc = (uint32_t)([d respondsToSelector:@selector(rasterSampleCount)] ? d.rasterSampleCount : d.sampleCount); if (!rsc) rsc = 1;
+-    NSData *flk = nvmtl_varying_link(vf, ff); const void *fsb = flk ? flk.bytes : ff->_spirv.bytes; size_t fsl = flk ? flk.length : ff->_spirv.length;
++    NSData *flk = nvmtl_varying_link(vf, ffx); const void *fsb = flk ? flk.bytes : ffx->_spirv.bytes; size_t fsl = flk ? flk.length : ffx->_spirv.length;
+     uint32_t tpt = 0, tcps = 0; int prc;
+     if (nvmtl_spirv_tess_info(vf->_spirv.bytes, vf->_spirv.length, &tpt, &tcps)) {
+         if (d.tessellationFactorFormat != MTLTessellationFactorFormatHalf)
+--- a/plugin/NVMTLEventSync.m
++++ b/plugin/NVMTLEventSync.m
+@@ -479,7 +479,7 @@
+             const uint64_t now=clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+             static _Atomic unsigned slowReports;
+             if (now-_traceCommitNS>=50000000ULL && atomic_fetch_add(&slowReports,1)<32)
+-                nvlog("first-submit: slow-part0.3.20-tahoe: cb=%p part=%lu/%lu elapsed_before_part_ms=%.3f gpu_wait_ms=%.3f publish_ms=%.3f surfaces=%lu result=%d published=%d import_ms=%.3f surface_out_ms=%.3f buffer_out_ms=%.3f",
++                nvlog("first-submit: slow-part0.3.21-tahoe: cb=%p part=%lu/%lu elapsed_before_part_ms=%.3f gpu_wait_ms=%.3f publish_ms=%.3f surfaces=%lu result=%d published=%d import_ms=%.3f surface_out_ms=%.3f buffer_out_ms=%.3f",
+                     (__bridge void *)self,(unsigned long)_nextPart,(unsigned long)_parts.count,
+                     (phaseBegin-_traceCommitNS)*1e-6,(phaseWait-phaseBegin)*1e-6,(now-phaseWait)*1e-6,
+                     (unsigned long)part->surfaces.count,result,published,
+--- a/plugin/NVMTLLibraryLoad.m
++++ b/plugin/NVMTLLibraryLoad.m
+@@ -1689,10 +1689,10 @@
+     return result;
+ }
+ 
+-NSData *nvmtl_translate_samplers(NVMTLFunction *fn, NSDictionary *states, NSString **err) {
+-    if (!states.count) return fn->_spirv;
++NSData *nvmtl_translate_samplers(NVMTLFunction *fn, NSDictionary *states, uint32_t a8, NSString **err) {
++    if (!states.count && !a8) return fn->_spirv;
+     if (!fn->_air || !nvmtl_xlate_ready() || !xlate_sampler) { if(err)*err=@"sampler specialization has no AIR or translator";return nil; }
+-    NSData *json=[NSJSONSerialization dataWithJSONObject:@{@"samplers":states,@"constants":fn->_fc ?: @{}} options:NSJSONWritingSortedKeys error:NULL];
++    NSData *json=[NSJSONSerialization dataWithJSONObject:@{@"samplers":states ?: @{},@"constants":fn->_fc ?: @{},@"a8_targets":@(a8)} options:NSJSONWritingSortedKeys error:NULL];
+     NSString *s=[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+     uint8_t *out=NULL;size_t len=0;char e[1024]={0};
+     if(xlate_sampler(fn->_air.UTF8String,fn->_stage.UTF8String,s.UTF8String,&out,&len,e,sizeof e)) {if(err)*err=@(e);return nil;}
+--- a/plugin/NVMTLObjects.h
++++ b/plugin/NVMTLObjects.h
+@@ -104,7 +104,7 @@
+   NSData *_raw; id _appleTwin; BOOL _twinTried; NSString *_rawPath; } @end
+ @interface NVMTLRenderPipelineState : NSObject <MTLRenderPipelineState> { @public nvk_pipeline _p;
+   NSString *_vname, *_fname, *_blend, *_vdesc; MTLRenderPipelineDescriptor *_descriptor; NSMutableDictionary *_samplerVariants;
+-  NVMTLFunction *_linkedVert, *_linkedFrag; } @end
++  NVMTLFunction *_linkedVert, *_linkedFrag; uint32_t _a8mask; } @end
+ @interface NVMTLCommandQueue : NSObject <MTLCommandQueue> {
+   @public nvk_queue _q; id _dev; id _completionQueue; dispatch_queue_t _callbackOrderQueue; NSMutableArray *_reservations; dispatch_semaphore_t _capacity; NSUInteger _capacityCount;
+ } @end
+--- a/plugin/NVMTLObjects.m
++++ b/plugin/NVMTLObjects.m
+@@ -83,7 +83,7 @@
+ #include "nvmtl_probe_controls.h"
+ __attribute__((constructor)) static void nvmtl_conf_knobs(void)
+ {
+-    nvmtl_desktop_trace("plugin-constructor","candidate0.3.20-tahoe",0);
++    nvmtl_desktop_trace("plugin-constructor","candidate0.3.21-tahoe",0);
+ #if NVMTL_RELEASE
+     { extern char **environ; char *names[256]; unsigned n = 0;
+       const int probe=nvmtl_probe_controls_enabled(getprogname(),getenv("NVMTL_DIAGNOSTIC_STDERR"));
+@@ -1526,7 +1526,7 @@
+ #pragma mark - library / function
+ id gNVMTLMainDevice = nil;
+ 
+-extern NSData *nvmtl_translate_samplers(NVMTLFunction *, NSDictionary *, NSString **);
++extern NSData *nvmtl_translate_samplers(NVMTLFunction *, NSDictionary *, uint32_t, NSString **);
+ extern NSData *nvmtl_translate_variant(NVMTLFunction *, NSDictionary *, NSDictionary *, NSString **);
+ @interface NVMTLCIBinding : NSObject { @public NSString *_name; NVMTLType *_t; } @end
+ @implementation NVMTLCIBinding
+@@ -2630,7 +2630,7 @@
+                 NVMTLFunction *vf=_ps->_linkedVert?:(id)_ps->_descriptor.vertexFunction,*ff=_ps->_linkedFrag?:(id)_ps->_descriptor.fragmentFunction;
+                 NSString *why=nil;
+                 NSString *gk=nvmtl_sampvar_key(_ps->_descriptor,vf,ff,key); selected=nvmtl_sampvar_get(gk);
+-                NSData *v=selected?nil:nvmtl_translate_samplers(vf,vS,&why),*f=(selected||!v)?nil:(ff?nvmtl_translate_samplers(ff,fS,&why):[NSData data]);
++                NSData *v=selected?nil:nvmtl_translate_samplers(vf,vS,0,&why),*f=(selected||!v)?nil:(ff?nvmtl_translate_samplers(ff,fS,_ps->_a8mask,&why):[NSData data]);
+                 if(v && f) {
+                     NVMTLFunction *vs=[NVMTLFunction new],*fs=ff?[NVMTLFunction new]:nil;
+                     vs->_spirv=v;vs->_fname=vf->_fname;vs->_stage=vf->_stage;
+@@ -2701,7 +2701,7 @@
+         _pass.col_level[i] = t->_baseLevel + (uint32_t)ca.level; _pass.col_layer[i] = t->_baseSlice + zslice;
+         _pass.colfmt[i] = tvk;
+         MTLClearColor cc = ca.clearColor;
+-        _pass.clear[i][0] = (float)cc.red; _pass.clear[i][1] = (float)cc.green; _pass.clear[i][2] = (float)cc.blue; _pass.clear[i][3] = (float)cc.alpha;
++        _pass.clear[i][0] = ta8 ? (float)cc.alpha : (float)cc.red; _pass.clear[i][1] = (float)cc.green; _pass.clear[i][2] = (float)cc.blue; _pass.clear[i][3] = (float)cc.alpha;
+         if (nvmtl_load_keeps(ca.loadAction)) load |= NVMTL_LOAD_COLOUR(i);
+         if (cw < w) w = cw;
+         if (ch < h) h = ch;
+@@ -4802,7 +4802,8 @@
+     (void)nvmtl_vk_cmd_set_provoking(&_c, 0);
+     e->_visBuf = (NVMTLBuffer *)d.visibilityResultBuffer;
+     MTLClearColor cc = d.colorAttachments[0].clearColor;
+-    e->_clear[0] = (float)cc.red; e->_clear[1] = (float)cc.green; e->_clear[2] = (float)cc.blue; e->_clear[3] = (float)cc.alpha;
++    BOOL ca8 = d.colorAttachments[0].texture && d.colorAttachments[0].texture.pixelFormat == MTLPixelFormatA8Unorm;
++    e->_clear[0] = ca8 ? (float)cc.alpha : (float)cc.red; e->_clear[1] = (float)cc.green; e->_clear[2] = (float)cc.blue; e->_clear[3] = (float)cc.alpha;
+     if (![e nvmtlBuildPass:d]) e->_refused = YES;
+     return e;
+ }
+--- a/plugin/nvmtl_log_failure.h
++++ b/plugin/nvmtl_log_failure.h
+@@ -18,7 +18,7 @@
+  * such as "vkCreateDevice -> -8" do not contain the word FAIL. */
+ static inline int nvmtl_log_failure(const char *text)
+ {
+-    return text && (strstr(text, "FAIL") || strstr(text, "REFUS") ||
++    return text && (strstr(text, "a8-target0.3.21:") || strstr(text, "FAIL") || strstr(text, "REFUS") ||
+                     nvmtl_log_fault_word(text, "fault") ||
+                     nvmtl_log_fault_word(text, "FAULT") || strstr(text, "-> -") ||
+                     strstr(text, "missing") || strstr(text, "cannot") ||
+--- a/plugin/nvmtl_vk.c
++++ b/plugin/nvmtl_vk.c
+@@ -4745,7 +4745,10 @@
+     *out = NULL;
+     if (level >= mips || slice >= layers) { nvlog("encoder: apps2 attachment level %u slice %u is outside the image (%u level(s), %u slice(s)) — pass REFUSED", level, slice, mips, layers); return -1; }
+     *w = img->w >> level ? img->w >> level : 1u; *h = img->h >> level ? img->h >> level : 1u;
+-    if ((mips <= 1 && layers <= 1) || ((depth || img->mtl_type == 7) && !level && !slice)) {
++    // A8 sampling uses 000R swizzle, but framebuffer attachments require identity components.
++    // Keep the sampled view intact; the existing command-buffer list retires the attachment view after completion.
++    if ((depth || img->fmt != VK_FORMAT_R8_UNORM) &&
++        ((mips <= 1 && layers <= 1) || ((depth || img->mtl_type == 7) && !level && !slice))) {
+         if (!img->view) { nvlog("encoder: apps2 attachment image has no view — pass REFUSED"); return -1; }
+         if (mips > 1 || layers > 1 || img->mtl_type == 7) { static int said; if (said++ < 4) nvlog("encoder: apps2 a %s attachment at level 0 slice 0 of a %u-level %u-slice image uses the image's own view (as before)", depth ? "depth/stencil" : "3D", mips, layers); }
+         *out = img->view; return 0;
+@@ -4774,7 +4777,7 @@
+     *w = img->w >> level ? img->w >> level : 1u; *h = img->h >> level ? img->h >> level : 1u;
+     uint32_t vt = img->mtl_type <= 1 ? 0u : img->mtl_type == 4 ? 4u : 2u;
+     void *v = NULL;
+-    if (nvmtl_vk_image_view_create_range(img, vkfmt, a8, level, 1, slice, 1, vt, &v)) return -1;
++    if (nvmtl_vk_image_view_create_range(img, vkfmt, 0, level, 1, slice, 1, vt, &v)) return -1;
+     if (nvmtl_vk_cmd_retire_view(c, v)) return -1;
+     static int said; if (said++ < 4) nvlog("encoder: gl3 colour attachment in its VIEW's format %u over a format-%u image", vkfmt, img->fmt);
+     *out = v; return 0;
+@@ -4815,7 +4818,7 @@
+         v = (void *)vv;
+     } else {
+         uint32_t vt = nlayers > 1 ? (img->mtl_type <= 1 ? 1u : 3u) : (img->mtl_type <= 1 ? 0u : img->mtl_type == 4 ? 4u : 2u);
+-        if (nvmtl_vk_image_view_create_range(img, vkfmt ? vkfmt : img->fmt, a8, level, 1, slice, nlayers, vt, &v)) return -1;
++        if (nvmtl_vk_image_view_create_range(img, vkfmt ? vkfmt : img->fmt, 0, level, 1, slice, nlayers, vt, &v)) return -1;
+     }
+     if (nvmtl_vk_cmd_retire_view(c, v)) return -1;
+     *out = v; return 0;
+@@ -5403,7 +5406,7 @@
+     if(start && finished-start>=50000000ULL){
+         static _Atomic unsigned slowPhases;
+         if(atomic_fetch_add(&slowPhases,1)<32)
+-            nvlog("first-submit: submission-phases0.3.20-tahoe: who=%.48s lock_ms=%.3f begin_ms=%.3f finish_ms=%.3f result=%d",
++            nvlog("first-submit: submission-phases0.3.21-tahoe: who=%.48s lock_ms=%.3f begin_ms=%.3f finish_ms=%.3f result=%d",
+                 who?who:"?",(acquired-start)*1e-6,(submitted-acquired)*1e-6,(finished-submitted)*1e-6,result);
+     }
+     return result;

@@ -1,3 +1,5 @@
+> **Current package publication — 30 October 2026:** [Complete Tahoe 0.3.21 graphics/audio, matching Wi-Fi and source packages, and the macOS27 full-engine diagnostic](packages/) are now published. Historical entries below retain their original dates and test scopes. macOS27 has reached native WindowServer startup; its graphical installer is not verified.
+
 # Latitude 5350 port status — 18 October 2026
 
 The PCI probe succeeded on the Dell's real 8086:7D45 GPU under Sequoia 15.8.1 (24H32). The older MyIntelGPU on the laptop failed authentication; its signature error is separate from Meteor Lake support.

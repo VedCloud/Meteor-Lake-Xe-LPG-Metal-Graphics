@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28",
+  "selectedUSBCandidate": "1.0.10",
+  "runtimeBinaryVersionVerifiedByFreshLogs": false,
+  "userReported": [
+    "Trackpad moves erratically and glitches",
+    "Touchscreen does not work"
+  ],
+  "status": "Failed user input test; do not promote to internal disk or call hardware fixed",
+  "nextAction": "Capture failing boot before restoring prior input configuration; USB currently disconnected from host"
+}

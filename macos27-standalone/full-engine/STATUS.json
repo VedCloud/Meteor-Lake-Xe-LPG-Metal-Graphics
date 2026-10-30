@@ -1,0 +1,15 @@
+{
+  "publicationDate": "2026-10-30",
+  "EFI_SHA256": "90ae91ef8b15b852f282707019f7df068576d2bfac97e499fde571fe96e1ad0f",
+  "logicalGuestGiB": 16,
+  "upstreamRevision": "40a8d07ba3cef067d9a6455c163dbed8d94f8e38",
+  "nativeKernelAndRecoveryServicesReached": true,
+  "nativeWindowServerStartupReached": true,
+  "latestObservationUTC": "2026-10-30T01:24:50.616698+00:00",
+  "graphicalInstallerVerified": false,
+  "DellHardwareQualified": false,
+  "OSImagesIncluded": false,
+  "initializedMemoryIncluded": false,
+  "displayCaptureNonblackPixels": 0,
+  "nonInstallerDiagnosticOnly": true
+}

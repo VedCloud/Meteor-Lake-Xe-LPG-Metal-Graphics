@@ -1,3 +1,5 @@
+> **Current package publication — 30 October 2026:** [Complete Tahoe 0.3.21 graphics/audio, matching Wi-Fi and source packages, and the macOS27 full-engine diagnostic](packages/) are now published. Historical entries below retain their original dates and test scopes. macOS27 has reached native WindowServer startup; its graphical installer is not verified.
+
 # Unified Dell candidate — user scope retained, 21 October 2026
 
 All requested work belongs to one candidate. Do not silently drop unfinished

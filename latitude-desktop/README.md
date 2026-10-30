@@ -1,3 +1,5 @@
+> **30 October 2026:** This directory retains the historical Sequoia package. For current Tahoe 0.3.21 payloads and corresponding sources, see [packages](../packages/). Do not install Sequoia binaries onto Tahoe.
+
 # Candidate 0.3.18: display-transaction colour bridge and firmware-key counters
 
 Target: Dell Latitude 5350 2-in-1, 8086:7d45, Sequoia15.8.1 build24H32. Source report failure-detail-20261020-190817. No target boot or hardware validation performed while preparing this candidate.

@@ -1,0 +1,7 @@
+from pathlib import Path
+import os,subprocess,re,json
+b=Path(__file__).resolve().parent;p=b/'Tahoe-Combined-Runtime';base=b/'PerformanceTransactionTests/kernel-update-success/Library/NullMoth/tahoe-backups';backup=next(base.iterdir());first=(backup/'paths.txt').read_text().splitlines()[0];root=Path(first.split('/Library/')[0]);s=(p/'rollback-windowserver.sh').read_text();s=re.sub(r'(?<![A-Za-z0-9_])/(?:Library|System|private/var|Volumes)/',lambda m:str(root)+m.group(0),s)
+for name in ['diskutil','nvram']:s=s.replace('/usr/sbin/'+name,str(root/'bin'/name))
+f=root/'kernel-update-rollback.sh';f.write_text(s);env=dict(os.environ,PATH=str(root/'bin')+':/usr/bin:/bin:/usr/sbin:/sbin',TEST_ROOT=str(root),TEST_PACKAGE=str(root/'Package'),TEST_MODE='success');r=subprocess.run(['/bin/bash',str(f),str(backup)],env=env,capture_output=True,text=True,timeout=30);assert r.returncode==0,r.stdout+r.stderr
+actual=root/'Library/Extensions/NMXAccel.kext/Contents/MacOS/NMXAccel';assert actual.read_bytes()==(b/'Performance-before-0.3.1/NMXAccel.kext/Contents/MacOS/NMXAccel').read_bytes()
+f=b/'PERFORMANCE-TRANSACTION-TESTS.json';d=json.loads(f.read_text());d['acceleratorOnlyManualRollbackPassed']=True;d['acceleratorOnlyChanges']='Only NMXAccel on disk and AuxKC/Preboot; no live unload, no EFI/library/AMFI change';f.write_text(json.dumps(d,indent=2)+'\n');print('PASS accelerator-only manual rollback to the exact0.3.0 baseline.')

@@ -1,0 +1,642 @@
+[
+  {
+    "sourceSHA256": "2cf89a391b8605fa1b5e2a031cbf324d92eee6d8fb95539faeb4c1a040fc5560",
+    "objectSHA256": "db41447b66c8a60c9c2d6522f94b4bd07d9fddbb352857f144424503ed299847",
+    "source": "efi/x86_64/glue.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_x86_64_glue.c.obj",
+    "log": "UnicornEngineLib.inf-efi_x86_64_glue.c.log"
+  },
+  {
+    "sourceSHA256": "594e8f4fce99f9f188a58699a7977dc619ae02b4f5f8e1f13ce992e9264c92f9",
+    "objectSHA256": "270946474c911f48717e1c6a63f0709a97f1d9d129137dfd6bda4b8e0c0d4a3b",
+    "source": "efi/popcount.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_popcount.c.obj",
+    "log": "UnicornEngineLib.inf-efi_popcount.c.log"
+  },
+  {
+    "sourceSHA256": "5140321ed448eb849f3ecaa4317e119c3dda7753fc9eb6984bd9397ab3f91dc6",
+    "objectSHA256": "15205f6406f23c3d2f9de231164a9c905636bb2c324c2d0dacd4af6318da725f",
+    "source": "efi/clrsb.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_clrsb.c.obj",
+    "log": "UnicornEngineLib.inf-efi_clrsb.c.log"
+  },
+  {
+    "sourceSHA256": "ae7c04241b3e3e36572bb7f7c33a73565ab2344d380f295886bf1aef8ba78800",
+    "objectSHA256": "9f56799c440c602ebeb782cb5cb38fe53ed2a3f151d922cbfe97e17bbb134cec",
+    "source": "efi/glue.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_glue.c.obj",
+    "log": "UnicornEngineLib.inf-efi_glue.c.log"
+  },
+  {
+    "sourceSHA256": "3a83535e2402ef3d9302639dc4b5e27e50be52461514ac1bfc75182b71f8ed4b",
+    "objectSHA256": "f754c2df567ceecdb17a9a484fd03c14d1015d8bf799861644e99919328273cc",
+    "source": "efi/efi_glue.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_efi_glue.c.obj",
+    "log": "UnicornEngineLib.inf-efi_efi_glue.c.log"
+  },
+  {
+    "sourceSHA256": "0ff958baa900fe1847090576dfc4df4b73c13da0732d53e34509300488b44069",
+    "objectSHA256": "b79cca9ed28c21755fa28bc9dd599c28282f0ad729ab48a463567a35498ad9e3",
+    "source": "efi/dlmalloc.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_dlmalloc.c.obj",
+    "log": "UnicornEngineLib.inf-efi_dlmalloc.c.log"
+  },
+  {
+    "sourceSHA256": "32537763f09248312f9b2954c59425396738dc04f9192542a57eb02aa780d887",
+    "objectSHA256": "96f516dedf6d467530c32a09dd5aeb3bbe9943eba8aa81a00f656ae0afbf04c5",
+    "source": "efi/ashrti3.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_ashrti3.c.obj",
+    "log": "UnicornEngineLib.inf-efi_ashrti3.c.log"
+  },
+  {
+    "sourceSHA256": "0af9fcf59b31c1dc48414f2b00a6739f61a1fc87c8abf63b3e54b5e927b5b1eb",
+    "objectSHA256": "e975fe34b4524af73480fb6ddad02a929c508a6a788e3d3d114fcf091d14d39e",
+    "source": "efi/divti3.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_divti3.c.obj",
+    "log": "UnicornEngineLib.inf-efi_divti3.c.log"
+  },
+  {
+    "sourceSHA256": "f10a1d794e3515bf75b25a0ec5bff4e4238b341cbd2d8533628275118c0fe803",
+    "objectSHA256": "ec6549f3482a8bedbdad881947a7797dfbe79a990aea30be8aa91a8f8ad19dd8",
+    "source": "efi/udivmodti4.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-efi_udivmodti4.c.obj",
+    "log": "UnicornEngineLib.inf-efi_udivmodti4.c.log"
+  },
+  {
+    "sourceSHA256": "48c50b970905ae4b726e01ec4d2c2fd7f7abcd9178d1b1dd3b604870f4c1d1f3",
+    "objectSHA256": "5fe73936a6fbf86dff51217aa3c012602032e98d815c0f86333babd29f57a9bd",
+    "source": "efi/../list.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-list.c.obj",
+    "log": "UnicornEngineLib.inf-list.c.log"
+  },
+  {
+    "sourceSHA256": "85851a608e24bc068cb2b2f0e945bb10a7dbcba72f72857f4731cf8831ae2f12",
+    "objectSHA256": "5362bee10a381cecceaa41763a4318c49ba721444edc8f3f4b00dc48ee9bf87c",
+    "source": "efi/../glib_compat/garray.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_garray.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_garray.c.log"
+  },
+  {
+    "sourceSHA256": "aef3905511d4a3d1c60fb2cb7805ab6ede0e534b74076964dc76379f7c703a39",
+    "objectSHA256": "fb85b3584a8ce5ba578462a42c33292f0bf829957b8c5e2a3d5bfddc57a1470b",
+    "source": "efi/../glib_compat/glib_compat.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_glib_compat.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_glib_compat.c.log"
+  },
+  {
+    "sourceSHA256": "4e50ef9013ec9d1c7f876fec3ada5de624ecce47289ea1f27141cd8f02562bbe",
+    "objectSHA256": "ef0d2b183b23ed24169c9ab90bd5cb2fa4dbd6178782f2cad164e23c569a2a9e",
+    "source": "efi/../glib_compat/glist.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_glist.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_glist.c.log"
+  },
+  {
+    "sourceSHA256": "fb9d4d306e36f3c70676326d8c40406776808c8359ba639387796ddfee9f1497",
+    "objectSHA256": "2ad800a193932ef40cc207ed69f86b72f7bf9894e0b0794a2718fc3389dd8fa1",
+    "source": "efi/../glib_compat/grand.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_grand.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_grand.c.log"
+  },
+  {
+    "sourceSHA256": "662e7d5ed28b74b45fb1df10919ccc152c7965f3ed369f98e38c64f2800bc066",
+    "objectSHA256": "472b10c174e7fb86ebb207af052bc64b04f82d743efd0ad6d107f248e6046237",
+    "source": "efi/../glib_compat/gmem.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_gmem.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_gmem.c.log"
+  },
+  {
+    "sourceSHA256": "901e47eebd7214b947526bad6b5dc04dcc18c36dfa19770b52321885654e36f1",
+    "objectSHA256": "78efa54db084f0a000ebbe4f6191d44be02536c45b3182835a16e662ef11e6c8",
+    "source": "efi/../glib_compat/gpattern.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_gpattern.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_gpattern.c.log"
+  },
+  {
+    "sourceSHA256": "71ffdb4eec951aac2f98fadf28104572ffb620bbad0bc3cd96a59fea63e3739a",
+    "objectSHA256": "2eb6bff79f14a4db6a97829bf4be8b2c4513b69ae1f7c7905933b06bafcf2021",
+    "source": "efi/../glib_compat/gslice.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_gslice.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_gslice.c.log"
+  },
+  {
+    "sourceSHA256": "1c2459cdfb28975c18ab896536e42a40f767474adc9947a50e1ff3d113fbe34a",
+    "objectSHA256": "84f63171a6454a97a79235d20d124b9f6ee24fcb2fe14f6aa31a04272b54ef6e",
+    "source": "efi/../glib_compat/gtestutils.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_gtestutils.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_gtestutils.c.log"
+  },
+  {
+    "sourceSHA256": "1f28144a444f818f1179065b66d75fad3f6e380649754900d463e0338fb09964",
+    "objectSHA256": "366895507d5483b75a6a7ef7f7d36429ab77bd2e7da1a9fb9cb6e796257f3711",
+    "source": "efi/../glib_compat/gtree.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-glib_compat_gtree.c.obj",
+    "log": "UnicornEngineLib.inf-glib_compat_gtree.c.log"
+  },
+  {
+    "sourceSHA256": "fba79c208ed190308a44307c2c9f97d639e83b291fad2600bd7650f7ff729a0c",
+    "objectSHA256": "641e992fbd05953f8fc99218a7d8ec6016f375c700f671458113f2b81f84dfcd",
+    "source": "efi/../qemu/util/bitmap.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_bitmap.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_bitmap.c.log"
+  },
+  {
+    "sourceSHA256": "53736bdc926391f45943a733a21f8748e67e7c23dfac1a9f7d99dc5f860aa3ef",
+    "objectSHA256": "877be031e79cad21c0790701e04239d616049b1b9b040a94a9c534426d3ebe6f",
+    "source": "efi/../qemu/util/bitops.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_bitops.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_bitops.c.log"
+  },
+  {
+    "sourceSHA256": "76615aad67ad61fb71df77a58d91db45e8d474aa57b7836ad0584e7724752279",
+    "objectSHA256": "c85aa8ce698fd2b82683d8055b6ccd0b266503cd18c1d7ce0ea335fb2e488ea2",
+    "source": "efi/../qemu/util/crc32c.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_crc32c.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_crc32c.c.log"
+  },
+  {
+    "sourceSHA256": "1e83e8af2c058a9b1a3e5db757937643f49e9f524698c22f83d82dc0f4b763c6",
+    "objectSHA256": "5d17893ec9f5bd100a8cc81b098b9231d9e7ecaa041471a64eebaf378a0b6f5e",
+    "source": "efi/../qemu/util/cutils.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_cutils.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_cutils.c.log"
+  },
+  {
+    "sourceSHA256": "d3301ef8ed07b23dda49303aa723c6a7a4d3fbbdaddb9be46318f18e5f2d07ab",
+    "objectSHA256": "04ce9057756d25ab527c0693082f1f271b8951775f66fb133f805c342543124d",
+    "source": "efi/../qemu/util/getauxval.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_getauxval.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_getauxval.c.log"
+  },
+  {
+    "sourceSHA256": "ce3523da16fa3a5e5de10edad0fe324a96f53ddcb1ecd53385db15f30f9f7cd7",
+    "objectSHA256": "667827bc29d36e5de072b43aa99ef138b498d5534a577b8c0befc79924592bd4",
+    "source": "efi/../qemu/util/guest-random.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_guest-random.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_guest-random.c.log"
+  },
+  {
+    "sourceSHA256": "1c9b9e88535bbfc965f96f9bd62dee11eef7ad393848f76cc8219da6b9f8c0f8",
+    "objectSHA256": "05328a80791234ebc212707e195b39179c873550c2c47f960381fbdeb9e1c579",
+    "source": "efi/../qemu/util/host-utils.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_host-utils.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_host-utils.c.log"
+  },
+  {
+    "sourceSHA256": "0b870cbed3122ac734b7ac3262e58df0542898f37a11f242f548218a98d951c5",
+    "objectSHA256": "bbe4fe355653dcdd7253d3dfcea6a51fe87c91883c5b2e3fa3c4a6f42db28ba9",
+    "source": "efi/../qemu/util/osdep.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_osdep.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_osdep.c.log"
+  },
+  {
+    "sourceSHA256": "05e35ba77b8637f92f97638e73ed739f67cc90e9b0f070bb3ab2871bc02d57ed",
+    "objectSHA256": "d1e857998f201ca9f3476293d1378a337553fa455dd681a825c8c6a1ce84a687",
+    "source": "efi/../qemu/util/oslib-efi.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_oslib-efi.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_oslib-efi.c.log"
+  },
+  {
+    "sourceSHA256": "721069a2f37fe8b2cdb0bed645165332446628b20a08cd924ed2c7b41ae01957",
+    "objectSHA256": "9f99be32449d65ca441cdca9cd869672e6889032c9f5ec09243afe22b8cd4f90",
+    "source": "efi/../qemu/util/qdist.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_qdist.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_qdist.c.log"
+  },
+  {
+    "sourceSHA256": "7138f0efbe4d89785ba69e9528d2dc49cab72a305681162e2fd19ee21508bf6a",
+    "objectSHA256": "c60ce9197823bf0a5d5922bedb7218a9c1e05d71d61d0f8fc9e68bc8c519a512",
+    "source": "efi/../qemu/util/qemu-timer.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_qemu-timer.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_qemu-timer.c.log"
+  },
+  {
+    "sourceSHA256": "d9fac4a2fb343bb10af884379661dfefe274b0dcae492bbefc3ef4400acca474",
+    "objectSHA256": "2ef30a752f4264207723cd8cf8621dd8f0e0de05cd27400297b22c2465b36901",
+    "source": "efi/../qemu/util/qemu-timer-common.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_qemu-timer-common.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_qemu-timer-common.c.log"
+  },
+  {
+    "sourceSHA256": "c439f7526637947c132634a33b93819111c06697ef141e9c25be2889b94caaec",
+    "objectSHA256": "1909ea80c56c07c0ac3c9ffd4609513eb0b964d18ce766b942aa97fb543ae72e",
+    "source": "efi/../qemu/util/range.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_range.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_range.c.log"
+  },
+  {
+    "sourceSHA256": "df3f3e535c196bd132d921242732c371d607c571a5d57eaf50ca99804758dce1",
+    "objectSHA256": "235743913fa77382a08de8d8c7e8e373a1fe4fe3190146ff3b6ef32951a15da0",
+    "source": "efi/../qemu/util/qht.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_qht.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_qht.c.log"
+  },
+  {
+    "sourceSHA256": "4f6097a3e97fd2b11fd31c8793363eae4da8b0ab4a02eb3d3ed5022a9c70d184",
+    "objectSHA256": "4d7499b879d23f7d4eb35d486da92cb812e4deb46b684511978b0e08032daeb6",
+    "source": "efi/../qemu/util/pagesize.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_pagesize.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_pagesize.c.log"
+  },
+  {
+    "sourceSHA256": "c6b3fae2dbe7e7983463677806e165d4e3cf2999bee80e72ebf4b3a2ab1b5fe2",
+    "objectSHA256": "7a689fb022b9d6e375c5b3f0102487c7390cb935699682d3364ff644ddd584cd",
+    "source": "efi/../qemu/util/cacheinfo.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_util_cacheinfo.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_util_cacheinfo.c.log"
+  },
+  {
+    "sourceSHA256": "d212cb33220e282ba3af7ffe175ef938784b138d8fccf886383c2e7c87f16cdc",
+    "objectSHA256": "cc4ecf2a37178f0ba256a24d2bfbf7b7c2c4213b3092896758075866fe3d6236",
+    "source": "efi/../qemu/crypto/aes.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_crypto_aes.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_crypto_aes.c.log"
+  },
+  {
+    "sourceSHA256": "f85af95005499b5283135545c8d78653b9aae8b78007be2ca7efd4728fc31416",
+    "objectSHA256": "55570c6062afb264d1b7cf8cdd8abd8864cca79d2c2fe2560f1502d76684109a",
+    "source": "efi/../uc.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-uc.c.obj",
+    "log": "UnicornEngineLib.inf-uc.c.log"
+  },
+  {
+    "sourceSHA256": "a13f3902ba5db4b987e25dd6570dde51eca2cd6993efbcb799943e943e129569",
+    "objectSHA256": "7ae246c3fa6c819c7ae50bf8d442ef8b4027b10fe5ad8d6755b765ea7980e9e3",
+    "source": "efi/../qemu/softmmu/vl.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_softmmu_vl.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_softmmu_vl.c.log"
+  },
+  {
+    "sourceSHA256": "14927a50feb8400ba81073fca7b0fcf58ed71b8cee9010326c2b03ac41e1a2b3",
+    "objectSHA256": "0c49cbb077878e7eb8d6b74d4a9f7d5b7eff8763f1a5453794215c770e4fd0a9",
+    "source": "efi/../qemu/hw/core/cpu.c",
+    "exit": 0,
+    "object": "UnicornEngineLib.inf-qemu_hw_core_cpu.c.obj",
+    "log": "UnicornEngineLib.inf-qemu_hw_core_cpu.c.log"
+  },
+  {
+    "sourceSHA256": "a28fe9f284bbff8b269b9dab1d7722eff33a35d5d9553ec22f429c1cbcf8209e",
+    "objectSHA256": "6e1b81a69de2c613826370aabd83d82fced581189cea7d0a5446033662d94d36",
+    "source": "efi/../qemu/exec.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_exec.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_exec.c.log"
+  },
+  {
+    "sourceSHA256": "859aa6e95d869d4036a57f159ac90ab76fc9799447510b111ffdf90cb7b6bb27",
+    "objectSHA256": "b6bfa08b19db3926658d74e17e9f9f4fb14a891eb12e67e6d111ee9f7f17d69f",
+    "source": "efi/../qemu/exec-vary.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_exec-vary.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_exec-vary.c.log"
+  },
+  {
+    "sourceSHA256": "53168daa0d4bbac70cd3d13846eeba298e33f3375e963750108c1c4984ca9dae",
+    "objectSHA256": "63fa46bb1a92e2c5a1a839e8939a6bc120ba8790a2dd39daf20a3d61b1c58cb4",
+    "source": "efi/../qemu/softmmu/cpus.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_softmmu_cpus.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_softmmu_cpus.c.log"
+  },
+  {
+    "sourceSHA256": "328b5db75de6fa11147489d6bb51d2f2188826687d97c8e0932a2b1f3fc78aac",
+    "objectSHA256": "769d0a60f3bafa9f3627f71073f8311cdce7a20f74412fc902680a9411fe8aaf",
+    "source": "efi/../qemu/softmmu/ioport.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_softmmu_ioport.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_softmmu_ioport.c.log"
+  },
+  {
+    "sourceSHA256": "86981c3f1cb2b90cafa26ae6edca4e62fdd07808d59a648752d458584a6a7fcc",
+    "objectSHA256": "0dc98aba7a3a30e1c7b6b8101b3e7b1c5619dc59e727a1707cafb7577ea9836e",
+    "source": "efi/../qemu/softmmu/memory.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_softmmu_memory.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_softmmu_memory.c.log"
+  },
+  {
+    "sourceSHA256": "cbf245ccff89322244f014f0715c9bde4c24cdd1809dc83b1ad11f60540018f0",
+    "objectSHA256": "a1f4a28e455252be7523931e1bc8a74150024af60d8bd0796d4d1a52f2d16f8d",
+    "source": "efi/../qemu/softmmu/memory_mapping.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_softmmu_memory_mapping.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_softmmu_memory_mapping.c.log"
+  },
+  {
+    "sourceSHA256": "e4943fd3752423db9ded80a2836a160a0eb7c56db5f8fa20181f4b42d33016f3",
+    "objectSHA256": "4d9b2a3cc1847c30a26b9ac9858ab73f124de7fc05dfce2919c1a68d1832bf1b",
+    "source": "efi/../qemu/fpu/softfloat.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_fpu_softfloat.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_fpu_softfloat.c.log"
+  },
+  {
+    "sourceSHA256": "3f65a03776efb29d6a744b414ba3a02de4a0c4266447a47ccc585364f52e2d0d",
+    "objectSHA256": "f00a1cc530f34fd1466ac2a71855b341ab230203b6f8e6dcb44f6dd6d9f99fdb",
+    "source": "efi/../qemu/tcg/optimize.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_tcg_optimize.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_tcg_optimize.c.log"
+  },
+  {
+    "sourceSHA256": "93162ebabb28040882eaa90d9aeed88c165e4573aef3e23eb9fae3adc532c646",
+    "objectSHA256": "cee3aa170fba74675e75f613fd8a05f87ebdc361239d661edb2e5c78c62e7432",
+    "source": "efi/../qemu/tcg/tcg.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_tcg_tcg.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_tcg_tcg.c.log"
+  },
+  {
+    "sourceSHA256": "f6cdd75d5b3d9f1794f136b94c4e87d9ce0a75676c0e3f411f2e7ea3d94a9cdb",
+    "objectSHA256": "d6be1c44f45098dcf39eb9805d2443ecf5c8aa564097301c503b7754295a74ed",
+    "source": "efi/../qemu/tcg/tcg-op.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_tcg_tcg-op.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_tcg_tcg-op.c.log"
+  },
+  {
+    "sourceSHA256": "227f8e8d69fb11fa762bdc30e1f6aaf4ed0b745ec488a7b0c8430bbab1eb1aa5",
+    "objectSHA256": "6db07cc3c127ed1cd3eb93175aa71cbaea1d40c5f5733b54b82ea03a4e044497",
+    "source": "efi/../qemu/tcg/tcg-op-gvec.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_tcg_tcg-op-gvec.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_tcg_tcg-op-gvec.c.log"
+  },
+  {
+    "sourceSHA256": "ff9aac46903f05cea1263ff483ff19537629ab48749034bd7f96e96b390c8441",
+    "objectSHA256": "5ce290c668b407194428519a41045bae24b33ffaf970935bd2c4e9e220779d7c",
+    "source": "efi/../qemu/tcg/tcg-op-vec.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_tcg_tcg-op-vec.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_tcg_tcg-op-vec.c.log"
+  },
+  {
+    "sourceSHA256": "95e6d96c3e623db2e43233ab0e786d127ac7343629bd4ca30cfd72b722cd9197",
+    "objectSHA256": "8dacb42430e0554ac3c2fefa9a7eb97ed5c03eb2476c630ad78fd0d22e99c561",
+    "source": "efi/../qemu/accel/tcg/cpu-exec.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_cpu-exec.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_cpu-exec.c.log"
+  },
+  {
+    "sourceSHA256": "1c51b025962a2167de84245670f6fad10cb63725881f3b8de37f420be0d1bb31",
+    "objectSHA256": "8b0555692d8ef903229c320e5676b551b35e1ec23c70a11c93bb2df2475a33f3",
+    "source": "efi/../qemu/accel/tcg/cpu-exec-common.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_cpu-exec-common.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_cpu-exec-common.c.log"
+  },
+  {
+    "sourceSHA256": "82adbb11f3e19a01afdea4b9a402d7046e0f0028845d1afeea0dae8986fedd07",
+    "objectSHA256": "33d9508267324dc41a6a95326438f01781a59cf56042cd85f2fe430bbb26c7a2",
+    "source": "efi/../qemu/accel/tcg/cputlb.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_cputlb.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_cputlb.c.log"
+  },
+  {
+    "sourceSHA256": "f230012c7a7cd5366a360a52f1fa3b6ef3f225282e12c5945f445b01459c8b39",
+    "objectSHA256": "db530d56079605a67f2723e16e909b243782db7ae5d4c051caa0da82673d96de",
+    "source": "efi/../qemu/accel/tcg/tcg-all.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_tcg-all.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_tcg-all.c.log"
+  },
+  {
+    "sourceSHA256": "111dce08c188acac2e8576468c7da6a0686b98348f59750996474144ca11ab72",
+    "objectSHA256": "9488131f22004dac0b1eab493936b7f003463245217866aaa7a02208b1e461db",
+    "source": "efi/../qemu/accel/tcg/tcg-runtime.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_tcg-runtime.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_tcg-runtime.c.log"
+  },
+  {
+    "sourceSHA256": "d35024fd23b59c0f1c393a1aa53df62b136d6b6b036bceb4c7ac6e6a7480a074",
+    "objectSHA256": "343ac56af1eec7fa459f7c97958ab5343437fecb5f9f00ab89011c684e252ba3",
+    "source": "efi/../qemu/accel/tcg/tcg-runtime-gvec.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_tcg-runtime-gvec.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_tcg-runtime-gvec.c.log"
+  },
+  {
+    "sourceSHA256": "ce6bf582dc643cb13fe5aed4f839c1fab49ec0f4033e59f9cf5d6ef82a146604",
+    "objectSHA256": "6317c60afe0dd90576f6fe631b875d7bd185b97b58a6ff028483ef9e41bf9899",
+    "source": "efi/../qemu/accel/tcg/translate-all.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_translate-all.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_translate-all.c.log"
+  },
+  {
+    "sourceSHA256": "af63284ebd048d6250a1eeb72195f2e7a8c43cca6eba1f1897d126e43e768a74",
+    "objectSHA256": "9c9a4a25687f6a52077ca954c7831574d095a47ce180f5b36a0a5a8f93a14057",
+    "source": "efi/../qemu/accel/tcg/translator.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_accel_tcg_translator.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_accel_tcg_translator.c.log"
+  },
+  {
+    "sourceSHA256": "b01be699597c6db4acce331d3199472c709c66ec7e6b08e2c6b806507c9c40b8",
+    "objectSHA256": "08a06bd2d1bede76ba9458189a6c73d9b9fa69c8a5f48355fcbbc9bdbb94929b",
+    "source": "efi/../qemu/target/arm/cpu64.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_cpu64.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_cpu64.c.log"
+  },
+  {
+    "sourceSHA256": "d253ba80ccb2db380c8d5d528fabd9004bc5fd28a8bf7e473b899f2ae4fa8ef5",
+    "objectSHA256": "54a86044a440db4180bc9ccbd598eec7a1c9006ffdf5cfc79e188187e3898707",
+    "source": "efi/../qemu/target/arm/cpu.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_cpu.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_cpu.c.log"
+  },
+  {
+    "sourceSHA256": "aa06d31d72609b9480487e61679df6143b7dc1b4b60286c6081fe608986b7521",
+    "objectSHA256": "7d4997fa5b1134aefc4a32b042c5f91a196b2293e0986c3b89f499e72a8f6298",
+    "source": "efi/../qemu/target/arm/crypto_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_crypto_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_crypto_helper.c.log"
+  },
+  {
+    "sourceSHA256": "190b0319e7cb306f1c8628f6cd1f231c15659d5c523c7b32fcd85830fe9b28cd",
+    "objectSHA256": "3ddf9d2e7a1abbb0ff7de6bd25f4f0d76c2f89ef9ea67b46e62b8e1682e9eb7c",
+    "source": "efi/../qemu/target/arm/debug_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_debug_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_debug_helper.c.log"
+  },
+  {
+    "sourceSHA256": "bf363bf39606780072c2610b02430f4a64567beffc00a63ddd2f8587c5f0ff73",
+    "objectSHA256": "260b4c1115f99e0f4be22aee02c017bc62915ad455be6208041db72cb38b63cd",
+    "source": "efi/../qemu/target/arm/helper-a64.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_helper-a64.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_helper-a64.c.log"
+  },
+  {
+    "sourceSHA256": "6799df4e28d26869903b431622b5a11852fe643e4e866a3872b4a9a1511a9f4f",
+    "objectSHA256": "cd62d5bc0fa317ef062fcae0d38662f7250bde1168f353fac90975197f2f0ff8",
+    "source": "efi/../qemu/target/arm/helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_helper.c.log"
+  },
+  {
+    "sourceSHA256": "5253b88cc58c5daaf102b3eaec77f4c5a14aa3c43b8e03a6c219e47fccb85ceb",
+    "objectSHA256": "e5da2d739337d95449148018d8c5f504f6d47ee876650e8109cea4c7ab47ab16",
+    "source": "efi/../qemu/target/arm/iwmmxt_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_iwmmxt_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_iwmmxt_helper.c.log"
+  },
+  {
+    "sourceSHA256": "019fb1cf4bd7fb64addea8717cac2f2cd393375839df7c71e17b94af54f6d332",
+    "objectSHA256": "7a91620042efda649a28d520c14248028cc028c701e03c7c0204e505057338c4",
+    "source": "efi/../qemu/target/arm/m_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_m_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_m_helper.c.log"
+  },
+  {
+    "sourceSHA256": "33a9f03727a682bdcf0580f8dcff7e23efae94cd3453a6c0db43e1e3bde7dee7",
+    "objectSHA256": "56722b36c5285a8b854f6fedfa28de4cee6b72575cd06bdd957314f61459e5ca",
+    "source": "efi/../qemu/target/arm/neon_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_neon_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_neon_helper.c.log"
+  },
+  {
+    "sourceSHA256": "c59a6e1a8b3f98cd98215dc962035d2a4d9650d0e9ac19d596526ded13acacd9",
+    "objectSHA256": "50e1b9992028d2cf79b8c50fc299025abe88c5d2a596642e85461065780da2a8",
+    "source": "efi/../qemu/target/arm/op_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_op_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_op_helper.c.log"
+  },
+  {
+    "sourceSHA256": "e4b2887a3128c825c3e8b5e09c17d8cc451e5d88046fb5e9938941dbd3c9c539",
+    "objectSHA256": "23a4689fe34e5abdab40fef331c6ec5f6e3deddbef6a0c056f9f65f57b1898cc",
+    "source": "efi/../qemu/target/arm/pauth_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_pauth_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_pauth_helper.c.log"
+  },
+  {
+    "sourceSHA256": "3ea23247c50bfa0c4532dde4cf3e221fda0f44027223036b9853c66fd87d954e",
+    "objectSHA256": "7c2662cd759414b87411e1eda42eddc407465f8e9500a1c61fe7053b07d00375",
+    "source": "efi/../qemu/target/arm/psci.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_psci.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_psci.c.log"
+  },
+  {
+    "sourceSHA256": "ddc7733c9d574301a0b369888f0ada3e8d52137537e75e2f7d723327079ef92e",
+    "objectSHA256": "03ca9cade5ff3463e70b0ed30279a0ea58e4e002723777b6341a17fd303851f8",
+    "source": "efi/../qemu/target/arm/sve_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_sve_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_sve_helper.c.log"
+  },
+  {
+    "sourceSHA256": "85bd05cdea9afb7434f0ed695cc800b2ada165e40241d6efd7f4b0af57d9ca59",
+    "objectSHA256": "f57b7471bbec7021b36de4e0c7ebac89dd96a80a40589d06d639aa2b04551347",
+    "source": "efi/../qemu/target/arm/tlb_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_tlb_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_tlb_helper.c.log"
+  },
+  {
+    "sourceSHA256": "1ed0231a18944cb4a511819abcec9cba8f782c2c8909667aa581ec2a0b4b475f",
+    "objectSHA256": "00faaa20b82aa578f5520a39c43e1e8b07c72f47a4644a7c90c3b141f4d647d7",
+    "source": "efi/../qemu/target/arm/translate-a64.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_translate-a64.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_translate-a64.c.log"
+  },
+  {
+    "sourceSHA256": "62d728ac9e18931dba274ffdcf17e712f0f06ed465f95c49e548e7ebe80f5b1f",
+    "objectSHA256": "d245b403ab6570717332ae753c900dc5d9772c9a32281267fcc8d646fd986ea1",
+    "source": "efi/../qemu/target/arm/translate.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_translate.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_translate.c.log"
+  },
+  {
+    "sourceSHA256": "8b1798e3879fae0d7455d6783cff69fc417159dc00c902cad7318edb67d97977",
+    "objectSHA256": "99061200d7ab59e375095417b3fd60812fedc53e38d0fb11515e02fa9591e415",
+    "source": "efi/../qemu/target/arm/translate-sve.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_translate-sve.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_translate-sve.c.log"
+  },
+  {
+    "sourceSHA256": "5e9b7f836e5c660aad2d24a13ec49bc72bac130af5c115eb7be99766b2c8d9d4",
+    "objectSHA256": "e9027030c9983e6a9549a975171de72631ead8856ed7df92a96e21ace36e42a0",
+    "source": "efi/../qemu/target/arm/vec_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_vec_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_vec_helper.c.log"
+  },
+  {
+    "sourceSHA256": "c390e7792a43b88191c63f6bbd82411f098a2657c54680ef9c9b4d23070500ae",
+    "objectSHA256": "f53d2f82574a984fd2dd55f86fbd6c09ad00f1a48505c2277fb090c65ce5d956",
+    "source": "efi/../qemu/target/arm/vfp_helper.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_vfp_helper.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_vfp_helper.c.log"
+  },
+  {
+    "sourceSHA256": "7f751015081f83726a436f105d0e4734d985894b6bb825a0296d867087290253",
+    "objectSHA256": "4f93fdf67b1cad032c108ae2ab330f44da72fb2730f9749766ee3ab0ad47473e",
+    "source": "efi/../qemu/target/arm/unicorn_aarch64.c",
+    "exit": 0,
+    "object": "UnicornArm64Lib.inf-qemu_target_arm_unicorn_aarch64.c.obj",
+    "log": "UnicornArm64Lib.inf-qemu_target_arm_unicorn_aarch64.c.log"
+  },
+  {
+    "sourceSHA256": "41808dfc9b61e4a7119f1936b3e6eb5284b4950d9ddde9a241462e3503fd8735",
+    "objectSHA256": "7a6498f22ffea8e711ddab39994e6d47e21e930ea4e962b25dbab3b5d68231fe",
+    "source": "efi/weak.c",
+    "exit": 0,
+    "object": "UnicornStubLib.inf-efi_weak.c.obj",
+    "log": "UnicornStubLib.inf-efi_weak.c.log"
+  }
+]

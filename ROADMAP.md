@@ -1,3 +1,5 @@
+> **Current package publication — 30 October 2026:** [Complete Tahoe 0.3.21 graphics/audio, matching Wi-Fi and source packages, and the macOS27 full-engine diagnostic](packages/) are now published. Historical entries below retain their original dates and test scopes. macOS27 has reached native WindowServer startup; its graphical installer is not verified.
+
 # Dell Latitude 5350 — Meteor Lake Xe-LPG on macOS: project roadmap
 
 The complete record, 8 – 22 October 2026, oldest first. Every entry states what happened, what it

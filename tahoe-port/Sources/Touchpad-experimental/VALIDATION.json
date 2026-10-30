@@ -1,0 +1,14 @@
+{
+  "version": "1.0.10",
+  "deployment": "Applied to USB 2026-10-28 after local checks; see DEPLOYMENT.json",
+  "HIDUUID": "UUID: DD586643-A8A0-3E86-AE74-DA3294CAAEBC (x86_64) /Volumes/Corsair 1TB NVMe/Dell-Tahoe-20261026/Touchpad-FeatureSafety-1.0.10/EFI/OC/Kexts/VoodooI2CHID.kext/Contents/MacOS/VoodooI2CHID",
+  "sha256": "cb101bb964d3b27ff213aa45fc81b2a3100844892108e7c0ca6a9583688185e4",
+  "lostExports": [],
+  "newUndefinedImports": [],
+  "featureFunctionTests": "ASan/UBSan passed; 65536 wire lengths and all 256 report IDs",
+  "negativeControls": "Old failed GET copies invalid data; old >255-byte SET truncates transport length",
+  "inputReportRegression": "Passed actual getInputReport and simulateInterrupt sanitizer fixture",
+  "targetCheck": "Same import set as 1.0.9; reserved-slot and host Intel KC-build limitations remain",
+  "hardwareFixConfirmed": false,
+  "DellModeShortReplies": "Rejected unless header, report ID and both mode bytes are present"
+}

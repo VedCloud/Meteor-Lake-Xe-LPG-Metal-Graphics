@@ -1,0 +1,10 @@
+/* Generated from validated captured handoff and VMAPPLE template. */
+#define VMREF_RAM_BASE 0x800000000ULL
+#define VMREF_RAM_BYTES 0x400000000ULL
+#define VMREF_CNTFRQ 0x16e3600ULL
+#define VMREF_BASE 0x800000000ULL
+#define VMREF_BYTES 0x7adf0000ULL
+#define VMREF_PC 0x809eb4480ULL
+#define VMREF_X0 0x80bdb0000ULL
+static const uint8_t vmref_sha256[32]={42,89,108,190,192,65,198,49,251,245,200,149,66,164,158,195,232,131,149,208,90,125,104,61,10,148,163,13,186,75,160,168};
+#define VMREF_INPUT_PATH L"\\EngineProbe\\vmapple-2a596cbec041c631fbf5c89542a49ec3e88395d05a7d683d0a94a30dba4ba0a8.bin"

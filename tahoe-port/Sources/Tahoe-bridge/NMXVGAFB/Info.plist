@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleIdentifier</key><string>com.nullmoth.NMXVGAFB</string>
+  <key>CFBundleName</key><string>NMXVGAFB</string>
+  <key>CFBundleExecutable</key><string>NMXVGAFB</string>
+  <key>CFBundlePackageType</key><string>KEXT</string>
+  <key>CFBundleVersion</key><string>0.1</string>
+  <key>CFBundleShortVersionString</key><string>0.1</string>
+  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+  <key>IOKitPersonalities</key><dict>
+    <key>NMXVGAFB</key><dict>
+      <key>CFBundleIdentifier</key><string>com.nullmoth.NMXVGAFB</string>
+      <key>IOClass</key><string>NMXIntelVGAFB</string>
+      <key>IOProviderClass</key><string>IOPCIDevice</string>
+      <!-- QEMU virtio-vga and std VGA (bochs) -->
+      <key>IOPCIMatch</key><string>0x10501af4 0x11111234</string>
+      <!-- the firmware framebuffer's category (IONDRVFramebuffer, score 20000): only one of the two drives the device,
+           and with this one there is no ".Display_boot" second display (WindowServer gave it a context without a
+           display pipe and its compositor asserted). If probe/start declines, IONDRVFramebuffer takes the device. -->
+      <key>IOMatchCategory</key><string>IOFramebuffer</string>
+      <key>IOProbeScore</key><integer>60000</integer>
+    </dict>
+    <key>NMXVFFramebufferClaim</key><dict>
+      <key>CFBundleIdentifier</key><string>com.nullmoth.NMXVGAFB</string>
+      <key>IOClass</key><string>NMXVFFramebufferClaim</string>
+      <key>IOProviderClass</key><string>IOPCIDevice</string>
+      <!-- an Intel display device (the SR-IOV VF NMXGPU drives); probe() skips the firmware's display device -->
+      <key>IOPCIMatch</key><string>0x00008086&amp;0x0000ffff</string>
+      <key>IOPCIClassMatch</key><string>0x03000000&amp;0xff000000</string>
+      <key>IOProbeScore</key><integer>60000</integer>
+      <key>IOMatchCategory</key><string>IOFramebuffer</string>
+    </dict>
+  </dict>
+  <key>OSBundleLibraries</key><dict>
+    <key>com.apple.kpi.iokit</key><string>8.0</string>
+    <key>com.apple.kpi.libkern</key><string>8.0</string>
+    <key>com.apple.kpi.mach</key><string>8.0</string>
+    <key>com.apple.iokit.IOPCIFamily</key><string>1.0.0</string>
+    <key>com.apple.iokit.IOGraphicsFamily</key><string>1.0.0</string>
+  </dict>
+</dict></plist>

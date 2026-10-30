@@ -1,0 +1,6 @@
+{
+  "source": "User report2026-10-27",
+  "observation": "Same pen did not work in Windows or another laptop",
+  "implication": "Pen/nib hardware fault suspected; macOS-specific nib fault not established",
+  "action": "Do not enable experimental pen-mode writes solely to compensate for this pen"
+}
