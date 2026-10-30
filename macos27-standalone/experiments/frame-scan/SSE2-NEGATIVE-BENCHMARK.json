@@ -1,0 +1,20 @@
+{
+  "scope": "Isolated 512 MiB nested OVMF microbenchmark; not Dell or full boot/frame performance.",
+  "bytesPerComparison": 1048576,
+  "iterationsPerTrial": 32,
+  "scalarNs": [
+    11999201,
+    11891352
+  ],
+  "SSE2Ns": [
+    16066507,
+    16235271
+  ],
+  "speedupPerTrial": [
+    0.7468456584869381,
+    0.732439390756089
+  ],
+  "run": "/Volumes/Dell27Build/GopScanExperiment/Run-20261030T022826Z",
+  "EFI_SHA256": "e93ce88c7c5f56875fabf393211fd4042fc346fed4f29b5bd10759f6bfac1642",
+  "correctnessFixturePassed": true
+}

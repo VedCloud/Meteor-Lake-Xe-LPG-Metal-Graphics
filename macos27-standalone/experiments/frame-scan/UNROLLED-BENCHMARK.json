@@ -1,0 +1,23 @@
+{
+  "scope": "Nested 512MiB OVMF component benchmark, not Dell or full boot performance.",
+  "bytesPerComparison": 1048576,
+  "iterations": 32,
+  "scalarNs": [
+    11968441,
+    11906522
+  ],
+  "unrolledNs": [
+    6601418,
+    6488565
+  ],
+  "SSE2Ns": [
+    16154998,
+    16140018
+  ],
+  "unrolledSpeedup": [
+    1.813010628928512,
+    1.8350008052627969
+  ],
+  "correctnessFixturePassed": true,
+  "run": "/Volumes/Dell27Build/GopScanExperiment/Run-20261030T023148Z"
+}

@@ -1,0 +1,34 @@
+{
+  "EFI_SHA256": "5ec8c671db4eb306f089c855b984e62dc11bf78357badb1597e4ae26d437b652",
+  "exactProductionPresenterObjectMatchesExecutedFixture": true,
+  "presenterObjectSHA256": "720e0c37fcc00296fcf8ebfb5f25a6d44e0a347d2b6aa39cd88a7d271b6d12c5",
+  "inputUnchangedFromSecurityStartupExperiment": true,
+  "fullEngineAdmissionTested": false,
+  "fullKernelBootTested": false,
+  "graphicalInstallerVerified": false,
+  "benchmark": {
+    "scope": "Nested 512MiB OVMF component benchmark, not Dell or full boot performance.",
+    "bytesPerComparison": 1048576,
+    "iterations": 32,
+    "scalarNs": [
+      11968441,
+      11906522
+    ],
+    "unrolledNs": [
+      6601418,
+      6488565
+    ],
+    "SSE2Ns": [
+      16154998,
+      16140018
+    ],
+    "unrolledSpeedup": [
+      1.813010628928512,
+      1.8350008052627969
+    ],
+    "correctnessFixturePassed": true,
+    "run": "/Volumes/Dell27Build/GopScanExperiment/Run-20261030T023148Z"
+  },
+  "hostOracleCases": 232705,
+  "scope": "Built future integration candidate; running v12 remains unchanged."
+}

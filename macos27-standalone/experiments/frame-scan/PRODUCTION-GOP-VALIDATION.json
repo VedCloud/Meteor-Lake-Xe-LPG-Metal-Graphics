@@ -1,0 +1,14 @@
+{
+  "scope": "Actual x86 OVMF ABI execution of isolated scalar-unrolled GOP presenter candidate, translated ARM stores and native firmware pixel readback in a 512 MiB test. Not kernel boot or Dell hardware.",
+  "translatedARMStoresAndFirmwarePixelReadback": true,
+  "unchangedFramesSuppressed": true,
+  "injectedFailureAndRetryVerified": true,
+  "EFI_SHA256": "2ed6389bc6d82364b0d668ef16b3c21391c557d0263ab1146c0fc672900a51f6",
+  "productionBridgeObjectSHA256": "a482b90c479288d9c74085c3290a1ba9de00ee69a5d3e9291fe0d554a7db217b",
+  "presenterSourceSHA256": "7bac7234f63428ee8ae6e7d411df7dd229e75c637504a808353948a27a8ec374",
+  "scalarUnrolledComparison": true,
+  "hostOracleCases": 232705,
+  "fullBootSpeedMeasured": false,
+  "result": "PASS",
+  "run": "/Volumes/Dell27Build/GopScanExperiment/Production/Run-20261030T023515Z"
+}
