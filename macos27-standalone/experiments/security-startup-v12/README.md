@@ -18,8 +18,8 @@ consistent with that path. This is a test hypothesis, not a proven root cause.
 This does not bypass a keychain check or fabricate completion. The initial test
 setup stopped before QEMU because the new input-disk fixture was missing; it was
 created and hash-verified before restarting admission. All 35 real x86 firmware/CPU markers passed, and the modified-capture rejection
-test passed. A valid-input boot is now running. Runtime effect and a visible
-installer are still unverified. Do not replace the published baseline
+test passed. A valid-input boot is now running. The new run now reaches securityd's native request-receive loop with no legacy ASL server connection;
+exact executable call sites were verified. Keychain completion and a visible installer remain unverified. Do not replace the published baseline
 with this experiment. Paths in these preparation recipes are the original local
 workspace paths; they are not generic host scripts to run unchanged.
 

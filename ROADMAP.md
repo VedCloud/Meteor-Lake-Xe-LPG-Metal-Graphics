@@ -69,7 +69,9 @@ local workspace build paths. It is not a one-command portable installer build.
 **Follow-up under test:** the [security-startup-v12 experiment](macos27-standalone/experiments/security-startup-v12/)
 changes only securityd's guest `ASL_DISABLE=1` environment setting. Compilation, filesystem verification
 and exact input checks pass. All 35 firmware/CPU markers and the modified-capture rejection test
-passed; the valid-input boot is running. The logging change's runtime effect remains unverified. Its EFI hash is
+passed; the valid-input boot is running. The new run has now reached securityd's native Mach request-receive loop, with no legacy ASL server
+connection, verified against two uniquely matched executable code slices. The earlier ASL send wait
+is absent in this sampled state; keychain completion and visible recovery remain unverified. Its EFI hash is
 `64281b166744dba729c2a289f21897622fca67feafe65e1cec1a32c5862aa9bf`.
 The first setup attempt stopped before QEMU because its private input disk was missing; that fixture
 was then created and checked before admission was restarted. The published baseline is unchanged.

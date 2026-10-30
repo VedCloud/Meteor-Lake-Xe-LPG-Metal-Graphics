@@ -1,0 +1,30 @@
+{
+  "UTC": "2026-10-30T02:48:41.882835+00:00",
+  "run": "/Volumes/Dell27Build/SecurityStartupComparison/FirmwareRuns/20261030T020335Z-28705",
+  "EFI_SHA256": "64281b166744dba729c2a289f21897622fca67feafe65e1cec1a32c5862aa9bf",
+  "verifiedExecutableASLR": {
+    "scope": "Two distinct return-address-selected RX code slices matched uniquely; no data/keychain content read",
+    "slide": "0x94000",
+    "matches": [
+      {
+        "liveReturnCallSite": "0x100099508",
+        "preferredCallSite": "0x100005508",
+        "slide": "0x94000",
+        "exact32BExecutableMatch": true
+      },
+      {
+        "liveReturnCallSite": "0x1000a55b8",
+        "preferredCallSite": "0x1000115b8",
+        "slide": "0x94000",
+        "exact32BExecutableMatch": true
+      }
+    ]
+  },
+  "legacyASLServerPortPresent": false,
+  "mainThreadWait": "Native mach_msg_overwrite receive loop; exact call-site code uses send_size=0 and receive options. Not the baseline ASL send chain.",
+  "staticExecutableSHA256": "9d69c944c06f0078c329d690f623ce94a2b8218209a8cdfcf417037c32fc1a0d",
+  "securitydStartupReceiveLoopReached": true,
+  "keychainLoginCompletionVerified": false,
+  "graphicalInstallerVerified": false,
+  "causalityScope": "One-variable guest environment comparison; this is observed startup progress, not completed recovery or proof against all later logging waits."
+}
