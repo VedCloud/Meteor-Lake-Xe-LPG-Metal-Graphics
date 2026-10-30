@@ -560,7 +560,7 @@ iGPU Port/
 
 | File | Contents |
 |---|---|
-| `ROADMAP.md` (repo root) | **The dated history, 8–30 October 2026** — seventeen phases from the first injection failure to macOS 27 "Golden Gate" |
+| `ROADMAP.md` (repo root) | **The dated history, 8–30 October 2026** — dated phases from the first injection failure to macOS 27 "Golden Gate" |
 | `UNIFIED-CANDIDATE-WORK.md` (repo root) | **Authoritative combined status** across every subsystem |
 | `iwlwifi-api83/` | Linux `iwlwifi` API-83 source — the reference for the native AWDL and radio work |
 | `airportitlwm-tahoe/` | Qualified upstream reference (Tahoe 26.6.2/26.7, AppleVTD, AWDL/P2P, AirPlay) |
@@ -658,7 +658,7 @@ first** — and it is the document to read for the history. It has five parts:
 2. **How to read this document** — the four evidence rules: what worked needs its measurement, negative
    results stay negative, counts are exact and scoped, and plugin submission IDs and i915 request
    sequence numbers are never equated without correlation.
-3. **Timeline** — seventeen phases, each with what happened, what it proved, the lesson and the evidence
+3. **Timeline** — dated phases, each with what happened, what it proved, the lesson and the evidence
    pointer: injection (`_kmod_info`), `EXITBS:START`, the pivot to NullMoth, first submissions and the
    first hang, the lost-wake race, the gate that finally meant something, the WindowServer
    variable-by-variable work, the ring capture and the falsified defect, the raw-physical span, the

@@ -1,0 +1,25 @@
+{
+  "UTC": "2026-10-30T01:49:12.247132+00:00",
+  "profile": "/Volumes/Corsair 1TB NVMe/Dell-macOS27-Research/BootContextExperiment-SecurityLogging-v12",
+  "image": "/Volumes/Corsair 1TB NVMe/Dell-macOS27-Research/HFSRecoveryExperiment/BaseSystem-26A428-HFS-SecurityLogging-v12.dmg",
+  "imageSHA256": "6c108ad9eae9cbe5e5b0256ffd25f9ba0322450538739ca6805f0693f5da4ce9",
+  "inputSHA256": "2a342d7015d59a1f94bad079eb98c2bfead2526adcff4a473bd6191c9d9bf00f",
+  "originalUnchanged": true,
+  "changes": [
+    {
+      "path": "System/Library/LaunchDaemons/com.apple.securityd.plist",
+      "beforeSHA256": "bff3c2510d5c80825bf91c0cc4b511872324582d18633119ea7fef431dff7f59",
+      "afterSHA256": "d424146ddbcba7ac7ffcef8724807294201ab56cf1f85ee0b4665b204e407eaa",
+      "change": {
+        "ASL_DISABLE": "1"
+      },
+      "programUnchanged": true
+    }
+  ],
+  "filesystemVerification": "Started file system verification on disk8 (Dell27Recovery)\nVerifying file system\nVolume is already unmounted\nPerforming fsck_hfs -fn -x /dev/rdisk8\nExecuting fsck_hfs (version hfs-753.40.4)\nChecking non-journaled HFS Plus Volume\nThe volume name is Dell27Recovery\nChecking extents overflow file\nChecking catalog file\nChecking multi-linked files\nChecking catalog hierarchy\nChecking extended attributes file\nChecking volume bitmap\nChecking volume information\nThe volume Dell27Recovery appears to be OK\nFile system check exit code is 0\nRestoring the original state found as unmounted\nFinished file system verification on disk8 (Dell27Recovery)\n",
+  "AppleExecutableBytesChanged": false,
+  "hostLoggingChanged": false,
+  "cryptoAndDisplayResultsOverridden": false,
+  "runtimeEffectVerified": false,
+  "graphicalInstallerVerified": false
+}

@@ -51,19 +51,27 @@ physical Dell boot result or a native ARM instruction-speed benchmark.
 
 ### Current candidate and reproducibility
 
-The running candidate's EFI SHA256 is
+The latest WindowServer-qualified baseline's EFI SHA256 is
 `90ae91ef8b15b852f282707019f7df068576d2bfac97e499fde571fe96e1ad0f`.
 Its exact source, pinned upstream overlay and original build/admission evidence are published in
 [`macos27-standalone/full-engine/`](macos27-standalone/full-engine/). Download the matching diagnostic
 archive and checksums from [the package index](packages/20261030/).
 
-The valid boot began 29 October and continues into 30 October. A separate modified-input run passed
-its rejection check before that boot. Persistent run ownership/state/exit records now distinguish a
+The baseline boot began 29 October and was observed into 30 October. A separate modified-input run
+passed its rejection check before that boot. Its final black capture and native service states were
+saved before a controlled stop for the next one-variable comparison. Persistent run ownership/state/exit records now distinguish a
 host process exit from a guest panic; the earlier unexplained host exit remains unexplained.
 
 Apple installer/recovery images, SDK/KDKs, trust caches and initialized-memory captures are not in the
 public package. The diagnostic depends on those checked external inputs; its source snapshot retains
 local workspace build paths. It is not a one-command portable installer build.
+
+**Follow-up under test:** the [security-startup-v12 experiment](macos27-standalone/experiments/security-startup-v12/)
+changes only securityd's guest `ASL_DISABLE=1` environment setting. Compilation, filesystem verification
+and exact input checks pass; runtime effect remains unverified. Its EFI hash is
+`64281b166744dba729c2a289f21897622fca67feafe65e1cec1a32c5862aa9bf`.
+The first setup attempt stopped before QEMU because its private input disk was missing; that fixture
+was then created and checked before admission was restarted. The published baseline is unchanged.
 
 ### Current investigation
 

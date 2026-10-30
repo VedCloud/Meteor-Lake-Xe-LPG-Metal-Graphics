@@ -7,7 +7,7 @@ These are actual payloads and matching source, not just README version changes.
 |---|---|
 | [Tahoe-Graphics-Audio-0.3.21-20261030.tar.gz](https://github.com/VedCloud/Meteor-Lake-Xe-LPG-Metal-Graphics/releases/download/dell-packages-20261030/Tahoe-Graphics-Audio-0.3.21-20261030.tar.gz) | 91.0 MiB |
 | [Tahoe-Network-0.1.2-20261030.tar.gz](https://github.com/VedCloud/Meteor-Lake-Xe-LPG-Metal-Graphics/releases/download/dell-packages-20261030/Tahoe-Network-0.1.2-20261030.tar.gz) | 15.2 MiB |
-| [Tahoe-Corresponding-Sources-20261030.tar.gz](https://github.com/VedCloud/Meteor-Lake-Xe-LPG-Metal-Graphics/releases/download/dell-packages-20261030/Tahoe-Corresponding-Sources-20261030.tar.gz) | 45.3 MiB |
+| [Tahoe-Corresponding-Sources-20261030.tar.gz](https://github.com/VedCloud/Meteor-Lake-Xe-LPG-Metal-Graphics/releases/download/dell-packages-20261030/Tahoe-Corresponding-Sources-20261030.tar.gz) | 46.1 MiB |
 | [macOS27-UEFI-Engine-20261030.tar.gz](https://github.com/VedCloud/Meteor-Lake-Xe-LPG-Metal-Graphics/releases/download/dell-packages-20261030/macOS27-UEFI-Engine-20261030.tar.gz) | 1.1 MiB |
 
 Verify downloads against [SHA256SUMS.txt](20261030/SHA256SUMS.txt).
