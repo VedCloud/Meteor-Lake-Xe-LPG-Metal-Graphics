@@ -4,21 +4,17 @@
 ![Platform](https://img.shields.io/badge/Platform-Sequoia_15.8.1_%2B_Tahoe_26.7.1-blue)
 ![Arch](https://img.shields.io/badge/Arch-x86__64-informational)
 ![Bootloader](https://img.shields.io/badge/Bootloader-OpenCore_1.0.9-9cf)
-
 ![Hardware](https://img.shields.io/badge/Hardware-Intel_Core_Ultra_5_135U-orange)
 ![Graphics](https://img.shields.io/badge/Graphics-Xe--LPG%20%2F%208086%3A7D45-red)
 ![Firmware](https://img.shields.io/badge/Firmware-GuC_70.53.0-blue)
-
 ![API](https://img.shields.io/badge/API-Metal%20%2F%20Vulkan-purple)
 ![Vulkan](https://img.shields.io/badge/Vulkan-ANV_%2F_Mesa_26.3.0--devel-purple)
 ![Kernel](https://img.shields.io/badge/Kext-i915_on_LinuxKPI-red)
 ![Language](https://img.shields.io/badge/Language-C%20%2F%20Obj--C%20%2F%20C%2B%2B-blueviolet)
-
 ![Status](https://img.shields.io/badge/Status-Metal%20%2B%20Vulkan%20working-brightgreen)
 ![Desktop](https://img.shields.io/badge/Desktop-WindowServer_working-brightgreen)
 ![Verified](https://img.shields.io/badge/Sequoia_gate-26%2C000_frames-brightgreen)
 ![Candidate](https://img.shields.io/badge/Tahoe_baseline-graphics_0.3.21-yellow)
-
 ![Darwin](https://img.shields.io/badge/Darwin_27-ARM64_VMAPLE__WindowServer_startup-blueviolet)
 
 **Metal and Vulkan run on the Intel Core Ultra (Meteor Lake-P) Xe-LPG iGPU (`8086:7D45`) of a Dell
