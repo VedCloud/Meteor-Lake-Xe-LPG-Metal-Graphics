@@ -564,7 +564,7 @@ iGPU Port/
 
 | File | Contents |
 |---|---|
-| `ROADMAP.md` (repo root) | **The complete dated history, 8 – 22 October 2026** — sixteen phases from the first injection failure to macOS 27 "Golden Gate" |
+| `ROADMAP.md` (repo root) | **The dated history, 8–30 October 2026** — seventeen phases from the first injection failure to macOS 27 "Golden Gate" |
 | `UNIFIED-CANDIDATE-WORK.md` (repo root) | **Authoritative combined status** across every subsystem |
 | `iwlwifi-api83/` | Linux `iwlwifi` API-83 source — the reference for the native AWDL and radio work |
 | `airportitlwm-tahoe/` | Qualified upstream reference (Tahoe 26.6.2/26.7, AppleVTD, AWDL/P2P, AirPlay) |
@@ -655,20 +655,22 @@ python3 test-uefi.py        # runs it inside virtual OVMF and compares against t
 <a name="roadmap"></a>
 ## 🗺️ Roadmap
 
-[`ROADMAP.md`](ROADMAP.md) is the authoritative, fully dated record — **8 to 22 October 2026, oldest
-first** — and it is the document to read for the history. It has four parts:
+[`ROADMAP.md`](ROADMAP.md) is the authoritative, fully dated record — **8 to 30 October 2026, oldest
+first** — and it is the document to read for the history. It has five parts:
 
 1. **Where we are now** — the working state, the open items and the macOS 27 direction.
 2. **How to read this document** — the four evidence rules: what worked needs its measurement, negative
    results stay negative, counts are exact and scoped, and plugin submission IDs and i915 request
    sequence numbers are never equated without correlation.
-3. **Timeline** — sixteen phases, each with what happened, what it proved, the lesson and the evidence
+3. **Timeline** — seventeen phases, each with what happened, what it proved, the lesson and the evidence
    pointer: injection (`_kmod_info`), `EXITBS:START`, the pivot to NullMoth, first submissions and the
    first hang, the lost-wake race, the gate that finally meant something, the WindowServer
    variable-by-variable work, the ring capture and the falsified defect, the raw-physical span, the
    stolen-memory skip, the panic named, the desktop working, reporting/smoothness/the peripherals, the
    unified candidate, the AWDL radio and native backend, and the move to macOS 27 "Golden Gate".
-4. **Method** — the evidence table, what the research changed, the implementation sequence with its
+4. **[macOS 27 dedicated roadmap](ROADMAP.md#macos27)** — native kernel/recovery services and
+   WindowServer server-loop progress, the current candidate, blockers and graphical-installer gates.
+5. **Method** — the evidence table, what the research changed, the implementation sequence with its
    promotion criteria, and the immediate deliverables with their boundaries.
 
 Current position:

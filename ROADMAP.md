@@ -2,32 +2,108 @@
 
 # Dell Latitude 5350 — Meteor Lake Xe-LPG on macOS: project roadmap
 
-The complete record, 8 – 22 October 2026, oldest first. Every entry states what happened, what it
+The dated record, **8–30 October 2026**, with the historical timeline oldest first. Every entry states what happened, what it
 proved, and where the evidence lives.
 
 The live authoritative status is `UNIFIED-CANDIDATE-WORK.md`; the invariants that must survive every
 rebuild are in `AGENTS.md`; the evidence trail is `research/` and `port-artifacts/`.
 
-## Where we are now (22 October 2026)
+## Where we are now (30 October 2026)
 
-* **The desktop works and is smooth.** WindowServer is GPU-composited, submits real GPU work and reads
-  back correctly with no GPU hang. The recorded readback fell from 22.4 ms to **5.0 ms** (plugin 0.3.11's
-  optimized cache path). GPU reporting shows `Intel(R) Graphics (MTL)` with the queried shared capacity.
-* **The peripherals work.** Brightness (slider and F6/F7), sound (Realtek ALC295 via AppleALC), Night
-  Shift (the framebuffer gamma path), Bluetooth (AirPods Pro 2, MX Keys / MX Mechanical Mini, Continuity),
-  Wi-Fi (a custom AirportItlwm), Apple services, and the multitouch touchscreen with gestures.
-* **The project is one unified candidate** — graphics, wireless, audio, input, tablet, text rendering and
-  the boot UI staged together, with each subsystem's real validation state recorded separately.
-* **A second, larger programme has started: macOS 27 "Golden Gate" standalone boot.** The ambition is
-  Snapintosh for the Dell — boot macOS 27 on the Intel machine *directly from firmware*, with no Linux
-  host and no Sequoia loader, which needs an ARM-to-x86 translation layer beneath the kernel. It is at
-  version 0.0.3: a standalone x86_64 UEFI application that admits the hash-pinned macOS 27.0 build
-  26A428 / Mac14,3 inputs and executes bounded scalar and EL2 ARM payloads plus the first five
-  instructions of the real SPTM, verified byte-for-byte against pinned QEMU inside virtual OVMF. The
-  complete privileged runtime, the MMU, SPTM initialisation, TXM, the Apple kernel and the desktop are
-  unimplemented, and the Dell has not been tested. See `macos27-standalone/`.
-* **Still open:** the touchpad (WIP), the AWDL radio data plane (AirDrop is not functional), tablet-mode
-  publication, system-wide subpixel text deployment, and target validation of brightness/hotkeys/GPIO/power.
+* **The Intel graphics port now covers Sequoia and installed Tahoe 26.7.1.** The retained Tahoe
+  graphics checkpoint is 0.3.21, with the custom Dell icon and requested graphics label. The original
+  **Sequoia** application gate remains 26,000 frames / 22 cases / 80,020 command pools. It has not been
+  rerun as a new Tahoe full-gate result; 5.0 ms readback is one stage, not total frame time.
+* **Working hardware features:** Wi-Fi, Bluetooth, ALC295 audio, panel brightness, Night Shift and
+  touchscreen on the retained profiles. Tahoe audio uses SimpleHDA and requires `keepsyms=1`, which
+  does not enable verbose boot. Copilot → Command, boot chime and Windows/Fedora booting are confirmed.
+* **Open hardware work:** touchpad lag/keyboard contention, remaining graphics latency/glyph issues,
+  brightness-key-to-slider/HUD integration, sleep/wake, tablet/rotation, system-wide FreeType and
+  full AWDL/AirDrop. Packaged experiments are not promoted as passing hardware results.
+* **macOS 27 has advanced beyond preflight to native recovery services and WindowServer's server loop.**
+  The current x86 UEFI engine exposes 16 GiB logical guest memory. Its latest display capture is still
+  black; a graphical installer and physical Dell installation are not verified.
+* **The actual packages are published.** [The 30 October release](packages/) includes complete Tahoe
+  graphics/audio, the matching Wi-Fi binary, corresponding source and the current macOS27 diagnostic
+  engine. Older Sequoia packages and frozen test reports remain separate.
+
+<a id="macos27"></a>
+## macOS 27 — dedicated standalone-runtime roadmap
+
+**Updated 30 October 2026.** Target: the supplied ARM64 build `26A428`, executed through an
+ARM-to-x86 translation engine beneath the native kernel. The target remains the **Dell Latitude 5350
+with 16 GB RAM**. CPU/firmware qualification currently runs in an owned x86 OVMF test; it is not a
+physical Dell boot result or a native ARM instruction-speed benchmark.
+
+### Verified milestones
+
+| Stage | Evidence and boundary | Result |
+|---|---|---|
+| Initial 22 October preflight | Hash-pinned inputs, bounded scalar/privileged probes and MH_EXECUTE bounds tests; the original 0.0.3 source is preserved | Complete historical milestone |
+| Full firmware engine | Compiled x86 UEFI engine with MMU/COW, exception, PAC, timer/interrupt and selected Apple-device support | Executes the native kernel; no longer limited to the original scalar preflight |
+| Kernel and recovery root | Native Darwin27 banner, pmap startup and HFS recovery-root bring-up | Reached |
+| Recovery userland | Native launchd, recoveryosd, OpenDirectory, LaunchServices and CoreServices observed | Reached |
+| WindowServer | Latest run has `ws_main_thread`, CoreAnimation render-server/display and HID threads. Saved return addresses resolve to `_CGXRunOneServicesPass`, `_server_loop` and `_SLXServer` | Native server loop reached; not a visible installer |
+| Memory and boot inputs | 16 GiB logical guest RAM with bounded sparse backing, checked initialized-memory input and firmware entropy | Implemented; not a claim that the entire 16 GiB is physically resident |
+| Firmware/CPU correctness | 4,096 QARMA comparisons, 72 monitor/PAC checks, 768 SPRR checks and exact-signature observer fixtures | Component tests passed |
+| Current performance candidate | Word-wise memory operations, observer offset prefilter and unchanged-frame GOP suppression; real firmware checks and modified-capture rejection pass | Integrated boot under observation; no completed boot-speed claim |
+| Actual display | Latest 1280×800 OVMF display capture contains zero nonblack pixels; the native framebuffer is registered/started but no client is open | Graphical installer not verified |
+
+### Current candidate and reproducibility
+
+The running candidate's EFI SHA256 is
+`90ae91ef8b15b852f282707019f7df068576d2bfac97e499fde571fe96e1ad0f`.
+Its exact source, pinned upstream overlay and original build/admission evidence are published in
+[`macos27-standalone/full-engine/`](macos27-standalone/full-engine/). Download the matching diagnostic
+archive and checksums from [the package index](packages/20261030/).
+
+The valid boot began 29 October and continues into 30 October. A separate modified-input run passed
+its rejection check before that boot. Persistent run ownership/state/exit records now distinguish a
+host process exit from a guest panic; the earlier unexplained host exit remains unexplained.
+
+Apple installer/recovery images, SDK/KDKs, trust caches and initialized-memory captures are not in the
+public package. The diagnostic depends on those checked external inputs; its source snapshot retains
+local workspace build paths. It is not a one-command portable installer build.
+
+### Current investigation
+
+Two observations guide the next work; neither is yet a proven root cause:
+
+1. **Display adoption:** WindowServer runs its native loop and CoreAnimation/HID threads, but the
+   framebuffer has no open client and no physical display is registered. CoreDisplay/renderer
+   enumeration and the guest's expected display transport need to be traced. A console framebuffer
+   alone is not an interactive display pipeline.
+2. **Recovery startup:** the latest selected recoveryosd stack is waiting in native `_read` beneath a
+   Security keychain initialization/`SecKeychainLogin` call chain. Identify the descriptor and waiting
+   service from bounded metadata before diagnosing entropy, IPC or a file-read problem. No keychain
+   contents, credentials or PAC keys need to be read or replaced for that diagnosis.
+
+The existing no-Metal compatibility option follows a genuine timeout's native cleanup path. It does
+not implement a compositor or make the engine accelerated. Likewise, an OpenGL software-renderer
+module in the shared cache does not prove WindowServer selected or used it.
+
+### Next implementation gates
+
+| Order | Work | Acceptance evidence |
+|---|---|---|
+| 1 | Identify the display/renderer and recovery-startup dependencies from the current live run | Exact-build symbol/signature checks, selected thread states and correlated service/driver events |
+| 2 | Implement the missing verified transport/service behavior in an isolated candidate | Positive and negative component tests; no fabricated completion, disabled error or guessed register value |
+| 3 | Bring up actual graphical recovery/installer presentation | Inspect a real capture containing recognizable native recovery/installer UI; a colored test pattern is insufficient |
+| 4 | Connect installer input | Pointer, click, keyboard and focus work in the actual UI |
+| 5 | Qualify target storage | Correct disk/partition discovery and bounded I/O; a disposable target passes before any real Dell disk is used |
+| 6 | Qualify the physical Dell path | Boot from a separate diagnostic entry with the working Tahoe EFI preserved; actual installer output on the panel |
+| 7 | Optimize after correctness | Measure full boot/frame/presentation latency and memory use; do not compare scheduled instruction slots with frames or retired instructions |
+
+**Installer milestone:** visible native installer UI **and usable input**, with its target storage
+identified and verified. It remains open. The Tahoe desktop screenshot and Sequoia's application gate
+are separate achievements and cannot satisfy it.
+
+### Keep the working Intel port intact
+
+The current Tahoe quiet multiboot EFI is preserved. The separate macOS27 loader and checked inputs were
+staged alongside it without replacing the main loader. Historical passing checkpoints, Copilot mapping,
+SimpleHDA's `keepsyms=1` requirement and normal accelerated-boot policy remain unchanged. No installer
+or test script automatically reboots the Dell.
 
 ## How to read this document
 
@@ -558,9 +634,28 @@ what it can actually do, and says so on the console, instead of reporting a succ
 
 ---
 
+## 23–30 October — Phase 16: native recovery services and WindowServer
+
+The full ARM64-on-x86 UEFI engine progressed from kernel initialization through HFS recovery userland
+and native WindowServer startup. The current run has reached WindowServer's server loop with
+CoreAnimation and HID threads; actual framebuffer captures remain black. Component correctness and
+memory/presenter work are qualified independently of visible installer output.
+
+On 30 October the current EFI, matching source/upstream overlay and build evidence were published
+alongside the working Tahoe0.3.21 graphics/audio and Wi-Fi packages. See the dedicated
+[macOS27 roadmap](#macos27) for the exact candidate, evidence, current waits and acceptance gates.
+
+**Lesson:** native userland and a running display server are measurable progress. Display adoption,
+real pixels, input and storage must still be verified rather than inferred from those processes.
+
+---
+
 # Method
 
 ## Evidence and corrected status
+
+The following table preserves the **22 October graphics evidence snapshot**. Current Tahoe and
+macOS27 status is recorded at the top of this document and in the dedicated macOS27 section.
 
 | Milestone | Current evidence | Status |
 |---|---|---|
@@ -638,6 +733,9 @@ multiple displays. Modesetting, hardware cursor, video acceleration and power ma
 separately scoped work. Each needs its own evidence; passing compute/render tests does not certify them.
 
 ### F. macOS 27 "Golden Gate" — the standalone boot programme
+
+**Historical dependency plan (22 October).** Implemented stages are now tracked in the
+[dedicated current roadmap](#macos27); the original plan below remains as engineering history.
 
 Two tracks, and they must not be confused.
 
