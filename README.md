@@ -205,11 +205,15 @@ EFI are now published in [`macos27-standalone/full-engine/`](macos27-standalone/
   PAC, timer/interrupt, PCI, VirtIO storage, AES, RTC, GPIO and framebuffer paths have implemented,
   tested support. Firmware tests include **4,096 QARMA comparisons, 72 monitor/PAC checks and 768 SPRR
   checks**. These are component results, not a completed installer boot.
-* **Current performance candidate.** The compiled x86 UEFI engine now combines bounded word-wise
-  copy/fill, a faster read-only observer filter and unchanged-frame suppression in the GOP presenter.
-  Memory and presenter fixtures pass, as do the real x86 firmware/CPU checks and modified-capture
-  rejection. A valid-image boot is running with persistent ownership, run-state and exit-code records;
-  it has reached native WindowServer startup again. There is no completed full-boot speed measurement.
+* **Qualified performance baseline.** Bounded word-wise copy/fill, a read-only observer prefilter and
+  unchanged-frame GOP suppression pass their component/firmware checks and modified-input rejection.
+  Native WindowServer startup has been observed again; there is no completed full-boot speed
+  measurement. The following security-startup test advanced recovery into loginwindow-service loading,
+  but its final actual display remained black.
+* **Current display experiment.** A guest-only bridge attempts native virtual-display creation and
+  copies real WindowServer IOSurfaces to the firmware framebuffer. Its build, target dependency checks
+  and 45 guarded host surface-copy cases pass; actual guest presentation is still under qualification.
+  See the [dedicated macOS27 roadmap](ROADMAP.md#macos27) for pinned candidates and acceptance gates.
 * **What remains.** **The graphical installer is not visible yet:** the latest actual display captures
   are black. Native process startup is a substantial milestone, but it does not establish an interactive
   installer. Display/renderer initialization, installer keyboard/pointer input, physical target storage

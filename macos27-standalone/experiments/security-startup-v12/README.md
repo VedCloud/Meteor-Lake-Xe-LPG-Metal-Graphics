@@ -17,11 +17,17 @@ consistent with that path. This is a test hypothesis, not a proven root cause.
 
 This does not bypass a keychain check or fabricate completion. The initial test
 setup stopped before QEMU because the new input-disk fixture was missing; it was
-created and hash-verified before restarting admission. All 35 real x86 firmware/CPU markers passed, and the modified-capture rejection
-test passed. A valid-input boot is now running. The new run now reaches securityd's native request-receive loop with no legacy ASL server connection;
-exact executable call sites were verified. Keychain completion and a visible installer remain unverified. Do not replace the published baseline
-with this experiment. Paths in these preparation recipes are the original local
-workspace paths; they are not generic host scripts to run unchanged.
+created and hash-verified before restarting admission. All 35 real x86 firmware/CPU
+markers and the modified-capture rejection test passed. The valid-input boot was
+observed through 169,350,012,907 scheduled slots and then stopped deliberately for
+the next isolated comparison. It reached securityd's native request-receive loop
+with no legacy ASL server connection; exact executable call sites were verified.
+Recoveryosd progressed beyond the earlier keychain read wait into native
+loginwindow-service loading. This does not prove every keychain operation
+completed. The final actual display remained black; a visible installer remains
+unverified. Do not replace the published baseline with this experiment. Paths in
+these preparation recipes are the original local workspace paths, not generic
+host scripts to run unchanged.
 
 References:
 - https://github.com/apple-oss-distributions/Security/blob/main/OSX/libsecurity_keychain/lib/Keychains.cpp

@@ -19,5 +19,6 @@ The next full-engine candidate compiles and its production presenter object is
 byte-identical to the one exercised by the firmware fixture. Its EFI hash is
 5ec8c671db4eb306f089c855b984e62dc11bf78357badb1597e4ae26d437b652.
 It has not run the full admission/kernel test and is not the active boot. The
-security-startup-v12 comparison remains unchanged, so its result can be attributed
-to the logging environment change alone. No graphical installer is claimed.
+security-startup-v12 comparison was observed and stopped without including this
+optimization; the following v13 display-bridge candidate also keeps the previous
+presenter, so the presentation experiment stays isolated. No graphical installer is claimed.

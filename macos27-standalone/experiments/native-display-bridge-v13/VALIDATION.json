@@ -1,0 +1,84 @@
+{
+  "UTC": "2026-10-30T12:20:43.139684+00:00",
+  "EFI_SHA256": "9abea493f8efffbfeb3164a18cd1cfbded1cbb623882c512dca76e6d9c87c856",
+  "inputSHA256": "0a78ff8ece7169a007a06b1b397968c126b858d84fc3fb4b4a611dee2c899664",
+  "helperSHA256": "44d475dbc50755bc31c69da96d9177344d1b53da4cf33effbe3a989e6ab1cbc3",
+  "sourceSHA256": {
+    "dell27-display-bridge.m": "d5d1f936df8c5b5ddfd34185e8ef9344f14007a9c791a76fdb5221b0cad9a413",
+    "test-surface-copy.m": "2e461b81e8feafe988e34e88893691087194e489c47efd810c3be4b39c151f0b",
+    "inspect-abi.m": "9915ec21b3989055451f104ee26e9665ce18bda0c00e82eb9439e95ebc5ec468",
+    "build.sh": "e4c036fbd6085165fe0dd3d5ae44ed4c82893d59512ea209a57873b542af074b",
+    "prepare-display-bridge-profile.py": "ef776ecb1b9cb4711862d2362e7d4f798579c4dbf9cdd981dfdc1c6846304e5d"
+  },
+  "hostSurfaceTest": "PASS 45 native IOSurface copies with independent padded strides, guards, and invalid geometry rejection; no display created or opened",
+  "hostRuntimeABIInspection": "passed without creating or opening a display; not a target-runtime result",
+  "recoveryLinkedImages": [
+    {
+      "index": 1,
+      "name": "/usr/lib/libobjc.A.dylib",
+      "version": "973.1.0.0.0",
+      "uuid": "C0680DF6-9900-3C29-A071-95A031686EF8",
+      "load_address": 6446661632
+    },
+    {
+      "index": 19,
+      "name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+      "version": "5027.0.69.0.0",
+      "uuid": "727E905E-F344-3823-8E13-E7A096388321",
+      "load_address": 6451679232
+    },
+    {
+      "index": 28,
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+      "version": "5027.0.69.0.0",
+      "uuid": "4317F7C6-73D2-3BE9-B010-F318F1198A1B",
+      "load_address": 6475968512
+    },
+    {
+      "index": 40,
+      "name": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit",
+      "version": "100288.0.9.0.0",
+      "uuid": "0E4CF3E4-B0C2-312A-B147-0BD4978EF0B7",
+      "load_address": 6523625472
+    },
+    {
+      "index": 55,
+      "name": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics",
+      "version": "2050.0.0.0.0",
+      "uuid": "B0FB9AC2-E3CC-31C2-A90E-0D38A776BAE2",
+      "load_address": 6564737024
+    },
+    {
+      "index": 87,
+      "name": "/System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo",
+      "version": "758.27.0.0.0",
+      "uuid": "2DD9BDAC-2339-34E3-B1D4-3C6680F85485",
+      "load_address": 6629945344
+    },
+    {
+      "index": 93,
+      "name": "/System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface",
+      "version": "402.5.0.0.0",
+      "uuid": "B7A5EC30-BFB0-3E94-8055-507FD98DB913",
+      "load_address": 6633639936
+    },
+    {
+      "index": 150,
+      "name": "/usr/lib/libSystem.B.dylib",
+      "version": "1359.0.0.0.0",
+      "uuid": "4FDC9AA6-B344-37FE-B8C6-A4C94A038F57",
+      "load_address": 6686101504
+    }
+  ],
+  "missingLinkedImages": [],
+  "recoveryScreenCaptureKitPresent": false,
+  "recoveryLegacyCaptureExportsPresent": true,
+  "recoveryVirtualDisplayClassesPresent": true,
+  "filesystemCheckPassed": true,
+  "AppleExecutableBytesChanged": false,
+  "hostDisplayChanged": false,
+  "hostSecurityChanged": false,
+  "firmwareAdmission": "running, not yet passed",
+  "nativeFramesVerified": false,
+  "graphicalInstallerVerified": false
+}

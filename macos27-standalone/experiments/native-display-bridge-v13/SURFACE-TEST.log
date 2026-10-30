@@ -1,0 +1,1 @@
+PASS 45 native IOSurface copies with independent padded strides, guards, and invalid geometry rejection; no display created or opened

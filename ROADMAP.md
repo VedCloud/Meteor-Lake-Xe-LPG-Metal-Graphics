@@ -46,7 +46,7 @@ physical Dell boot result or a native ARM instruction-speed benchmark.
 | WindowServer | Latest run has `ws_main_thread`, CoreAnimation render-server/display and HID threads. Saved return addresses resolve to `_CGXRunOneServicesPass`, `_server_loop` and `_SLXServer` | Native server loop reached; not a visible installer |
 | Memory and boot inputs | 16 GiB logical guest RAM with bounded sparse backing, checked initialized-memory input and firmware entropy | Implemented; not a claim that the entire 16 GiB is physically resident |
 | Firmware/CPU correctness | 4,096 QARMA comparisons, 72 monitor/PAC checks, 768 SPRR checks and exact-signature observer fixtures | Component tests passed |
-| Current performance candidate | Word-wise memory operations, observer offset prefilter and unchanged-frame GOP suppression; real firmware checks and modified-capture rejection pass | Integrated boot under observation; no completed boot-speed claim |
+| Performance baseline | Word-wise memory operations, observer offset prefilter and unchanged-frame GOP suppression; real firmware checks and modified-capture rejection pass | Native boot observed; no completed boot-speed claim |
 | Actual display | Latest 1280×800 OVMF display capture contains zero nonblack pixels; the native framebuffer is registered/started but no client is open | Graphical installer not verified |
 
 ### Current candidate and reproducibility
@@ -66,15 +66,25 @@ Apple installer/recovery images, SDK/KDKs, trust caches and initialized-memory c
 public package. The diagnostic depends on those checked external inputs; its source snapshot retains
 local workspace build paths. It is not a one-command portable installer build.
 
-**Follow-up under test:** the [security-startup-v12 experiment](macos27-standalone/experiments/security-startup-v12/)
-changes only securityd's guest `ASL_DISABLE=1` environment setting. Compilation, filesystem verification
-and exact input checks pass. All 35 firmware/CPU markers and the modified-capture rejection test
-passed; the valid-input boot is running. The new run has now reached securityd's native Mach request-receive loop, with no legacy ASL server
-connection, verified against two uniquely matched executable code slices. The earlier ASL send wait
-is absent in this sampled state; keychain completion and visible recovery remain unverified. Its EFI hash is
-`64281b166744dba729c2a289f21897622fca67feafe65e1cec1a32c5862aa9bf`.
-The first setup attempt stopped before QEMU because its private input disk was missing; that fixture
-was then created and checked before admission was restarted. The published baseline is unchanged.
+**Completed v12 observation:** the [security-startup comparison](macos27-standalone/experiments/security-startup-v12/)
+changed only securityd's guest `ASL_DISABLE=1` environment setting. All 35 firmware/CPU markers and
+modified-capture rejection passed. Native securityd reached its Mach request-receive loop; exact
+ASLR was verified against two uniquely matched executable code slices. Recoveryosd moved beyond
+the earlier keychain read wait into native loginwindow-service loading. This does not establish
+that every keychain operation succeeded. The final actual capture was still black after
+169,350,012,907 scheduled slots; the owned run was stopped deliberately for the next comparison.
+Its EFI hash is `64281b166744dba729c2a289f21897622fca67feafe65e1cec1a32c5862aa9bf`.
+The earlier setup failure occurred before QEMU and is recorded separately from runtime results.
+
+**Current v13 candidate:** the [native display bridge](macos27-standalone/experiments/native-display-bridge-v13/)
+adds a guest-only launch agent that attempts native virtual-display creation, real WindowServer
+IOSurface capture and bounded copies to the native firmware framebuffer. It is a software
+presentation experiment, not GPU acceleration. Compilation, exact target dependency checks,
+45 guarded host IOSurface-copy cases and the COW image's filesystem check pass. Firmware admission
+and the positive native boot are being qualified; native frames remain unverified. Its EFI hash is
+`9abea493f8efffbfeb3164a18cd1cfbded1cbb623882c512dca76e6d9c87c856`.
+The published baseline is unchanged, and the separate frame-comparison optimization is not included
+in this comparison.
 
 ### Current investigation
 
@@ -84,10 +94,11 @@ Two observations guide the next work; neither is yet a proven root cause:
    framebuffer has no open client and no physical display is registered. CoreDisplay/renderer
    enumeration and the guest's expected display transport need to be traced. A console framebuffer
    alone is not an interactive display pipeline.
-2. **Recovery startup:** the latest selected recoveryosd stack is waiting in native `_read` beneath a
-   Security keychain initialization/`SecKeychainLogin` call chain. Identify the descriptor and waiting
-   service from bounded metadata before diagnosing entropy, IPC or a file-read problem. No keychain
-   contents, credentials or PAC keys need to be read or replaced for that diagnosis.
+2. **Recovery startup:** v12 advanced from the earlier native keychain `_read` wait into
+   `_load_launchd_jobs_at_loginwindow_prompt` and spawned loginwindow-session services. Continue
+   correlating that real service progress with native display creation and captured frames; neither
+   process names nor a receive loop establish a visible, interactive installer. No keychain contents,
+   credentials or PAC keys were read or replaced for this diagnosis.
 
 The existing no-Metal compatibility option follows a genuine timeout's native cleanup path. It does
 not implement a compositor or make the engine accelerated. Likewise, an OpenGL software-renderer
